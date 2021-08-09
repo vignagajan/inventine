@@ -237,7 +237,7 @@
       } );
     });
   </script>
-  <script src="static/js/chart.js"></script>
-  <script src="static/js/dashboard.js"></script>
+  <script src="static/js/dashboard/chart.js"></script>
+  <script src="static/js/dashboard/dashboard.js"></script>
 </body>
 </html>
