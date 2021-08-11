@@ -25,10 +25,11 @@ class DataValidatorTest {
 
     }
 
-    @Test
-    void isSmall() {
-        validator.setTxt("fsdff");
-        assertTrue(validator.isString());
+    @ParameterizedTest
+    @CsvFileSource(resources = "/util/DataValidator/isSmall.csv", numLinesToSkip = 1)
+    void isSmall(String txt, boolean expected) {
+        validator.setTxt(txt);
+        assertEquals(expected,validator.isSmall());
     }
 
     @Test
