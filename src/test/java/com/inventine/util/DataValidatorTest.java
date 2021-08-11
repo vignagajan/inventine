@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+
 class DataValidatorTest {
 
     DataValidator validator;
@@ -14,14 +17,12 @@ class DataValidatorTest {
         this.validator = new DataValidator();
     }
 
-    @Test
-    void isMatch() {
-        validator.setTxt("fsdfUGYHH5456456");
-        assertTrue(validator.isMatch("a-zA-Z0-9"));
-        assertFalse(validator.isString());
-        assertFalse(validator.isSmall());
-        assertFalse(validator.isCapital());
-        assertFalse(validator.isNumber());
+    @ParameterizedTest
+    @CsvFileSource(resources = "/util/DataValidator/isMatch.csv", numLinesToSkip = 1)
+    void isMatch(String txt, String pattern, Boolean expected) {
+        validator.setTxt(txt);
+        assertEquals(expected,validator.isMatch(pattern));
+
     }
 
     @Test
