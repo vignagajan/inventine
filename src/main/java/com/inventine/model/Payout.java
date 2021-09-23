@@ -34,30 +34,30 @@ public class Payout {
         return amount;
     }
 
-    public int setAmount(int amount) {
+    public boolean setAmount(int amount) {
 
         if (amount >= 0) {
             this.amount = amount;
-            return 1;
+            return true;
         }
-        return 0;
+        return false;
     }
 
     public String getTransactionId() {
         return transactionId;
     }
 
-    public int setTransactionId(String transactionId) {
+    public boolean setTransactionId(String transactionId) {
 
         this.validator.setTxt(transactionId);
         this.validator.setMaxLength(20);
 
         if (this.validator.isNumber()) {
             this.transactionId = transactionId;
-            return 1;
+            return true;
         }
 
-        return 0;
+        return false;
 
     }
 
@@ -65,15 +65,15 @@ public class Payout {
         return createdAt;
     }
 
-    public int setCreatedAt(Timestamp createdAt) {
+    public boolean setCreatedAt(Timestamp createdAt) {
 
         try {
             this.createdAt = createdAt;
 
         } catch (Exception e) {
-            return 0;
+            return true;
         }
 
-        return 1;
+        return false;
     }
 }
