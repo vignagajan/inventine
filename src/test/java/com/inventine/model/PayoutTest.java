@@ -21,7 +21,7 @@ class PayoutTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Payout.csv", numLinesToSkip = 1)
-    void getterSetter(long amount, int transaction_id, Timestamp created_at) {
+    void getterSetter(int amount, String transaction_id, Timestamp created_at) {
 
         this.payout.setAmount(amount);
         this.payout.setTransactionId(transaction_id);
