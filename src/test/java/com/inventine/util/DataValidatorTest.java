@@ -49,4 +49,17 @@ class DataValidatorTest {
         validator.setTxt("98561489");
         assertTrue(validator.isNumber());
     }
+
+    @Test
+    void isEmail() {
+        validator.setTxt("mail.lemurians@gmail.com");
+        assertTrue(validator.isEmail());
+    }
+
+    @Test
+    void isAlphaNumeric() {
+        validator.setTxt("abcdABCD98561489");
+        assertTrue(validator.isAlphaNumeric());
+    }
+
 }

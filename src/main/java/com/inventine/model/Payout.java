@@ -17,17 +17,17 @@ public class Payout {
         return payoutId;
     }
 
-    public int setPayoutId(String payoutId) {
+    public boolean setPayoutId(String payoutId) {
 
         this.validator.setTxt(payoutId);
         this.validator.setMaxLength(6);
 
         if (this.validator.isNumber()) {
             this.payoutId = payoutId;
-            return 1;
+            return true;
         }
 
-        return 0;
+        return false;
     }
 
     public int getAmount() {
