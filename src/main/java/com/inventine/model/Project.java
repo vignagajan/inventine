@@ -8,8 +8,8 @@ import java.sql.Timestamp;
 public class Project {
     private String projectId;
     private Timestamp createdAt;
-    private String financialStatus;
-    private String status;
+    private char financialStatus;
+    private char status;
     private int requestedAmount;
     private Timestamp dateOfExpiry;
     private DataValidator validator = new DataValidator();
@@ -41,13 +41,11 @@ public class Project {
         return false;
     }
 
-    public String getFinancialStatus(){ return financialStatus;}
+    public char getFinancialStatus(){ return financialStatus;}
 
-    public boolean setFinancialStatus(String financialStatus){
-        this.validator.setTxt(financialStatus);
-        this.validator.setMaxLength(1);
+    public boolean setFinancialStatus(char financialStatus){
 
-        if (this.validator.isCapital()) {
+        if (financialStatus == 'C' || financialStatus == 'I') {
             this.financialStatus = financialStatus;
             return true;
         }
@@ -55,13 +53,11 @@ public class Project {
         return false;
     }
 
-    public String getStatus(){ return status;}
+    public char getStatus(){ return status;}
 
-    public boolean setStatus(String status){
-        this.validator.setTxt(status);
-        this.validator.setMaxLength(1);
+    public boolean setStatus(char status){
 
-        if (this.validator.isCapital()) {
+        if (status == 'A' || status == 'B' || status == 'D' || status == 'U') {
             this.status = status;
             return true;
         }

@@ -19,7 +19,7 @@ class ProjectTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Project.csv", numLinesToSkip = 1)
-    void getterSetter(String project_id, Timestamp created_at, String financial_status, String status, int requested_amount, Timestamp date_of_expiry) {
+    void getterSetter(String project_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry) {
 
         this.project.setProjectId(project_id);
         this.project.setCreatedAt(created_at);
