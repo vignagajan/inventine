@@ -6,7 +6,7 @@ public class Issues {
 
     private String issueId;
     private String description;
-    private String category;
+    private char category;
     private DataValidator validator = new DataValidator();
 
 
@@ -14,16 +14,13 @@ public class Issues {
         return issueId;
     }
 
-    public String getCategory() {
+    public char getCategory() {
         return category;
     }
 
-    public boolean setCategory(String category) {
-        this.validator.setTxt(category);
-        this.validator.setMaxLength(1);
-        this.validator.setMinLength(1);
+    public boolean setCategory(char category) {
 
-        if (this.validator.isCapital()){
+        if (category == 'P' || category == 'C' || category == 'R'){
             this.category = category;
             return true;
         }
@@ -45,13 +42,9 @@ public class Issues {
         return description;
     }
 
-    public boolean setDescription(String description) {
+    public void setDescription(String description) {
         this.validator.setTxt(description);
         this.validator.setMaxLength(500);
-        if(this.validator.isAlphaNumeric()){
-            this.description = description;
-            return true;
-        }
-        return false;
+        this.description = description;
     }
 }
