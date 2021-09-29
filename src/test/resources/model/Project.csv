@@ -1,0 +1,2 @@
+ id, created_at, financial_status, status, requested_amount, date_of_expiry
+ 000021, 2020-09-29 00:00:00.0, C, B, 4500000, 2020-09-29 00:00:00.0

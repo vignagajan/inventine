@@ -1,0 +1,91 @@
+package com.inventine.model;
+
+import com.inventine.util.DataValidator;
+import java.sql.Timestamp;
+
+public class Competition {
+    private String competitionId;
+    private Timestamp startingAt;
+    private Timestamp endingAt;
+    private int prizeMoney;
+    private String type;
+    private String rules;
+    private DataValidator validator = new DataValidator();
+
+    public String getCompetitionId(){ return competitionId;}
+
+    public boolean setCompetitionId(String competitionId) {
+        this.validator.setTxt(competitionId);
+        this.validator.setMaxLength(6);
+
+        if (this.validator.isNumber()) {
+            this.competitionId = competitionId;
+            return true;
+        }
+
+        return false;
+    }
+
+    public Timestamp getStartingAt(){ return startingAt;}
+
+    public boolean setStartingAt(Timestamp startingAt){
+        try{
+            this.startingAt = startingAt;
+
+        }catch (Exception e){
+            return true;
+        }
+
+        return false;
+    }
+
+    public Timestamp getEndingAt(){ return endingAt;}
+
+    public boolean setEndingAt(Timestamp endingAt){
+        try{
+            this.endingAt = endingAt;
+
+        }catch (Exception e){
+            return true;
+        }
+
+        return false;
+    }
+
+    public int getPrizeMoney() {return prizeMoney;}
+
+    public boolean setPrizeMoney(int prizeMoney) {
+
+        if (prizeMoney >= 0) {
+            this.prizeMoney = prizeMoney;
+            return true;
+        }
+        return false;
+    }
+
+    public String getType(){return type;}
+
+    public boolean setType(String type){
+        this.validator.setMinLength(1);
+
+        if (this.validator.isAlphaNumeric()) {
+            this.type = type;
+            return true;
+        }
+
+        return false;
+    }
+
+    public String getRules(){return rules;}
+
+    public boolean setRules(String rules){
+        this.validator.setMinLength(1);
+
+        if (this.validator.isAlphaNumeric()) {
+            this.rules = rules;
+            return true;
+        }
+
+        return false;
+    }
+}
