@@ -1,2 +1,2 @@
-organization_id, name, address , district, contact_number
-123456, WSo2, jhdgfjgkjshzjkfjz, anuradhapura, 0778956036
+organization_id,creator_Id,support_Team_Id, name, address , district, contact_number
+123456,555,24,456, jhdgfjgkjshzjkfjz, anuradhapura, 0778956036
