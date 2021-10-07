@@ -60,6 +60,12 @@ public class DataValidator {
         return isMatch("0-9");
     }
 
+    public boolean isAlphaNumeric(){
+
+        return isMatch("a-zA-Z0-9");
+
+    }
+
     public boolean isEmail(){
 
         String PATTERN = String.format("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}");
@@ -69,9 +75,21 @@ public class DataValidator {
 
     }
 
-    public boolean isAlphaNumeric(){
+    public boolean isPhone(){
 
-        return isMatch("a-zA-Z0-9");
+        String PATTERN = String.format("^\\+[1-9]{1}[0-9]{3,14}$");
+        Pattern pattern = Pattern.compile(PATTERN);
+        Matcher match = pattern.matcher(this.txt);
+        return match.matches();
+
+    }
+
+    public boolean isAddress(){
+
+        String PATTERN = String.format("[0-9\\\\\\/# ,a-zA-Z]+[ ,]+[0-9\\\\\\/#, a-zA-Z]{1,}");
+        Pattern pattern = Pattern.compile(PATTERN);
+        Matcher match = pattern.matcher(this.txt);
+        return match.matches();
 
     }
 
