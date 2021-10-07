@@ -51,15 +51,31 @@ class DataValidatorTest {
     }
 
     @Test
+    void isAlphaNumeric() {
+        validator.setTxt("abcdABCD98561489");
+        assertTrue(validator.isAlphaNumeric());
+    }
+
+    @Test
     void isEmail() {
         validator.setTxt("mail.lemurians@gmail.com");
         assertTrue(validator.isEmail());
     }
 
     @Test
-    void isAlphaNumeric() {
-        validator.setTxt("abcdABCD98561489");
-        assertTrue(validator.isAlphaNumeric());
+    void isPhone() {
+        validator.setTxt("+94771234567");
+        assertTrue(validator.isPhone());
     }
+
+    @Test
+    void isAddress() {
+        validator.setTxt("Reid Avenue, Colombo 07");
+        assertTrue(validator.isAddress());
+    }
+
+
+
+
 
 }
