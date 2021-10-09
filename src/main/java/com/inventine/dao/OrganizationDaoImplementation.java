@@ -106,7 +106,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     }
 
     @Override
-    public List<Organization> getAllOrganization() {
+    public List<Organization> getOrganizations(){
 
         String query = "SELECT * FROM organization";
 

@@ -9,7 +9,7 @@ public interface OrganizationDaoInterface {
 
     public Organization getOrganization(String organizationId);
 
-    public List<Organization> getAllOrganization();
+    public List<Organization> getOrganizations();
 
     public boolean update(Organization organization);
 
