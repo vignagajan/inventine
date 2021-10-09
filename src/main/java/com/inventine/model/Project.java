@@ -7,6 +7,8 @@ import java.sql.Timestamp;
 
 public class Project {
     private String projectId;
+    private String creatorId;
+    private String supportTeamId;
     private Timestamp createdAt;
     private char financialStatus;
     private char status;
@@ -22,6 +24,34 @@ public class Project {
 
         if (this.validator.isNumber()) {
             this.projectId = projectId;
+            return true;
+        }
+
+        return false;
+    }
+
+    public String getCreatorId(){ return creatorId;}
+
+    public boolean setCreatorId(String creatorId) {
+        this.validator.setTxt(creatorId);
+        this.validator.setMaxLength(6);
+
+        if (this.validator.isNumber()) {
+            this.creatorId = creatorId;
+            return true;
+        }
+
+        return false;
+    }
+
+    public String getSupportTeamId(){ return supportTeamId;}
+
+    public boolean setSupportTeamId(String supportTeamId) {
+        this.validator.setTxt(supportTeamId);
+        this.validator.setMaxLength(6);
+
+        if (this.validator.isNumber()) {
+            this.supportTeamId = supportTeamId;
             return true;
         }
 
