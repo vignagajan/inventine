@@ -132,18 +132,20 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     @Override
     public boolean update(Organization organization) {
 
-        String query = String.format("UPDATE organization SET creatorId=?, supportTeamId=?, name=?,address=?,district=?,contactNumber=?");
+        String query = String.format("UPDATE organization SET creatorId=?, supportTeamId=?, name=?,address=?,district=?,contactNumber=?WHERE organizationId =?");
 
         try{
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(organization.getOrganizationId()));
-            stmt.setInt(2, Integer.parseInt(organization.getCreatorId()));
-            stmt.setInt(3, Integer.parseInt(organization.getSupportTeamId()));
-            stmt.setString(4, organization.getName());
-            stmt.setString(5, organization.getAddress());
+
+            stmt.setInt(1, Integer.parseInt(organization.getCreatorId()));
+            stmt.setInt(2, Integer.parseInt(organization.getSupportTeamId()));
+            stmt.setString(3, organization.getName());
+            stmt.setString(4, organization.getAddress());
+            stmt.setString(5, organization.getDistrict());
             stmt.setString(6, organization.getContactNumber());
+            stmt.setInt(7, Integer.parseInt(organization.getOrganizationId()));
 
 
 
