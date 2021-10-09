@@ -17,7 +17,7 @@ public class Organization {
     public boolean setOrganizationId(String organizationId) {
         this.validator.setTxt(organizationId);
         this.validator.setMaxLength(6);
-        this.validator.setMinLength(2);
+
 
         if (this.validator.isNumber()) {
             this.organizationId = organizationId;
@@ -34,7 +34,7 @@ public class Organization {
     public boolean setSupportTeamId(String supportTeamId) {
         this.validator.setTxt(supportTeamId);
         this.validator.setMaxLength(6);
-        this.validator.setMinLength(2);
+
         if (this.validator.isNumber()) {
             SupportTeamId = supportTeamId;
             return true;
@@ -60,10 +60,9 @@ public class Organization {
 
     public boolean setAddress(String address){
         this.validator.setTxt(address);
-        this.validator.setMinLength(8);
-        this.validator.setMaxLength(100);
 
-        if (this.validator.isAlphaNumeric()) {
+
+        if (this.validator.isAddress()) {
             this.address = address;
             return true;
         }
@@ -90,10 +89,10 @@ public class Organization {
 
     public boolean setContactNumber(String contactNumber){
         this.validator.setTxt(contactNumber);
-        this.validator.setMinLength(10);
-        this.validator.setMaxLength(16);
 
-        if (this.validator.isNumber()) {
+
+
+        if (this.validator.isPhone()) {
             this.contactNumber = contactNumber;
             return true;
         }
@@ -108,7 +107,7 @@ public class Organization {
     public boolean setCreatorId(String creatorId) {
         this.validator.setTxt(creatorId);
         this.validator.setMaxLength(6);
-        this.validator.setMinLength(2);
+
         if(this.validator.isNumber())
         {
             this.creatorId = creatorId;
