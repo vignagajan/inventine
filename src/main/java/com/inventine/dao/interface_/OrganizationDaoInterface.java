@@ -11,7 +11,7 @@ public interface OrganizationDaoInterface {
 
     public List<Organization> getAllOrganization();
 
-    public boolean update(String organizationId, String column, String value);
+    public boolean update(Organization organization);
 
-    public boolean delete(String organizationId);
+
 }

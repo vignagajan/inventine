@@ -4,6 +4,7 @@ import com.inventine.conf.DBManager;
 import com.inventine.dao.interface_.OrganizationDaoInterface;
 
 import com.inventine.model.Organization;
+import com.inventine.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     @Override
     public boolean create(Organization organization) {
 
-        String query = "INSERT INTO organization(organizationId,creatorId,supportTeamId, name, address, district,contactNumber ) " +
-                "VALUES (?, ?,?, ?,?,?,?)";
+        String query = "INSERT INTO organization(creatorId,supportTeamId, name, address, district,contactNumber ) " +
+                "VALUES ( ?,?, ?,?,?,?)";
 
         int n = 0;
 
@@ -25,19 +26,17 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, organization.getOrganizationId());
-            stmt.setString(2, organization.getCreatorId());
-            stmt.setString(3, organization.getSupportTeamId());
-            stmt.setString(4, organization.getName());
-            stmt.setString(5, organization.getAddress());
-            stmt.setString(6, organization.getDistrict());
-            stmt.setString(7, organization.getContactNumber());
+            stmt.setInt(1, Integer.parseInt(organization.getCreatorId()));
+            stmt.setInt(2, Integer.parseInt(organization.getSupportTeamId()));
+            stmt.setString(3, organization.getName());
+            stmt.setString(4, organization.getAddress());
+            stmt.setString(5, organization.getDistrict());
+            stmt.setString(6, organization.getContactNumber());
 
 
 
 
-         /* stmt.setString(5, String.valueOf(organization.getRole()));
-            stmt.setString(6, String.valueOf(organization.getStatus())); */
+
 
             n = stmt.executeUpdate();
 
@@ -73,7 +72,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     }
 
     @Override
-    public Organization getOrganization(String username) {
+    public Organization getOrganization(String organizationId) {
 
         String query = "SELECT * FROM organization WHERE organizationId= ?";
 
@@ -84,7 +83,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, organization.getOrganizationId());
+            stmt.setInt(1, Integer.parseInt(organizationId));
 
 
             ResultSet rs = stmt.executeQuery();
@@ -131,16 +130,20 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
         return ls;
     }
     @Override
-    public boolean update(String organizationId, String column, String value) {
+    public boolean update(Organization organization) {
 
-        String query = String.format("UPDATE organization SET %s=? WHERE organizationId =?",column);
+        String query = String.format("UPDATE organization SET creatorId=?, supportTeamId=?, name=?,address=?,district=?,contactNumber=?");
 
         try{
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, value);
-            stmt.setString(2, organizationId);
+            stmt.setInt(1, Integer.parseInt(organization.getOrganizationId()));
+            stmt.setInt(2, Integer.parseInt(organization.getCreatorId()));
+            stmt.setInt(3, Integer.parseInt(organization.getSupportTeamId()));
+            stmt.setString(4, organization.getName());
+            stmt.setString(5, organization.getAddress());
+            stmt.setString(6, organization.getContactNumber());
 
 
 
@@ -159,13 +162,12 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
 
 
 
-    @Override
-    public boolean delete(String organizationId) {
 
-        update(organizationId, "status", "D");
-        return true;
+
 
     }
 
 
-}
+
+/* stmt.setString(1, organization.getCreatorId());
+            stmt.setString(2, organization.getSupportTeamId());*/
