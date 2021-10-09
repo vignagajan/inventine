@@ -10,7 +10,7 @@ public interface PaymentDaoInterface{
 
     public Payment getPayment(String paymentId);
 
-    public List<Payment> getAllPayment();
+    public List<Payment> getPayments();
 
     public boolean update(Payment payment);
 

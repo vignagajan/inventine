@@ -10,7 +10,7 @@ public interface InvestorDaoInterface{
 
     public Investor getInvestor(String investorId);
 
-    public List<Investor> getAllInvestor();
+    public List<Investor> getInvestors();
 
     public boolean update(Investor investor);
 

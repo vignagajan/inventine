@@ -10,7 +10,7 @@ public interface RateCreatorDaoInterface{
 
     public RateCreator getRateCreator(String rateCreatorId);
 
-    public List<RateCreator> getAllRateCreator();
+    public List<RateCreator> getRateCreators();
 
     public boolean update(RateCreator rateCreator);
 

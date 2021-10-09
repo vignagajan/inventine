@@ -10,7 +10,7 @@ public interface ProjectDaoInterface{
 
     public Project getProject(String projectId);
 
-    public List<Project> getAllProject();
+    public List<Project> getProjects();
 
     public boolean update(Project project);
 

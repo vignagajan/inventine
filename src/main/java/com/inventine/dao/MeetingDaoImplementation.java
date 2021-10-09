@@ -24,7 +24,7 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, meeting.getCreatorId());
+            stmt.setInt(1, Integer.parseInt(meeting.getCreatorId()));
             stmt.setString(3, String.valueOf(meeting.getLaunchedAt()));
             stmt.setString(4, meeting.getLink());
 

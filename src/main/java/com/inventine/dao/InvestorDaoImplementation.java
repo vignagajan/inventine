@@ -24,7 +24,7 @@ public class InvestorDaoImplementation implements InvestorDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, investor.getCustomerId());
+            stmt.setInt(1, Integer.parseInt(investor.getCustomerId()));
 
 
             n = stmt.executeUpdate();

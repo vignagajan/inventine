@@ -24,8 +24,8 @@ public class AcceptMeetingDaoImplementation implements AcceptMeetingDaoInterface
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, acceptMeeting.getInvestorId());
-            stmt.setString(2, acceptMeeting.getMeetingId());
+            stmt.setInt(1, Integer.parseInt(acceptMeeting.getInvestorId()));
+            stmt.setInt(2, Integer.parseInt(acceptMeeting.getMeetingId()));
 
 
 

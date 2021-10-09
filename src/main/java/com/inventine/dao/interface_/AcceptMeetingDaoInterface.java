@@ -10,7 +10,7 @@ public interface AcceptMeetingDaoInterface{
 
     public AcceptMeeting getAcceptMeeting(String acceptMeetingId);
 
-    public List<AcceptMeeting> getAllAcceptMeeting();
+    public List<AcceptMeeting> getAcceptMeetings();
 
     public boolean update(AcceptMeeting acceptMeeting);
 
