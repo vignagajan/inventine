@@ -6,6 +6,7 @@ import com.inventine.model.RateCreator;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
@@ -24,8 +25,8 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, rateCreator.getCreatorId());
-            stmt.setString(2, rateCreator.getInvestorId());
+            stmt.setInt(1, Integer.parseInt(rateCreator.getCreatorId()));
+            stmt.setInt(2, Integer.parseInt(rateCreator.getInvestorId()));
             stmt.setString(3, String.valueOf(rateCreator.getCreatorRating()));
 
 
@@ -69,12 +70,14 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1,rateCreatorId);
+            stmt.setInt(1, Integer.parseInt(rateCreatorId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 rateCreator = setRateCreator(rateCreator, rs);
             }
+
+            return rateCreator;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,7 +89,7 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
     }
 
     @Override
-    public List<RateCreator> getAllRateCreator() {
+    public List<RateCreator> getRateCreators() {
 
         String query = "SELECT * FROM rateCreator";
 
@@ -103,11 +106,13 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
                 ls.add(rateCreator);
             }
 
+            return ls;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return ls;
+        return null;
     }
 
     @Override
@@ -120,10 +125,10 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
             PreparedStatement stmt = conn.prepareStatement(query);
 
 
-            stmt.setString(1, rateCreator.getCreatorId());
-            stmt.setString(2, rateCreator.getInvestorId());
+            stmt.setInt(1, Integer.parseInt(rateCreator.getCreatorId()));
+            stmt.setInt(1, Integer.parseInt(rateCreator.getInvestorId()));
             stmt.setInt(4, rateCreator.getCreatorRating());
-            stmt.setString(4, rateCreator.getRateCreatorId());
+            stmt.setInt(1, Integer.parseInt(rateCreator.getRateCreatorId()));
 
             stmt.executeUpdate();
 

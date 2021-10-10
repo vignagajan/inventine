@@ -66,13 +66,15 @@ public class InvestorDaoImplementation implements InvestorDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1,investorId);
+            stmt.setInt(1, Integer.parseInt(investorId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
 
                 investor = setInvestor(investor, rs);
             }
+
+            return investor;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,7 +86,7 @@ public class InvestorDaoImplementation implements InvestorDaoInterface {
     }
 
     @Override
-    public List<Investor> getAllInvestor() {
+    public List<Investor> getInvestors() {
 
         String query = "SELECT * FROM investor";
 
@@ -101,11 +103,13 @@ public class InvestorDaoImplementation implements InvestorDaoInterface {
                 ls.add(investor);
             }
 
+            return  ls;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return ls;
+        return null;
     }
 
     @Override
@@ -117,8 +121,8 @@ public class InvestorDaoImplementation implements InvestorDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, investor.getCustomerId());
-            stmt.setString(2, investor.getInvestorId());
+            stmt.setInt(1, Integer.parseInt(investor.getCustomerId()));
+            stmt.setInt(1, Integer.parseInt(investor.getInvestorId()));
 
             stmt.executeUpdate();
 

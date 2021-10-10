@@ -71,12 +71,14 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1,meetingId);
+            stmt.setInt(1, Integer.parseInt(meetingId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 meeting = setMeeting(meeting, rs);
             }
+
+            return meeting;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +90,7 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
     }
 
     @Override
-    public List<Meeting> getAllMeeting() {
+    public List<Meeting> getMeetings() {
 
         String query = "SELECT * FROM meeting";
 
@@ -105,11 +107,13 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
                 ls.add(meeting);
             }
 
+            return ls;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return ls;
+        return null;
     }
 
     @Override
@@ -121,10 +125,10 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, meeting.getCreatorId());
+            stmt.setInt(1, Integer.parseInt(meeting.getCreatorId()));
             stmt.setTimestamp(2, meeting.getLaunchedAt());
             stmt.setString(3, meeting.getLink());
-            stmt.setString(3, meeting.getMeetingId());
+            stmt.setInt(1, Integer.parseInt(meeting.getMeetingId()));
 
 
             stmt.executeUpdate();
