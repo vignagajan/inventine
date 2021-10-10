@@ -70,7 +70,9 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+
             stmt.setInt(1, Integer.parseInt(paymentId));
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -89,7 +91,9 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
     }
 
     @Override
+
     public List<Payment> getPayments() {
+
 
         String query = "SELECT * FROM payment";
 
@@ -106,13 +110,16 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
                 ls.add(payment);
             }
 
+
             return ls;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+
         return null;
+
     }
 
     @Override
@@ -124,11 +131,13 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+
             stmt.setInt(1, Integer.parseInt(payment.getProjectId()));
-            stmt.setInt(1, Integer.parseInt(payment.getInvestorId()));
-            stmt.setInt(1, Integer.parseInt(payment.getFinancialDetailsId()));
+            stmt.setInt(2, Integer.parseInt(payment.getInvestorId()));
+            stmt.setInt(3, Integer.parseInt(payment.getFinancialDetailsId()));
             stmt.setInt(4, payment.getAmount());
-            stmt.setInt(1, Integer.parseInt(payment.getPaymentId()));
+            stmt.setInt(4, Integer.parseInt(payment.getPaymentId()));
+
 
             stmt.executeUpdate();
 

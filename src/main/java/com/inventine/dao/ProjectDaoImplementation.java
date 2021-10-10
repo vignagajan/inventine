@@ -24,6 +24,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+
             stmt.setInt(1, Integer.parseInt(project.getCreatorId()));
             stmt.setInt(2, Integer.parseInt(project.getSupportTeamId()));
             stmt.setString(3, String.valueOf(project.getFinancialStatus()));
@@ -76,11 +77,13 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             PreparedStatement stmt = conn.prepareStatement(query);
 
             stmt.setInt(1, Integer.parseInt(projectId));
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 project = setProject(project, rs);
             }
+
 
             return project;
 
@@ -94,7 +97,9 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     }
 
     @Override
+
     public List<Project> getProjects() {
+
 
         String query = "SELECT * FROM project";
 
@@ -111,13 +116,17 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
                 ls.add(project);
             }
 
+
             return ls;
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+
         return null;
+
     }
 
     @Override
@@ -129,13 +138,15 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+
             stmt.setInt(1, Integer.parseInt(project.getCreatorId()));
-            stmt.setInt(1, Integer.parseInt(project.getSupportTeamId()));
+            stmt.setInt(2, Integer.parseInt(project.getSupportTeamId()));
             stmt.setString(3, String.valueOf(project.getFinancialStatus()));
             stmt.setString(4, String.valueOf(project.getStatus()));
             stmt.setInt(5, project.getRequestedAmount());
             stmt.setTimestamp(6, project.getDateOfExpiry());
-            stmt.setInt(1, Integer.parseInt(project.getProjectId()));
+            stmt.setInt(7, Integer.parseInt(project.getProjectId()));
+
 
 
             stmt.executeUpdate();

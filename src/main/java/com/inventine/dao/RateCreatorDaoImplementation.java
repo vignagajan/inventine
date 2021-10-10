@@ -6,7 +6,6 @@ import com.inventine.model.RateCreator;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
@@ -70,14 +69,18 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+
             stmt.setInt(1, Integer.parseInt(rateCreatorId));
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 rateCreator = setRateCreator(rateCreator, rs);
             }
 
+
             return rateCreator;
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,7 +92,9 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
     }
 
     @Override
+
     public List<RateCreator> getRateCreators() {
+
 
         String query = "SELECT * FROM rateCreator";
 
@@ -106,13 +111,16 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
                 ls.add(rateCreator);
             }
 
+
             return ls;
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return null;
+
     }
 
     @Override
@@ -125,10 +133,12 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
             PreparedStatement stmt = conn.prepareStatement(query);
 
 
+
             stmt.setInt(1, Integer.parseInt(rateCreator.getCreatorId()));
-            stmt.setInt(1, Integer.parseInt(rateCreator.getInvestorId()));
-            stmt.setInt(4, rateCreator.getCreatorRating());
-            stmt.setInt(1, Integer.parseInt(rateCreator.getRateCreatorId()));
+            stmt.setInt(2, Integer.parseInt(rateCreator.getInvestorId()));
+            stmt.setInt(3, rateCreator.getCreatorRating());
+            stmt.setInt(4, Integer.parseInt(rateCreator.getRateCreatorId()));
+
 
             stmt.executeUpdate();
 

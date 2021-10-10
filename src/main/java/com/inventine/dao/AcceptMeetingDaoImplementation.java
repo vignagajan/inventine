@@ -71,6 +71,7 @@ public class AcceptMeetingDaoImplementation implements AcceptMeetingDaoInterface
             PreparedStatement stmt = conn.prepareStatement(query);
 
             stmt.setInt(1, Integer.parseInt(acceptMeetingId));
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -90,7 +91,9 @@ public class AcceptMeetingDaoImplementation implements AcceptMeetingDaoInterface
     }
 
     @Override
+
     public List<AcceptMeeting> getAcceptMeetings() {
+
 
         String query = "SELECT * FROM acceptMeeting";
 
@@ -109,9 +112,11 @@ public class AcceptMeetingDaoImplementation implements AcceptMeetingDaoInterface
 
             return ls;
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
 
         return null;
 
@@ -126,9 +131,11 @@ public class AcceptMeetingDaoImplementation implements AcceptMeetingDaoInterface
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+
             stmt.setInt(1, Integer.parseInt(acceptMeeting.getInvestorId()));
-            stmt.setInt(1, Integer.parseInt(acceptMeeting.getMeetingId()));
-            stmt.setInt(1, Integer.parseInt(acceptMeeting.getAcceptMeetingId()));
+            stmt.setInt(2, Integer.parseInt(acceptMeeting.getMeetingId()));
+            stmt.setInt(3, Integer.parseInt(acceptMeeting.getAcceptMeetingId()));
+
 
             stmt.executeUpdate();
 

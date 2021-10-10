@@ -25,6 +25,7 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+
             stmt.setInt(1, Integer.parseInt(rateProject.getProjectId()));
             stmt.setInt(2, Integer.parseInt(rateProject.getInvestorId()));
             stmt.setString(3, String.valueOf(rateProject.getProjectRating()));
@@ -69,14 +70,18 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+
             stmt.setInt(1, Integer.parseInt(rateProjectId));
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 rateProject = setRateProject(rateProject, rs);
             }
 
+
             return rateProject;
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,7 +92,9 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
     }
 
     @Override
+
     public List<RateProject> getRateProjects() {
+
 
         String query = "SELECT * FROM rateProject";
 
@@ -104,13 +111,17 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
                 ls.add(rateProject);
             }
 
+
             return ls;
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+
         return null;
+
     }
 
     @Override
@@ -122,10 +133,12 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+
             stmt.setInt(1, Integer.parseInt(rateProject.getProjectId()));
-            stmt.setInt(1, Integer.parseInt(rateProject.getInvestorId()));
+            stmt.setInt(2, Integer.parseInt(rateProject.getInvestorId()));
             stmt.setInt(3, rateProject.getProjectRating());
-            stmt.setInt(1, Integer.parseInt(rateProject.getRateProjectId()));
+            stmt.setInt(4, Integer.parseInt(rateProject.getRateProjectId()));
+
 
             stmt.executeUpdate();
 
