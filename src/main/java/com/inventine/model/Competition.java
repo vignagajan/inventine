@@ -5,7 +5,10 @@ import java.sql.Timestamp;
 
 public class Competition {
     private String competitionId;
-    private Timestamp startingAt;
+    private String organizationId;
+    private String projectId;
+    private String supportTeamId;
+    private Timestamp createdAt;
     private Timestamp endingAt;
     private int prizeMoney;
     private String type;
@@ -26,11 +29,11 @@ public class Competition {
         return false;
     }
 
-    public Timestamp getStartingAt(){ return startingAt;}
+    public Timestamp getCreatedAt(){ return createdAt;}
 
-    public boolean setStartingAt(Timestamp startingAt){
+    public boolean setCreatedAt(Timestamp createdAt){
         try{
-            this.startingAt = startingAt;
+            this.createdAt = createdAt;
 
         }catch (Exception e){
             return true;
@@ -88,4 +91,63 @@ public class Competition {
 
         return false;
     }
+
+    public String getSupportTeamId() {
+        return supportTeamId;
+    }
+
+    public boolean setSupportTeamId(String supportTeamId) {
+        this.validator.setTxt(supportTeamId);
+        this.validator.setMaxLength(6);
+        this.validator.setMinLength(2);
+        if(this.validator.isNumber())
+        {
+            this.supportTeamId = supportTeamId;
+            return true;
+        }
+
+         return false;
+    }
+
+    public String getOrganizationId() {
+        return organizationId;
+    }
+
+    public boolean setOrganizationId(String organizationId) {
+        this.validator.setTxt(organizationId);
+        this.validator.setMaxLength(6);
+        this.validator.setMinLength(2);
+        if(this.validator.isNumber())
+        {
+            this.organizationId = organizationId;
+            return true;
+        }
+        return false;
+
+    }
+
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public boolean setProjectId(String projectId) {
+        this.validator.setTxt(projectId);
+        this.validator.setMaxLength(6);
+        this.validator.setMinLength(2);
+        if(this.validator.isNumber())
+        {
+            this.projectId = projectId;
+            return true;
+        }
+         return false;
+    }
 }
+
+/*
+ public boolean setCategory(char category) {
+
+        if (category == 'P' || category == 'C' || category == 'R'){
+            this.category = category;
+            return true;
+        }
+ */

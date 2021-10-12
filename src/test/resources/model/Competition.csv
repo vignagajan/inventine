@@ -1,2 +1,2 @@
- competition_id,  starting_at,  ending_at,  prize_money,  type,  rules
- 000000, 2020-09-29 00:00:00.0, 2020-10-29 00:00:00.0, 5645643, art, hsdfhkjhadshhbkjsb
+ competition_Id, organization_Id, support_Team_Id, project_Id, created_At,  ending_at,  prize_money,  type,  rules
+ 1234,567,897,234,2021-09-24 10:23:12.0,2021-09-24 10:22:12.0,4567,ghbhfh,hghgj

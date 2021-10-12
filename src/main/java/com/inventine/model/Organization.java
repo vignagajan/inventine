@@ -4,6 +4,8 @@ import com.inventine.util.DataValidator;
 
 public class Organization {
     private String organizationId;
+    private String creatorId;
+    private String SupportTeamId;
     private String name;
     private String address;
     private String district;
@@ -16,6 +18,7 @@ public class Organization {
         this.validator.setTxt(organizationId);
         this.validator.setMaxLength(6);
 
+
         if (this.validator.isNumber()) {
             this.organizationId = organizationId;
             return true;
@@ -24,11 +27,26 @@ public class Organization {
         return false;
     }
 
+    public String getSupportTeamId() {
+        return SupportTeamId;
+    }
+
+    public boolean setSupportTeamId(String supportTeamId) {
+        this.validator.setTxt(supportTeamId);
+        this.validator.setMaxLength(6);
+
+        if (this.validator.isNumber()) {
+            SupportTeamId = supportTeamId;
+            return true;
+        }
+        return false;
+    }
     public String getName(){return name;}
 
     public boolean setName(String name){
         this.validator.setTxt(name);
-        this.validator.setMinLength(1);
+        this.validator.setMaxLength(50);
+        this.validator.setMinLength(3);
 
         if (this.validator.isAlphaNumeric()) {
             this.name = name;
@@ -42,10 +60,9 @@ public class Organization {
 
     public boolean setAddress(String address){
         this.validator.setTxt(address);
-        this.validator.setMinLength(8);
-        this.validator.setMaxLength(100);
 
-        if (this.validator.isAlphaNumeric()) {
+
+        if (this.validator.isAddress()) {
             this.address = address;
             return true;
         }
@@ -72,14 +89,31 @@ public class Organization {
 
     public boolean setContactNumber(String contactNumber){
         this.validator.setTxt(contactNumber);
-        this.validator.setMinLength(10);
-        this.validator.setMaxLength(10);
 
-        if (this.validator.isNumber()) {
+
+
+        if (this.validator.isPhone()) {
             this.contactNumber = contactNumber;
             return true;
         }
 
         return false;
+    }
+
+    public String getCreatorId() {
+        return creatorId;
+    }
+
+    public boolean setCreatorId(String creatorId) {
+        this.validator.setTxt(creatorId);
+        this.validator.setMaxLength(6);
+
+        if(this.validator.isNumber())
+        {
+            this.creatorId = creatorId;
+            return true;
+        }
+         return false;
+
     }
 }

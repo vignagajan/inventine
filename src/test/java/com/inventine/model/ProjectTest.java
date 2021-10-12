@@ -19,9 +19,11 @@ class ProjectTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Project.csv", numLinesToSkip = 1)
-    void getterSetter(String project_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry) {
+    void getterSetter(String project_id, String creator_id, String support_team_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry) {
 
         this.project.setProjectId(project_id);
+        this.project.setCreatorId(creator_id);
+        this.project.setSupportTeamId(support_team_id);
         this.project.setCreatedAt(created_at);
         this.project.setFinancialStatus(financial_status);
         this.project.setStatus(status);
@@ -29,6 +31,8 @@ class ProjectTest {
         this.project.setDateOfExpiry(date_of_expiry);
 
         assertEquals(project_id, this.project.getProjectId());
+        assertEquals(creator_id, this.project.getCreatorId());
+        assertEquals(support_team_id, this.project.getSupportTeamId());
         assertEquals(created_at, this.project.getCreatedAt());
         assertEquals(financial_status, this.project.getFinancialStatus());
         assertEquals(status, this.project.getStatus());

@@ -1,2 +1,2 @@
-meeting_id, created_at,  launched_at,  link
-000000, 2020-09-29 00:00:00.0, 2020-09-29 00:00:00.0, asdrtewgqhjkafaakhajhk
+meeting_id, creator_id created_at,  launched_at,  link
+000000, 000050, 2020-09-29 00:00:00.0, 2020-09-29 00:00:00.0, asdrtewgqhjkafaakhajhk
