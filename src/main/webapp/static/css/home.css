@@ -1,0 +1,247 @@
+/* Design */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fcfcfc;
+}
+
+body {
+  color: #272727;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  padding: 0;
+}
+
+.content{
+  margin: 100px;
+}
+.container {
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 2px 2px 5px #435d80;
+  padding: 40px;
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.column-1 {
+  margin-right: 150px;
+  flex-shrink: 0; /* shrinks to 0 to apply 70% width*/
+  flex-basis: 50%; /* sets initial width to 70%*/
+}
+
+
+@media only screen and (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    justify-self: center;
+  }
+}
+
+.container .column-2 img{
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 2px 2px 5px #435d80;
+}
+h1{
+  color: #0097E6;
+  font-size:36px;
+  margin-bottom:16px;
+}
+
+.paragraph{
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  max-width: 485px;
+
+}
+.button1{
+  color: #0097E6;
+  background-color: #fff;
+  border-color: #0097E6;
+  font-size: 20px;
+  margin-top:36px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 25px;
+  height: 40px;
+  width: 150px;
+}
+
+
+.button2{
+    color: #fff;
+    background-color: #0097E6;
+    font-size: 20px;
+    margin-top:36px;
+    border-radius: 25px;
+    height: 40px;
+    width: 150px;
+  }
+  
+.search-container{
+  padding: 50px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+  .search {
+    border: 2px solid #00B4CC;
+    border-radius:25px;
+    width: 100%;
+    height:40px;
+    position: relative;
+    display: flex;
+    
+  }
+  
+  .searchTerm {
+    width: 100%;
+    border-radius:25px 0 0 25px;
+    padding: 5px;
+    outline: none;
+    color: #9DBFAF;
+  }
+  
+  .searchTerm:focus{
+    color: #00B4CC;
+  }
+  
+  .searchButton {
+    width: 40px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  /*Resize the wrap to see the search bar change!*/
+  .wrap{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+
+.rowbutton{
+  text-align: center;
+}
+.rowbutton .b {
+  padding: 8px;
+  width: 150px;
+  font-size: 16px;
+  font-weight: bold;
+  color:#0097E6;    
+  border-color: #0097E6;
+  background-color: #fff;
+  border-radius: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.main{
+
+  max-width: 100%;
+  margin-left:28px;
+  margin-right:28px;
+}
+
+
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.card .btn {
+  margin-top: 20px;
+  color: #ffffff;
+  padding: 0.8rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+
+.card .btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards_item {
+  display: flex;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .cards_item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 896px) {
+  .cards_item {
+    width: 33.3333%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards_item {
+    width: 25%;
+  }
+}
+
+.card {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card_content {
+  height: 100%;
+  padding: 1rem;
+  background: linear-gradient(to bottom left, #0097e6 40%, #3033ff 100%);
+}
+
+.card_title {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+
+.card_text {
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;    
+  font-weight: 400;
+}
