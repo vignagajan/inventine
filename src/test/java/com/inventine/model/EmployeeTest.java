@@ -25,7 +25,7 @@ class EmployeeTest {
         this.employee.setNWorkHours(n_work_hours);
         this.employee.setNTasks(n_tasks);
 
-        assertEquals(employeeId,this.employee.getUserId());
+        assertEquals(userId,this.employee.getUserId());
         assertEquals(employeeId,this.employee.getEmployeeId());
         assertEquals(n_work_hours,this.employee.getNWorkHours());
         assertEquals(n_tasks,this.employee.getNTasks());
