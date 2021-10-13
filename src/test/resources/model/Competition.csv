@@ -1,2 +1,2 @@
- competition_Id, organization_Id, support_Team_Id, project_Id, created_At,  ending_at,  prize_money,  type,  rules
- 1234,567,897,234,2021-09-24 10:23:12.0,2021-09-24 10:22:12.0,4567,ghbhfh,hghgj
+ competition_Id, organization_Id, support_Team_Id, project_Id, created_At,  ending_at,  prize_money, rules,c_type,p_type
+8,17,2,1,2021-10-13 15:58:57.230241,2021-12-31 12:25:30.00,10000,only3memberorlessmemberparticipate,H,I

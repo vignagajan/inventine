@@ -9,9 +9,9 @@ public interface CompetitionDaoInterface {
 
     public Competition getCompetition(String competitionId);
 
-    public List<Competition> getAllCompetition();
+    public List<Competition> getCompetitions();
 
-    public boolean update(String competitionId, String column, String value);
+    public boolean update(Competition competition);
 
-    public boolean delete(String competitionId);
+
 }

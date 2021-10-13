@@ -16,8 +16,8 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
     @Override
     public boolean create(Competition competition) {
 
-        String query = "INSERT INTO competition(competitionId,organizationId,  supportTeamId,projectId,createdAt,endingAt ,prizeMoney,type,rules ) " +
-                "VALUES (?, ?, ?,?,?,?,?,?,?)";
+        String query = "INSERT INTO competition(organizationId,  supportTeamId,projectId,endingAt ,prizeMoney,rules,cType,pType ) " +
+                "VALUES (?, ?, ?,?,?,?,CAST(? AS cp),CAST(? AS pte))";
 
         int n = 0;
 
@@ -25,20 +25,19 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, competition.getCompetitionId());
-            stmt.setString(2, competition.getOrganizationId());
-            stmt.setString(3, competition.getSupportTeamId());
-            stmt.setString(4, competition.getProjectId());
-            stmt.setTimestamp(5, competition.getCreatedAt());
-            stmt.setTimestamp(6, competition.getEndingAt());
-            stmt.setInt(7, competition.getPrizeMoney());
-            stmt.setString(8, competition.getType());
-            stmt.setString(9, competition.getRules());
+            stmt.setInt(1, Integer.parseInt(competition.getOrganizationId()));
+            stmt.setInt(2, Integer.parseInt(competition.getSupportTeamId()));
+            stmt.setInt(3, Integer.parseInt(competition.getProjectId()));
+            stmt.setTimestamp(4, competition.getEndingAt());
+            stmt.setInt(5, competition.getPrizeMoney());
+            stmt.setString(6, competition.getRules());
+            stmt.setString(7, String.valueOf(competition.getCType()));
+            stmt.setString(8, String.valueOf(competition.getPType()));
 
 
 
-         /* stmt.setString(5, String.valueOf(competition.getRole()));
-            stmt.setString(6, String.valueOf(competition.getStatus())); */
+
+
 
             n = stmt.executeUpdate();
 
@@ -54,15 +53,18 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
 
         try {
 
+
             competition.setCompetitionId(rs.getString("competitionId"));
             competition.setOrganizationId(rs.getString("organizationId"));
             competition.setSupportTeamId(rs.getString("supportTeamId"));
             competition.setProjectId(rs.getString("projectId"));
-            competition.setCreatedAt(Timestamp.valueOf(rs.getString("createdAt")));
-            competition.setCreatedAt(Timestamp.valueOf(rs.getString("endingAt")));
+            competition.setCreatedAt(rs.getTimestamp("createdAt"));
+            competition.setEndingAt(rs.getTimestamp("endingAt"));
             competition.setPrizeMoney(rs.getInt("prizeMoney"));
-            competition.setType(rs.getString("type"));
             competition.setRules(rs.getString("rules"));
+            competition.setCType(rs.getString("cType").charAt(0));
+            competition.setPType(rs.getString("pType").charAt(0));
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -71,10 +73,10 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
         return competition;
     }
 
-    @Override
-    public Competition getCompetition(String username) {
+   @Override
+  public Competition getCompetition(String competitionId) {
 
-        String query = "SELECT * FROM competition WHERE competitionId= ?";
+       String query = "SELECT * FROM competition WHERE competitionId= ?";
 
         Competition competition = new Competition();
         boolean found = false;
@@ -83,17 +85,17 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, competition.getCompetitionId());
+            stmt.setInt(1, Integer.parseInt(competitionId));
 
 
             ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
+          while (rs.next()) {
                 found = true;
                 competition = setCompetition(competition, rs);
             }
 
-        } catch (SQLException e) {
+       } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -101,12 +103,12 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
         if (found == true) {
             return competition;
         } else
-            return null;
+           return null;
 
     }
 
     @Override
-    public List<Competition> getAllCompetition() {
+    public List<Competition> getCompetitions() {
 
         String query = "SELECT * FROM competition";
 
@@ -130,16 +132,25 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
         return ls;
     }
     @Override
-    public boolean update(String competitionId, String column, String value) {
+   public boolean update(Competition competition) {
 
-        String query = String.format("UPDATE competition SET %s=? WHERE competitionId =?",column);
+        String query = String.format("UPDATE competition SET organizationId=?, supportTeamId=?, projectId=?, endingAt=?, prizeMoney=?, rules=?,cType=CAST(? AS cp),pType=CAST(? AS pte) WHERE competitionId =?");
 
         try{
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, value);
-            stmt.setString(2, competitionId);
+            stmt.setInt(1, Integer.parseInt(competition.getOrganizationId()));
+            stmt.setInt(2, Integer.parseInt(competition.getSupportTeamId()));
+            stmt.setInt(3, Integer.parseInt(competition.getProjectId()));
+            stmt.setTimestamp(4, competition.getEndingAt());
+            stmt.setInt(5,competition.getPrizeMoney());
+            stmt.setString(6,competition.getRules());
+            stmt.setString(7, String.valueOf(competition.getCType()));
+            stmt.setString(8, String.valueOf(competition.getPType()));
+            stmt.setInt(9, Integer.parseInt(competition.getCompetitionId()));
+
+
 
 
 
@@ -157,14 +168,6 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
 
 
 
-
-    @Override
-    public boolean delete(String competitionId) {
-
-        update(competitionId, "status", "D");
-        return true;
-
-    }
 
 
 }
