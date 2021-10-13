@@ -18,11 +18,15 @@ class EmployeeTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Employee.csv", numLinesToSkip = 1)
-    void getterSetter(int n_work_hours, int n_tasks) {
+    void getterSetter(String employeeId,String userId, int n_work_hours, int n_tasks) {
 
+        this.employee.setEmployeeId(employeeId);
+        this.employee.setUserId(userId);
         this.employee.setNWorkHours(n_work_hours);
         this.employee.setNTasks(n_tasks);
 
+        assertEquals(employeeId,this.employee.getUserId());
+        assertEquals(employeeId,this.employee.getEmployeeId());
         assertEquals(n_work_hours,this.employee.getNWorkHours());
         assertEquals(n_tasks,this.employee.getNTasks());
 
