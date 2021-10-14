@@ -41,16 +41,16 @@ public class DBManager {
             synchronized (Connection.class){
                 if (conn == null){
 
-                    DotEnv env = new DotEnv();
-                    Map<String,String> dotEnv = env.load();
+                    Map<String,String> dotEnv = DotEnv.load();
 
                     String url = dotEnv.get("DB_URL");
                     String host_username = dotEnv.get("DB_USER");
                     String host_password = dotEnv.get("DB_PASS");
 
                     try {
+                        Class.forName("org.postgresql.Driver");
                         conn = DriverManager.getConnection(url,host_username,host_password);
-                    } catch (SQLException e){
+                    } catch (SQLException | ClassNotFoundException e){
                         e.printStackTrace();
                     }
 
