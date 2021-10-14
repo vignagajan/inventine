@@ -2,6 +2,8 @@ package com.inventine.model;
 
 import com.inventine.util.DataValidator;
 
+import java.sql.Timestamp;
+
 public class Organization {
     private String organizationId;
     private String creatorId;
@@ -10,9 +12,12 @@ public class Organization {
     private String address;
     private String district;
     private String contactNumber;
+    private Timestamp createdAt;
     private DataValidator validator = new DataValidator();
 
-    public String getOrganizationId(){ return organizationId;}
+    public String getOrganizationId() {
+        return organizationId;
+    }
 
     public boolean setOrganizationId(String organizationId) {
         this.validator.setTxt(organizationId);
@@ -41,9 +46,12 @@ public class Organization {
         }
         return false;
     }
-    public String getName(){return name;}
 
-    public boolean setName(String name){
+    public String getName() {
+        return name;
+    }
+
+    public boolean setName(String name) {
         this.validator.setTxt(name);
         this.validator.setMaxLength(50);
         this.validator.setMinLength(3);
@@ -56,9 +64,11 @@ public class Organization {
         return false;
     }
 
-    public String getAddress(){return address;}
+    public String getAddress() {
+        return address;
+    }
 
-    public boolean setAddress(String address){
+    public boolean setAddress(String address) {
         this.validator.setTxt(address);
 
 
@@ -70,9 +80,11 @@ public class Organization {
         return false;
     }
 
-    public String getDistrict(){return district;}
+    public String getDistrict() {
+        return district;
+    }
 
-    public boolean setDistrict(String district){
+    public boolean setDistrict(String district) {
         this.validator.setTxt(district);
         this.validator.setMinLength(5);
         this.validator.setMaxLength(12);
@@ -85,11 +97,12 @@ public class Organization {
         return false;
     }
 
-    public String getContactNumber(){return contactNumber;}
+    public String getContactNumber() {
+        return contactNumber;
+    }
 
-    public boolean setContactNumber(String contactNumber){
+    public boolean setContactNumber(String contactNumber) {
         this.validator.setTxt(contactNumber);
-
 
 
         if (this.validator.isPhone()) {
@@ -108,12 +121,24 @@ public class Organization {
         this.validator.setTxt(creatorId);
         this.validator.setMaxLength(6);
 
-        if(this.validator.isNumber())
-        {
+        if (this.validator.isNumber()) {
             this.creatorId = creatorId;
             return true;
         }
-         return false;
+        return false;
 
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public boolean setCreatedAt(Timestamp createdAt) {
+        try {
+            this.createdAt = createdAt;
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

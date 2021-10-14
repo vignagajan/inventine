@@ -5,6 +5,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 
+import java.sql.Timestamp;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrganizationTest {
@@ -17,7 +19,7 @@ public class OrganizationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/organization.csv", numLinesToSkip = 1)
-    void getterSetter(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number) {
+    void getterSetter(String organization_Id, String creator_Id, String support_Team_Id, String name, String address , String district, String  contact_number, Timestamp created_at) {
 
         this.organization.setOrganizationId(organization_Id);
         this.organization.setCreatorId(creator_Id);
@@ -26,6 +28,7 @@ public class OrganizationTest {
         this.organization.setAddress(address);
         this.organization.setDistrict(district);
         this.organization.setContactNumber(contact_number);
+        this.organization.setCreatedAt(created_at);
 
 
         assertEquals(organization_Id, this.organization.getOrganizationId());
@@ -35,5 +38,6 @@ public class OrganizationTest {
         assertEquals(address,this.organization.getAddress());
         assertEquals(district, this.organization.getDistrict());
         assertEquals(contact_number, this.organization.getContactNumber());
+        assertEquals(created_at, this.organization.getCreatedAt());
     }
 }

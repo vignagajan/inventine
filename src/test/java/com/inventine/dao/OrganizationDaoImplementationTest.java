@@ -28,7 +28,7 @@ class OrganizationDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
-    void create(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number) {
+    void create(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at) {
 
         this.organization.setOrganizationId(organization_Id);
         this.organization.setCreatorId(creator_Id);
@@ -37,6 +37,7 @@ class OrganizationDaoImplementationTest {
         this.organization.setAddress(address);
         this.organization.setDistrict(district);
         this.organization.setContactNumber(contact_number);
+        this.organization.setCreatedAt(created_at);
 
 
         assertTrue(this.organizationDao.create(organization));

@@ -38,6 +38,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
 
 
 
+
             n = stmt.executeUpdate();
 
             return true;
@@ -59,6 +60,10 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
             organization.setAddress(rs.getString("address"));
             organization.setDistrict(rs.getString("district"));
             organization.setContactNumber(rs.getString("contactNumber"));
+            organization.setCreatedAt(rs.getTimestamp("createdAt"));
+
+
+
 
 
 
