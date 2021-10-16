@@ -2,7 +2,7 @@
 <!-- header start -->
 <header id="header">
     <h1 id="title" >
-        Dashboard
+        <%= (String)session.getAttribute("username")%>
     </h1>
     <div class="user-wrapper">
         <h4>admin</h4>
