@@ -13,6 +13,9 @@ public class DasboardServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
+        String graph_labels = "['Week1', 'Week2', 'Week3', 'Week4']";
+
+        request.setAttribute("graph_labels",graph_labels);
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
         request.setAttribute("title","username");
         request.getRequestDispatcher("/WEB-INF/dashboard/admin.jsp").forward(request, response);
