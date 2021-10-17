@@ -5,6 +5,7 @@ import com.inventine.util.DataValidator;
 public class Issues {
 
     private String issueId;
+    private String userId;
     private String description;
     private char category;
     private DataValidator validator = new DataValidator();
@@ -26,6 +27,20 @@ public class Issues {
         }
 
 
+        return false;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public boolean setUserId(String userId) {
+        this.validator.setTxt(userId);
+        this.validator.setMaxLength(6);
+        if(this.validator.isNumber()){
+            this.userId = userId;
+            return  true;
+        }
         return false;
     }
 
