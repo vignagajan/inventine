@@ -21,13 +21,17 @@ class PayoutTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Payout.csv", numLinesToSkip = 1)
-    void getterSetter(int amount, String transaction_id, Timestamp created_at) {
+    void getterSetter(String finance_details_id, String finance_admin_id,int amount, String transaction_id, Timestamp created_at) {
 
+        this.payout.setFinanceDetailsId(finance_details_id);
+        this.payout.setFinanceAdminId(finance_admin_id);
         this.payout.setAmount(amount);
         this.payout.setTransactionId(transaction_id);
         this.payout.setCreatedAt(created_at);
 
 
+        assertEquals(finance_details_id,this.payout.getFinanceDetailsId());
+        assertEquals(finance_admin_id,this.payout.getFinanceAdminId());
         assertEquals(amount,this.payout.getAmount());
         assertEquals(transaction_id,this.payout.getTransactionId());
         assertEquals(created_at,this.payout.getCreatedAt());
