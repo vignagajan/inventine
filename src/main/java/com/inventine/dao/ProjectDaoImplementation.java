@@ -12,11 +12,38 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
 
     static Connection conn = DBManager.getConnection();
 
+
+    @Override
+    public int getCount(String condition)  {
+
+        int count = 0;
+        String query = "select count(*) from project";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query = query.concat(condition);
+
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+        }catch (SQLException e){
+            count = 0;
+        }
+
+        return count;
+    }
+
     @Override
     public boolean create(Project project) {
 
-        String query = "INSERT INTO project( creatorId, supportTeamId,  financialStatus , status, requestedAmount, dateOfExpiry) " +
-                "VALUES (?, ?, CAST(? AS stat2), CAST(? AS stat1), ?, ?)";
+        String query = "INSERT INTO project( creatorId, supportTeamId, financialStatus , status, requestedAmount, dateOfExpiry, projectName , details, category) " +
+                "VALUES (?, ?, CAST(? AS stat2), CAST(? AS stat1), ?, ?, ?, ?, ?)";
 
         int n = 0;
 
@@ -29,8 +56,11 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             stmt.setInt(2, Integer.parseInt(project.getSupportTeamId()));
             stmt.setString(3, String.valueOf(project.getFinancialStatus()));
             stmt.setString(4, String.valueOf(project.getStatus()));
-            stmt.setString(5, String.valueOf(project.getRequestedAmount()));
-            stmt.setString(6, String.valueOf(project.getDateOfExpiry()));
+            stmt.setInt(5, project.getRequestedAmount());
+            stmt.setTimestamp(6, project.getDateOfExpiry());
+            stmt.setString(7, project.getProjectName());
+            stmt.setString(8, project.getDetails());
+            stmt.setString(9, project.getCategory());
 
 
             n = stmt.executeUpdate();
@@ -51,11 +81,14 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             project.setProjectId(rs.getString("projectId"));
             project.setCreatorId(rs.getString("creatorId"));
             project.setSupportTeamId(rs.getString("supportTeamId"));
-            project.setCreatedAt(Timestamp.valueOf(rs.getString("createdAt")));
+            project.setCreatedAt(rs.getTimestamp("createdAt"));
             project.setFinancialStatus(rs.getString("financialStatus").charAt(0));
             project.setStatus(rs.getString("status").charAt(0));
             project.setRequestedAmount(rs.getInt("requestedAmount"));
-            project.setDateOfExpiry(Timestamp.valueOf(rs.getString("dateOfExpiry")));
+            project.setDateOfExpiry(rs.getTimestamp("dateOfExpiry"));
+            project.setProjectName(rs.getString("projectName"));
+            project.setDetails(rs.getString("details"));
+            project.setCategory(rs.getString("category"));
 
 
         } catch (SQLException e) {
@@ -68,7 +101,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     @Override
     public Project getProject(String projectId) {
 
-        String query = "SELECT * FROM project WHERE projectId= ?";
+        String query = "SELECT * FROM project WHERE projectId= ? ";
 
         Project project = new Project();
 
@@ -98,10 +131,18 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
 
     @Override
 
-    public List<Project> getProjects() {
+    public List<Project> getProjects(String condition) {
 
 
         String query = "SELECT * FROM project";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query = query.concat(condition);
+
+        }
 
         List<Project> ls = new ArrayList();
 
@@ -132,7 +173,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     @Override
     public boolean update(Project project) {
 
-        String query = String.format("UPDATE project SET creatorId=?, supportTeamId=?,  financialStatus=?, status=?, requestedAmount=?, dateOfExpiry=? WHERE projectId =?");
+        String query = String.format("UPDATE project SET creatorId=?, supportTeamId=?,  financialStatus=?, status=?, requestedAmount=?, dateOfExpiry=? , projectName=?, details=?, category=? WHERE projectId =?");
 
         try {
 
@@ -146,6 +187,9 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             stmt.setInt(5, project.getRequestedAmount());
             stmt.setTimestamp(6, project.getDateOfExpiry());
             stmt.setInt(7, Integer.parseInt(project.getProjectId()));
+            stmt.setString(8,project.getProjectName());
+            stmt.setString(9,project.getDetails());
+            stmt.setString(10,project.getCategory());
 
 
 
@@ -160,5 +204,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
 
         return false;
     }
+
+
 
 }
