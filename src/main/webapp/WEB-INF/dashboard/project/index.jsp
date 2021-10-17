@@ -121,9 +121,10 @@
         <td><% out.print(project.getCategory());%></td>
         <td><% out.print(project.getCreatedAt());%></td>
         <td><% out.print(project.getDateOfExpiry());%></td>
-        <td> <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
+        <td><button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
+          <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
           <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
-          <button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
+
         </td>
       </tr>
       <%}%>
@@ -232,7 +233,6 @@
     } );
   });
 </script>
-<script src="static/js/dashboard/chart.js"></script>
 <script src="static/js/dashboard/dashboard.js"></script>
 </body>
 </html>
