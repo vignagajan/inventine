@@ -1,5 +1,7 @@
 package com.inventine.controller.dashboard;
 
+import com.inventine.util.DotEnv;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -11,7 +13,12 @@ public class DasboardServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        request.getRequestDispatcher("/WEB-INF/dashboard/index.jsp").forward(request, response);
+        String graph_labels = "['Week1', 'Week2', 'Week3', 'Week4']";
+
+        request.setAttribute("graph_labels",graph_labels);
+        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("title","username");
+        request.getRequestDispatcher("/WEB-INF/dashboard/admin.jsp").forward(request, response);
     }
 
     @Override

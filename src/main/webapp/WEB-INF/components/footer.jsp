@@ -62,4 +62,4 @@
         </footer>
         <!-- footer end -->
 
-        <script src="static/js/nav.js"></script>
+        <script src="<%= request.getAttribute("host_url") %>/static/js/nav.js"></script>
