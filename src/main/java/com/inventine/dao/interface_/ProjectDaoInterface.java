@@ -2,6 +2,7 @@ package com.inventine.dao.interface_;
 
 import com.inventine.model.Project;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 

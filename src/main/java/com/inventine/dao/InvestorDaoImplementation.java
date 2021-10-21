@@ -13,6 +13,32 @@ public class InvestorDaoImplementation implements InvestorDaoInterface {
     static Connection conn = DBManager.getConnection();
 
     @Override
+    public int getCount(String condition)  {
+
+        int count = 0;
+        String query = "select count(*) from investor";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query = query.concat(condition);
+
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+        }catch (SQLException e){
+            count = 0;
+        }
+
+        return count;
+    }
+
+    @Override
     public boolean create(Investor investor) {
 
         String query = "INSERT INTO investor( customerId) " +
@@ -34,7 +60,7 @@ public class InvestorDaoImplementation implements InvestorDaoInterface {
         } catch (SQLException e) {
             e.printStackTrace();  }
 
-            return false;
+        return false;
 
     }
 
@@ -90,7 +116,7 @@ public class InvestorDaoImplementation implements InvestorDaoInterface {
 
     @Override
 
-    public List<Investor> getInvestors() {
+    public List<Investor> getInvestors(String condition) {
 
 
         String query = "SELECT * FROM investor";

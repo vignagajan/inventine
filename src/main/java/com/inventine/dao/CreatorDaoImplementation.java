@@ -13,6 +13,51 @@ public class CreatorDaoImplementation implements CreatorDaoInterface {
     static Connection conn = DBManager.getConnection();
 
     @Override
+    public int getCount(String condition)  {
+
+        int count = 0;
+        String query = "select count(*) from creator";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query = query.concat(condition);
+
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+        }catch (SQLException e){
+            count = 0;
+        }
+
+        return count;
+    }
+
+    @Override
+    public ResultSet executeQuery(String query)  {
+        ResultSet rs = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+            rs.next();
+
+        }catch (SQLException e){
+
+
+            e.printStackTrace();
+        }
+
+        return rs;
+    }
+
+
+    @Override
     public boolean create(Creator creator) {
 
         String query = "INSERT INTO Creator( customerId, supportTeamId) " +
@@ -84,7 +129,7 @@ public class CreatorDaoImplementation implements CreatorDaoInterface {
     }
 
     @Override
-    public List<Creator> getCreators() {
+    public List<Creator> getCreators(String condition) {
 
         String query = "SELECT * FROM creator";
 
