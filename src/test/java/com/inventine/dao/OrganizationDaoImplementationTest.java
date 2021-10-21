@@ -26,6 +26,11 @@ class OrganizationDaoImplementationTest {
     }
 
 
+    @Test
+    void getCount() {
+        assertEquals(organizationDao.getCount("creatorid=3 "),5);
+    }
+
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
     void create(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at) {
@@ -63,7 +68,7 @@ class OrganizationDaoImplementationTest {
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
     void getOrganizations(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number) {
 
-        List<Organization> ls = this.organizationDao.getOrganizations();
+        List<Organization> ls = this.organizationDao.getOrganizations("creatorid=3");
 
         this.organization.setOrganizationId(organization_Id);
         this.organization.setCreatorId(creator_Id);

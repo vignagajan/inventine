@@ -23,10 +23,15 @@ class CompetitionDaoImplementationTest {
         this.competitionDao = new CompetitionDaoImplementation();
     }
 
+    @Test
+    void getCount() {
+        assertEquals(competitionDao.getCount("organizationid=17"),3);
+    }
+
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
     void create(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type) {
-       this.competition.setCompetitionId(competition_Id);
+        this.competition.setCompetitionId(competition_Id);
         this.competition.setOrganizationId(organization_Id);
         this.competition.setSupportTeamId(support_Team_Id);
         this.competition.setProjectId(project_Id);
@@ -62,7 +67,7 @@ class CompetitionDaoImplementationTest {
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
     void getCompetitions(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type) {
 
-        List<Competition> ls = this.competitionDao.getCompetitions();
+        List<Competition> ls = this.competitionDao.getCompetitions("organizationid=17");
 
         this.competition.setCompetitionId(competition_Id);
         this.competition.setOrganizationId(organization_Id);
