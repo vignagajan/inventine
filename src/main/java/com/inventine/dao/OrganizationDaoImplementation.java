@@ -15,6 +15,29 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     static Connection conn = DBManager.getConnection();
 
     @Override
+    public int getCount(String condition)  {
+
+        int count = 0;
+        String query = "select count(*) from organization";
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+            query = query.concat(condition);
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+        }catch (SQLException e){
+            count = 0;
+        }
+
+        return count;
+    }
+
+    @Override
     public boolean create(Organization organization) {
 
         String query = "INSERT INTO organization(creatorId,supportTeamId, name, address, district,contactNumber ) " +
@@ -111,7 +134,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     }
 
     @Override
-    public List<Organization> getOrganizations(){
+    public List<Organization> getOrganizations(String condition){
 
         String query = "SELECT * FROM organization";
 
@@ -172,7 +195,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
 
 
 
-    }
+}
 
 
 

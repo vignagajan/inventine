@@ -14,6 +14,29 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
     static Connection conn = DBManager.getConnection();
 
     @Override
+    public int getCount(String condition)  {
+
+        int count = 0;
+        String query = "select count(*) from competition";
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+            query = query.concat(condition);
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+        }catch (SQLException e){
+            count = 0;
+        }
+
+        return count;
+    }
+
+    @Override
     public boolean create(Competition competition) {
 
         String query = "INSERT INTO competition(organizationId,  supportTeamId,projectId,endingAt ,prizeMoney,rules,cType,pType ) " +
@@ -73,10 +96,10 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
         return competition;
     }
 
-   @Override
-  public Competition getCompetition(String competitionId) {
+    @Override
+    public Competition getCompetition(String competitionId) {
 
-       String query = "SELECT * FROM competition WHERE competitionId= ?";
+        String query = "SELECT * FROM competition WHERE competitionId= ?";
 
         Competition competition = new Competition();
         boolean found = false;
@@ -90,12 +113,12 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
 
             ResultSet rs = stmt.executeQuery();
 
-          while (rs.next()) {
+            while (rs.next()) {
                 found = true;
                 competition = setCompetition(competition, rs);
             }
 
-       } catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -103,12 +126,12 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
         if (found == true) {
             return competition;
         } else
-           return null;
+            return null;
 
     }
 
     @Override
-    public List<Competition> getCompetitions() {
+    public List<Competition> getCompetitions(String condition) {
 
         String query = "SELECT * FROM competition";
 
@@ -132,7 +155,7 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
         return ls;
     }
     @Override
-   public boolean update(Competition competition) {
+    public boolean update(Competition competition) {
 
         String query = String.format("UPDATE competition SET organizationId=?, supportTeamId=?, projectId=?, endingAt=?, prizeMoney=?, rules=?,cType=CAST(? AS cp),pType=CAST(? AS pte) WHERE competitionId =?");
 
