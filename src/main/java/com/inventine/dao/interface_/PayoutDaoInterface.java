@@ -13,7 +13,7 @@ public interface PayoutDaoInterface {
 
     public List<Payout> getPayouts(String condition);
 
-    public boolean update(Payout user);
+    public boolean update(Payout payout);
 
     public int getCount(String condition) throws SQLException;
 

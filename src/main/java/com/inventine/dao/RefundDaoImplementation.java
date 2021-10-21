@@ -1,9 +1,8 @@
 package com.inventine.dao;
 
 import com.inventine.conf.DBManager;
-import com.inventine.dao.interface_.PayoutDaoInterface;
-import com.inventine.model.Payout;
-
+import com.inventine.dao.interface_.RefundDaoInterface;
+import com.inventine.model.Refund;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +10,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PayoutDaoImplementation implements PayoutDaoInterface {
+public class RefundDaoImplementation implements RefundDaoInterface {
+
 
     static Connection conn = DBManager.getConnection();
 
@@ -20,7 +20,7 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
     public int getCount(String condition)  {
 
         int count = 0;
-        String query = "select count(*) from payout";
+        String query = "select count(*) from refund";
 
         if (!condition.isEmpty()){
 
@@ -43,10 +43,10 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
     }
 
     @Override
-    public boolean create(Payout payout) {
+    public boolean create(Refund refund) {
 
-        String query = "INSERT INTO payout(financeDetailsId, financeAdminId, amount, transactionId) " +
-                "VALUES (?, ?,?, ?)";
+        String query = "INSERT INTO refund(financeAdminId, paymentId) " +
+                "VALUES (?, ?)";
 
         int n = 0;
 
@@ -54,10 +54,9 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(payout.getFinanceDetailsId()));
-            stmt.setInt(2, Integer.parseInt(payout.getFinanceAdminId()));
-            stmt.setInt(3, payout.getAmount());
-            stmt.setInt(4, Integer.parseInt(payout.getTransactionId()));
+
+            stmt.setInt(1, Integer.parseInt(refund.getFinanceAdminId()));
+            stmt.setInt(2, Integer.parseInt(refund.getPaymentId()));
 
 
             n = stmt.executeUpdate();
@@ -72,44 +71,43 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
 
     }
 
-    private Payout setPayout(Payout payout, ResultSet rs) {
+    private Refund setRefund(Refund refund, ResultSet rs) {
 
         try {
 
-            payout.setFinanceAdminId(rs.getString("financeAdminId"));
-            payout.setFinanceDetailsId(rs.getString("financeDetailsId"));
-            payout.setAmount(rs.getInt("amount"));
-            payout.setTransactionId(rs.getString("transactionId"));
-            payout.setCreatedAt(rs.getTimestamp("createDate"));
+            refund.setRefundId(rs.getString("refundId"));
+            refund.setFinanceAdminId(rs.getString("financeAdminId"));
+            refund.setPaymentId(rs.getString("paymentId"));
+            refund.setCreatedAt(rs.getTimestamp("createDate"));
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return payout;
+        return refund;
     }
 
     @Override
-    public Payout getPayout(String transactionId) {
+    public Refund getRefund(String refundId) {
 
-        String query = "SELECT * FROM payout WHERE transactionId= ?";
+        String query = "SELECT * FROM Refund WHERE refundId= ?";
 
-        Payout payout = new Payout();
+        Refund refund = new Refund();
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
 
-            stmt.setInt(1, Integer.parseInt(transactionId));
+            stmt.setInt(1, Integer.parseInt(refundId));
 
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                payout = setPayout(payout, rs);
+                refund = setRefund(refund,rs);
             }
 
-            return payout;
+            return refund;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -122,10 +120,10 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
 
     @Override
 
-    public List<Payout> getPayouts(String condition) {
+    public List<Refund> getRefunds(String condition) {
 
 
-        String query = "SELECT * FROM payout";
+        String query = "SELECT * FROM refund";
 
         if (!condition.isEmpty()){
 
@@ -135,7 +133,7 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
 
         }
 
-        List<Payout> ls = new ArrayList();
+        List<Refund> ls = new ArrayList();
 
         try {
 
@@ -143,9 +141,9 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Payout payout = new Payout();
-                payout = setPayout(payout, rs);
-                ls.add(payout);
+                Refund refund = new Refund();
+                refund = setRefund(refund,rs);
+                ls.add(refund);
             }
 
 
@@ -161,19 +159,19 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
     }
 
     @Override
-    public boolean update(Payout payout) {
+    public boolean update(Refund refund) {
 
-        String query = String.format("UPDATE payout SET financeDetailsId=?, financeAdminId=?, amount=? WHERE transactionId =?");
+        String query = String.format("UPDATE refund SET  financeAdminId=?, paymentId=? WHERE refundId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
 
-            stmt.setInt(1, Integer.parseInt(payout.getFinanceDetailsId()));
-            stmt.setInt(2, Integer.parseInt(payout.getFinanceAdminId()));
-            stmt.setInt(4, payout.getAmount());
-            stmt.setInt(4, Integer.parseInt(payout.getTransactionId()));
+
+            stmt.setInt(1, Integer.parseInt(refund.getFinanceAdminId()));
+            stmt.setInt(2, Integer.parseInt(refund.getPaymentId()));
+            stmt.setInt(3, Integer.parseInt(refund.getRefundId()));
 
 
             stmt.executeUpdate();
@@ -186,8 +184,4 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
 
         return false;
     }
-
-
-
-
 }
