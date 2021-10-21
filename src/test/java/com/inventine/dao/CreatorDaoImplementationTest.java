@@ -1,13 +1,11 @@
 package com.inventine.dao;
 
 import com.inventine.model.Creator;
-import com.inventine.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,11 +21,16 @@ class CreatorDaoImplementationTest {
         this.creatorDao = new CreatorDaoImplementation();
     }
 
+    @Test
+    void getCount() {
+        assertEquals(creatorDao.getCount("creatorid=3"),1);
+    }
+
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Creator.csv", numLinesToSkip = 1)
     void create(String creator_id,String customer_id,String support_team_id) {
 
-        this.creator.setCreatorId(creator_id);
+
         this.creator.setCustomerId(customer_id);
         this.creator.setSupportTeamId(support_team_id);
 
@@ -52,7 +55,7 @@ class CreatorDaoImplementationTest {
     @CsvFileSource(resources = "/model/Creator.csv", numLinesToSkip = 1)
     void getCreators(String creator_id,String customer_id,String support_team_id) {
 
-        List<Creator> ls = this.creatorDao.getCreators();
+        List<Creator> ls = this.creatorDao.getCreators("creatorid=3");
 
         this.creator.setCreatorId(creator_id);
         this.creator.setCustomerId(customer_id);

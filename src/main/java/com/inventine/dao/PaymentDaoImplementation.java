@@ -13,6 +13,33 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
     static Connection conn = DBManager.getConnection();
 
     @Override
+    public int getCount(String condition)  {
+
+        int count = 0;
+        String query = "select count(*) from payment";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query = query.concat(condition);
+
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+        }catch (SQLException e){
+            count = 0;
+        }
+
+        return count;
+    }
+
+
+    @Override
     public boolean create(Payment payment) {
 
         String query = "INSERT INTO Payment(projectId, investorId, financialDetailsId, amount) " +
@@ -50,7 +77,7 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
             payment.setInvestorId(rs.getString("investorId"));
             payment.setFinancialDetailsId(rs.getString("financialDetailsId"));
             payment.setAmount(rs.getInt("amount"));
-            payment.setCreatedAt(Timestamp.valueOf(rs.getString("createdAt")));
+            payment.setCreatedAt(rs.getTimestamp("createdAt"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -92,7 +119,7 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
 
     @Override
 
-    public List<Payment> getPayments() {
+    public List<Payment> getPayments(String condition) {
 
 
         String query = "SELECT * FROM payment";

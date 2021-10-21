@@ -4,6 +4,7 @@ import com.inventine.conf.DBManager;
 import com.inventine.dao.interface_.MeetingDaoInterface;
 import com.inventine.model.Meeting;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,36 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
     static Connection conn = DBManager.getConnection();
 
     @Override
+    public int getCount(String condition)  {
+
+        int count = 0;
+        String query = "select count(*) from meeting";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query = query.concat(condition);
+
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+        }catch (SQLException e){
+            count = 0;
+        }
+
+        return count;
+    }
+
+    @Override
     public boolean create(Meeting meeting) {
 
-        String query = "INSERT INTO Meeting( creatorId, launchedAt, link) " +
-                "VALUES ( ?, ?, ?, ?)";
+        String query = "INSERT INTO meeting(creatorId, launchedAt, link)"+
+                "VALUES (?, ?,?)";
 
         int n = 0;
 
@@ -24,21 +51,19 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(meeting.getCreatorId()));
-            stmt.setString(2, String.valueOf(meeting.getLaunchedAt()));
+            stmt.setInt(1, Integer.valueOf(meeting.getCreatorId()));
+            stmt.setTimestamp(2, meeting.getLaunchedAt());
             stmt.setString(3, meeting.getLink());
-
-
-
 
             n = stmt.executeUpdate();
 
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace(); }
+            e.printStackTrace();
+        }
 
-            return false;
+        return false;
 
     }
 
@@ -48,9 +73,9 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
 
             meeting.setMeetingId(rs.getString("meetingId"));
             meeting.setCreatorId(rs.getString("creatorId"));
+            meeting.setLaunchedAt(rs.getTimestamp("launchedAt"));
             meeting.setLink(rs.getString("link"));
-            meeting.setCreatedAt(Timestamp.valueOf(rs.getString("createdAt")));
-            meeting.setLaunchedAt(Timestamp.valueOf(rs.getString("launchedAt")));
+            meeting.setCreatedAt(rs.getTimestamp("createdAt"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,7 +119,7 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
 
     @Override
 
-    public List<Meeting> getMeetings() {
+    public List<Meeting> getMeetings(String condition) {
 
 
         String query = "SELECT * FROM meeting";
@@ -151,6 +176,7 @@ public class MeetingDaoImplementation implements MeetingDaoInterface {
 
         return false;
     }
+
 
 
 }

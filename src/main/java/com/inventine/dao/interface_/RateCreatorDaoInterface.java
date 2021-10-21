@@ -2,6 +2,7 @@ package com.inventine.dao.interface_;
 
 import com.inventine.model.RateCreator;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface RateCreatorDaoInterface{
@@ -10,8 +11,10 @@ public interface RateCreatorDaoInterface{
 
     public RateCreator getRateCreator(String rateCreatorId);
 
-    public List<RateCreator> getRateCreators();
+    public List<RateCreator> getRateCreators(String condition);
 
     public boolean update(RateCreator rateCreator);
+
+    public int getCount(String condition) throws SQLException;
 
 }

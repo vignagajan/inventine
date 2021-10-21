@@ -14,6 +14,33 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
     static Connection conn = DBManager.getConnection();
 
     @Override
+    public int getCount(String condition)  {
+
+        int count = 0;
+        String query = "select count(*) from rateProject";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query = query.concat(condition);
+
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+        }catch (SQLException e){
+            count = 0;
+        }
+
+        return count;
+    }
+
+
+    @Override
     public boolean create(RateProject rateProject) {
 
         String query = "INSERT INTO RateProject( projectId, investorId, projectRating) " +
@@ -36,9 +63,11 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();        }
+            e.printStackTrace();
+        }
 
-            return false;
+        return false;
+
 
     }
 
@@ -50,7 +79,7 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
             rateProject.setProjectId(rs.getString("projectId"));
             rateProject.setInvestorId(rs.getString("investorId"));
             rateProject.setProjectRating(rs.getInt("projectRating"));
-            rateProject.setCreatedAt(Timestamp.valueOf(rs.getString("createdAt")));
+            rateProject.setCreatedAt(rs.getTimestamp("createdAt"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,7 +122,7 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
 
     @Override
 
-    public List<RateProject> getRateProjects() {
+    public List<RateProject> getRateProjects(String condition) {
 
 
         String query = "SELECT * FROM rateProject";

@@ -13,6 +13,33 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
     static Connection conn = DBManager.getConnection();
 
     @Override
+    public int getCount(String condition)  {
+
+        int count = 0;
+        String query = "select count(*) from rateCreator";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query = query.concat(condition);
+
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            count = rs.getInt("count");
+        }catch (SQLException e){
+            count = 0;
+        }
+
+        return count;
+    }
+
+
+    @Override
     public boolean create(RateCreator rateCreator) {
 
         String query = "INSERT INTO RateCreator( creatorId, investorId, creatorRating) " +
@@ -49,7 +76,7 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
             rateCreator.setCreatorId(rs.getString("creatorId"));
             rateCreator.setInvestorId(rs.getString("investorId"));
             rateCreator.setCreatorRating(rs.getInt("creatorRating"));
-            rateCreator.setCreatedAt(Timestamp.valueOf(rs.getString("createdAt")));
+            rateCreator.setCreatedAt(rs.getTimestamp("createdAt"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,7 +120,7 @@ public class RateCreatorDaoImplementation implements RateCreatorDaoInterface {
 
     @Override
 
-    public List<RateCreator> getRateCreators() {
+    public List<RateCreator> getRateCreators(String condition) {
 
 
         String query = "SELECT * FROM rateCreator";
