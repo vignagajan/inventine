@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 public class Refund {
 
     private String refundId;
+    private String financeAdminId;
     private String paymentId;
     private Timestamp createdAt;
     private DataValidator validator = new DataValidator();
@@ -19,7 +20,6 @@ public class Refund {
 
         this.validator.setTxt(refundId);
         this.validator.setMaxLength(6);
-        this.validator.setMinLength(2);
 
         if (this.validator.isNumber()) {
             this.refundId = refundId;
@@ -31,6 +31,19 @@ public class Refund {
 
     }
 
+    public String getFinanceAdminId() {
+        return financeAdminId;
+    }
+
+    public boolean setFinanceAdminId(String financeAdminId) {
+        this.validator.setTxt(financeAdminId);
+        if(this.validator.isNumber()) {
+            this.financeAdminId = financeAdminId;
+            return true;
+        }
+        return false;
+    }
+
     public String getPaymentId() {
         return paymentId;
     }
@@ -39,7 +52,6 @@ public class Refund {
 
         this.validator.setTxt(paymentId);
         this.validator.setMaxLength(6);
-        this.validator.setMinLength(2);
 
         if (this.validator.isNumber()) {
             this.paymentId = paymentId;
