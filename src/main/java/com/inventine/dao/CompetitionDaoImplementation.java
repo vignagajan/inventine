@@ -39,8 +39,8 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
     @Override
     public boolean create(Competition competition) {
 
-        String query = "INSERT INTO competition(organizationId,  supportTeamId,projectId,endingAt ,prizeMoney,rules,cType,pType ) " +
-                "VALUES (?, ?, ?,?,?,?,CAST(? AS cp),CAST(? AS pte))";
+        String query = "INSERT INTO competition(organizationId,  supportTeamId,projectId,endingAt ,prizeMoney,rules,cType,pType,competitionName ) " +
+                "VALUES (?, ?, ?,?,?,?,CAST(? AS cp),CAST(? AS pte),?)";
 
         int n = 0;
 
@@ -56,6 +56,7 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
             stmt.setString(6, competition.getRules());
             stmt.setString(7, String.valueOf(competition.getCType()));
             stmt.setString(8, String.valueOf(competition.getPType()));
+            stmt.setString(9,String.valueOf(competition.getCompetitionName()));
 
 
 
@@ -87,6 +88,7 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
             competition.setRules(rs.getString("rules"));
             competition.setCType(rs.getString("cType").charAt(0));
             competition.setPType(rs.getString("pType").charAt(0));
+            competition.setCompetitionName(rs.getString("competitionName"));
 
 
         } catch (SQLException e) {
@@ -157,7 +159,7 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
     @Override
     public boolean update(Competition competition) {
 
-        String query = String.format("UPDATE competition SET organizationId=?, supportTeamId=?, projectId=?, endingAt=?, prizeMoney=?, rules=?,cType=CAST(? AS cp),pType=CAST(? AS pte) WHERE competitionId =?");
+        String query = String.format("UPDATE competition SET organizationId=?, supportTeamId=?, projectId=?, endingAt=?, prizeMoney=?, rules=?,cType=CAST(? AS cp),pType=CAST(? AS pte),competitionName=? WHERE competitionId =?");
 
         try{
 
@@ -171,7 +173,8 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
             stmt.setString(6,competition.getRules());
             stmt.setString(7, String.valueOf(competition.getCType()));
             stmt.setString(8, String.valueOf(competition.getPType()));
-            stmt.setInt(9, Integer.parseInt(competition.getCompetitionId()));
+            stmt.setString(9,competition.getCompetitionName());
+            stmt.setInt(10, Integer.parseInt(competition.getCompetitionId()));
 
 
 

@@ -14,7 +14,25 @@ public class Competition {
     private String rules;
     private char cType;
     private char pType;
+    private  String competitionName;
     private DataValidator validator = new DataValidator();
+
+    public String getCompetitionName() {
+        return competitionName;
+    }
+
+    public boolean setCompetitionName(String competitionName) {
+        this.validator.setTxt(competitionName);
+        this.validator.setMaxLength(255);
+        if(this.validator.isString())
+        {
+            this.competitionName = competitionName;
+            return true;
+        }
+        return false;
+
+
+    }
 
     public char getCType() {
         return cType;

@@ -25,12 +25,13 @@ class CompetitionDaoImplementationTest {
 
     @Test
     void getCount() {
-        assertEquals(competitionDao.getCount("organizationid=17"),3);
+        assertEquals(competitionDao.getCount("organizationid=17"),5
+        );
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
-    void create(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type) {
+    void create(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name) {
         this.competition.setCompetitionId(competition_Id);
         this.competition.setOrganizationId(organization_Id);
         this.competition.setSupportTeamId(support_Team_Id);
@@ -41,6 +42,7 @@ class CompetitionDaoImplementationTest {
         this.competition.setRules(rules);
         this.competition.setCType(c_type);
         this.competition.setPType(p_type);
+        this.competition.setCompetitionName(competition_name);
 
         assertTrue(this.competitionDao.create(competition));
     }
@@ -48,7 +50,7 @@ class CompetitionDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
-    void getCompetition(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type) {
+    void getCompetition(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name) {
 
         this.competition = this.competitionDao.getCompetition(competition_Id);
 
@@ -61,11 +63,12 @@ class CompetitionDaoImplementationTest {
         assertEquals(prize_money, this.competition.getPrizeMoney());
         assertEquals(c_type, this.competition.getCType());
         assertEquals(p_type, this.competition.getPType());
+        assertEquals(competition_name,this.competition.getCompetitionName());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
-    void getCompetitions(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type) {
+    void getCompetitions(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name) {
 
         List<Competition> ls = this.competitionDao.getCompetitions("organizationid=17");
 
@@ -79,6 +82,7 @@ class CompetitionDaoImplementationTest {
         this.competition.setRules(rules);
         this.competition.setCType(c_type);
         this.competition.setPType(p_type);
+        this.competition.setCompetitionName(competition_name);
 
         assertEquals(ls.get(0).getCompetitionId(),this.competition.getCompetitionId());
         assertEquals(ls.get(0).getOrganizationId(),this.competition.getOrganizationId());
@@ -90,12 +94,14 @@ class CompetitionDaoImplementationTest {
         assertEquals(ls.get(0).getRules(),this.competition.getRules());
         assertEquals(ls.get(0).getCType(),this.competition.getCType());
         assertEquals(ls.get(0).getPType(),this.competition.getPType());
+        assertEquals(ls.get(0).getCompetitionName(),this.competition.getCompetitionName());
+
 
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
-    void update(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type) {
+    void update(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name) {
 
         this.competition.setCompetitionId(competition_Id);
         this.competition.setOrganizationId(organization_Id);
@@ -107,6 +113,7 @@ class CompetitionDaoImplementationTest {
         this.competition.setRules(rules);
         this.competition.setCType('T');
         this.competition.setPType('I');
+        this.competition.setCompetitionName(competition_name);
 
         this.competitionDao.update(this.competition);
 
@@ -122,6 +129,7 @@ class CompetitionDaoImplementationTest {
         assertEquals(this.competition.getRules(),updated.getRules());
         assertEquals('T',updated.getCType());
         assertEquals('I',updated.getPType());
+        assertEquals(this.competition.getCompetitionName(),updated.getCompetitionName());
 
 
 
