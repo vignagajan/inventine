@@ -20,4 +20,8 @@
     <link rel="stylesheet" href="${host_url}/static/css/dashboard/dashboard.css">
     <!-- dashboard css stylesheet -->
 
-    <title>${title} | Dashboard </title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- sweetalert2 -->
+
+
+<title>${title} | Dashboard </title>

@@ -21,7 +21,7 @@
 <div class="container">
     <div class="content">
 
-        <form action="create.php" id="signupForm" method="post" onsubmit="return signupValidation()">
+        <div class="form">
 
             <!-- input boxes start -->
             <div class="details">
@@ -68,15 +68,15 @@
                 <div class="input-box">
                     <span class="details">Phone Number</span>
                     <input type="text"
-                           id="phone" name="phone" placeholder="" required pattern="[a-zA-Z]{2,50}">
+                           id="phone" type="tel" name="phone" placeholder="" required pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$">
                     <span class="error" aria-live="polite" style="display: none;" >Enter phone number in international code</span>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Address</span>
                     <input type="text"
-                           id="address"name="address" placeholder="" required pattern="[a-zA-Z]{2,50}">
-                    <span class="error" aria-live="polite" style="display: none;" >Enter valid address</span>
+                           id="address"name="address" placeholder="" required pattern="^[a-zA-Z 0-9\.\,\/\-]{1,255}">
+                    <span class="error" aria-live="polite" style="display: none;" >Enter valid postal address</span>
                 </div>
 
                 <div class="input-box">
@@ -140,8 +140,8 @@
                 <div class="input-box">
                     <span class="details">Confirm Password</span>
                     <input type="password" name="confirm_password"
-                           id="confirm_password" placeholder="" required>
-                    <span class="error" aria-live="polite" style="display: none;" >Password cannot be empty</span>
+                           id="confirm_password" placeholder="" required pattern="(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}">
+                    <span class="error" aria-live="polite" style="display: none;" >Password doesn't match the policy!</span>
                 </div>
 
                 <div class="input-box">
@@ -161,12 +161,12 @@
 
                 <div style="display: flex">
                     <button type="button" id="cancelBtn" onclick="location.href='${host_url}/dashboard/employee';">Cancel</button>
-                    <button  type="submit">Create</button>
+                    <button onclick="signupValidation()">Create</button>
                 </div>
 
-        </form>
+            </div>
+        </div>
     </div>
-</div>
 
 <script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/validate.js"></script>
 
@@ -174,20 +174,54 @@
 
     function signupValidation(){
 
+        for (i = 0; i < y.length; i++) {
+
+            if(y[i].value == ""){
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Form fields cannot be empty!',
+                    iconColor: "#0097e6",
+                    confirmButtonColor: "#0097e6",
+                });
+
+                return false;
+            }
+
+            if(!y[i].checkValidity()){
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Form fields should be valid!',
+                    iconColor: "#0097e6",
+                    confirmButtonColor: "#0097e6",
+                });
+
+                return false;
+            }
+
+        }
+
         // Password Validation
 
         const password = document.getElementById("password");
         const cpassword = document.getElementById("confirm_password");
 
         if( password.value != cpassword.value){
+            Swal.fire({
+                icon: 'error',
+                title: 'Passwords should be same!',
+            })
             return false;
         }
 
-        return true;
-
+        requestHandler(
+            y,
+            'https://ptsv2.com/t/78q0w-1634957884/post',
+            'User created successfully!',
+            ''
+        )
     }
-
-
 
 </script>
 
