@@ -61,12 +61,12 @@ public class DataValidator {
 
     public boolean isNumber(){
 
-        return isBasic("0-9");
+        return isBasic("^[0-9]");
     }
 
     public boolean isAlphaNumeric(){
 
-        return isBasic("a-zA-Z0-9");
+        return isBasic("^[a-zA-Z0-9]");
 
     }
 
