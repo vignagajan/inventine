@@ -46,8 +46,8 @@ public class ProjectCreateServlet extends HttpServlet {
         project.setProjectName(request.getParameter("projectName"));
         project.setRequestedAmount(Integer.parseInt(request.getParameter("requestedAmount")));
         project.setDateOfExpiry(dateOfExpiry);
-        project.setCategory("category");
-        project.setDetails("description");
+        project.setCategory(request.getParameter("category"));
+        project.setDetails(request.getParameter("description"));
         
 
         projectDao.create(project);
