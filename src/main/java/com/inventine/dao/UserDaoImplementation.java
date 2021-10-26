@@ -12,6 +12,36 @@ public class UserDaoImplementation implements UserDaoInterface {
 
     static Connection conn = DBManager.getConnection();
 
+
+    @Override
+    public int getCount(String condition){
+
+        String query = "select count(*) from users";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query.concat(condition);
+
+        }
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            rs.next();
+
+            return rs.getInt("count");
+
+        }catch(SQLException e){
+
+            e.printStackTrace();
+            return 0;
+
+        }
+    }
+
     @Override
     public boolean create(User user) {
 
@@ -95,9 +125,17 @@ public class UserDaoImplementation implements UserDaoInterface {
     }
 
     @Override
-    public List<User> getUsers() {
+    public List<User> getUsers(String condition) {
 
         String query = "SELECT * FROM users";
+
+        if (!condition.isEmpty()){
+
+            condition = String.format(" WHERE %s",condition);
+
+            query = query.concat(condition);
+
+        }
 
         List<User> ls = new ArrayList();
 

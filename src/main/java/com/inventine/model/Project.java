@@ -91,7 +91,7 @@ public class Project {
 
     public boolean setStatus(char status){
 
-        if (status == 'A' || status == 'B' || status == 'D' || status == 'T') {
+        if (status == 'A' || status == 'B' || status == 'D' || status == 'U') {
             this.status = status;
             return true;
         }

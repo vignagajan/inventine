@@ -75,7 +75,7 @@
                 <div class="input-box">
                     <span class="details">Address</span>
                     <input type="text"
-                           id="address"name="address" placeholder="" required pattern="^[a-zA-Z 0-9\.\,\/\-]{1,255}">
+                           id="address"name="address" placeholder="" required pattern="^[a-zA-Z 0-9\.\,\/\-]{10,255}">
                     <span class="error" aria-live="polite" style="display: none;" >Enter valid postal address</span>
                 </div>
 
@@ -145,12 +145,12 @@
                 </div>
 
                 <div class="input-box">
-                    <span class="details">Account Type</span>
-                    <select class="atype" name="atype"
-                            id="atype" required pattern="[A-Z]">
+                    <span class="details">Employee Type</span>
+                    <select class="role" name="role"
+                            id="role" required pattern="[A-Z]">
                         <option disabled selected value> -- select a type -- </option>
-                        <option value="C">Creator</option>
-                        <option value="I">Investor</option>
+                        <option value="S">Support Team Member</option>
+                        <option value="F">Financial Admin</option>
                     </select>
                     <span class="error" aria-live="polite" style="display: none;" >Select account type</span>
                     </span>
@@ -217,8 +217,8 @@
 
         requestHandler(
             y,
-            'https://ptsv2.com/t/78q0w-1634957884/post',
-            'User created successfully!',
+            window.location.href,
+            'Employee is created successfully!',
             ''
         )
     }
