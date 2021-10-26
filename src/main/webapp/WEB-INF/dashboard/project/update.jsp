@@ -56,7 +56,7 @@
                 <div class="input-box">
                     <span class="details">Description</span>
                     <input type="text"
-                           name="description" id="description" required >
+                           name="description" id="description" required value=<%out.print(project.getDetails());%>>
                     <span class="error" aria-live="polite" style="display: none;" >Input the description</span>
                 </div>
 <%--                <div class="input-box">--%>
