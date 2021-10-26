@@ -9,6 +9,7 @@ public class Post {
     private String postId;
     private String description;
     private Timestamp createdAt;
+    private String userId;
     private DataValidator validator = new DataValidator();
 
     public String getPostId() {
@@ -31,7 +32,6 @@ public class Post {
     public void setDescription(String description) {
         this.validator.setTxt(description);
         this.validator.setMaxLength(500);
-        this.validator.setMinLength(2);
         this.description = description;
     }
 
@@ -47,5 +47,18 @@ public class Post {
         {
             return false;
         }
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public boolean setUserId(String userId) {
+        this.validator.setTxt(userId);
+        if(this.validator.isNumber()){
+            this.userId = userId;
+            return true;
+        }
+        return false;
     }
 }
