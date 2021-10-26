@@ -1,26 +1,25 @@
 package com.inventine.dao;
 
 import com.inventine.conf.DBManager;
-import com.inventine.dao.interface_.RefundDaoInterface;
-import com.inventine.model.Refund;
+import com.inventine.dao.interface_.FinanceAdminDaoInterface;
+import com.inventine.model.FinanceAdmin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RefundDaoImplementation implements RefundDaoInterface {
-
+public class FinanceAdminDaoImplementation implements FinanceAdminDaoInterface {
 
     static Connection conn = DBManager.getConnection();
-
 
     @Override
     public int getCount(String condition)  {
 
         int count = 0;
-        String query = "select count(*) from refund";
+        String query = "select count(*) from financeadmin";
 
         if (!condition.isEmpty()){
 
@@ -60,11 +59,12 @@ public class RefundDaoImplementation implements RefundDaoInterface {
         return rs;
     }
 
-    @Override
-    public boolean create(Refund refund) {
 
-        String query = "INSERT INTO refund(financeAdminId, paymentId) " +
-                "VALUES (?, ?)";
+    @Override
+    public boolean create(FinanceAdmin financeAdmin) {
+
+        String query = "INSERT INTO financeAdmin(employeeId) " +
+                "VALUES (?)";
 
         int n = 0;
 
@@ -72,9 +72,7 @@ public class RefundDaoImplementation implements RefundDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
-            stmt.setInt(1, Integer.parseInt(refund.getFinanceAdminId()));
-            stmt.setInt(2, Integer.parseInt(refund.getPaymentId()));
+            stmt.setInt(1,Integer.parseInt(financeAdmin.getEmployeeId()));
 
 
             n = stmt.executeUpdate();
@@ -82,76 +80,61 @@ public class RefundDaoImplementation implements RefundDaoInterface {
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            e.printStackTrace();  }
 
         return false;
 
     }
 
-    private Refund setRefund(Refund refund, ResultSet rs) {
+    private FinanceAdmin setFinanceAdmin(FinanceAdmin financeAdmin, ResultSet rs) {
 
         try {
 
-            refund.setRefundId(rs.getString("refundId"));
-            refund.setFinanceAdminId(rs.getString("financeAdminId"));
-            refund.setPaymentId(rs.getString("paymentId"));
-            refund.setCreatedAt(rs.getTimestamp("createDate"));
+            financeAdmin.setFinanceAdminId(rs.getString("financeAdminId"));
+            financeAdmin.setEmployeeId(rs.getString("employeeId"));
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return refund;
+        return financeAdmin;
     }
 
     @Override
-    public Refund getRefund(String refundId) {
+    public FinanceAdmin getFinanceAdmin(String financeAdminId) {
 
-        String query = "SELECT * FROM Refund WHERE refundId= ?";
+        String query = "SELECT * FROM FinanceAdmin WHERE financeAdminId= ?";
 
-        Refund refund = new Refund();
+        FinanceAdmin financeAdmin = new FinanceAdmin();
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
-            stmt.setInt(1, Integer.parseInt(refundId));
-
+            stmt.setInt(1,Integer.parseInt(financeAdminId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                refund = setRefund(refund,rs);
+                financeAdmin = setFinanceAdmin(financeAdmin,rs);
             }
 
-            return refund;
+            return financeAdmin;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         return null;
 
     }
 
     @Override
+    public List<FinanceAdmin> getFinanceAdmins(String condition) {
 
-    public List<Refund> getRefunds(String condition) {
+        String query = "SELECT * FROM financeAdmin";
 
-
-        String query = "SELECT * FROM refund";
-
-        if (!condition.isEmpty()){
-
-            condition = String.format(" WHERE %s",condition);
-
-            query = query.concat(condition);
-
-        }
-
-        List<Refund> ls = new ArrayList();
+        List<FinanceAdmin> ls = new ArrayList();
 
         try {
 
@@ -159,38 +142,31 @@ public class RefundDaoImplementation implements RefundDaoInterface {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Refund refund = new Refund();
-                refund = setRefund(refund,rs);
-                ls.add(refund);
+                FinanceAdmin financeAdmin = new FinanceAdmin();
+                financeAdmin = setFinanceAdmin(financeAdmin,rs);
+                ls.add(financeAdmin);
             }
-
 
             return ls;
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         return null;
     }
 
     @Override
-    public boolean update(Refund refund) {
+    public boolean update(FinanceAdmin financeAdmin) {
 
-        String query = String.format("UPDATE refund SET  financeAdminId=?, paymentId=? WHERE refundId =?");
+        String query = String.format("UPDATE financeAdmin SET employeeId=? WHERE financeAdminId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
-
-            stmt.setInt(1, Integer.parseInt(refund.getFinanceAdminId()));
-            stmt.setInt(2, Integer.parseInt(refund.getPaymentId()));
-            stmt.setInt(3, Integer.parseInt(refund.getRefundId()));
-
+            stmt.setInt(1, Integer.parseInt(financeAdmin.getEmployeeId()));
+            stmt.setInt(2, Integer.parseInt(financeAdmin.getFinanceAdminId()));
 
             stmt.executeUpdate();
 
@@ -198,6 +174,7 @@ public class RefundDaoImplementation implements RefundDaoInterface {
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
 
         return false;
