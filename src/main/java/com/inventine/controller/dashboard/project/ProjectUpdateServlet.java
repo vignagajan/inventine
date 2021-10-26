@@ -30,7 +30,7 @@ public class ProjectUpdateServlet extends HttpServlet {
 
 
 
-        List<Project> projects = projectDao.getProjects("projectid=19");
+        List<Project> projects = projectDao.getProjects("projectid=20");
         request.setAttribute("projects",projects);
 
         request.getRequestDispatcher("/WEB-INF/dashboard/project/update.jsp").forward(request, response);
@@ -52,7 +52,7 @@ public class ProjectUpdateServlet extends HttpServlet {
 
         boolean ok = true;
 
-        project.setProjectId("19");
+        project.setProjectId("20");
         project.setCreatorId("5");
         project.setSupportTeamId("1");
         project.setStatus('U');
@@ -60,8 +60,8 @@ public class ProjectUpdateServlet extends HttpServlet {
         project.setProjectName(request.getParameter("projectName"));
         project.setRequestedAmount(Integer.parseInt(request.getParameter("requestedAmount")));
         project.setDateOfExpiry(dateOfExpiry);
-        project.setCategory("category");
-        project.setDetails("description");
+        project.setCategory(request.getParameter("category"));
+        project.setDetails(request.getParameter("description"));
 
 
         projectDao.update(project);
