@@ -34,63 +34,66 @@ public class DataValidator {
     }
 
     public boolean isMatch(String PATTERN){
-        PATTERN = String.format("^[%s]{%d,%d}$",PATTERN,this.minLength,this.maxLength);
         Pattern pattern = Pattern.compile(PATTERN);
         Matcher match = pattern.matcher(this.txt);
         return match.matches();
+    }
+
+    public boolean isBasic(String PATTERN){
+        PATTERN = String.format("%s{%d,%d}$",PATTERN,getMinLength(),getMaxLength());
+        return isMatch(PATTERN);
     }
 
     public boolean isSmall(){
 
-        return isMatch("a-z");
+        return isBasic("^[a-z]");
     }
 
     public boolean isCapital(){
 
-        return isMatch("A-Z");
+        return isBasic("^[A-Z]");
     }
 
     public boolean isString(){
 
-        return isMatch("a-zA-Z");
+        return isBasic("^[a-zA-Z]");
     }
 
     public boolean isNumber(){
 
-        return isMatch("0-9");
+        return isBasic("0-9");
     }
 
     public boolean isAlphaNumeric(){
 
-        return isMatch("a-zA-Z0-9");
+        return isBasic("a-zA-Z0-9");
 
     }
 
     public boolean isEmail(){
-
         String PATTERN = String.format("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}");
-        Pattern pattern = Pattern.compile(PATTERN);
-        Matcher match = pattern.matcher(this.txt);
-        return match.matches();
+        return isMatch(PATTERN);
 
     }
 
     public boolean isPhone(){
 
-        String PATTERN = String.format("^\\+[1-9]{1}[0-9]{3,14}$");
-        Pattern pattern = Pattern.compile(PATTERN);
-        Matcher match = pattern.matcher(this.txt);
-        return match.matches();
+        String PATTERN = String.format("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$");
+        return isMatch(PATTERN);
 
     }
 
     public boolean isAddress(){
 
-        String PATTERN = String.format("[0-9\\\\\\/# ,a-zA-Z]+[ ,]+[0-9\\\\\\/#, a-zA-Z]{1,}");
-        Pattern pattern = Pattern.compile(PATTERN);
-        Matcher match = pattern.matcher(this.txt);
-        return match.matches();
+        String PATTERN = String.format("^[a-zA-Z 0-9\\.\\,\\/\\-]{10,255}");
+        return isMatch(PATTERN);
 
+    }
+
+
+    public boolean isSHA256(){
+
+        return isMatch("\\b[A-Fa-f0-9]{64}\\b");
     }
 
 }
