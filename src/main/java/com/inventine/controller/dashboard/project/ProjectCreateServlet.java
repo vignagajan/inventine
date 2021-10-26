@@ -3,16 +3,20 @@ package com.inventine.controller.dashboard.project;
 import com.inventine.dao.ProjectDaoImplementation;
 import com.inventine.model.Project;
 import com.inventine.util.DotEnv;
+import org.json.simple.JSONObject;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet(name = "ProjectCreateServlet", value = "/dashboard/create-project")
 public class ProjectCreateServlet extends HttpServlet {
@@ -26,31 +30,89 @@ public class ProjectCreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
-        Project project = new Project();
+        // JSON parameters
+        JSONObject json = new JSONObject();
+        List<String> messages = new ArrayList<>();
+        boolean ok = true;
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = null;
+        // Models and DAOs
+        Project project = new Project();
+        ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
+
+        // Parse request data
+        String creatorId = "5";
+        String supportTeamId = "1";
+        char financialStatus = 'I';
+        char status = 'A';
+        String dateOfExpiry_ = request.getParameter("dateOfExpiry");
+        int requestedAmount = Integer.parseInt(request.getParameter("requestedAmount"));
+        String projectName = request.getParameter("projectName");
+        String category = request.getParameter("category");
+        String description = request.getParameter("description");
+
+
+        // Data to be processed
+        Timestamp dateOfExpiry = null;
+
+        // Data preprocessing
         try {
-            date = dateFormat.parse(request.getParameter("dateOfExpiry"));
-        } catch (ParseException e) {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = dateFormat.parse(dateOfExpiry_);
+            dateOfExpiry = new java.sql.Timestamp(date.getTime());
+
+        }catch (Exception e){
+            ok = false;
+            messages.clear();
+            messages.add("Something went wrong at get data!");
             e.printStackTrace();
         }
-        Timestamp dateOfExpiry = new java.sql.Timestamp(date.getTime());
 
-        project.setProjectId("1");
-        project.setCreatorId("5");
-        project.setSupportTeamId("1");
-        project.setStatus('U');
-        project.setFinancialStatus('I');
-        project.setProjectName(request.getParameter("projectName"));
-        project.setRequestedAmount(Integer.parseInt(request.getParameter("requestedAmount")));
-        project.setDateOfExpiry(dateOfExpiry);
-        project.setCategory(request.getParameter("category"));
-        project.setDetails(request.getParameter("description"));
-        
+        // Logic
+//        if(projectDao.getCount("WHERE projectname=vicky") >= 1){
+//            ok=false;
+//            messages.add("projectname is already found!");
+//        }
 
-        projectDao.create(project);
+        // Transactions
+        if(ok){
+
+            ok = project.setCreatorId(creatorId);
+            ok = project.setSupportTeamId(supportTeamId);
+            ok = project.setFinancialStatus(financialStatus);
+            ok = project.setStatus(status);
+            ok = project.setDateOfExpiry(dateOfExpiry);
+            ok = project.setRequestedAmount(requestedAmount);
+            ok = project.setCategory(category);
+            ok = project.setProjectName(projectName);
+            ok = project.setDetails(description);
+
+            if(!ok){
+
+                messages.clear();
+                messages.add("Something went wrong at get data!");
+                System.out.println("There is a issue with setting attributes!");
+
+            }
+
+            // Pass model to DAO
+            if(!projectDao.create(project)){
+                ok=false;
+                messages.clear();
+                messages.add("Something went wrong!");
+                System.out.println("There is a issue with dao!");
+
+            }
+        }
+
+        // JSON response
+        json.put("ok", ok);
+        json.put("messages", messages);
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        out.print(json);
+        out.flush();
         
     }
 }
