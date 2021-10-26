@@ -173,7 +173,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     @Override
     public boolean update(Project project) {
 
-        String query = String.format("UPDATE project SET creatorId=?, supportTeamId=?,  financialStatus=?, status=?, requestedAmount=?, dateOfExpiry=? , projectName=?, details=?, category=? WHERE projectId =?");
+        String query = String.format("UPDATE project SET creatorId=?, supportTeamId=?,  financialStatus=CAST(? AS stat2), status=CAST(? AS stat1), requestedAmount=?, dateOfExpiry=? , projectName=?, details=?, category=? WHERE projectId =?");
 
         try {
 
@@ -186,10 +186,10 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             stmt.setString(4, String.valueOf(project.getStatus()));
             stmt.setInt(5, project.getRequestedAmount());
             stmt.setTimestamp(6, project.getDateOfExpiry());
-            stmt.setInt(7, Integer.parseInt(project.getProjectId()));
-            stmt.setString(8,project.getProjectName());
-            stmt.setString(9,project.getDetails());
-            stmt.setString(10,project.getCategory());
+            stmt.setString(7,project.getProjectName());
+            stmt.setString(8,project.getDetails());
+            stmt.setString(9,project.getCategory());
+            stmt.setInt(10, Integer.parseInt(project.getProjectId()));
 
 
 
