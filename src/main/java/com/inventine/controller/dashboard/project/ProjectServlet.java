@@ -2,6 +2,7 @@ package com.inventine.controller.dashboard.project;
 
 import com.inventine.dao.ProjectDaoImplementation;
 import com.inventine.model.Project;
+import com.inventine.util.DotEnv;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -9,12 +10,13 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ProjectServlet", value = "/project")
+@WebServlet(name = "ProjectServlet", value = "/dashboard/project")
 public class ProjectServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
+        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
 
         String topic= "Project Dashboard";
