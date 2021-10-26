@@ -1,26 +1,25 @@
 package com.inventine.dao;
 
 import com.inventine.conf.DBManager;
-import com.inventine.dao.interface_.PayoutDaoInterface;
-import com.inventine.model.Payout;
-
+import com.inventine.dao.interface_.PostDaoInterface;
+import com.inventine.model.Post;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PayoutDaoImplementation implements PayoutDaoInterface {
-
+public class PostDaoImplementation implements PostDaoInterface {
+    
     static Connection conn = DBManager.getConnection();
-
 
     @Override
     public int getCount(String condition)  {
 
         int count = 0;
-        String query = "select count(*) from payout";
+        String query = "select count(*) from post";
 
         if (!condition.isEmpty()){
 
@@ -41,6 +40,7 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
 
         return count;
     }
+
     @Override
     public ResultSet executeQuery(String query)  {
         ResultSet rs = null;
@@ -61,10 +61,10 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
 
 
     @Override
-    public boolean create(Payout payout) {
+    public boolean create(Post post) {
 
-        String query = "INSERT INTO payout(financeDetailsId, financeAdminId, amount, transactionId) " +
-                "VALUES (?, ?,?, ?)";
+        String query = "INSERT INTO post(description,userId) " +
+                "VALUES (?,?)";
 
         int n = 0;
 
@@ -72,10 +72,9 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(payout.getFinanceDetailsId()));
-            stmt.setInt(2, Integer.parseInt(payout.getFinanceAdminId()));
-            stmt.setInt(3, payout.getAmount());
-            stmt.setInt(4, Integer.parseInt(payout.getTransactionId()));
+            stmt.setString(1,post.getDescription());
+            stmt.setInt(2,Integer.parseInt(post.getUserId()));
+
 
 
             n = stmt.executeUpdate();
@@ -83,77 +82,63 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            e.printStackTrace();  }
 
         return false;
 
     }
 
-    private Payout setPayout(Payout payout, ResultSet rs) {
+    private Post setPost(Post post, ResultSet rs) {
 
         try {
 
-            payout.setFinanceAdminId(rs.getString("financeAdminId"));
-            payout.setFinanceDetailsId(rs.getString("financeDetailsId"));
-            payout.setAmount(rs.getInt("amount"));
-            payout.setTransactionId(rs.getString("transactionId"));
-            payout.setCreatedAt(rs.getTimestamp("createDate"));
+            post.setPostId(rs.getString("postId"));
+            post.setUserId(rs.getString("userId"));
+            post.setDescription(rs.getString("description"));
+            post.setCreatedAt(rs.getTimestamp("createDate"));
+
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return payout;
+        return post;
     }
 
     @Override
-    public Payout getPayout(String transactionId) {
+    public Post getPost(String postId) {
 
-        String query = "SELECT * FROM payout WHERE transactionId= ?";
+        String query = "SELECT * FROM post WHERE postId= ?";
 
-        Payout payout = new Payout();
+        Post post = new Post();
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
-            stmt.setInt(1, Integer.parseInt(transactionId));
-
+            stmt.setInt(1,Integer.parseInt(postId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                payout = setPayout(payout, rs);
+                post = setPost(post,rs);
             }
 
-            return payout;
+            return post;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         return null;
 
     }
 
     @Override
+    public List<Post> getPosts(String condition) {
 
-    public List<Payout> getPayouts(String condition) {
+        String query = "SELECT * FROM post";
 
-
-        String query = "SELECT * FROM payout";
-
-        if (!condition.isEmpty()){
-
-            condition = String.format(" WHERE %s",condition);
-
-            query = query.concat(condition);
-
-        }
-
-        List<Payout> ls = new ArrayList();
+        List<Post> ls = new ArrayList();
 
         try {
 
@@ -161,38 +146,32 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Payout payout = new Payout();
-                payout = setPayout(payout, rs);
-                ls.add(payout);
+                Post post = new Post();
+                post = setPost(post,rs);
+                ls.add(post);
             }
-
 
             return ls;
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         return null;
     }
 
     @Override
-    public boolean update(Payout payout) {
+    public boolean update(Post post) {
 
-        String query = String.format("UPDATE payout SET financeDetailsId=?, financeAdminId=?, amount=? WHERE transactionId =?");
+        String query = String.format("UPDATE post SET userId=?, description=? WHERE postId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
-            stmt.setInt(1, Integer.parseInt(payout.getFinanceDetailsId()));
-            stmt.setInt(2, Integer.parseInt(payout.getFinanceAdminId()));
-            stmt.setInt(4, payout.getAmount());
-            stmt.setInt(4, Integer.parseInt(payout.getTransactionId()));
-
+            stmt.setInt(1, Integer.parseInt(post.getUserId()));
+            stmt.setString(2,post.getDescription());
+            stmt.setInt(3, Integer.parseInt(post.getPostId()));
 
             stmt.executeUpdate();
 
@@ -200,12 +179,9 @@ public class PayoutDaoImplementation implements PayoutDaoInterface {
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
 
         return false;
     }
-
-
-
-
 }
