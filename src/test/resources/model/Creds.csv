@@ -1,0 +1,2 @@
+userId, username,email,password,role,status,createdAt
+1, testusername99,user@email.com, c5e14140412b18cb042d06ea360474ba58d321a0e4aa51841ae0cc87671c238d, I, A, 2021-10-27 07:30:49.21285
