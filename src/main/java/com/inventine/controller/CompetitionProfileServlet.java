@@ -7,15 +7,15 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "CompetitionServlet", value = "/competition")
-public class CompetitionServlet extends HttpServlet {
+@WebServlet(name = "CompetitionProfileServlet", value = "/competition-profile")
+public class CompetitionProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
-        request.setAttribute("title","Home");
-        request.getRequestDispatcher("/WEB-INF/competition.jsp").forward(request, response);
+        request.setAttribute("title","CompetitionProfile");
+        request.getRequestDispatcher("/WEB-INF/competition-profile.jsp").forward(request, response);
     }
 
     @Override
