@@ -34,7 +34,7 @@
         </span>
         </div>
         <div class="column-2">
-            <img src="static/hws.jpg" style="width: 100%;height: 300px;">
+            <img src="static/img/hws.jpg" style="width: 100%;height: 300px;">
         </div>
     </div>
     </div>
