@@ -84,7 +84,7 @@
                                 <h4 class="titles">Submission File Format</h4>
                             </div>
                             <p>The file should contain a header and have the following format:</p>
-                            <img class="submission" src="static/submission.png">
+                            <img class="submission" src="static/img/submission.png">
                         </div>
                     </div>
                 </div>

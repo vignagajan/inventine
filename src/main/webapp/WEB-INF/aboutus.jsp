@@ -4,8 +4,8 @@
 <head>
 
   <%@ include file="/WEB-INF/components/head-import.jsp" %>
+  <link rel="stylesheet" href="${host_url}/static/css/aboutus.css">
 
-  <link rel="stylesheet" href="${host_url}/static/css/home.css">
 
 </head>
 <body>
@@ -21,7 +21,7 @@
 
     </div>
     <div class="column-2">
-      <img src="static/abus.jpg" style="width: 500px;height: 250px;">
+      <img src="static/img/abus.jpg" style="width: 500px;height: 250px;">
     </div>
   </div>
   <!-- discription and image end -->
@@ -30,7 +30,7 @@
   <ul class="cards">
     <li class="cards_item">
       <div class="card">
-        <div class="card_image"><img style="height: 402px; width: 272px;" src="/static/m2.png"></div>
+        <div class="card_image"><img style="height: 402px; width: 272px;" src="static/img/m2.jpg"></div>
         <div class="card_content">
           <h2 class="card_title" style="text-align: center;">V.Vithiyasahar</h2><br>
           <div class="social">
@@ -43,7 +43,7 @@
     </li>
     <li class="cards_item">
       <div class="card">
-        <div class="card_image"><img style="height: 402px; width: 272px;" src="/static/m3.png"></div>
+        <div class="card_image"><img style="height: 402px; width: 272px;" src="static/img/m3.jpg"></div>
         <div class="card_content">
           <h2 class="card_title" style="text-align: center;">V.Vignagajan</h2><br>
           <div class="social">
@@ -56,7 +56,7 @@
     </li>
     <li class="cards_item">
       <div class="card">
-        <div class="card_image"><img style="height: 402px; width: 272px;" src="/static/m4.png"></div>
+        <div class="card_image"><img style="height: 402px; width: 272px;" src="static/img/m4.jpg"></div>
         <div class="card_content">
           <h2 class="card_title" style="text-align: center;">W.Amila</h2><br>
           <div class="social">
@@ -69,7 +69,7 @@
     </li>
     <li class="cards_item">
       <div class="card">
-        <div class="card_image"><img style="height: 402px; width: 272px;" src="/static/m5.png"></div>
+        <div class="card_image"><img style="height: 402px; width: 272px;" src="static/img/m5.jpg"></div>
         <div class="card_content">
           <h2 class="card_title" style="text-align: center;">C.Ravisanka</h2><br>
           <div class="social">

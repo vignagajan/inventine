@@ -64,7 +64,7 @@ class UserDaoImplementationTest {
     void getUsers(String user_id, String first_name, String last_name, Timestamp dob, char gender, String phone,
                  String address, String district, char type, Timestamp created_at) {
 
-        List<User> ls = this.userDao.getUsers();
+        List<User> ls = this.userDao.getUsers("");
 
         this.user.setUserId(user_id);
         this.user.setFirstName(first_name);

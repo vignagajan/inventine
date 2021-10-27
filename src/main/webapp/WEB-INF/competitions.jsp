@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="column-2 box">
-                <img src="static/imgc.jpg" style="width: 300px;height: 250px;">
+                <img src="static/img/imgc.jpg" style="width: 300px;height: 250px;">
             </div>
         </div>
         <!-- discription and image end -->

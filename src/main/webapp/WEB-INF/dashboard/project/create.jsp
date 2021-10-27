@@ -27,7 +27,7 @@
 
                 <div class="input-box">
                     <span class="details">Project Name</span>
-                    <input type="text" name="projectName" id="projectName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}">
+                    <input type="text" name="projectName" id="projectName"  required pattern="^[a-zA-Z0-9\.\,\/\-\*\+]{1,100}">
                     <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
                 </div>
 
