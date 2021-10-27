@@ -20,12 +20,14 @@ class PostTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Post.csv", numLinesToSkip = 1)
-    void getterSetter(String postId, String description, Timestamp date) {
+    void getterSetter(String postId, String description, String userId, Timestamp date) {
         this.post.setPostId(postId);
         this.post.setDescription(description);
         this.post.setCreatedAt(date);
+        this.post.setUserId(userId);
         assertEquals(postId,this.post.getPostId());
         assertEquals(description,this.post.getDescription());
         assertEquals(date,this.post.getCreatedAt());
+        assertEquals(userId,this.post.getUserId());
     }
 }
