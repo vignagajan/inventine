@@ -18,11 +18,15 @@ public class ForumTopicTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/ForumTopic.csv", numLinesToSkip = 1)
-    void getterSetter(String forum_topic) {
+    void getterSetter(String forum_topic, String post_id, String title) {
 
         this.forumTopic.setForumTopicId(forum_topic);
+        this.forumTopic.setPostId(post_id);
+        this.forumTopic.setTitle(title);
 
         assertEquals(forum_topic,this.forumTopic.getForumTopicId());
+        assertEquals(post_id,this.forumTopic.getPostId());
+        assertEquals(title,this.forumTopic.getTitle());
 
     }
 }
