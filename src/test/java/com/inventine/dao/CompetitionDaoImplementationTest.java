@@ -25,7 +25,7 @@ class CompetitionDaoImplementationTest {
 
     @Test
     void getCount() {
-        assertEquals(competitionDao.getCount("organizationid=17"),5
+        assertEquals(competitionDao.getCount("organizationid=17"),2
         );
     }
 
