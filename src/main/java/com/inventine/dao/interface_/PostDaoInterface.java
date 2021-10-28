@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface PostDaoInterface {
-    public boolean create(Post post);
+    public int create(Post post);
 
     public Post getPost(String postId);
 

@@ -1,8 +1,8 @@
 package com.inventine.dao;
 
 import com.inventine.conf.DBManager;
-import com.inventine.dao.interface_.ForumReplyDaoInterface;
-import com.inventine.model.ForumReply;
+import com.inventine.dao.interface_.IssuesDaoInterface;
+import com.inventine.model.Issues;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
+public class IssuesDaoImplementation implements IssuesDaoInterface {
 
     static Connection conn = DBManager.getConnection();
 
@@ -19,7 +19,7 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
     public int getCount(String condition)  {
 
         int count = 0;
-        String query = "select count(*) from forumreply";
+        String query = "select count(*) from Issues";
 
         if (!condition.isEmpty()){
 
@@ -61,10 +61,10 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
 
 
     @Override
-    public boolean create(ForumReply forumReply) {
+    public boolean create(Issues issues) {
 
-        String query = "INSERT INTO forumReply(forumTopicId,postId) " +
-                "VALUES (?,?)";
+        String query = "INSERT INTO Issues(userId,Category,description) " +
+                "VALUES (?,cast(? AS stat3) ,?)";
 
         int n = 0;
 
@@ -72,8 +72,9 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(forumReply.getForumTopicId()));
-            stmt.setInt(2,Integer.parseInt(forumReply.getPostId()));
+            stmt.setInt(1,Integer.parseInt(issues.getUserId()));
+            stmt.setString(2,String.valueOf(issues.getCategory()));
+            stmt.setString(3,issues.getDescription());
 
 
             n = stmt.executeUpdate();
@@ -87,41 +88,44 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
 
     }
 
-    private ForumReply setForumReply(ForumReply forumReply, ResultSet rs) {
+    private Issues setIssue(Issues issues, ResultSet rs) {
 
         try {
 
-            forumReply.setForumReplyId(rs.getString("forumReplyId"));
-            forumReply.setForumTopicId(rs.getString("forumTopicId"));
-            forumReply.setPostId(rs.getString("postId"));
+
+            issues.setIssueId((rs.getString("IssueId")));
+            issues.setUserId(rs.getString("userId"));
+            issues.setCategory(rs.getString("category").charAt(0));
+            issues.setDescription(rs.getString("description"));
+
 
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return forumReply;
+        return issues;
     }
 
     @Override
-    public ForumReply getForumReply(String forumReplyId) {
+    public Issues getIssue(String issueId) {
 
-        String query = "SELECT * FROM ForumReply WHERE forumReplyId= ?";
+        String query = "SELECT * FROM issues WHERE issueId= ?";
 
-        ForumReply forumReply = new ForumReply();
+        Issues issues = new Issues();
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(forumReplyId));
+            stmt.setInt(1,Integer.parseInt(issueId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                forumReply = setForumReply(forumReply,rs);
+                issues = setIssue(issues,rs);
             }
 
-            return forumReply;
+            return issues;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -132,11 +136,11 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
     }
 
     @Override
-    public List<ForumReply> getForumReplys(String condition) {
+    public List<Issues> getIssues(String condition) {
 
-        String query = "SELECT * FROM forumreply";
+        String query = "SELECT * FROM issues";
 
-        List<ForumReply> ls = new ArrayList();
+        List<Issues> ls = new ArrayList();
 
         try {
 
@@ -144,9 +148,10 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                ForumReply forumReply = new ForumReply();
-                forumReply = setForumReply(forumReply,rs);
-                ls.add(forumReply);
+
+                Issues issues = new Issues();
+                issues = setIssue(issues,rs);
+                ls.add(issues);
             }
 
             return ls;
@@ -159,17 +164,18 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
     }
 
     @Override
-    public boolean update(ForumReply forumReply) {
+    public boolean update(Issues issues) {
 
-        String query = String.format("UPDATE forumReply SET forumTopicId=?, postId=? WHERE financeAdminId =?");
+        String query = String.format("UPDATE issues SET userId=?, category=CAST(? AS stat3), description=? WHERE issueId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(forumReply.getForumTopicId()));
-            stmt.setInt(2, Integer.parseInt(forumReply.getPostId()));
-            stmt.setInt(3,Integer.parseInt(forumReply.getForumReplyId()));
+            stmt.setInt(1, Integer.parseInt(issues.getIssueId()));
+            stmt.setString(2,String.valueOf(issues.getCategory()));
+            stmt.setString(3,issues.getDescription());
+            stmt.setInt(4,Integer.parseInt(issues.getIssueId()));
 
             stmt.executeUpdate();
 
@@ -182,4 +188,5 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
 
         return false;
     }
+
 }

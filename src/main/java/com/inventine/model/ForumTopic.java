@@ -39,9 +39,10 @@ public class ForumTopic extends Post{
         return title;
     }
 
-    public void setTitle(String title) {
+    public boolean setTitle(String title) {
         this.validator.setTxt(title);
         this.validator.setMaxLength(150);
         this.title = title;
+        return true;
     }
 }
