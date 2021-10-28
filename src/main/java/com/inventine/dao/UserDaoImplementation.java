@@ -43,10 +43,10 @@ public class UserDaoImplementation implements UserDaoInterface {
     }
 
     @Override
-    public boolean create(User user) {
+    public int create(User user) {
 
         String query = "INSERT INTO users(firstName, lastName, dob, gender, phone, address, district, type ) " +
-                "VALUES (?, ?,?, CAST(? AS ge),?, ?,?, CAST(? AS te))";
+                "VALUES (?, ?,?, CAST(? AS ge),?, ?,?, CAST(? AS te)) RETURNING userid";
 
         int n = 0;
 
@@ -63,15 +63,19 @@ public class UserDaoImplementation implements UserDaoInterface {
             stmt.setString(7, user.getDistrict());
             stmt.setString(8, String.valueOf(user.getType()));
 
-            n = stmt.executeUpdate();
+            ResultSet rs = stmt.executeQuery();
 
-            return true;
+            while (rs.next()) {
+                n = rs.getInt("userid");
+            }
+
+            return n;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return false;
+        return -1;
 
     }
 

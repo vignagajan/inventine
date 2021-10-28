@@ -26,7 +26,7 @@ class UserDaoImplementationTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/model/User.csv", numLinesToSkip = 1)
     void create(String user_id, String first_name, String last_name, Timestamp dob, char gender, String phone,
-                      String address, String district, char type, Timestamp created_at) {
+                String address, String district, char type, Timestamp created_at) {
 
         this.user.setFirstName(first_name);
         this.user.setLastName(last_name);
@@ -38,13 +38,13 @@ class UserDaoImplementationTest {
         this.user.setType(type);
         this.user.setCreatedAt(created_at);
 
-        assertTrue(this.userDao.create(user));
+        assertEquals(55,this.userDao.create(user));
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/User.csv", numLinesToSkip = 1)
     void getUser(String user_id, String first_name, String last_name, Timestamp dob, char gender, String phone,
-                String address, String district, char type, Timestamp created_at) {
+                 String address, String district, char type, Timestamp created_at) {
 
         this.user = this.userDao.getUser(user_id);
 
@@ -62,9 +62,9 @@ class UserDaoImplementationTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/model/User.csv", numLinesToSkip = 1)
     void getUsers(String user_id, String first_name, String last_name, Timestamp dob, char gender, String phone,
-                 String address, String district, char type, Timestamp created_at) {
+                  String address, String district, char type, Timestamp created_at) {
 
-        List<User> ls = this.userDao.getUsers();
+        List<User> ls = this.userDao.getUsers("");
 
         this.user.setUserId(user_id);
         this.user.setFirstName(first_name);
@@ -90,7 +90,7 @@ class UserDaoImplementationTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/model/User.csv", numLinesToSkip = 1)
     void update(String user_id, String first_name, String last_name, Timestamp dob, char gender, String phone,
-                  String address, String district, char type, Timestamp created_at) {
+                String address, String district, char type, Timestamp created_at) {
 
         this.user.setUserId(user_id);
         this.user.setFirstName(first_name);

@@ -24,7 +24,7 @@
     <li class="item"><a href="#">Blog</a></li>
     <li class="item"><a href="#">Contact Us</a>
     </li>
-    <li class="item button"><a href="#">Log In</a></li>
+    <li class="item button"><a href="${host_url}/login">Log In</a></li>
     <li class="item button secondary"><a href="#">Sign Up</a></li>
     <li class="toggle"><a href="#"><i class="fas fa-bars"></i></a></li>
   </ul>
