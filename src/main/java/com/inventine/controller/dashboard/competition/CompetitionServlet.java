@@ -13,7 +13,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "CompetitionServlet", value = "/competition")
+@WebServlet(name = "CompetitionServlet", value = "/dashboard/competition")
 public class CompetitionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
