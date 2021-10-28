@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 public class Meeting {
         private String meetingId;
+        private String creatorId;
         private Timestamp createdAt;
         private Timestamp launchedAt;
         private String link;
@@ -19,6 +20,20 @@ public class Meeting {
 
             if (this.validator.isNumber()) {
                 this.meetingId = meetingId;
+                return true;
+            }
+
+            return false;
+        }
+
+        public String getCreatorId(){ return creatorId;}
+
+        public boolean setCreatorId(String creatorId) {
+            this.validator.setTxt(creatorId);
+            this.validator.setMaxLength(6);
+
+            if (this.validator.isNumber()) {
+                this.creatorId = creatorId;
                 return true;
             }
 
