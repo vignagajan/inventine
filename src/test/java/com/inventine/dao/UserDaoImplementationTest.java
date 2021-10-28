@@ -25,7 +25,7 @@ class UserDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/User.csv", numLinesToSkip = 1)
-    void create(String user_id, String first_name, String last_name, Timestamp dob, char gender, String phone,
+    void create(int user_id, String first_name, String last_name, Timestamp dob, char gender, String phone,
                       String address, String district, char type, Timestamp created_at) {
 
         this.user.setFirstName(first_name);
@@ -38,7 +38,9 @@ class UserDaoImplementationTest {
         this.user.setType(type);
         this.user.setCreatedAt(created_at);
 
-        assertTrue(this.userDao.create(user));
+        user_id = user_id + 1;
+
+        assertEquals(user_id,this.userDao.create(user));
     }
 
     @ParameterizedTest
@@ -64,7 +66,7 @@ class UserDaoImplementationTest {
     void getUsers(String user_id, String first_name, String last_name, Timestamp dob, char gender, String phone,
                  String address, String district, char type, Timestamp created_at) {
 
-        List<User> ls = this.userDao.getUsers();
+        List<User> ls = this.userDao.getUsers("userId=1");
 
         this.user.setUserId(user_id);
         this.user.setFirstName(first_name);

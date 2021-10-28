@@ -2,10 +2,10 @@
 <!-- header start -->
 <header id="header">
     <h1 id="title" >
-        <%= (String)session.getAttribute("username")%>
+        Dashboard
     </h1>
     <div class="user-wrapper">
-        <h4>admin</h4>
+        <h4><%= (String)session.getAttribute("username")%></h4>
         <div class="dropdown">
             <img src="static/img/img2.png" width="50px" height="50px" alt="">
             <div class="dropdown-content">

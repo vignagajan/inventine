@@ -111,9 +111,11 @@ function responseHandler (responseObject,success_msg,redirect_url) {
             title: success_msg,
         })
 
-        if (redirect_url != ''){
+        if (redirect_url == ''){
 
-            location.reload();
+            setTimeout(function () {
+                location.reload();
+            }, 2000);
 
         } else{
 
