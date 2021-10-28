@@ -67,6 +67,12 @@ main {
   box-sizing: border-box;
   box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
   border-radius: 10px 10px 10px 10px;
+  overflow-x: scroll;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
 }
 
 .updatebutton{
@@ -85,6 +91,32 @@ main {
   background: #fff;
   border: 2px #ff0000 solid;
 }
+
+.viewbutton{
+  padding-left: 5px;
+  padding-right: 5px;
+  color:#8400ff;
+  border-radius: 50px;
+  background: #fff;
+  border: 2px #8400ff solid;
+}
+
+.cbutton{
+  text-align: left;
+}
+
+.createbutton{
+  width:200px;
+  height:50px;
+  color:#fff;
+  border-width: 1px;
+  border-color: #0097E6;
+  background-color: #0097E6;
+  border-radius: 25px;
+  margin-left: 50px;
+  font-size: 22px;
+}
+
 
 
 /* responsive */

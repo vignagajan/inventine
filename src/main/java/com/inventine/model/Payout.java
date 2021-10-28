@@ -6,27 +6,39 @@ import java.sql.Timestamp;
 
 public class Payout {
 
-    private String payoutId;
+
+    private String financeDetailsId;
+    private String financeAdminId;
     private int amount;
     private String transactionId;
     private Timestamp createdAt;
     private DataValidator validator = new DataValidator();
 
 
-    public String getPayoutId() {
-        return payoutId;
+    public String getFinanceDetailsId() {
+        return financeDetailsId;
     }
 
-    public boolean setPayoutId(String payoutId) {
-
-        this.validator.setTxt(payoutId);
-        this.validator.setMaxLength(6);
-
-        if (this.validator.isNumber()) {
-            this.payoutId = payoutId;
+    public boolean setFinanceDetailsId(String financeDetailsId) {
+        this.validator.setTxt(financeDetailsId);
+        if(this.validator.isNumber()){
+            this.financeDetailsId = financeDetailsId;
             return true;
         }
 
+        return false;
+    }
+
+    public String getFinanceAdminId() {
+        return financeAdminId;
+    }
+
+    public boolean setFinanceAdminId(String financeAdminId) {
+        this.validator.setTxt(financeAdminId);
+        if(this.validator.isNumber()){
+            this.financeAdminId = financeAdminId;
+            return true;
+        }
         return false;
     }
 

@@ -64,7 +64,7 @@ class UserDaoImplementationTest {
     void getUsers(String user_id, String first_name, String last_name, Timestamp dob, char gender, String phone,
                  String address, String district, char type, Timestamp created_at) {
 
-        List<User> ls = this.userDao.getUsers();
+        List<User> ls = this.userDao.getUsers("");
 
         this.user.setUserId(user_id);
         this.user.setFirstName(first_name);
@@ -100,7 +100,7 @@ class UserDaoImplementationTest {
         this.user.setPhone(phone);
         this.user.setAddress(address);
         this.user.setDistrict(district);
-        this.user.setType('P');
+        this.user.setType('A');
 
         this.userDao.update(this.user);
 
@@ -113,7 +113,7 @@ class UserDaoImplementationTest {
         assertEquals(this.user.getGender(),updated.getGender());
         assertEquals(this.user.getPhone(),updated.getPhone());
         assertEquals(this.user.getAddress(),updated.getAddress());
-        assertEquals('P',updated.getType());
+        assertEquals('A',updated.getType());
 
     }
 
