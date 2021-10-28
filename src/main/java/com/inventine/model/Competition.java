@@ -53,7 +53,7 @@ public class Competition {
     }
 
     public boolean setPType(char pType) {
-        if(pType == 'I'|| pType== 'E')
+        if(pType == 'I'|| pType== 'A')
         {
             this.pType = pType;
             return true;
