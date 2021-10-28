@@ -13,7 +13,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "CompetitionServlet", value = "/competition")
+@WebServlet(name = "CompetitionServlet", value = "/dashboard/competition")
 public class CompetitionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class CompetitionServlet extends HttpServlet {
 
 
         String topic= "Competition Dashboard";
-        request.setAttribute("Dashboard",topic);
+        request.setAttribute("title",topic);
 
         request.setAttribute("competition",competitionDao.getCount("organizationid=20"));
         request.setAttribute("project", competitionDao.getCount("organizationid=17"));
