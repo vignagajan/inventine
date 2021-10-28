@@ -36,9 +36,9 @@ public class PostDaoImplementationTest {
 
         this.post.setDescription(description);
         this.post.setUserId(user_id);
+        int n = this.postDao.create(post);
 
-
-        assertTrue(this.postDao.create(post));
+        assertEquals(6,n);
     }
 
     @ParameterizedTest

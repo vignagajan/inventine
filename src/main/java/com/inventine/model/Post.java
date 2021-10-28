@@ -29,10 +29,11 @@ public class Post {
         return description;
     }
 
-    public void setDescription(String description) {
+    public boolean setDescription(String description) {
         this.validator.setTxt(description);
         this.validator.setMaxLength(500);
         this.description = description;
+        return true;
     }
 
     public Timestamp getCreatedAt() {
