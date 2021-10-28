@@ -4,6 +4,7 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="com.inventine.model.Competition" %>
+<%@ page import="com.inventine.model.Organization" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -47,24 +48,24 @@
         <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Competitions</div>
-                <div class="overviewcard__info" style="font-size: 36px; float: right;">${competition}</div>
+                <div>Private Organizations</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">10</div>
             </div>
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(255, 196, 0);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon" >
-                <div>Projects</div>
-                <div class="overviewcard__info"style="font-size: 36px;float: right">${project}</div>
+                <div>School</div>
+                <div class="overviewcard__info"style="font-size: 36px;float: right">8</div>
             </div>
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(255, 0, 76);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Total</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">${total}</div>
+                <div>Universities</div>
+                <div class="overviewcard__info" style="font-size: 36px;float: right">4</div>
             </div>
         </div>
 
@@ -72,7 +73,7 @@
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
                 <div>Deleted</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">${deleted}</div>
+                <div class="overviewcard__info" style="font-size: 36px;float: right">4</div>
             </div>
         </div>
 
@@ -82,7 +83,7 @@
     <!-- end of 4 data cards -->
 
     <div class="cbutton">
-        <a href="http://localhost:8080/inventine_war/dashboard/competition/create">
+        <a href="http://localhost:8080/inventine_war/dashboard/organization/create">
             <button class="createbutton">Create </button></a>
     </div>
 
@@ -90,24 +91,22 @@
         <table id="example" class="table" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Competition ID</th>
-                <th>Competition Name</th>
-                <th> Prize Money</th>
-                <th> Starting At</th>
-                <th>Ending At</th>
-<%--                <th></th>--%>
-<%--                <th>A</th>--%>
+                <th>Organization ID</th>
+                <th>Organization Name</th>
+                <th> Organization Address</th>
+                <th>Organization District</th>
+                <%--                <th></th>--%>
+                <%--                <th>A</th>--%>
                 <th>Actions</th>
             </tr>
             </thead>
 
             <tfoot>
             <tr>
-                <th>Competition ID</th>
-                <th>Competition Name</th>
-                <th> Prize Money</th>
-                <th> Starting At</th>
-                <th>Ending At</th>
+                <th>Organization ID</th>
+                <th>Organization Name</th>
+                <th> Organization Address</th>
+                <th>Organization District</th>
                 <%--                <th></th>--%>
                 <%--                <th>A</th>--%>
                 <th>Actions</th>
@@ -117,14 +116,13 @@
 
             <tbody>
             <%
-                for (Competition competition: (ArrayList<Competition>)request.getAttribute("competitions")){
+                for (Organization organization: (ArrayList<Organization>)request.getAttribute("organizations")){
             %>
             <tr>
-                <th><% out.print(competition.getCompetitionId());%></th>
-                <td><% out.print(competition.getCompetitionName());%></td>
-                <td><% out.print(competition.getPrizeMoney());%></td>
-                <td><% out.print(competition.getCreatedAt());%></td>
-                <td><% out.print(competition.getEndingAt());%></td>
+                <th><% out.print(organization.getOrganizationId());%></th>
+                <td><% out.print(organization.getName());%></td>
+                <td><% out.print(organization.getAddress());%></td>
+                <td><% out.print(organization.getDistrict());%></td>
 
                 <td><button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
                     <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>

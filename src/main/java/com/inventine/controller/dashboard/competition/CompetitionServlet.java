@@ -25,7 +25,7 @@ public class CompetitionServlet extends HttpServlet {
 
 
         String topic= "Competition Dashboard";
-        request.setAttribute("Dashboard",topic);
+        request.setAttribute("title",topic);
 
         request.setAttribute("competition",competitionDao.getCount("organizationid=20"));
         request.setAttribute("project", competitionDao.getCount("organizationid=17"));

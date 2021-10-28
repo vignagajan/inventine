@@ -26,6 +26,9 @@ public class CompetitionCreateServlet extends HttpServlet {
         response.setContentType("text/html");
 
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+
+        String topic= "Competition Create-page";
+        request.setAttribute("title",topic);
         request.getRequestDispatcher("/WEB-INF/dashboard/competition/create.jsp").forward(request, response);
 
     }
