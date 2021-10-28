@@ -41,6 +41,7 @@ public class CredsDaoImplementation implements CredsDaoInterface {
     @Override
     public boolean create(Creds creds) {
 
+      
         String query = "INSERT INTO creds(userid, username, email, password, role, status)" +
                 "VALUES (?,?, ?,?, CAST(? AS rl),CAST(? AS sts))";
 
@@ -50,12 +51,15 @@ public class CredsDaoImplementation implements CredsDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+          
             stmt.setInt(1, Integer.parseInt(creds.getUserId()));
             stmt.setString(2, creds.getUsername());
             stmt.setString(3, creds.getEmail());
             stmt.setString(4, creds.getPassword());
             stmt.setString(5, String.valueOf(creds.getRole()));
             stmt.setString(6, String.valueOf(creds.getStatus()));
+
+
 
             n = stmt.executeUpdate();
 

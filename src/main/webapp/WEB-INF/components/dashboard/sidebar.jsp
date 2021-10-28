@@ -25,6 +25,20 @@
     </li>
 
     <li>
+      <a href="investors.html">
+        <i class="fas fa-money-check-alt"></i>
+        <span class="links_name">Investors</span>
+      </a>
+    </li>
+
+    <li>
+      <a href="creators.html">
+        <i class="fas fa-chalkboard-teacher fa-2x"></i>
+        <span class="links_name">Creators</span>
+      </a>
+    </li>
+
+    <li>
       <a href="projects.html">
         <i class="far fa-lightbulb"></i>
         <span class="links_name">Projects</span>
@@ -74,7 +88,7 @@
     </li>
 
     <li class="logout">
-      <a href="homepage.html">
+      <a href="../../index.jsp">
         <i class="fas fa-sign-out-alt"></i>
         <span class="links_name">Logout</span>
       </a>

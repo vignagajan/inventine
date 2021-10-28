@@ -5,12 +5,63 @@ import java.sql.Timestamp;
 
 public class Competition {
     private String competitionId;
-    private Timestamp startingAt;
+    private String organizationId;
+    private String projectId;
+    private String supportTeamId;
+    private Timestamp createdAt;
     private Timestamp endingAt;
     private int prizeMoney;
-    private String type;
     private String rules;
+    private char cType;
+    private char pType;
+    private  String competitionName;
     private DataValidator validator = new DataValidator();
+
+    public String getCompetitionName() {
+        return competitionName;
+    }
+
+    public boolean setCompetitionName(String competitionName) {
+        this.validator.setTxt(competitionName);
+        this.validator.setMaxLength(255);
+        if(this.validator.isString())
+        {
+            this.competitionName = competitionName;
+            return true;
+        }
+        return false;
+
+
+    }
+
+    public char getCType() {
+        return cType;
+    }
+
+    public boolean setCType(char cType) {
+        if (cType == 'H' || cType == 'T') {
+            this.cType = cType;
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public char getPType() {
+        return pType;
+    }
+
+    public boolean setPType(char pType) {
+        if(pType == 'I'|| pType== 'A')
+        {
+            this.pType = pType;
+            return true;
+        }
+        return  false;
+    }
+
+
 
     public String getCompetitionId(){ return competitionId;}
 
@@ -26,11 +77,11 @@ public class Competition {
         return false;
     }
 
-    public Timestamp getStartingAt(){ return startingAt;}
+    public Timestamp getCreatedAt(){ return createdAt;}
 
-    public boolean setStartingAt(Timestamp startingAt){
+    public boolean setCreatedAt(Timestamp createdAt){
         try{
-            this.startingAt = startingAt;
+            this.createdAt = createdAt;
 
         }catch (Exception e){
             return true;
@@ -63,23 +114,12 @@ public class Competition {
         return false;
     }
 
-    public String getType(){return type;}
 
-    public boolean setType(String type){
-        this.validator.setMinLength(1);
-
-        if (this.validator.isAlphaNumeric()) {
-            this.type = type;
-            return true;
-        }
-
-        return false;
-    }
 
     public String getRules(){return rules;}
 
     public boolean setRules(String rules){
-        this.validator.setMinLength(1);
+
 
         if (this.validator.isAlphaNumeric()) {
             this.rules = rules;
@@ -88,4 +128,65 @@ public class Competition {
 
         return false;
     }
+
+    public String getSupportTeamId() {
+        return supportTeamId;
+    }
+
+    public boolean setSupportTeamId(String supportTeamId) {
+        this.validator.setTxt(supportTeamId);
+        this.validator.setMaxLength(6);
+
+        if(this.validator.isNumber())
+        {
+            this.supportTeamId = supportTeamId;
+            return true;
+        }
+
+         return false;
+    }
+
+    public String getOrganizationId() {
+        return organizationId;
+    }
+
+    public boolean setOrganizationId(String organizationId) {
+        this.validator.setTxt(organizationId);
+        this.validator.setMaxLength(6);
+        if(this.validator.isNumber())
+        {
+            this.organizationId = organizationId;
+            return true;
+        }
+        return false;
+
+    }
+
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public boolean setProjectId(String projectId) {
+        this.validator.setTxt(projectId);
+        this.validator.setMaxLength(6);
+
+        if(this.validator.isNumber())
+        {
+            this.projectId = projectId;
+            return true;
+        }
+         return false;
+    }
 }
+
+/*
+  public boolean setType(char type) {
+
+        if (type == 'P' || type == 'A'|| type == 'S') {
+            this.type = type;
+            return true;
+        }
+
+        return false;
+    }
+ */

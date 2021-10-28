@@ -40,7 +40,7 @@ public class FinancialDetails {
         this.validator.setMaxLength(50);
         this.validator.setMinLength(3);
 
-        if(this.validator.isString())
+        if(this.validator.isAlphaNumeric())
         {
             this.cardDetails = cardDetails;
             return true;
@@ -76,7 +76,7 @@ public class FinancialDetails {
         this.validator.setMaxLength(50);
         this.validator.setMinLength(3);
 
-        if(this.validator.isNumber())
+        if(this.validator.isAlphaNumeric())
         {
             this.accountNo = accountNo;
             return  true;
