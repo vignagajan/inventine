@@ -15,6 +15,15 @@ public class Issues {
         return issueId;
     }
 
+    public boolean setIssueId(String issueId) {
+        this.validator.setTxt(issueId);
+        if (this.validator.isNumber()){
+            this.issueId = issueId;
+            return true;
+        }
+        return false;
+    }
+
     public char getCategory() {
         return category;
     }
@@ -44,22 +53,16 @@ public class Issues {
         return false;
     }
 
-    public Boolean setIssueId(String issueId) {
-        this.validator.setTxt(issueId);
-        if (this.validator.isNumber()){
-            this.issueId = issueId;
-            return true;
-        }
-        return false;
-    }
+
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public boolean setDescription(String description) {
         this.validator.setTxt(description);
         this.validator.setMaxLength(500);
         this.description = description;
+        return true;
     }
 }
