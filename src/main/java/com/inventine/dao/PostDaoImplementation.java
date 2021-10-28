@@ -61,10 +61,10 @@ public class PostDaoImplementation implements PostDaoInterface {
 
 
     @Override
-    public boolean create(Post post) {
+    public int create(Post post) {
 
         String query = "INSERT INTO post(description,userId) " +
-                "VALUES (?,?)";
+                "VALUES (?,?) RETURNING postId";
 
         int n = 0;
 
@@ -75,16 +75,19 @@ public class PostDaoImplementation implements PostDaoInterface {
             stmt.setString(1,post.getDescription());
             stmt.setInt(2,Integer.parseInt(post.getUserId()));
 
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                n = rs.getInt("postId");
+            }
 
 
-            n = stmt.executeUpdate();
-
-            return true;
+            return n;
 
         } catch (SQLException e) {
             e.printStackTrace();  }
 
-        return false;
+        return -1;
 
     }
 
