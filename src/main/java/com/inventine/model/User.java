@@ -43,7 +43,7 @@ public class User {
     public boolean setFirstName(String firstName) {
 
         this.validator.setTxt(firstName);
-        this.validator.setMinLength(4);
+        this.validator.setMinLength(2);
         this.validator.setMaxLength(50);
 
         if (this.validator.isString()) {
@@ -61,7 +61,7 @@ public class User {
     public boolean setLastName(String lastName) {
 
         this.validator.setTxt(lastName);
-        this.validator.setMinLength(4);
+        this.validator.setMinLength(2);
         this.validator.setMaxLength(50);
 
         if (this.validator.isString()) {
