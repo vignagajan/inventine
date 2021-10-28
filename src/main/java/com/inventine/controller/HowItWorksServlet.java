@@ -7,16 +7,15 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "AboutUsServlet", value = "/aboutus")
-public class AboutUsServlet extends HttpServlet {
+@WebServlet(name = "HowItWorksServlet", value = "/howitworks")
+public class HowItWorksServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         response.setContentType("text/html");
 
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
-        request.setAttribute("title","AboutUs");
-        request.getRequestDispatcher("/WEB-INF/aboutus.jsp").forward(request, response);
+        request.setAttribute("title","HowItWorks");
+        request.getRequestDispatcher("/WEB-INF/howitworks.jsp").forward(request, response);
     }
 
     @Override

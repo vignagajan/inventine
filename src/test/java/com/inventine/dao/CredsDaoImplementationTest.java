@@ -25,7 +25,7 @@ class CredsDaoImplementationTest {
 
     @Test
     void getcount(){
-        assertEquals(1,this.credsDao.getCount("userid=1"));
+        assertEquals(1,this.credsDao.getCount("email='testusername99'"));
     }
 
     @ParameterizedTest

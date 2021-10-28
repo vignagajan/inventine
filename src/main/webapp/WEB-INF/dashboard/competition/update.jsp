@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -26,63 +27,73 @@
             <div class="details">
 
                 <div class="input-box">
-                    <span class="details">Project Name</span>
-                    <input type="text" name="projectName" id="projectName"  required pattern="^[a-zA-Z0-9\.\,\/\-\*\+]{1,100}">
+                    <span class="details">Competition Name</span>
+                    <input type="text" name="competitionName" id="competitionName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}">
                     <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
                 </div>
 
                 <div class="input-box">
-                    <span class="details">Requested Amount</span>
+                    <span class="details">Prize Amount</span>
                     <input type="text"
-                           name="requestedAmount" id="requestedAmount" required pattern="^(?:0|[1-9]\d*)$">
+                           name="prizeMoney" id="prizeMoney" required pattern="^(?:0|[1-9]\d*)$">
                     <span class="error" aria-live="polite" style="display: none;">Enter an amount no decimals needed</span>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Ending Date</span>
                     <input type="date"
-                           name="dateOfExpiry" id="dateOfExpiry" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
-                    <span class="error" aria-live="polite" style="display: none;" >Select the date of funding expiry</span>
+                           name="endingAt" id="endingAt" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
+                    <span class="error" aria-live="polite" style="display: none;" >Select the date of Competition expiry</span>
                 </div>
 
 
                 <div class="input-box">
-                    <span class="details">Description</span>
+                    <span class="details">Rules</span>
                     <input type="text"
-                           name="description" id="description" required >
+                           name="rules" id="rules" required >
                     <span class="error" aria-live="polite" style="display: none;" >Input the description</span>
                 </div>
-<%--                <div class="input-box">--%>
-<%--                    <span class="details">Description</span>--%>
-<%--                    <textarea--%>
-<%--                            id="description" name="description" placeholder="" required>--%>
-<%--                    </textarea>--%>
-<%--                </div>--%>
+                <%--                <div class="input-box">--%>
+                <%--                    <span class="details">Description</span>--%>
+                <%--                    <textarea--%>
+                <%--                            id="description" name="description" placeholder="" required>--%>
+                <%--                    </textarea>--%>
+                <%--                </div>--%>
 
                 <div class="input-box">
-                    <span class="details">Category</span>
-                    <select class="category" name="category" id="category" required>
-                        <option disabled selected value> -- select a category for the Project -- </option>
-                        <option value="Art">Art</option>
-                        <option value="Design">Design</option>
-                        <option value="Food">Food</option>
-                        <option value="Publication">Publication</option>
-                        <option value="Software">Software</option>
-                        <option value="Technology">Technology</option>
-                        <option value="Other">Other</option>
+                    <span class="details">Competition Type</span>
+                    <select class="category" name="cType" id="cType" required>
+                        <option disabled selected value> -- select a category for Competition Type -- </option>
+                        <option value="T">Target</option>
+                        <option value="H">Hackathon</option>
+
                     </select>
                     <span class="error" aria-live="polite" style="display: none;" >Select a category</span>
                 </div>
                 <!-- input boxes end -->
             </div>
 
-            <div style="display: flex">
-                <button type="button" id="cancelBtn" onclick="location.href='${host_url}/project';">Cancel</button>
-                <button onclick="signupValidation()">Create</button>
-            </div>
 
+            <%--            <div class="input-box">--%>
+            <%--                <span class="details">Participate  Type</span>--%>
+            <%--                <select class="category" name="pType" id="pType" required>--%>
+            <%--                    <option disabled selected value> -- select a category for Participate Type -- </option>--%>
+            <%--                    <option value="I">Internal</option>--%>
+            <%--                    <option value="A">All</option>--%>
+
+            <%--                </select>--%>
+            <%--                <span class="error" aria-live="polite" style="display: none;" >Select a category</span>--%>
+            <%--            </div>--%>
+            <!-- input boxes end -->
         </div>
+
+        <div style="display: flex">
+            <button type="button" id="cancelBtn" onclick="location.href='${host_url}/project';">Cancel</button>
+            <button onclick="signupValidation()">Create</button>
+        </div>
+
     </div>
+</div>
 </div>
 <script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/validate.js"></script>
 
@@ -122,7 +133,7 @@
         requestHandler(
             y,
             window.location.href,
-            'Project created successfully!',
+            'Competition created successfully!',
             ''
         )
     }
