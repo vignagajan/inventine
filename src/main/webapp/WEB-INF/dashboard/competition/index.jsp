@@ -47,32 +47,32 @@
         <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Active</div>
-                <div class="overviewcard__info" style="font-size: 36px; float: right;">${active}</div>
+                <div>Competitions</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${competition}</div>
             </div>
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(255, 196, 0);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon" >
-                <div>Blocked</div>
-                <div class="overviewcard__info"style="font-size: 36px;float: right">${blocked}</div>
+                <div>Projects</div>
+                <div class="overviewcard__info"style="font-size: 36px;float: right">${project}</div>
             </div>
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(255, 0, 76);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Deleted</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">${deleted}</div>
+                <div>Total</div>
+                <div class="overviewcard__info" style="font-size: 36px;float: right">${total}</div>
             </div>
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(0, 110, 255);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Total</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">${total}</div>
+                <div>Deleted</div>
+                <div class="overviewcard__info" style="font-size: 36px;float: right">${deleted}</div>
             </div>
         </div>
 
@@ -82,8 +82,8 @@
     <!-- end of 4 data cards -->
 
     <div class="cbutton">
-        <a href="">
-            <button class="createbutton">Create Competition</button></a>
+        <a href="http://localhost:8080/inventine_war/dashboard/competition/create">
+            <button class="createbutton">Create </button></a>
     </div>
 
     <div class="main-tables">

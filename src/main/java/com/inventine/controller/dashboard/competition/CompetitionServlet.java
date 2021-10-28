@@ -3,6 +3,7 @@ package com.inventine.controller.dashboard.competition;
 import com.inventine.dao.CompetitionDaoImplementation;
 import com.inventine.dao.OrganizationDaoImplementation;
 import com.inventine.dao.CompetitionDaoImplementation;
+import com.inventine.dao.ProjectDaoImplementation;
 import com.inventine.model.Competition;
 import com.inventine.util.DotEnv;
 
@@ -20,14 +21,16 @@ public class CompetitionServlet extends HttpServlet {
 
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
         CompetitionDaoImplementation competitionDao = new CompetitionDaoImplementation();
+      //  ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
+
 
         String topic= "Competition Dashboard";
         request.setAttribute("Dashboard",topic);
 
-        request.setAttribute("active",competitionDao.getCount("creatorid=5 AND status='A'"));
-        request.setAttribute("blocked", competitionDao.getCount("creatorid=5 AND status='B'"));
-        request.setAttribute("deleted", competitionDao.getCount("creatorid=5 AND status='D'"));
-        request.setAttribute("total", competitionDao.getCount("creatorid=5"));
+        request.setAttribute("competition",competitionDao.getCount("organizationid=20"));
+        request.setAttribute("project", competitionDao.getCount("organizationid=17"));
+        request.setAttribute("total", competitionDao.getCount("organizationid=20"));
+        request.setAttribute("deleted", competitionDao.getCount("creatorid=5"));
 
 
         List<Competition> competitions = competitionDao.getCompetitions("");
