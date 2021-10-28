@@ -22,14 +22,10 @@ public class Creds {
 
     public boolean setUserId(String userId) {
 
-        this.validator.setTxt(userId);
 
-        if (this.validator.isNumber()) {
-            this.userId = userId;
-            return true;
-        }
+        this.userId = userId;
+        return true;
 
-        return false;
     }
 
     public String getUsername(){
