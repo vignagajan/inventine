@@ -4,7 +4,7 @@ import com.inventine.util.DataValidator;
 
 import java.sql.Timestamp;
 
-public class Post {
+public class Post extends User{
 
     private String postId;
     private String description;

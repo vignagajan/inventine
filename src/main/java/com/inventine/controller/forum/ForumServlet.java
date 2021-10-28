@@ -3,9 +3,11 @@ package com.inventine.controller.forum;
 import com.inventine.dao.ForumTopicDaoImplementation;
 import com.inventine.dao.PostDaoImplementation;
 import com.inventine.dao.ProjectDaoImplementation;
+import com.inventine.dao.UserDaoImplementation;
 import com.inventine.model.ForumTopic;
 import com.inventine.model.Post;
 import com.inventine.model.Project;
+import com.inventine.model.User;
 import com.inventine.util.DotEnv;
 
 import javax.servlet.*;
@@ -24,15 +26,21 @@ public class ForumServlet extends HttpServlet {
 
         PostDaoImplementation postDao = new PostDaoImplementation();
         ForumTopicDaoImplementation forumTopicDao = new ForumTopicDaoImplementation();
+        UserDaoImplementation userDao = new UserDaoImplementation();
 
         String condition;
+        String name;
 
         List<ForumTopic> forumTopics = forumTopicDao.getForumTopics("");
         for (final ForumTopic forumTopic: forumTopics){
             condition = String.format("%s",forumTopic.getPostId());
             Post post = postDao.getPost(condition);
+            condition = String.format("%s",post.getUserId());
+            User user = userDao.getUser(condition);
             forumTopic.setDescription(post.getDescription());
             forumTopic.setCreatedAt(post.getCreatedAt());
+            forumTopic.setFirstName(user.getFirstName());
+            forumTopic.setLastName(user.getLastName());
         }
         request.setAttribute("forumTopic",forumTopics);
 

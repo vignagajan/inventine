@@ -155,7 +155,7 @@
                         <img style="width: 60px; height: 60px; vertical-align:super;" src="img1.jpg">
                     </div>
                     <div class="profile-owner">
-                        Jack Hallwalker
+                        <% out.print(forumTopic.getFirstName() + " " + forumTopic.getLastName());%>
                     </div>
                 </div>
                 <div class="post-header-container-2">
