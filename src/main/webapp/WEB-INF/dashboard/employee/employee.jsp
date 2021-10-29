@@ -122,7 +122,7 @@
         <td><% out.print(user.getDistrict());%></td>
         <td>
           <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/employee/update'">Update</button>
-          <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+          <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
 
         </td>
       </tr>
@@ -173,9 +173,22 @@
 
     //End of create main table
 
-
-
   });
+
+  function deleteIt(){
+
+    Swal.fire({
+      title: 'Delete confirmation',
+      input: 'text',
+      inputLabel: 'Enter the employee username in the given box',
+      inputPlaceholder: 'some-username',
+      iconColor: "#900",
+      confirmButtonColor: "#900",
+      showCancelButton: true,
+    })
+
+  }
+
 </script>
 <script src="${host_url}/static/js/dashboard/dashboard.js"></script>
 </body>
