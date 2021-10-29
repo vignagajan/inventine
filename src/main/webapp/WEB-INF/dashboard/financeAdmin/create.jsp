@@ -27,25 +27,18 @@
             <div class="details">
 
                 <div class="input-box">
-                    <span class="details">Title</span>
+                    <span class="details">TransactionId</span>
                     <input type="text"
-                           name="title" id="title"  required >
-                    <span class="error" aria-live="polite" style="display: none;">letters and number of length 1-150 is allowed</span>
+                           name="transactionId" id="transactionId"  required pattern="[a-zA-Z]{2,50}">
+                    <span class="error" aria-live="polite" style="display: none;">Invalid Transaction ID</span>
                 </div>
 
 
-
-                <div class="input-box">
-                    <span class="details">Description</span>
-                    <input type="text"
-                           name="description" id="description"  required >
-                    <span class="error" aria-live="polite" style="display: none;">letters and number of length 1-150 is allowed</span>
-                </div>
 
                 <!-- input boxes end -->
 
                 <div style="display: flex">
-                    <button type="button" id="cancelBtn" onclick="location.href='${host_url}/forum';">Cancel</button>
+                    <button type="button" id="cancelBtn" onclick="location.href='${host_url}/dashboard/financeAdmin';">Cancel</button>
                     <button onclick="signupValidation()">Create</button>
                 </div>
 
@@ -87,15 +80,24 @@
 
             }
 
+            // Password Validation
 
+            const password = document.getElementById("password");
+            const cpassword = document.getElementById("confirm_password");
+
+            if( password.value != cpassword.value){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Passwords should be same!',
+                })
+                return false;
+            }
 
             requestHandler(
                 y,
-                window.location.href,
-                'Forum post is created successfully!',
-                '${host_url}/forum'
-
-
+                'https://ptsv2.com/t/78q0w-1634957884/post',
+                'User created successfully!',
+                ''
             )
         }
 
@@ -106,3 +108,4 @@
 </div>
 </body>
 </html>
+

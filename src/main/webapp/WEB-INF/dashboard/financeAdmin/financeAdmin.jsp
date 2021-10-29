@@ -3,7 +3,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.sql.Timestamp" %>
-<%@ page import="com.inventine.model.Competition" %>
+<%@ page import="com.inventine.model.User" %>
+<%@ page import="com.inventine.model.Payment" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -47,32 +48,32 @@
         <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Competitions</div>
-                <div class="overviewcard__info" style="font-size: 36px; float: right;">${competition}</div>
+                <div>payments</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${payment}</div>
             </div>
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(255, 196, 0);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon" >
-                <div>Projects</div>
-                <div class="overviewcard__info"style="font-size: 36px;float: right">${project}</div>
+                <div>payouts</div>
+                <div class="overviewcard__info"style="font-size: 36px;float: right">${payouts}</div>
             </div>
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(255, 0, 76);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Total</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">${total}</div>
+                <div>refunds</div>
+                <div class="overviewcard__info" style="font-size: 36px;float: right">${refunds}</div>
             </div>
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(0, 110, 255);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Deleted</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">${deleted}</div>
+                <div>Investors</div>
+                <div class="overviewcard__info" style="font-size: 36px;float: right">${Investors}</div>
             </div>
         </div>
 
@@ -82,54 +83,46 @@
     <!-- end of 4 data cards -->
 
     <div class="cbutton">
-        <a href="http://localhost:8080/inventine_war/dashboard/competition/create">
-            <button class="createbutton">Create </button></a>
+        <a href="http://localhost:8080/inventine_war/dashboard/financeAdmin/create">
+            <button class="createbutton">Payout </button></a>
     </div>
 
     <div class="main-tables">
         <table id="example" class="table" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>Competition ID</th>
-                <th>Competition Name</th>
-                <th> Prize Money</th>
-                <th> Starting At</th>
-                <th>Ending At</th>
-<%--                <th></th>--%>
-<%--                <th>A</th>--%>
+                <th>Payment ID</th>
+                <th>Project ID</th>
+                <th>Investor ID</th>
+                <th>Financial Details Id</th>
+                <th>Amount</th>
                 <th>Actions</th>
             </tr>
             </thead>
 
             <tfoot>
             <tr>
-                <th>Competition ID</th>
-                <th>Competition Name</th>
-                <th> Prize Money</th>
-                <th> Starting At</th>
-                <th>Ending At</th>
-                <%--                <th></th>--%>
-                <%--                <th>A</th>--%>
+                <th>Payment ID</th>
+                <th>Project ID</th>
+                <th>Investor ID</th>
+                <th>Financial Details Id</th>
+                <th>Amount</th>
                 <th>Actions</th>
-
             </tr>
             </tfoot>
 
             <tbody>
             <%
-                for (Competition competition: (ArrayList<Competition>)request.getAttribute("competitions")){
+                for (Payment payment: (ArrayList<Payment>)request.getAttribute("payments")){
             %>
             <tr>
-                <th><% out.print(competition.getCompetitionId());%></th>
-                <td><% out.print(competition.getCompetitionName());%></td>
-                <td><% out.print(competition.getPrizeMoney());%></td>
-                <td><% out.print(competition.getCreatedAt());%></td>
-                <td><% out.print(competition.getEndingAt());%></td>
-
-                <td><button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
-                    <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
-                    <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
-
+                <th><% out.print(payment.getPaymentId());%></th>
+                <td><% out.print(payment.getProjectId());%></td>
+                <td><% out.print(payment.getInvestorId());%></td>
+                <td><% out.print(payment.getFinancialDetailsId());%></td>
+                <td><% out.print(payment.getAmount());%></td>
+                <td>
+                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/employee/update'";">Refund</button>
                 </td>
             </tr>
             <%}%>
@@ -169,6 +162,12 @@
 
         var table = $('#example').DataTable({
             select: false,
+            "columnDefs": [{
+                className: "Name",
+                "targets":[0],
+                "visible": false,
+                "searchable":false
+            }]
         });//End of create main table
 
 
@@ -177,20 +176,8 @@
             alert(table.row( this ).data()[0]);
 
         } );
-
-        var table = $('#example1').DataTable({
-            select: false,
-
-        });//End of create main table
-
-
-        $('#example1 tbody').on( 'click', 'tr', function () {
-
-            alert(table.row( this ).data()[0]);
-
-        } );
     });
 </script>
-<script src="static/js/dashboard/dashboard.js"></script>
+<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>
