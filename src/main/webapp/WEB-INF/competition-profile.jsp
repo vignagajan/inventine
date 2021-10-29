@@ -138,40 +138,40 @@
                                     <label>Rank</label>
                                 </div>
                                 <div class="ladder-nav--results-col">
-                                    <label>Team Name</label>
+                                    <label>Creator Id</label>
                                 </div>
                                 <div class="ladder-nav--results-col">
-                                    <label>P1</label>
+                                    <label>Collected Money</label>
                                 </div>
-                                <div class="ladder-nav--results-col">
-                                    <label>P2</label>
-                                </div>
-                                <div class="ladder-nav--results-col">
-                                    <label>GP</label>
-                                </div>
-                                <div class="ladder-nav--results-col">
-                                    <label>PTS</label>
-                                </div>
+<%--                                <div class="ladder-nav--results-col">--%>
+<%--                                    <label>P2</label>--%>
+<%--                                </div>--%>
+<%--                                <div class="ladder-nav--results-col">--%>
+<%--                                    <label>GP</label>--%>
+<%--                                </div>--%>
+<%--                                <div class="ladder-nav--results-col">--%>
+<%--                                    <label>PTS</label>--%>
+<%--                                </div>--%>
                             </div>
                             <div class="ladder-nav--results-players">
                                 <div class="results-col">
                                     <span class="results-rank"><span class="positions">1</span></span>
                                 </div>
                                 <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
+                                    <span class="results-team">12</span>
                                 </div>
                                 <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
+                                    <span class="results-p1">10000</span>
                                 </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
                             </div>
                             <!-- JS Loop -->
                             <div class="ladder-nav--results-players">
@@ -179,180 +179,180 @@
                                     <span class="results-rank"><span class="positions">2</span></span>
                                 </div>
                                 <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
+                                    <span class="results-team">11</span>
                                 </div>
                                 <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
+                                    <span class="results-p1">20000</span>
                                 </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
                             </div>
-                            <div class="ladder-nav--results-players">
-                                <div class="results-col">
-                                    <span class="results-rank"><span class="positions">3</span></span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
-                            </div>
-                            <div class="ladder-nav--results-players">
-                                <div class="results-col">
-                                    <span class="results-rank"><span class="positions">4</span></span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
-                            </div>
-                            <div class="ladder-nav--results-players">
-                                <div class="results-col">
-                                    <span class="results-rank"><span class="positions">5</span></span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
-                            </div>
-                            <div class="ladder-nav--results-players">
-                                <div class="results-col">
-                                    <span class="results-rank"><span class="positions">6</span></span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
-                            </div>
-                            <div class="ladder-nav--results-players">
-                                <div class="results-col">
-                                    <span class="results-rank"><span class="positions">7</span></span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
-                            </div>
-                            <div class="ladder-nav--results-players">
-                                <div class="results-col">
-                                    <span class="results-rank"><span class="positions">8</span></span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
-                            </div>
-                            <div class="ladder-nav--results-players">
-                                <div class="results-col">
-                                    <span class="results-rank"><span class="positions">9</span></span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
-                            </div>
-                            <div class="ladder-nav--results-players">
-                                <div class="results-col">
-                                    <span class="results-rank"><span class="positions">10</span></span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-team">Nihilum</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p1">Hydramist</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-p2">Reckful</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-gp">7</span>
-                                </div>
-                                <div class="results-col">
-                                    <span class="results-pts">512</span>
-                                </div>
+<%--                            <div class="ladder-nav--results-players">--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-rank"><span class="positions">3</span></span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-team">Nihilum</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p1">Hydramist</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="ladder-nav--results-players">--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-rank"><span class="positions">4</span></span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-team">Nihilum</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p1">Hydramist</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="ladder-nav--results-players">--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-rank"><span class="positions">5</span></span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-team">Nihilum</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p1">Hydramist</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="ladder-nav--results-players">--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-rank"><span class="positions">6</span></span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-team">Nihilum</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p1">Hydramist</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="ladder-nav--results-players">--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-rank"><span class="positions">7</span></span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-team">Nihilum</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p1">Hydramist</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="ladder-nav--results-players">--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-rank"><span class="positions">8</span></span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-team">Nihilum</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p1">Hydramist</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="ladder-nav--results-players">--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-rank"><span class="positions">9</span></span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-team">Nihilum</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p1">Hydramist</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="ladder-nav--results-players">--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-rank"><span class="positions">10</span></span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-team">Nihilum</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p1">Hydramist</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-p2">Reckful</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-gp">7</span>--%>
+<%--                                </div>--%>
+<%--                                <div class="results-col">--%>
+<%--                                    <span class="results-pts">512</span>--%>
+<%--                                </div>--%>
                             </div>
                         </section>
                     </div>
