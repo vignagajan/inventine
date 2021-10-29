@@ -89,7 +89,7 @@
 
         <div style="display: flex">
             <button type="button" id="cancelBtn" onclick="location.href='${host_url}/project';">Cancel</button>
-            <button onclick="signupValidation()">Create</button>
+            <button onclick="signupValidation()">Update</button>
         </div>
 
     </div>

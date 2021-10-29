@@ -124,9 +124,9 @@
                 <td><% out.print(organization.getAddress());%></td>
                 <td><% out.print(organization.getDistrict());%></td>
 
-                <td><button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
-                    <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
-                    <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${host_url}/organization-profile'">View</button>
+                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/organization/update'">Update</button>
+                    <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
 
                 </td>
             </tr>
@@ -188,6 +188,21 @@
 
         } );
     });
+
+
+    function deleteIt(){
+
+        Swal.fire({
+            title: 'Delete confirmation',
+            input: 'text',
+            inputLabel: 'Enter the Organization Name in the given box',
+            inputPlaceholder: 'Organization-Name',
+            iconColor: "#900",
+            confirmButtonColor: "#900",
+            showCancelButton: true,
+        })
+
+    }
 </script>
 <script src="${host_url}/static/js/dashboard/dashboard.js"></script>
 </body>
