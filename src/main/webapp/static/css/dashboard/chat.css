@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+:root {
+    --grey-1: #1d1d3b;
+    --grey-2: #0097e6;
+    --grey-3: rgb(29, 29, 29);
+    --grey-4: #846b9bb6;
+    --grey-5: #bbb;
+    --color-1: #fff;
+    --font-1: "Roboto", sans-serif;
+}
+
+body {
+    margin: 0px;
+    overflow: scroll;
+}
+.main-container{
+    max-width: 1250px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+    padding: 10px;
+    background-color: #fcfcfc;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
+}
+.container {
+    display: grid;
+    grid-template-columns: 80px auto;
+    grid-template-rows: 100vh;
+}
+
+/* /======= Side Nav ==========/ */
+
+.side-nav {
+    background: #fff;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    height: 100%;
+    z-index: 2;
+}
+
+.side-nav .profile img {
+    margin-top: 15px;
+    width: auto;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.icon-container {
+    line-height: 60px;
+    height: 60px;
+}

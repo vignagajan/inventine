@@ -20,4 +20,7 @@ public interface PayoutDaoInterface {
 
     public ResultSet executeQuery(String query);
 
+    public  int getCountAmount(String condition) throws SQLException;
+
+
 }

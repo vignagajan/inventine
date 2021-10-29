@@ -46,19 +46,19 @@
                         <!-- Full-width images with number and caption text -->
                         <div class="mySlides fade">
                             <div class="numbertext">1 / 3</div>
-                            <img src="img3.jpg" style="width:100%">
+                            <img src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg" style="width:100%">
                             <div class="text">Caption Text</div>
                         </div>
 
                         <div class="mySlides fade">
                             <div class="numbertext">2 / 3</div>
-                            <img src="img1.jpg" style="width:100%" >
+                            <img src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg" style="width:100%" >
                             <div class="text">Caption Two</div>
                         </div>
 
                         <div class="mySlides fade">
                             <div class="numbertext">3 / 3</div>
-                            <img src="img2.jpg" style="width:100%">
+                            <img src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg" style="width:100%">
                             <div class="text">Caption Three</div>
                         </div>
 
@@ -152,10 +152,10 @@
             <div class="post-header">
                 <div class="post-header-container-1">
                     <div class="profile-pic">
-                        <img style="width: 60px; height: 60px; vertical-align:super;" src="img1.jpg">
+                        <img style="width: 60px; height: 60px; vertical-align:super;" src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg">
                     </div>
                     <div class="profile-owner">
-                        Jack Hallwalker
+                        <% out.print(forumTopic.getFirstName() + " " + forumTopic.getLastName());%>
                     </div>
                 </div>
                 <div class="post-header-container-2">
@@ -213,11 +213,12 @@
         <%}%>
     </div>
 
+
 </div>
 
 
 <%@ include file="/WEB-INF/components/footer.jsp" %>
-
+<script src="${host_url}/static/js/forum.js"></script>
 </body>
 </html>
 

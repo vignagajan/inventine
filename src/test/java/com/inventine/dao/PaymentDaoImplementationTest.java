@@ -24,8 +24,12 @@ class PaymentDaoImplementationTest {
 
     @Test
     void getCount() {
-        assertEquals(paymentDao.getCount("projectid=1"),3);
+        assertEquals(paymentDao.getCount("projectid=1"),2);
     }
+
+    @Test
+    void  getCountAmount(){
+        assertEquals(paymentDao.getCountAmount("projectid=1"),20000);}
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Payment.csv", numLinesToSkip = 1)

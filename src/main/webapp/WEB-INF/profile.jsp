@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
     <link rel="stylesheet" href="${host_url}/static/css/profile.css">
+    <link rel="stylesheet" href="${host_url}/static/css/contactus.css">
     <link rel="stylesheet" href="${host_url}/static/css/project-cards.css">
 
 
@@ -46,7 +47,7 @@
                 <div class="tabs">
                     <button class="tablink" onclick="openPage('Projects', this, '#0097e6','#fff')"id="defaultOpen">Projects</button>
                     <button class="tablink" onclick="openPage('Organization', this, '#0097e6','#fff')" >Organization</button>
-                    <button class="tablink" onclick="openPage('Contact', this, '#0097e6','#fff')">Contacts</button>
+                    <button class="tablink" onclick="openPage('Contact', this, '#0097e6','#fff')">Contact</button>
 
                 </div>
 
@@ -114,13 +115,58 @@
                     </div>
 
                     <div id="Organization" class="tabcontent">
-                        <h3>Organization</h3>
-                        <p>Some news this fine day!</p>
+                        <div class="content">
+                            <div class="container" style="margin-top: -20px">
+                                <div class="column-1">
+                                    <h1 style="color:black" >Nokia Corporation</h1>
+                                    <span class="paragraph" style="margin-top: 30px;margin-bottom: 30px">At Nokia, we create technology that helps the world act together.<br>
+
+The world is facing fundamental challenges. Pressure on the planet is increasing, productivity is stalling and access to opportunity remains stubbornly unequal. Technology is central to the solution.<br>
+
+Through technology leadership and trusted partnerships, we deliver critical networks to help address global issues.  We have the power to bring together the world’s people, machines and devices, sensing and acting in real time at massive scale. Our critical networks go beyond connectivity to enable self-optimizing, intelligent systems both locally and globally.
+
+
+        </span>
+                                </div>
+                                <div class="column-2">
+                                    <img src="https://www.nokia.com/sites/default/files/2020-12/Company-page-header-image-1312.jpg" style="width: 100%;height: 300px;margin-top: 30px">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div id="Contact" class="tabcontent">
-                        <h3>Contacts</h3>
-                        <p>Numbers!</p>
+                        <div class="container-cu">
+
+                            <div class="row-cu input-container">
+                                <div class="col-xs-12">
+                                    <div class="styled-input wide">
+                                        <label>Name</label>
+                                        <input type="text" required />
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="styled-input">
+                                        <label>Email</label>
+                                        <input type="text" required />
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <div class="styled-input wide">
+                                        <label>Message</label>
+                                        <textarea required></textarea>
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div class="btn-lrg submit-btn" style="margin-left: 10px">Send Message</div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

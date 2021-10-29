@@ -63,7 +63,7 @@
                                         <div class="card_image"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"></div>
                                         <div class="card_content">
                                             <h2 class="card_title">Emily Wilson</h2>
-                                            <a href="profile.html">
+                                            <a href="/inventine_war/profile">
                                                 <button class="btn card_btn">View</button>
                                             </a>
                                         </div>
@@ -74,7 +74,7 @@
                                         <div class="card_image"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"></div>
                                         <div class="card_content">
                                             <h2 class="card_title">Jane Doe</h2>
-                                            <a href="profile.html">
+                                            <a href="/inventine_war/profile">
                                                 <button class="btn card_btn">View</button>
                                             </a>
                                         </div>
@@ -85,7 +85,9 @@
                                         <div class="card_image"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"></div>
                                         <div class="card_content">
                                             <h2 class="card_title">Fred Denvers</h2>
-                                            <button class="btn card_btn">View</button>
+                                            <a href="/inventine_war/profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -95,7 +97,9 @@
                                         <div class="card_image"><img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg"></div>
                                         <div class="card_content">
                                             <h2 class="card_title">Beth Wickers</h2>
-                                            <button class="btn card_btn">View</button>
+                                            <a href="/inventine_war/profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -104,7 +108,9 @@
                                         <div class="card_image"><img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg"></div>
                                         <div class="card_content">
                                             <h2 class="card_title">Tim Buonapart</h2>
-                                            <button class="btn card_btn">View</button>
+                                            <a href="/inventine_war/profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -113,7 +119,9 @@
                                         <div class="card_image"><img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg"></div>
                                         <div class="card_content">
                                             <h2 class="card_title">Jennifer Le Fay</h2>
-                                            <button class="btn card_btn">View</button>
+                                            <a href="/inventine_war/profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </li>
@@ -130,7 +138,7 @@
                                         <div class="card_image"><img src="https://digitaltimes-media.s3.amazonaws.com/original_images/ai.jpeg"></div>
                                         <div class="card_content">
                                             <h2 class="card_title">Digit Recognizer: Learn computer vision fundamentals with the famous MNIST data</h2>
-                                            <a href="competition.html">
+                                            <a href="/inventine_war/competition-profile">
                                                 <button class="btn card_btn">View</button>
                                             </a>
                                         </div>
@@ -141,7 +149,9 @@
                                         <div class="card_image"><img src="https://media.nationalgeographic.org/assets/photos/292/614/dc236c71-ed37-4299-9678-e414e1d9aeed_c0-121-2400-1381_r1200x630.jpg?80a71820ca54ba44e21f71c1d177158ff7dd2956"></div>
                                         <div class="card_content">
                                             <h2 class="card_title">LearnPlatform COVID-19 Impact on Digital Learning</h2>
-                                            <button class="btn card_btn">View</button>
+                                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                                         </div>
                                     </div>
                                 </li>

@@ -81,10 +81,13 @@
   <!-- end of 4 data cards -->
 
   <div class="cbutton">
-    <a href="http://localhost:8080/inventine_war/dashboard/create-project">
+    <a href="/inventine_war/dashboard/create-project">
     <button class="createbutton">Create Project</button></a>
   </div>
 
+  <% if (session.getAttribute("role").toString().charAt(0) == 'C'){
+
+  %>
   <div class="main-tables">
     <table id="example" class="table" cellspacing="0" width="100%">
       <thead>
@@ -123,7 +126,7 @@
         <td><% out.print(project.getCreatedAt());%></td>
         <td><% out.print(project.getDateOfExpiry());%></td>
         <td><button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
-          <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
+          <button class="updatebutton" id="idUpdateButton" onclick="location.href='${host_url}/dashboard/update-project'">Update</button>
           <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
 
         </td>
@@ -134,6 +137,9 @@
       </tbody>
     </table>
   </div>
+
+  <%} else{%>
+
 
   <div class="main-tables">
     <table id="example1" class="table" cellspacing="0" width="100%">
@@ -184,7 +190,7 @@
     </table>
   </div>
 
-
+ <%}%>
 
 
 </main>
@@ -234,6 +240,6 @@
     } );
   });
 </script>
-<script src="static/js/dashboard/dashboard.js"></script>
+<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>
