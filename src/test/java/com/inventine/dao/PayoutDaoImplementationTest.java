@@ -27,6 +27,9 @@ public class PayoutDaoImplementationTest {
         assertEquals(payoutDao.getCount("transactionid=123"),1);
     }
 
+    @Test
+    void  getCountAmount(){assertEquals(payoutDao.getCountAmount("transactionid=123"),20000);}
+
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Payout.csv", numLinesToSkip = 1)
     void create(String financeDetailsId,String financeAdminId ,int amount , String transactionId, Timestamp created_at) {
