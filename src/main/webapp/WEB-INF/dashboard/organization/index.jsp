@@ -48,7 +48,7 @@
         <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Private Organizations</div>
+                <div> Organizations</div>
                 <div class="overviewcard__info" style="font-size: 36px; float: right;">10</div>
             </div>
         </div>
@@ -189,6 +189,6 @@
         } );
     });
 </script>
-<script src="static/js/dashboard/dashboard.js"></script>
+<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>

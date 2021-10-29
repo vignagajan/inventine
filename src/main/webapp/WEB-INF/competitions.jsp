@@ -75,7 +75,9 @@
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                            <button class="btn card_btn">View</button>
+                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                         </div>
                     </div>
                 </li>
@@ -85,7 +87,9 @@
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                            <button class="btn card_btn">View</button>
+                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                         </div>
                     </div>
                 </li>
@@ -95,7 +99,9 @@
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                            <button class="btn card_btn">View</button>
+                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                         </div>
                     </div>
                 </li>
@@ -105,7 +111,9 @@
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                            <button class="btn card_btn">View</button>
+                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                         </div>
                     </div>
                 </li>
@@ -115,7 +123,9 @@
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                            <button class="btn card_btn">View</button>
+                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                         </div>
                     </div>
                 </li>
@@ -125,7 +135,9 @@
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                            <button class="btn card_btn">View</button>
+                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                         </div>
                     </div>
                 </li>
@@ -135,7 +147,9 @@
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                            <button class="btn card_btn">View</button>
+                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                         </div>
                     </div>
                 </li>
@@ -145,7 +159,9 @@
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                            <button class="btn card_btn">View</button>
+                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                         </div>
                     </div>
                 </li>
@@ -155,7 +171,9 @@
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                            <button class="btn card_btn">View</button>
+                            <a href="/inventine_war/competition-profile">
+                                                <button class="btn card_btn">View</button>
+                                            </a>
                         </div>
                     </div>
                 </li>
