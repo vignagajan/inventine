@@ -22,7 +22,7 @@ public class ForumTopicCreateServlet extends HttpServlet {
         response.setContentType("text/html");
 
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
-        request.setAttribute("title","Employee");
+        request.setAttribute("title","ForumTopicCreate");
         request.getRequestDispatcher("/WEB-INF/dashboard/forumTopic/create.jsp").forward(request, response);
     }
 

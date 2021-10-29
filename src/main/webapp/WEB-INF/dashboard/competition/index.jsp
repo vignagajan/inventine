@@ -121,7 +121,9 @@
     const labels =${graph_labels}
 </script>
 
+
 <script src="${host_url}/static/js/dashboard/chart.js"></script>
 <script src="${host_url}/static/js/dashboard/dashboard.js"></script>
+
 </body>
 </html>
