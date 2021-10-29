@@ -154,6 +154,6 @@
 
     }
 </script>
-<script src="${host_url}static/js/dashboard/dashboard.js"></script>
+<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>
