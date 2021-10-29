@@ -121,7 +121,7 @@
         <td><% out.print(user.getAddress());%></td>
         <td><% out.print(user.getDistrict());%></td>
         <td>
-          <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
+          <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/employee/update'">Update</button>
           <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
 
         </td>
@@ -169,14 +169,12 @@
         "visible": false,
         "searchable":false
       }]
-    });//End of create main table
+    });
+
+    //End of create main table
 
 
-    $('#example tbody').on( 'click', 'tr', function () {
 
-      alert(table.row( this ).data()[0]);
-
-    } );
   });
 </script>
 <script src="${host_url}/static/js/dashboard/dashboard.js"></script>
