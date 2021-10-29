@@ -19,6 +19,7 @@ public class MeetingServlet extends HttpServlet {
         MeetingDaoImplementation meetingDao = new MeetingDaoImplementation();
 
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("title","Meeting");
 
 
         request.setAttribute("accepted",meetingDao.getCount("creatorid=3 AND status='A'"));

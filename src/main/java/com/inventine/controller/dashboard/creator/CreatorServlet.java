@@ -26,6 +26,8 @@ public class CreatorServlet extends HttpServlet {
 
         request.setAttribute("graph_labels",graph_labels);
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("title","creator");
+
 
 
         request.setAttribute("creators",creatorDao.getCount("creatorid=3 AND status='A'"));

@@ -19,9 +19,7 @@ public class ProjectServlet extends HttpServlet {
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
 
-        String topic= "Project Dashboard";
-        request.setAttribute("Dashboard",topic);
-
+        request.setAttribute("title","Project");
         request.setAttribute("active",projectDao.getCount("creatorid=5 AND status='A'"));
         request.setAttribute("blocked", projectDao.getCount("creatorid=5 AND status='B'"));
         request.setAttribute("deleted", projectDao.getCount("creatorid=5 AND status='D'"));
