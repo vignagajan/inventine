@@ -27,12 +27,10 @@
 
             <div class="details">
 
-                <%
-                    for (Project project: (ArrayList<Project>)request.getAttribute("projects")){
-                %>
+
                 <div class="input-box">
                     <span class="details">Project Name</span>
-                    <input type="text" name="projectName" id="projectName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" value=<%out.print(project.getProjectName());%>>
+                    <input type="text" name="projectName" id="projectName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" >
 
                     <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
                 </div>
@@ -40,7 +38,7 @@
                 <div class="input-box">
                     <span class="details">Requested Amount</span>
                     <input type="text"
-                           name="requestedAmount" id="requestedAmount" required pattern="^(?:0|[1-9]\d*)$" value=<%out.print(project.getRequestedAmount());%>>
+                           name="requestedAmount" id="requestedAmount" required pattern="^(?:0|[1-9]\d*)$" >
 
                     <span class="error" aria-live="polite" style="display: none;">Enter an amount no decimals needed</span>
                 </div>
@@ -48,7 +46,7 @@
                 <div class="input-box">
                     <span class="details">Ending Date</span>
                     <input type="date"
-                           name="dateOfExpiry" id="dateOfExpiry" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" value=<%out.print(project.getDateOfExpiry());%>>
+                           name="dateOfExpiry" id="dateOfExpiry" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" >
 
                     <span class="error" aria-live="polite" style="display: none;" >Select the date of funding expiry</span>
                 </div>
@@ -56,7 +54,7 @@
                 <div class="input-box">
                     <span class="details">Description</span>
                     <input type="text"
-                           name="description" id="description" required value=<%out.print(project.getDetails());%>>
+                           name="description" id="description" required >
                     <span class="error" aria-live="polite" style="display: none;" >Input the description</span>
                 </div>
 <%--                <div class="input-box">--%>
@@ -70,7 +68,7 @@
                 <div class="input-box">
                     <span class="details">Category</span>
                     <select class="category" name="category" id="category" required>
-                        <option  value=<%out.print(project.getCategory());%>></option>
+                        <option  ></option>
                         <option value="Art">Art</option>
                         <option value="Design">Design</option>
                         <option value="Food">Food</option>
@@ -82,7 +80,7 @@
                     <span class="error" aria-live="polite" style="display: none;" >Select a category</span>
                 </div>
                 <!-- input boxes end -->
-                <%}%>
+
             </div>
 
             <div style="display: flex">
