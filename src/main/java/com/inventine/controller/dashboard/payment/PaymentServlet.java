@@ -24,6 +24,7 @@ public class PaymentServlet extends HttpServlet {
 
 
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("title","Payment");
 
         CreatorDaoImplementation creatorDao = new CreatorDaoImplementation();
         AcceptMeetingDaoImplementation acceptMeetingDao = new AcceptMeetingDaoImplementation();
