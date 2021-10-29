@@ -19,22 +19,22 @@
 
 <main id="main">
 
-    <button class="show-modal">Log       In</button>
+<%--    <button class="show-modal">Log       In</button>--%>
 
-    <!-- the modal itself -->
-    <div class="modal hidden">
+<%--    <!-- the modal itself -->--%>
+<%--    <div class="modal hidden">--%>
 
-        <!-- button to close the modal -->
-        <button class="close-modal">&times;</button>
+<%--        <!-- button to close the modal -->--%>
+<%--        <button class="close-modal">&times;</button>--%>
 
-        <h3>Do you want to delete the project?</h3>
-        <form action="">
-            <p style="text-align: left;margin-top: 20px;">Type the project name to delete...</p>
-            <input type="email" id="" placeholder="restored-cars">
-            <button type="submit">Delete project</button>
-        </form>
-    </div>
-    <div class="overlay hidden"></div>
+<%--        <h3>Do you want to delete the project?</h3>--%>
+<%--        <form action="">--%>
+<%--            <p style="text-align: left;margin-top: 20px;">Type the project name to delete...</p>--%>
+<%--            <input type="email" id="" placeholder="restored-cars">--%>
+<%--            <button type="submit">Delete project</button>--%>
+<%--        </form>--%>
+<%--    </div>--%>
+<%--    <div class="overlay hidden"></div>--%>
 
     <!-- the 4 cards containing data at top -->
     <div class="main-overview">
@@ -44,7 +44,7 @@
             <div><i class="fas fa-money-check-alt fa-2x"></i></div>
             <div class="overviewcard__icon">
                 <div>Investors</div>
-                <div class="overviewcard__info" style="font-size: 36px; float: right;">${"investors"}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">100</div>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon" >
                 <div>Projects</div>
-                <div class="overviewcard__info"style="font-size: 36px;float: right">${"projects"}</div>
+                <div class="overviewcard__info"style="font-size: 36px;float: right">20</div>
             </div>
         </div>
 
@@ -60,7 +60,7 @@
             <div><i class="fas fa-people-carry fa-2x"></i></div>
             <div class="overviewcard__icon">
                 <div>Meetings</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">${"meetings"}</div>
+                <div class="overviewcard__info" style="font-size: 36px;float: right">40</div>
             </div>
         </div>
 
@@ -68,7 +68,7 @@
             <div><i class="fas fa-hand-holding-usd fa-2x"></i></div>
             <div class="overviewcard__icon">
                 <div>Funds (k)</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">${"funds"}</div>
+                <div class="overviewcard__info" style="font-size: 36px;float: right">50</div>
             </div>
         </div>
     </div>

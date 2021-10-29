@@ -95,7 +95,7 @@ public class EmployeeCreateServlet extends HttpServlet {
             }
 
             // Pass model to DAO
-            if(!userDao.create(user)){
+            if(userDao.create(user) == -1){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");
