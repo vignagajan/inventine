@@ -126,7 +126,7 @@
         <td><% out.print(project.getCreatedAt());%></td>
         <td><% out.print(project.getDateOfExpiry());%></td>
         <td><button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
-          <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
+          <button class="updatebutton" id="idUpdateButton" onclick="location.href='${host_url}/dashboard/update-project'">Update</button>
           <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
 
         </td>
