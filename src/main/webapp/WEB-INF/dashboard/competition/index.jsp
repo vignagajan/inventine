@@ -101,9 +101,10 @@
                 <td><% out.print(competition.getPrizeMoney());%></td>
                 <td><% out.print(competition.getCreatedAt());%></td>
                 <td><% out.print(competition.getEndingAt());%></td>
-                <td><button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
-                    <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
-                    <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${host_url}/competition-profile'">View</button>
+                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/competition/update'">Update</button>
+                    <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
+
                 </td>
             </tr>
             <%}%>
@@ -138,6 +139,20 @@
             alert(table.row( this ).data()[0]);
         } );
     });
+
+    function deleteIt(){
+
+        Swal.fire({
+            title: 'Delete confirmation',
+            input: 'text',
+            inputLabel: 'Enter the Competition Name in the given box',
+            inputPlaceholder: 'Competition-Name',
+            iconColor: "#900",
+            confirmButtonColor: "#900",
+            showCancelButton: true,
+        })
+
+    }
 </script>
 <script src="${host_url}static/js/dashboard/dashboard.js"></script>
 </body>
