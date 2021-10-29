@@ -122,7 +122,7 @@
                 <td><% out.print(payment.getFinancialDetailsId());%></td>
                 <td><% out.print(payment.getAmount());%></td>
                 <td>
-                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/employee/update'";">Refund</button>
+                    <button class="updatebutton" id="idUpdateButton" onclick="refundIt()">Refund</button>
                 </td>
             </tr>
             <%}%>
@@ -171,12 +171,28 @@
         });//End of create main table
 
 
-        $('#example tbody').on( 'click', 'tr', function () {
+        // $('#example tbody').on( 'click', 'tr', function () {
+        //
+        //     alert(table.row( this ).data()[0]);
+        //
+        // } );
 
-            alert(table.row( this ).data()[0]);
 
-        } );
+
     });
+    function refundIt() {
+
+        Swal.fire({
+            title: 'Refund confirmation',
+            input: 'text',
+            inputLabel: 'Enter the Transaction receipt id in the given box',
+            inputPlaceholder: 'Transaction Id',
+            iconColor: "#900",
+            confirmButtonColor: "#900",
+            showCancelButton: true,
+        })
+    }
+
 </script>
 <script src="${host_url}/static/js/dashboard/dashboard.js"></script>
 </body>
