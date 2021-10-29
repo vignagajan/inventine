@@ -142,7 +142,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
-            <a href="${host_url}/dashboard/chat/index">
+            <a href="${host_url}/dashboard/chat">
                 <i class="fas fa-comments"></i>
                 <span class="links_name">Chat</span>
             </a>
