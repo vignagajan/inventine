@@ -17,7 +17,7 @@ public class DasboardServlet extends HttpServlet {
 
         request.setAttribute("graph_labels",graph_labels);
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
-        request.setAttribute("title","username");
+        request.setAttribute("title","Creator");
         request.getRequestDispatcher("/WEB-INF/dashboard/admin.jsp").forward(request, response);
     }
 
