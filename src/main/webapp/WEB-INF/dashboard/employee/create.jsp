@@ -75,7 +75,7 @@
         <div class="input-box">
           <span class="details">Address</span>
           <input type="text"
-                 id="address"name="address" placeholder="" required pattern="^[a-zA-Z 0-9\.\,\/\-]{10,255}">
+                 id="address"name="address" placeholder="" required pattern="{10,255}">
           <span class="error" aria-live="polite" style="display: none;" >Enter valid postal address</span>
         </div>
 

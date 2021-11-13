@@ -81,7 +81,7 @@
   <!-- end of 4 data cards -->
 
   <div class="cbutton">
-    <a href="/inventine_war/dashboard/create-project">
+    <a href="${host_url}/dashboard/create-project">
     <button class="createbutton">Create Project</button></a>
   </div>
 

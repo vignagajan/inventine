@@ -3,18 +3,18 @@
 <header id="header">
     <h1 id="title" >
 
-        <%= (String)session.getAttribute("username")%>
+       Dashboard
 
     </h1>
     <div class="user-wrapper">
-        <h4>admin</h4>
+        <h4 href="${host_url}/profile"> <%= (String)session.getAttribute("username")%></h4>
         <div class="dropdown">
-            <img src="static/img/img2.png" width="50px" height="50px" alt="">
+            <img src="${host_url}static/img/img2.png" width="50px" height="50px" alt="">
             <div class="dropdown-content">
-                <a href="#">Generate Report</a>
-                <a href="#">Profile</a>
-                <a href="#">Homepage</a>
-                <a href="#">Logout</a>
+<%--                <a href="#">Generate Report</a>--%>
+                <a href="${host_url}/profile">Profile</a>
+                <a href="${host_url}">Homepage</a>
+                <a href="${host_url}/logout">Logout</a>
             </div>
         </div>
     </div>

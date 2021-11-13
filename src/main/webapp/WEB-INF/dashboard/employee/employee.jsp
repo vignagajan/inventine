@@ -82,7 +82,7 @@
   <!-- end of 4 data cards -->
 
   <div class="cbutton">
-    <a href="http://localhost:8080/inventine_war/dashboard/employee/create">
+    <a href="${host_url}/dashboard/employee/create">
       <button class="createbutton">Create </button></a>
   </div>
 

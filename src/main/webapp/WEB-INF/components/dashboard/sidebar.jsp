@@ -135,19 +135,19 @@
         <%}%>
 
 
-        <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||
-                session.getAttribute("role").toString().charAt(0) == 'C' ||
-                session.getAttribute("role").toString().charAt(0) == 'F' ||
-                session.getAttribute("role").toString().charAt(0) == 'S' ||
-                session.getAttribute("role").toString().charAt(0) == 'A'){
-        %>
-        <li>
-            <a href="${host_url}/dashboard/chat">
-                <i class="fas fa-comments"></i>
-                <span class="links_name">Chat</span>
-            </a>
-        </li>
-        <%}%>
+        <%--        <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||--%>
+        <%--                session.getAttribute("role").toString().charAt(0) == 'C' ||--%>
+        <%--                session.getAttribute("role").toString().charAt(0) == 'F' ||--%>
+        <%--                session.getAttribute("role").toString().charAt(0) == 'S' ||--%>
+        <%--                session.getAttribute("role").toString().charAt(0) == 'A'){--%>
+        <%--        %>--%>
+        <%--        <li>--%>
+        <%--            <a href="${host_url}/dashboard/chat">--%>
+        <%--                <i class="fas fa-comments"></i>--%>
+        <%--                <span class="links_name">Chat</span>--%>
+        <%--            </a>--%>
+        <%--        </li>--%>
+        <%--        <%}%>--%>
 
         <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||
                 session.getAttribute("role").toString().charAt(0) == 'C' ||
@@ -163,25 +163,25 @@
         </li>
         <%}%>
 
-<%--        <% if( session.getAttribute("role").toString().charAt(0) == 'A'){--%>
-<%--        %>--%>
-<%--        <li>--%>
-<%--            <a href="${host_url}/dashboard/supportTeam">--%>
-<%--                <i class="fas fa-hands-helping"></i>--%>
-<%--                <span class="links_name">Support Team</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <%}%>--%>
+        <%--        <% if( session.getAttribute("role").toString().charAt(0) == 'A'){--%>
+        <%--        %>--%>
+        <%--        <li>--%>
+        <%--            <a href="${host_url}/dashboard/supportTeam">--%>
+        <%--                <i class="fas fa-hands-helping"></i>--%>
+        <%--                <span class="links_name">Support Team</span>--%>
+        <%--            </a>--%>
+        <%--        </li>--%>
+        <%--        <%}%>--%>
 
-<%--        <% if( session.getAttribute("role").toString().charAt(0) == 'A'){--%>
-<%--        %>--%>
-<%--        <li>--%>
-<%--            <a href="${host_url}/dashboard/financeAdmin">--%>
-<%--                <i class="fas fa-suitcase"></i>--%>
-<%--                <span class="links_name">Finance Admin</span>--%>
-<%--            </a>--%>
-<%--        </li>--%>
-<%--        <%}%>--%>
+        <%--        <% if( session.getAttribute("role").toString().charAt(0) == 'A'){--%>
+        <%--        %>--%>
+        <%--        <li>--%>
+        <%--            <a href="${host_url}/dashboard/financeAdmin">--%>
+        <%--                <i class="fas fa-suitcase"></i>--%>
+        <%--                <span class="links_name">Finance Admin</span>--%>
+        <%--            </a>--%>
+        <%--        </li>--%>
+        <%--        <%}%>--%>
 
         <%--    <li>--%>
         <%--      <a href="sitesettings.html">--%>

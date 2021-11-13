@@ -1,12 +1,12 @@
 <!-- navbar start -->
 <nav>
   <ul class="menu">
-    <li class="logo"><a href="/">inventine</a></li>
+    <li class="logo"><a href="${host_url}">inventine</a></li>
+    <li class="item"><a href="${host_url}">Home</a></li>
+    <li class="item"><a href="${host_url}/competitions">Competitions</a>
+    </li>
     <li class="item"><a href="${host_url}/howitworks">How It Works?</a></li>
     <li class="item"><a href="${host_url}/aboutus">About Us</a></li>
-
-
-
     <li class="item"><a href="${host_url}/contactus">Contact Us</a>
     </li>
     <li class="item button"><a href="${host_url}/login">Log In</a></li>
