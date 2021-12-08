@@ -62,6 +62,24 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
         return count;
     }
 
+    @Override
+    public ResultSet executeQuery(String query)  {
+        ResultSet rs = null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            rs = stmt.executeQuery();
+            rs.next();
+
+        }catch (SQLException e){
+
+
+            e.printStackTrace();
+        }
+
+        return rs;
+    }
+
 
     @Override
     public boolean create(Payment payment) {
