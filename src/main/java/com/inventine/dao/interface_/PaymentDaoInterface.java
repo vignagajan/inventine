@@ -2,6 +2,7 @@ package com.inventine.dao.interface_;
 
 import com.inventine.model.Payment;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -18,5 +19,7 @@ public interface PaymentDaoInterface{
     public int getCount(String condition) throws SQLException;
 
     public  int getCountAmount(String condition) throws SQLException;
+
+    public ResultSet executeQuery(String query);
 
 }
