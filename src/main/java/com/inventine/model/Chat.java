@@ -7,10 +7,42 @@ import java.sql.Timestamp;
 public class Chat {
 
     private String chatId;
-    private String receiver;
-    private String content;
+    private String receiverId;
+    private String senderId;
+    private String message;
     private Timestamp createdAt;
     private DataValidator validator = new DataValidator();
+
+    public String getReceiverId() {
+        return receiverId;
+    }
+
+    public boolean setReceiverId(String receiverId) {
+        this.validator.setTxt(receiverId);
+        this.validator.setMaxLength(6);
+        if (this.validator.isNumber()) {
+
+            this.receiverId = receiverId;
+            return true;
+        }
+        return false;
+      }
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public boolean setSenderId(String senderId) {
+        this.validator.setTxt(senderId);
+        this.validator.setMaxLength(6);
+        if (this.validator.isNumber()) {
+            this.senderId = senderId;
+            return true;
+        }
+        return false;
+    }
+
+
 
     public String getChatId() {
         return chatId;
@@ -20,7 +52,7 @@ public class Chat {
 
         this.validator.setTxt(chatId);
         this.validator.setMaxLength(6);
-        this.validator.setMinLength(1);
+
 
         if(this.validator.isNumber())
         {
@@ -31,40 +63,21 @@ public class Chat {
 
     }
 
-    public String getReceiver() {
-        return receiver;
+
+
+    public String getMessage() {
+        return message;
     }
 
-    public boolean setReceiver(String receiver) {
+    public boolean setMessage(String message) {
 
-        this.validator.setTxt(receiver);
-        this.validator.setMaxLength(50);
-        this.validator.setMinLength(3);
-
-        if(this.validator.isString())
-        {
-            this.receiver = receiver;
-            return true;
-
-        }
-        return false;
-
-
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public boolean setContent(String content) {
-
-        this.validator.setTxt(content);
+        this.validator.setTxt(message);
         this.validator.setMaxLength(255);
         this.validator.setMinLength(1);
 
-        if(this.validator.isAlphaNumeric())
+        if(this.validator.isAddress())
         {
-            this.content = content;
+            this.message = message;
             return true;
         }
          return false;
