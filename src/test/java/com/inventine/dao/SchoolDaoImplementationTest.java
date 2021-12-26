@@ -41,57 +41,57 @@ class SchoolDaoImplementationTest {
         assertTrue(this.schoolDao.create(school));
     }
 
-//    @ParameterizedTest
-//    @CsvFileSource(resources = "/model/School.csv", numLinesToSkip = 1)
-//    void getSchool(String school_id,String organization_id) {
-//
-//        this.school = this.schoolDao.getSchool(school_id);
-//
-//        assertEquals(school_id, this.school.getSchoolId());
-//        assertEquals(organization_id, this.school.getOrganizationId());
-//
-//
-//
-//    }
-//
-//    @ParameterizedTest
-//    @CsvFileSource(resources = "/model/School.csv", numLinesToSkip = 1)
-//    void getSchools(String school_id, String organization_id ) {
-//
-//        List<School> ls = this.schoolDao.getSchools("organizationId=17");
-//
-//        this.school.setSchoolId(school_id);
-//        this.school.setOrganizationId(organization_id);
-//
-//
-//
-//
-//        assertEquals(ls.get(0).getSchoolId(),this.school.getSchoolId());
-//        assertEquals(ls.get(0).getOrganizationId(),this.school.getOrganizationId());
-//
-//
-//
-//    }
+    @ParameterizedTest
+    @CsvFileSource(resources = "/model/School.csv", numLinesToSkip = 1)
+    void getSchool(String school_id,String organization_id) {
 
-//    @ParameterizedTest
-//    @CsvFileSource(resources = "/model/School.csv", numLinesToSkip = 1)
-//    void update(String school_id, String organization_id ) {
-//
-//        this.school.setSchoolId(school_id);
-//        this.school.setOrganizationId(organization_id);
-//
-//
-//
-//
-//        this.schoolDao.update(this.school);
-//
-//        School updated = this.schoolDao.getSchool(school_id);
-//
-//        assertEquals(this.school.getSchoolId(),updated.getSchoolId());
-//        assertEquals(this.school.getOrganizationId(),updated.getOrganizationId());
-//
-//
-//
-//    }
+        this.school = this.schoolDao.getSchool(school_id);
+
+        assertEquals(school_id, this.school.getSchoolId());
+        assertEquals(organization_id, school.getOrganizationId());
+
+
+
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/model/School.csv", numLinesToSkip = 1)
+    void getSchools(String school_id, String organization_id ) {
+
+        List<School> ls = this.schoolDao.getSchools("schoolId=22");
+
+        this.school.setSchoolId(school_id);
+        this.school.setOrganizationId(organization_id);
+
+
+
+
+        assertEquals(ls.get(0).getSchoolId(),this.school.getSchoolId());
+        assertEquals(ls.get(0).getOrganizationId(),this.school.getOrganizationId());
+
+
+
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/model/School.csv", numLinesToSkip = 1)
+    void update(String school_id, String organization_id ) {
+
+        this.school.setSchoolId(school_id);
+        this.school.setOrganizationId(organization_id);
+
+
+
+
+        this.schoolDao.update(this.school);
+
+        School updated = this.schoolDao.getSchool(school_id);
+
+        assertEquals(this.school.getSchoolId(),updated.getSchoolId());
+        assertEquals(this.school.getOrganizationId(),updated.getOrganizationId());
+
+
+
+    }
 
 }

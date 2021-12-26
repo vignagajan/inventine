@@ -12,7 +12,6 @@ public class SchoolDaoImplementation implements SchoolDaoInterface {
 
     static Connection conn = DBManager.getConnection();
 
-
     @Override
     public int getCount(String condition)  {
 
@@ -39,10 +38,29 @@ public class SchoolDaoImplementation implements SchoolDaoInterface {
         return count;
     }
 
+//    @Override
+//    public ResultSet executeQuery(String query)  {
+//        ResultSet rs = null;
+//
+//        try {
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            rs = stmt.executeQuery();
+//            rs.next();
+//
+//        }catch (SQLException e){
+//
+//
+//            e.printStackTrace();
+//        }
+//
+//        return rs;
+//    }
+
+
     @Override
     public boolean create(School school) {
 
-        String query = "INSERT INTO school(organizationId) " +
+        String query = "INSERT INTO School( organizationId) " +
                 "VALUES (?)";
 
         int n = 0;
@@ -51,8 +69,7 @@ public class SchoolDaoImplementation implements SchoolDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
-            stmt.setInt(1, Integer.parseInt(school.getOrganizationId()));
+            stmt.setInt(1,Integer.parseInt(school.getOrganizationId()));
 
 
 
@@ -73,7 +90,7 @@ public class SchoolDaoImplementation implements SchoolDaoInterface {
         try {
 
             school.setSchoolId(rs.getString("schoolId"));
-            school.setSchoolId(rs.getString("organizationId"));
+            school.setOrganizationId(rs.getString("organizationId"));
 
 
 
@@ -88,7 +105,7 @@ public class SchoolDaoImplementation implements SchoolDaoInterface {
     @Override
     public School getSchool(String schoolId) {
 
-        String query = "SELECT * FROM school WHERE schoolId= ? ";
+        String query = "SELECT * FROM School WHERE schoolId= ?";
 
         School school = new School();
 
@@ -96,14 +113,12 @@ public class SchoolDaoImplementation implements SchoolDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(schoolId));
-
+            stmt.setInt(1,Integer.parseInt(schoolId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 school = setSchool(school, rs);
             }
-
 
             return school;
 
@@ -111,25 +126,14 @@ public class SchoolDaoImplementation implements SchoolDaoInterface {
             e.printStackTrace();
         }
 
-
         return null;
 
     }
 
     @Override
-
     public List<School> getSchools(String condition) {
 
-
         String query = "SELECT * FROM school";
-
-        if (!condition.isEmpty()){
-
-            condition = String.format(" WHERE %s",condition);
-
-            query = query.concat(condition);
-
-        }
 
         List<School> ls = new ArrayList();
 
@@ -144,17 +148,13 @@ public class SchoolDaoImplementation implements SchoolDaoInterface {
                 ls.add(school);
             }
 
-
             return ls;
-
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
         return null;
-
     }
 
     @Override
@@ -168,15 +168,13 @@ public class SchoolDaoImplementation implements SchoolDaoInterface {
 
 
             stmt.setInt(1, Integer.parseInt(school.getOrganizationId()));
+
             stmt.setInt(2, Integer.parseInt(school.getSchoolId()));
-
-
-
 
 
             stmt.executeUpdate();
 
-            return  true;
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
