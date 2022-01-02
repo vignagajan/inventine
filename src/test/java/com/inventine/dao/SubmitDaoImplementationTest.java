@@ -59,7 +59,7 @@ class SubmitDaoImplementationTest {
     @CsvFileSource(resources = "/model/Submit.csv", numLinesToSkip = 1)
     void getSubmits(String submit_id,  Timestamp created_at,String project_id, String competition_id ) {
 
-        List<Submit> ls = this.submitDao.getSubmits("projectid=1");
+        List<Submit> ls = this.submitDao.getSubmits("submitid=19");
 
         this.submit.setSubmitId(submit_id);
         this.submit.setProjectId(project_id);
@@ -80,7 +80,7 @@ class SubmitDaoImplementationTest {
 
         this.submit.setSubmitId(submit_id);
         this.submit.setProjectId(project_id);
-        this.submit.setCompetitionId(competition_id);
+        this.submit.setCompetitionId("43");
 
 
 
@@ -90,7 +90,7 @@ class SubmitDaoImplementationTest {
 
         assertEquals(this.submit.getSubmitId(),updated.getSubmitId());
         assertEquals(this.submit.getProjectId(),updated.getProjectId());
-        assertEquals(this.submit.getCompetitionId(),updated.getCompetitionId());
+        assertEquals("43",updated.getCompetitionId());
 
 
     }

@@ -12,7 +12,6 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
     static Connection conn = DBManager.getConnection();
 
-
     @Override
     public int getCount(String condition)  {
 
@@ -39,11 +38,30 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
         return count;
     }
 
+//    @Override
+//    public ResultSet executeQuery(String query)  {
+//        ResultSet rs = null;
+//
+//        try {
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            rs = stmt.executeQuery();
+//            rs.next();
+//
+//        }catch (SQLException e){
+//
+//
+//            e.printStackTrace();
+//        }
+//
+//        return rs;
+//    }
+
+
     @Override
     public boolean create(Participate participate) {
 
-        String query = "INSERT INTO participate(creatorId,competitionId) " +
-                "VALUES (?, ?)";
+        String query = "INSERT INTO Participate(  creatorId,competitionId) " +
+                "VALUES ( ?,?)";
 
         int n = 0;
 
@@ -51,9 +69,8 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
-            stmt.setInt(1, Integer.parseInt(participate.getCreatorId()));
-            stmt.setInt(2, Integer.parseInt(participate.getCompetitionId()));
+            stmt.setInt(1,Integer.parseInt(participate.getCreatorId()));
+            stmt.setInt(2,Integer.parseInt(participate.getCompetitionId()));
 
 
 
@@ -78,6 +95,7 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
             participate.setCompetitionId(rs.getString("competitionId"));
 
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -88,7 +106,7 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     @Override
     public Participate getParticipate(String participateId) {
 
-        String query = "SELECT * FROM participate WHERE participateId= ? ";
+        String query = "SELECT * FROM Participate WHERE participateId= ?";
 
         Participate participate = new Participate();
 
@@ -96,14 +114,12 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(participateId));
-
+            stmt.setInt(1,Integer.parseInt(participateId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 participate = setParticipate(participate, rs);
             }
-
 
             return participate;
 
@@ -111,25 +127,14 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
             e.printStackTrace();
         }
 
-
         return null;
 
     }
 
     @Override
-
     public List<Participate> getParticipates(String condition) {
 
-
         String query = "SELECT * FROM participate";
-
-        if (!condition.isEmpty()){
-
-            condition = String.format(" WHERE %s",condition);
-
-            query = query.concat(condition);
-
-        }
 
         List<Participate> ls = new ArrayList();
 
@@ -144,39 +149,31 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
                 ls.add(participate);
             }
 
-
             return ls;
-
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
         return null;
-
     }
 
     @Override
     public boolean update(Participate participate) {
 
-        String query = String.format("UPDATE participate SET creatorId=?, competitionId=? WHERE participateId =?");
+        String query = String.format("UPDATE participate SET creatorId=?,competitionId=? WHERE participateId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
             stmt.setInt(1, Integer.parseInt(participate.getCreatorId()));
             stmt.setInt(2, Integer.parseInt(participate.getCompetitionId()));
             stmt.setInt(3, Integer.parseInt(participate.getParticipateId()));
 
-
-
-
             stmt.executeUpdate();
 
-            return  true;
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
