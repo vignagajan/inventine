@@ -100,12 +100,13 @@ public class LoginServlet extends HttpServlet {
 
                     creds = credsDao.getManyCreds(condition).get(0);
 
+
                     //Login
                     HttpSession session = request.getSession();
                     session.setAttribute("userId", creds.getUserId());
                     session.setAttribute("username", creds.getUsername());
                     session.setAttribute("role", creds.getRole());
-                    session.setAttribute("status", creds.getStatus());
+                    session.setAttribute("profileId", creds.getProfileId());
 
                     System.out.println("Success!");
 
