@@ -17,10 +17,13 @@ public class PrivateOrganizationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/PrivateOrganization.csv", numLinesToSkip = 1)
-    void getterSetter(String reg_no) {
-
+    void getterSetter(String private_organization_id,String organization_id,String reg_no) {
+        this.privateOrganization.setPrivateOrganizationId(private_organization_id);
+        this.privateOrganization.setOrganizationId(organization_id);
         this.privateOrganization.setRegNo(reg_no);
 
+        assertEquals(private_organization_id,this.privateOrganization.getPrivateOrganizationId());
+        assertEquals(organization_id,this.privateOrganization.getOrganizationId());
         assertEquals(reg_no, this.privateOrganization.getRegNo());
     }
 }

@@ -20,18 +20,26 @@ class ChatTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Chat.csv", numLinesToSkip = 1)
-    void getterSetter(String chat_id, String receiver, String content, Timestamp created_at) {
+    void getterSetter(String chat_id, String sender_id,String receiver_id, String message, Timestamp created_at) {
 
         this.chat.setChatId(chat_id);
-        this.chat.setReceiver(receiver);
-        this.chat.setContent(content);
+        this.chat.setSenderId(sender_id);
+        this.chat.setReceiverId(receiver_id);
+        this.chat.setMessage(message);
         this.chat.setCreatedAt(created_at);
 
-
         assertEquals(chat_id, this.chat.getChatId());
-        assertEquals(receiver, this.chat.getReceiver());
-        assertEquals(content, this.chat.getContent());
+        assertEquals(sender_id, this.chat.getSenderId());
+        assertEquals(receiver_id, this.chat.getReceiverId());
+        assertEquals(message, this.chat.getMessage());
         assertEquals(created_at, this.chat.getCreatedAt());
+
+
+
+
+
+
+
 
 
     }

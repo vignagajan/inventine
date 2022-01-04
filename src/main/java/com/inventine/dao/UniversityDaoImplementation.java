@@ -1,14 +1,14 @@
 package com.inventine.dao;
 
 import com.inventine.conf.DBManager;
-import com.inventine.dao.interface_.ParticipateDaoInterface;
-import com.inventine.model.Participate;
+import com.inventine.dao.interface_.UniversityDaoInterface;
+import com.inventine.model.University;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParticipateDaoImplementation implements ParticipateDaoInterface {
+public class UniversityDaoImplementation implements UniversityDaoInterface {
 
     static Connection conn = DBManager.getConnection();
 
@@ -16,7 +16,7 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     public int getCount(String condition)  {
 
         int count = 0;
-        String query = "select count(*) from participate";
+        String query = "select count(*) from university";
 
         if (!condition.isEmpty()){
 
@@ -58,10 +58,10 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
 
     @Override
-    public boolean create(Participate participate) {
+    public boolean create(University university) {
 
-        String query = "INSERT INTO Participate(  creatorId,competitionId) " +
-                "VALUES ( ?,?)";
+        String query = "INSERT INTO University( organizationId, email) " +
+                "VALUES (?, ?)";
 
         int n = 0;
 
@@ -69,8 +69,8 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(participate.getCreatorId()));
-            stmt.setInt(2,Integer.parseInt(participate.getCompetitionId()));
+            stmt.setInt(1,Integer.parseInt(university.getOrganizationId()));
+            stmt.setString(2,university.getEmail());
 
 
 
@@ -85,14 +85,13 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
     }
 
-    private Participate setParticipate(Participate participate, ResultSet rs) {
+    private University setUniversity(University university, ResultSet rs) {
 
         try {
 
-            participate.setParticipateId(rs.getString("participateId"));
-            participate.setCreatedAt(rs.getTimestamp("createdAt"));
-            participate.setCreatorId(rs.getString("creatorId"));
-            participate.setCompetitionId(rs.getString("competitionId"));
+            university.setUniversityId(rs.getString("universityId"));
+            university.setOrganizationId(rs.getString("organizationId"));
+            university.setEmail(rs.getString("email"));
 
 
 
@@ -100,28 +99,28 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
             e.printStackTrace();
         }
 
-        return participate;
+        return university;
     }
 
     @Override
-    public Participate getParticipate(String participateId) {
+    public University getUniversity(String universityId) {
 
-        String query = "SELECT * FROM Participate WHERE participateId= ?";
+        String query = "SELECT * FROM University WHERE universityId= ?";
 
-        Participate participate = new Participate();
+        University university = new University();
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(participateId));
+            stmt.setInt(1,Integer.parseInt(universityId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                participate = setParticipate(participate, rs);
+                university = setUniversity(university, rs);
             }
 
-            return participate;
+            return university;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -132,11 +131,11 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     }
 
     @Override
-    public List<Participate> getParticipates(String condition) {
+    public List<University> getUniversitys(String condition) {
 
-        String query = "SELECT * FROM participate";
+        String query = "SELECT * FROM university";
 
-        List<Participate> ls = new ArrayList();
+        List<University> ls = new ArrayList();
 
         try {
 
@@ -144,9 +143,9 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Participate participate = new Participate();
-                participate = setParticipate(participate, rs);
-                ls.add(participate);
+                University university = new University();
+                university = setUniversity(university, rs);
+                ls.add(university);
             }
 
             return ls;
@@ -159,17 +158,19 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     }
 
     @Override
-    public boolean update(Participate participate) {
+    public boolean update(University university) {
 
-        String query = String.format("UPDATE participate SET creatorId=?,competitionId=? WHERE participateId =?");
+        String query = String.format("UPDATE university SET organizationId=?,email=? WHERE universityId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(participate.getCreatorId()));
-            stmt.setInt(2, Integer.parseInt(participate.getCompetitionId()));
-            stmt.setInt(3, Integer.parseInt(participate.getParticipateId()));
+
+            stmt.setInt(1, Integer.parseInt(university.getOrganizationId()));
+            stmt.setString(2, university.getEmail());
+            stmt.setInt(3, Integer.parseInt(university.getUniversityId()));
+
 
             stmt.executeUpdate();
 

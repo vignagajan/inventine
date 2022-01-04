@@ -112,7 +112,8 @@
         <%}%>
 
         <% if(session.getAttribute("role").toString().charAt(0) == 'C' ||
-                session.getAttribute("role").toString().charAt(0) == 'A'){
+                session.getAttribute("role").toString().charAt(0) == 'A'||
+                session.getAttribute("role").toString().charAt(0) == 'S'){
         %>
         <li>
             <a href="${host_url}/dashboard/organization">
@@ -124,7 +125,9 @@
 
 
         <% if(session.getAttribute("role").toString().charAt(0) == 'C' ||
-                session.getAttribute("role").toString().charAt(0) == 'A'){
+                session.getAttribute("role").toString().charAt(0) == 'A'||
+                session.getAttribute("role").toString().charAt(0) == 'S'||
+                session.getAttribute("role").toString().charAt(0) == 'F'){
         %>
         <li>
             <a href="${host_url}/dashboard/competition">
@@ -135,19 +138,19 @@
         <%}%>
 
 
-        <%--        <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||--%>
-        <%--                session.getAttribute("role").toString().charAt(0) == 'C' ||--%>
-        <%--                session.getAttribute("role").toString().charAt(0) == 'F' ||--%>
-        <%--                session.getAttribute("role").toString().charAt(0) == 'S' ||--%>
-        <%--                session.getAttribute("role").toString().charAt(0) == 'A'){--%>
-        <%--        %>--%>
-        <%--        <li>--%>
-        <%--            <a href="${host_url}/dashboard/chat">--%>
-        <%--                <i class="fas fa-comments"></i>--%>
-        <%--                <span class="links_name">Chat</span>--%>
-        <%--            </a>--%>
-        <%--        </li>--%>
-        <%--        <%}%>--%>
+                <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||
+                        session.getAttribute("role").toString().charAt(0) == 'C' ||
+                        session.getAttribute("role").toString().charAt(0) == 'F' ||
+                        session.getAttribute("role").toString().charAt(0) == 'S' ||
+                        session.getAttribute("role").toString().charAt(0) == 'A'){
+                %>
+                <li>
+                    <a href="/dashboard/chat">
+                        <i class="fas fa-comments"></i>
+                        <span class="links_name">Chat</span>
+                    </a>
+                </li>
+                <%}%>
 
         <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||
                 session.getAttribute("role").toString().charAt(0) == 'C' ||

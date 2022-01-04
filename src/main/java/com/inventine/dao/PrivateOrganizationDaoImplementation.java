@@ -1,14 +1,14 @@
 package com.inventine.dao;
 
 import com.inventine.conf.DBManager;
-import com.inventine.dao.interface_.ParticipateDaoInterface;
-import com.inventine.model.Participate;
+import com.inventine.dao.interface_.PrivateOrganizationDaoInterface;
+import com.inventine.model.PrivateOrganization;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParticipateDaoImplementation implements ParticipateDaoInterface {
+public class PrivateOrganizationDaoImplementation implements PrivateOrganizationDaoInterface {
 
     static Connection conn = DBManager.getConnection();
 
@@ -16,7 +16,7 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     public int getCount(String condition)  {
 
         int count = 0;
-        String query = "select count(*) from participate";
+        String query = "select count(*) from privateOrganization";
 
         if (!condition.isEmpty()){
 
@@ -58,9 +58,9 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
 
     @Override
-    public boolean create(Participate participate) {
+    public boolean create(PrivateOrganization privateOrganization) {
 
-        String query = "INSERT INTO Participate(  creatorId,competitionId) " +
+        String query = "INSERT INTO PrivateOrganization(  organizationId,regNo) " +
                 "VALUES ( ?,?)";
 
         int n = 0;
@@ -69,8 +69,8 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(participate.getCreatorId()));
-            stmt.setInt(2,Integer.parseInt(participate.getCompetitionId()));
+            stmt.setInt(1,Integer.parseInt(privateOrganization.getOrganizationId()));
+             stmt.setString(2,privateOrganization.getRegNo());
 
 
 
@@ -85,14 +85,13 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
     }
 
-    private Participate setParticipate(Participate participate, ResultSet rs) {
+    private PrivateOrganization setPrivateOrganization(PrivateOrganization privateOrganization, ResultSet rs) {
 
         try {
 
-            participate.setParticipateId(rs.getString("participateId"));
-            participate.setCreatedAt(rs.getTimestamp("createdAt"));
-            participate.setCreatorId(rs.getString("creatorId"));
-            participate.setCompetitionId(rs.getString("competitionId"));
+            privateOrganization.setPrivateOrganizationId(rs.getString("privateOrganizationId"));
+            privateOrganization.setOrganizationId(rs.getString("organizationId"));
+            privateOrganization.setRegNo(rs.getString("regNo"));
 
 
 
@@ -100,28 +99,28 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
             e.printStackTrace();
         }
 
-        return participate;
+        return privateOrganization;
     }
 
     @Override
-    public Participate getParticipate(String participateId) {
+    public PrivateOrganization getPrivateOrganization(String privateOrganizationId) {
 
-        String query = "SELECT * FROM Participate WHERE participateId= ?";
+        String query = "SELECT * FROM PrivateOrganization WHERE privateOrganizationId= ?";
 
-        Participate participate = new Participate();
+        PrivateOrganization privateOrganization = new PrivateOrganization();
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(participateId));
+            stmt.setInt(1,Integer.parseInt(privateOrganizationId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                participate = setParticipate(participate, rs);
+                privateOrganization = setPrivateOrganization(privateOrganization, rs);
             }
 
-            return participate;
+            return privateOrganization;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -132,11 +131,11 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     }
 
     @Override
-    public List<Participate> getParticipates(String condition) {
+    public List<PrivateOrganization> getPrivateOrganizations(String condition) {
 
-        String query = "SELECT * FROM participate";
+        String query = "SELECT * FROM privateOrganization";
 
-        List<Participate> ls = new ArrayList();
+        List<PrivateOrganization> ls = new ArrayList();
 
         try {
 
@@ -144,9 +143,9 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Participate participate = new Participate();
-                participate = setParticipate(participate, rs);
-                ls.add(participate);
+                PrivateOrganization privateOrganization = new PrivateOrganization();
+                privateOrganization = setPrivateOrganization(privateOrganization, rs);
+                ls.add(privateOrganization);
             }
 
             return ls;
@@ -159,17 +158,17 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     }
 
     @Override
-    public boolean update(Participate participate) {
+    public boolean update(PrivateOrganization privateOrganization) {
 
-        String query = String.format("UPDATE participate SET creatorId=?,competitionId=? WHERE participateId =?");
+        String query = String.format("UPDATE privateOrganization SET organizationId=?,regNo=? WHERE privateOrganizationId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(participate.getCreatorId()));
-            stmt.setInt(2, Integer.parseInt(participate.getCompetitionId()));
-            stmt.setInt(3, Integer.parseInt(participate.getParticipateId()));
+            stmt.setInt(1, Integer.parseInt(privateOrganization.getOrganizationId()));
+            stmt.setString(2, privateOrganization.getRegNo());
+            stmt.setInt(3, Integer.parseInt(privateOrganization.getPrivateOrganizationId()));
 
             stmt.executeUpdate();
 

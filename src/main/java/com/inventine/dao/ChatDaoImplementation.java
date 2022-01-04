@@ -1,14 +1,14 @@
 package com.inventine.dao;
 
 import com.inventine.conf.DBManager;
-import com.inventine.dao.interface_.ParticipateDaoInterface;
-import com.inventine.model.Participate;
+import com.inventine.dao.interface_.ChatDaoInterface;
+import com.inventine.model.Chat;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParticipateDaoImplementation implements ParticipateDaoInterface {
+public class ChatDaoImplementation implements ChatDaoInterface {
 
     static Connection conn = DBManager.getConnection();
 
@@ -16,7 +16,7 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     public int getCount(String condition)  {
 
         int count = 0;
-        String query = "select count(*) from participate";
+        String query = "select count(*) from chat";
 
         if (!condition.isEmpty()){
 
@@ -58,10 +58,10 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
 
     @Override
-    public boolean create(Participate participate) {
+    public boolean create(Chat chat) {
 
-        String query = "INSERT INTO Participate(  creatorId,competitionId) " +
-                "VALUES ( ?,?)";
+        String query = "INSERT INTO Chat( senderId, receiverId,messages) " +
+                "VALUES (?, ?,?)";
 
         int n = 0;
 
@@ -69,9 +69,9 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(participate.getCreatorId()));
-            stmt.setInt(2,Integer.parseInt(participate.getCompetitionId()));
-
+            stmt.setInt(1,Integer.parseInt(chat.getSenderId()));
+            stmt.setInt(2, Integer.parseInt(chat.getReceiverId()));
+            stmt.setString(3, chat.getMessage());
 
 
             n = stmt.executeUpdate();
@@ -85,43 +85,43 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
     }
 
-    private Participate setParticipate(Participate participate, ResultSet rs) {
+    private Chat setChat(Chat chat, ResultSet rs) {
 
         try {
 
-            participate.setParticipateId(rs.getString("participateId"));
-            participate.setCreatedAt(rs.getTimestamp("createdAt"));
-            participate.setCreatorId(rs.getString("creatorId"));
-            participate.setCompetitionId(rs.getString("competitionId"));
-
+            chat.setChatId(rs.getString("chatId"));
+            chat.setSenderId(rs.getString("senderId"));
+            chat.setReceiverId(rs.getString("receiverId"));
+            chat.setMessage(rs.getString("messages"));
+            chat.setCreatedAt(rs.getTimestamp("createdAt"));
 
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return participate;
+        return chat;
     }
 
     @Override
-    public Participate getParticipate(String participateId) {
+    public Chat getChat(String chatId) {
 
-        String query = "SELECT * FROM Participate WHERE participateId= ?";
+        String query = "SELECT * FROM Chat WHERE chatId= ?";
 
-        Participate participate = new Participate();
+        Chat chat = new Chat();
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(participateId));
+            stmt.setInt(1,Integer.parseInt(chatId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                participate = setParticipate(participate, rs);
+                chat = setChat(chat, rs);
             }
 
-            return participate;
+            return chat;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -132,11 +132,11 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     }
 
     @Override
-    public List<Participate> getParticipates(String condition) {
+    public List<Chat> getChats(String condition) {
 
-        String query = "SELECT * FROM participate";
+        String query = "SELECT * FROM chat";
 
-        List<Participate> ls = new ArrayList();
+        List<Chat> ls = new ArrayList();
 
         try {
 
@@ -144,9 +144,9 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                Participate participate = new Participate();
-                participate = setParticipate(participate, rs);
-                ls.add(participate);
+                Chat chat = new Chat();
+                chat = setChat(chat, rs);
+                ls.add(chat);
             }
 
             return ls;
@@ -159,17 +159,18 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     }
 
     @Override
-    public boolean update(Participate participate) {
+    public boolean update(Chat chat) {
 
-        String query = String.format("UPDATE participate SET creatorId=?,competitionId=? WHERE participateId =?");
+        String query = String.format("UPDATE chat SET senderId=?,receiverId=?,messages=? WHERE chatId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(participate.getCreatorId()));
-            stmt.setInt(2, Integer.parseInt(participate.getCompetitionId()));
-            stmt.setInt(3, Integer.parseInt(participate.getParticipateId()));
+            stmt.setInt(1, Integer.parseInt(chat.getSenderId()));
+            stmt.setInt(2, Integer.parseInt(chat.getReceiverId()));
+            stmt.setString(3, chat.getMessage());
+            stmt.setInt(4, Integer.parseInt(chat.getChatId()));
 
             stmt.executeUpdate();
 
