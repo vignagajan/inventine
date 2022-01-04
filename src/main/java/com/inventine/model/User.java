@@ -17,6 +17,8 @@ public class User {
     private char type;
     private Timestamp createdAt;
 
+    private String headerId;
+
     private DataValidator validator = new DataValidator();
 
     public String getUserId(){
@@ -177,4 +179,22 @@ public class User {
             return false;
         }
     }
+
+    public String getHeaderId(){
+        return headerId;
+    }
+
+    public boolean setHeaderId(String headerId) {
+
+        this.validator.setTxt(headerId);
+        this.validator.setMaxLength(20);
+
+        if (this.validator.isNumber()) {
+            this.headerId = headerId;
+            return true;
+        }
+
+        return false;
+    }
+
 }

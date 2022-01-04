@@ -45,8 +45,8 @@ public class UserDaoImplementation implements UserDaoInterface {
     @Override
     public int create(User user) {
 
-        String query = "INSERT INTO users(firstName, lastName, dob, gender, phone, address, district, type ) " +
-                "VALUES (?, ?,?, CAST(? AS ge),?, ?,?, CAST(? AS te)) RETURNING userid";
+        String query = "INSERT INTO users(firstName, lastName, dob, gender, phone, address, district, type, headerId ) " +
+                "VALUES (?, ?,?, CAST(? AS ge),?, ?,?, CAST(? AS te)),? RETURNING userid";
 
         int n = 0;
 
@@ -62,6 +62,7 @@ public class UserDaoImplementation implements UserDaoInterface {
             stmt.setString(6, user.getAddress());
             stmt.setString(7, user.getDistrict());
             stmt.setString(8, String.valueOf(user.getType()));
+            stmt.setString(9, user.getHeaderId());
 
             ResultSet rs = stmt.executeQuery();
 
@@ -92,6 +93,7 @@ public class UserDaoImplementation implements UserDaoInterface {
             user.setDistrict(rs.getString("district"));
             user.setType(rs.getString("type").charAt(0));
             user.setCreatedAt(rs.getTimestamp("createdAt"));
+            user.setHeaderId(rs.getString("headerId"));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -164,7 +166,7 @@ public class UserDaoImplementation implements UserDaoInterface {
     @Override
     public boolean update(User user) {
 
-        String query = String.format("UPDATE users SET firstName=?, lastName=?, dob=?, gender=CAST(? AS ge), phone=?, address=?, district=?, type=CAST(? AS te) WHERE userId =?");
+        String query = String.format("UPDATE users SET firstName=?, lastName=?, dob=?, gender=CAST(? AS ge), phone=?, address=?, district=?, type=CAST(? AS te), headerId=? WHERE userId =?");
 
         try {
 
@@ -179,6 +181,7 @@ public class UserDaoImplementation implements UserDaoInterface {
             stmt.setString(7, user.getDistrict());
             stmt.setString(8, String.valueOf(user.getType()));
             stmt.setInt(9, Integer.parseInt(user.getUserId()));
+            stmt.setString(10, user.getHeaderId());
 
             stmt.executeUpdate();
 
