@@ -14,6 +14,8 @@ public class Creds {
     private char status;
     private Timestamp createdAt;
 
+    private String profileId;
+
     private DataValidator validator = new DataValidator();
 
     public String getUserId(){
@@ -119,6 +121,22 @@ public class Creds {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public String getProfileId(){
+        return profileId;
+    }
+
+    public boolean setProfileId(String profileId) {
+
+        this.validator.setTxt(profileId);
+
+        if (this.validator.isNumber()) {
+            this.profileId = profileId;
+            return true;
+        }
+
+        return false;
     }
 
 }
