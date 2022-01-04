@@ -7,14 +7,14 @@
 
     </h1>
     <div class="user-wrapper">
-        <h4 href="${host_url}/profile"> <%= (String)session.getAttribute("username")%></h4>
+        <h4 href="${System.getenv("HOST_URL")}/profile"> <%= (String)session.getAttribute("username")%></h4>
         <div class="dropdown">
-            <img src="${host_url}static/img/img2.png" width="50px" height="50px" alt="">
+            <img src="${System.getenv("HOST_URL")}/image/<%= (String)session.getAttribute("profileId")%>" width="50px" height="50px" alt="profile-pic">
             <div class="dropdown-content">
 <%--                <a href="#">Generate Report</a>--%>
-                <a href="${host_url}/profile">Profile</a>
-                <a href="${host_url}">Homepage</a>
-                <a href="${host_url}/logout">Logout</a>
+                <a href="${System.getenv("HOST_URL")}/profile/<%= (String)session.getAttribute("userId")%>">Profile</a>
+                <a href="${System.getenv("HOST_URL")}">Homepage</a>
+                <a href="${System.getenv("HOST_URL")}/logout">Logout</a>
             </div>
         </div>
     </div>

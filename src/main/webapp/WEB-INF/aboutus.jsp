@@ -4,7 +4,7 @@
 <head>
 
   <%@ include file="/WEB-INF/components/head-import.jsp" %>
-  <link rel="stylesheet" href="${host_url}/static/css/aboutus.css">
+  <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/aboutus.css">
 
 
 </head>

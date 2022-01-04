@@ -7,9 +7,6 @@ package com.inventine.conf;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Map;
-
-import com.inventine.util.DotEnv;
 
 public class DBManager {
 
@@ -41,11 +38,9 @@ public class DBManager {
             synchronized (Connection.class){
                 if (conn == null){
 
-                    Map<String,String> dotEnv = DotEnv.load();
-
-                    String url = dotEnv.get("DB_URL");
-                    String host_username = dotEnv.get("DB_USER");
-                    String host_password = dotEnv.get("DB_PASS");
+                    String url = System.getenv("DB_URL");
+                    String host_username = System.getenv("DB_USER");
+                    String host_password = System.getenv("DB_PASS");
 
                     try {
                         Class.forName("org.postgresql.Driver");
