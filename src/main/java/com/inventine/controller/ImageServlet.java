@@ -57,7 +57,7 @@ public class ImageServlet extends HttpServlet {
         if (image_part != null) {
 
             img.setSize((int)image_part.getSize());
-            img.setContentType((image_part.getContentType()));
+            img.setContentType(image_part.getContentType());
 
             inputStream = image_part.getInputStream();
             img_data = inputStream.readAllBytes();
