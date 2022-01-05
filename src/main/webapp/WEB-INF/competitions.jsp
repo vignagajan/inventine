@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
-    <link rel="stylesheet" href="${host_url}/static/css/competitions.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/competitions.css">
 
 
 

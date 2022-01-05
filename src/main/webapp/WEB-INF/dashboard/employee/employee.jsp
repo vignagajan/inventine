@@ -82,7 +82,7 @@
   <!-- end of 4 data cards -->
 
   <div class="cbutton">
-    <a href="${host_url}/dashboard/employee/create">
+    <a href="${System.getenv("HOST_URL")}/dashboard/employee/create">
       <button class="createbutton">Create </button></a>
   </div>
 
@@ -121,7 +121,7 @@
         <td><% out.print(user.getAddress());%></td>
         <td><% out.print(user.getDistrict());%></td>
         <td>
-          <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/employee/update'">Update</button>
+          <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/employee/update'">Update</button>
           <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
 
         </td>
@@ -190,6 +190,6 @@
   }
 
 </script>
-<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>

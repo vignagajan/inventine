@@ -10,13 +10,30 @@ public class Competition {
     private String supportTeamId;
     private Timestamp createdAt;
     private Timestamp endingAt;
+    private Timestamp startingAt;
     private int prizeMoney;
     private String rules;
     private char cType;
     private char pType;
     private  String competitionName;
+    private  String headerId;
+    private  String overView;
+    private char status;
     private DataValidator validator = new DataValidator();
 
+    public String getHeaderId() {
+        return headerId;
+    }
+
+    public boolean setHeaderId(String headerId) {
+// this.validator.setTxt(headerId);
+
+
+
+            this.headerId = headerId;
+            return true;
+
+     }
     public String getCompetitionName() {
         return competitionName;
     }
@@ -103,6 +120,19 @@ public class Competition {
         return false;
     }
 
+    public Timestamp getStartingAt() {
+        return startingAt;
+    }
+
+    public boolean setStartingAt(Timestamp startingAt) {
+        try {
+            this.startingAt = startingAt;
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public int getPrizeMoney() {return prizeMoney;}
 
     public boolean setPrizeMoney(int prizeMoney) {
@@ -121,12 +151,20 @@ public class Competition {
     public boolean setRules(String rules){
 
 
-        if (this.validator.isAlphaNumeric()) {
-            this.rules = rules;
-            return true;
-        }
 
-        return false;
+            this.rules = rules;
+
+
+        return true;
+    }
+
+    public String getOverView() {
+        return overView;
+    }
+
+    public boolean setOverView(String overView) {
+        this.overView = overView;
+        return true;
     }
 
     public String getSupportTeamId() {
@@ -177,16 +215,19 @@ public class Competition {
         }
          return false;
     }
-}
 
-/*
-  public boolean setType(char type) {
+    public char getStatus() {
+        return status;
+    }
 
-        if (type == 'P' || type == 'A'|| type == 'S') {
-            this.type = type;
+    public boolean setStatus(char status) {
+        if(status == 'A'|| status == 'B'|| status == 'D')
+        {
+            this.status = status;
             return true;
         }
-
         return false;
-    }
- */
+
+     }
+}
+

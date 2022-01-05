@@ -5,7 +5,7 @@
 
   <%@ include file="/WEB-INF/components/head-import.jsp" %>
 
-  <link rel="stylesheet" href="${host_url}/static/css/login.css">
+  <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/login.css">
 
 </head>
 <body>
@@ -39,13 +39,13 @@
     </div>
 
     <hr style="margin-top: 20px; height: 10px;     border: none; border-top: medium double #0097e6;"/>
-    <div class="desc" style="color: #0097e6; margin-top: 20px; text-align: center" >Don't have an account? <a href="${host_url}/signup">Signup</a></div>
+    <div class="desc" style="color: #0097e6; margin-top: 20px; text-align: center" >Don't have an account? <a href="${System.getenv("HOST_URL")}/signup">Signup</a></div>
 
   </div>
 
 </div>
 
-<script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/validate.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/validate.js"></script>
 
 <script>
 
@@ -88,7 +88,7 @@
             y,
             window.location.href,
             'Login is successfull!',
-            '${host_url}/dashboard/employee',
+            '${System.getenv("HOST_URL")}/dashboard/employee',
     )
   }
 

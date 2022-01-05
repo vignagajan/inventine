@@ -194,6 +194,6 @@
     }
 
 </script>
-<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>

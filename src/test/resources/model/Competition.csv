@@ -1,2 +1,2 @@
- competition_Id, organization_Id, support_Team_Id, project_Id, created_At,  ending_at,  prize_money, rules,c_type,p_type,competition_name
-14,17,2,1,2021-10-22 18:49:32.824552,2021-12-31 12:25:30.0,10000,only3memberorlessmemberparticipate,H,I,moodforcode
+ competition_Id, organization_Id  , support_Team_Id, project_Id,   Timestamp created_At    , Timestamp ending_at,  prize_money,  rules , c_type, p_type, competition_name, header_Id,   Timestamp starting_At,       over_view    , status
+   57, 60, 2 , 26 ,2022-01-02 10:37:16.584939 ,2021-11-30 19:23:30.0, 10000 ,only3memberorlessmemberparticipate, T, I,moodforcode,1640618179717, 2021-11-30 19:23:30.0,deatails about competition,A

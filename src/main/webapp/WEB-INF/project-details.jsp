@@ -8,9 +8,9 @@
 
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${host_url}/static/css/home.css">
-    <link rel="stylesheet" href="${host_url}/static/css/project-details.css">
-    <link rel="stylesheet" href="${host_url}/static/css/contactus.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/home.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/project-details.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/contactus.css">
 
 
 </head>
@@ -180,7 +180,7 @@
     </div>
 </div>
 
-<script src="${host_url}/static/js/project-details.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/project-details.js"></script>
 <%@ include file="/WEB-INF/components/footer.jsp" %>
 
 </body>

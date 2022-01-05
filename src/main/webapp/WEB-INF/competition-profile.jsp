@@ -1,3 +1,5 @@
+<%@ page import="com.inventine.model.Competition" %>
+<%@ page import="com.inventine.model.Organization" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -7,11 +9,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
-    <link rel="stylesheet" href="${host_url}/static/css/competition.css">
-    <link rel="stylesheet" href="${host_url}/static/css/leaderboard.css">
-    <link rel="stylesheet" href="${host_url}/static/css/organization.css">
-    <link rel="stylesheet" href="${host_url}/static/css/project-cards.css">
-    <link rel="stylesheet" href="${host_url}/static/css/profile.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/competition.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/leaderboard.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/organization.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/project-cards.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/profile.css">
 
 
 
@@ -24,6 +26,12 @@
 
 <main id="main">
 
+    <%
+        Competition competition = (Competition) request.getAttribute("competition");
+        Organization organization = (Organization) request.getAttribute("organization");
+
+    %>
+
     <div class="container">
         <div class="top-image">
             <img style="height: 100%; width: 100%;" src="https://osr.statisticsauthority.gov.uk/wp-content/uploads/2017/12/Possible-number-swirl.jpg">
@@ -31,9 +39,9 @@
         <div class="row">
             <div class="left">
                 <img class="photo" src="https://digitaltimes-media.s3.amazonaws.com/original_images/ai.jpeg">
-                <h4 class="name">Digit Recognizer</h4>
-                <p class="number-stat">Contact.No: +358 10 44 88 000 </p>
-                <p class="desc-stat">by NOKIA</p>
+                <h4 class="name"><% out.print(competition.getCompetitionName());%></h4>
+                <p class="number-stat"> Type:<% out.print(competition.getPType());%>  </p>
+                <p class="desc-stat"> By <%  out.print(organization.getName());%></p>
                 <div class="desc">
                     <p >You have some experience with R or Python and machine learning basics, but you’re new to computer vision. This competition is the perfect introduction to techniques like neural networks using a classic dataset including pre-extracted features.</p>
                 </div>
@@ -371,6 +379,6 @@
 
 <%@ include file="/WEB-INF/components/footer.jsp" %>
 
-<script src="static/js/profile.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/profile.js"></script>
 </body>
 </html>

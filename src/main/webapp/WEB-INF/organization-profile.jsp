@@ -1,3 +1,5 @@
+<%@ page import="com.inventine.model.Organization" %>
+<%@ page import="com.inventine.model.Competition" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -7,10 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
-    <link rel="stylesheet" href="${host_url}/static/css/competition.css">
-    <link rel="stylesheet" href="${host_url}/static/css/contactus.css">
-    <link rel="stylesheet" href="${host_url}/static/css/organization.css">
-    <link rel="stylesheet" href="${host_url}/static/css/project-cards.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/competition.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/contactus.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/organization.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/project-cards.css">
 
 
 
@@ -23,6 +25,12 @@
 
 <main id="main">
 
+    <%
+        Competition competition = (Competition) request.getAttribute("competition");
+        Organization organization = (Organization) request.getAttribute("organization");
+
+    %>
+
     <div class="container">
         <div class="top-image">
             <img style="height: 100%; width: 100%;" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Midpoint_Nokia_Karaportti.jpg">
@@ -30,9 +38,9 @@
         <div class="row">
             <div class="left">
                 <img class="photo" src="https://www.allcareer.online/wp-content/uploads/2021/06/Nokia.jpg">
-                <h4 class="name">NOKIA</h4>
-                <p class="info">services@nokia.com</p>
-                <p class="number-stat">Contact.No: +358 10 44 88 000</p>
+                <h4 class="name"><% out.print(organization.getName());%></h4>
+                <p class="info"><% out.print(organization.getDistrict());%></p>
+                <p class="number-stat">Contact.No:<% out.print(organization.getContactNumber());%></p>
                 <p class="desc-stat"></p>
                 <div class="desc">
                     <p >We create technology that helps the world act together.

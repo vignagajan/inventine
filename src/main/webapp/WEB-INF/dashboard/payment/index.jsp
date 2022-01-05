@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/dashboard/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${host_url}/static/css/dashboard/form.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/dashboard/form.css">
 
 </head>
 <body>
@@ -174,8 +174,8 @@
 
 </script>
 
-<script src="${host_url}/static/js/dashboard/chart.js"></script>
-<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/chart.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>
 

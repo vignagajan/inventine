@@ -1,41 +1,41 @@
 package com.inventine.util;
 
-import java.io.File;  // Import the File class
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class DotEnv {
 
-    private String path = "src/test/resources/.env";
-    private Map<String, String> map = new HashMap<>();
+    private static volatile DotEnv envInstance;
 
-    public Map<String,String> load(){
-
-        try {
-            File myObj = new File(this.path);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String line = myReader.nextLine();
-                if(line == "" || Character.compare(line.charAt(0),'#') == 0){
-                    continue;
-                }
-                this.map.put(line.split("=")[0], line.split("=")[1]);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Create .env file in project root directory.");
-            e.printStackTrace();
+    private DotEnv(){
+        if (envInstance != null){
+            throw new RuntimeException("Use load method to get environmental variables!");
         }
-
-        return map;
-
     }
 
-    public void configure(String new_path){
+    public static DotEnv getEnvInstance() {
 
-        this.path = new_path;
+        if (envInstance == null){
+            synchronized (DotEnv.class){
+                if (envInstance == null){
+                    envInstance = new DotEnv();
+                }
+            }
+        }
+
+        return envInstance;
+    }
+
+    public static Map<String,String> load(){
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("DB_URL","jdbc:postgresql://ec2-54-74-60-70.eu-west-1.compute.amazonaws.com:5432/d8f8hltmb5saom");
+        map.put("DB_USER","ddhereuezjqxru");
+        map.put("DB_PASS","70f426e9436489da808ca13bc82f249df0be82a37ac3f31400c00c765deef624");
+        map.put("HOST_URL","http://localhost:8080/inventine_war/");
+
+        return map;
 
     }
 

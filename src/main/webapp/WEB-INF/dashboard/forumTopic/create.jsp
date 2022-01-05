@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/dashboard/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${host_url}/static/css/dashboard/form.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/dashboard/form.css">
 
 
 </head>
@@ -45,7 +45,7 @@
                 <!-- input boxes end -->
 
                 <div style="display: flex">
-                    <button type="button" id="cancelBtn" onclick="location.href='${host_url}/forum';">Cancel</button>
+                    <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/forum';">Cancel</button>
                     <button onclick="signupValidation()">Create</button>
                 </div>
 
@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/validate.js"></script>
+    <script src="${System.getenv("HOST_URL")}/static/js/dashboard/validate.js"></script>
 
     <script>
 
@@ -93,7 +93,7 @@
                 y,
                 window.location.href,
                 'Forum post is created successfully!',
-                '${host_url}/forum'
+                '${System.getenv("HOST_URL")}/forum'
 
 
             )
@@ -101,7 +101,7 @@
 
     </script>
 
-    <script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/dashboard.js"></script>
+    <script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 
 </div>
 </body>
