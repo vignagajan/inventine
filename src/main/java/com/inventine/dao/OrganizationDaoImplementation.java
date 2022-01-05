@@ -40,8 +40,8 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     @Override
     public boolean create(Organization organization) {
 
-        String query = "INSERT INTO organization(creatorId,supportTeamId, name, address, district,contactNumber ) " +
-                "VALUES ( ?,?, ?,?,?,?)";
+        String query = "INSERT INTO organization(creatorId,supportTeamId, name, address, district,contactNumber ,headerId,logoId, orgType,status) " +
+                "VALUES ( ?,?, ?,?,?,?,?,?,CAST(? AS org1),CAST(? AS status1))";
 
         int n = 0;
 
@@ -55,6 +55,10 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
             stmt.setString(4, organization.getAddress());
             stmt.setString(5, organization.getDistrict());
             stmt.setString(6, organization.getContactNumber());
+            stmt.setString(7,  organization.getHeaderId());
+            stmt.setInt(8, Integer.parseInt(organization.getLogoId()));
+            stmt.setString(9, String.valueOf(organization.getOrgType()));
+            stmt.setString(10, String.valueOf(organization.getStatus()));
 
 
 
@@ -84,6 +88,12 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
             organization.setDistrict(rs.getString("district"));
             organization.setContactNumber(rs.getString("contactNumber"));
             organization.setCreatedAt(rs.getTimestamp("createdAt"));
+            organization.setHeaderId(rs.getString("headerId"));
+            organization.setLogoId(rs.getString("logoId"));
+            organization.setOrgType(rs.getString("orgType").charAt(0));
+            organization.setStatus(rs.getString("status").charAt(0));
+
+
 
 
 
@@ -160,7 +170,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     @Override
     public boolean update(Organization organization) {
 
-        String query = String.format("UPDATE organization SET creatorId=?, supportTeamId=?, name=?,address=?,district=?,contactNumber=?WHERE organizationId =?");
+        String query = String.format("UPDATE organization SET creatorId=?, supportTeamId=?, name=?,address=?,district=?,contactNumber=?,headerId=?,logoId=?,orgType=CAST(? AS org1),status=CAST(? AS status1)WHERE organizationId =?");
 
         try{
 
@@ -173,7 +183,14 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
             stmt.setString(4, organization.getAddress());
             stmt.setString(5, organization.getDistrict());
             stmt.setString(6, organization.getContactNumber());
-            stmt.setInt(7, Integer.parseInt(organization.getOrganizationId()));
+            stmt.setString(7, organization.getHeaderId());
+            stmt.setInt(8, Integer.parseInt(organization.getLogoId()));
+            stmt.setString(9, String.valueOf(organization.getOrgType()));
+            stmt.setString(10, String.valueOf(organization.getStatus()));
+            stmt.setInt(11, Integer.parseInt(organization.getOrganizationId()));
+
+
+
 
 
 

@@ -13,7 +13,40 @@ public class Organization {
     private String district;
     private String contactNumber;
     private Timestamp createdAt;
+    private String logoId;
+    private String headerId;
+    private char orgType;
+    private char status;
     private DataValidator validator = new DataValidator();
+
+    public String getLogoId() {
+        return logoId;
+    }
+
+    public boolean setLogoId(String logoId) {
+
+
+
+            this.logoId = logoId;
+            return  true;
+
+
+    }
+
+    public String getHeaderId() {
+        return headerId;
+    }
+
+    public boolean setHeaderId(String headerId) {
+
+
+            this.headerId = headerId;
+            return true;
+
+
+
+
+    }
 
     public String getOrganizationId() {
         return organizationId;
@@ -52,16 +85,9 @@ public class Organization {
     }
 
     public boolean setName(String name) {
-        this.validator.setTxt(name);
-        this.validator.setMaxLength(50);
-        this.validator.setMinLength(3);
+        this.name = name;
 
-        if (this.validator.isAlphaNumeric()) {
-            this.name = name;
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     public String getAddress() {
@@ -140,5 +166,33 @@ public class Organization {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public char getOrgType() {
+        return orgType;
+    }
+
+    public boolean setOrgType(char orgType) {
+        if (orgType == 'S' || orgType == 'U'|| orgType=='P') {
+            this.orgType = orgType;
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public char getStatus() {
+        return status;
+    }
+
+    public boolean setStatus(char status) {
+        if (status == 'A' || status == 'B'|| status=='D') {
+            this.status = status;
+            return true;
+        }
+
+        return false;
+
     }
 }

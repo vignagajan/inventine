@@ -39,8 +39,8 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
     @Override
     public boolean create(Competition competition) {
 
-        String query = "INSERT INTO competition(organizationId,  supportTeamId,projectId,endingAt ,prizeMoney,rules,cType,pType,competitionName ) " +
-                "VALUES (?, ?, ?,?,?,?,CAST(? AS cp),CAST(? AS pte),?)";
+        String query = "INSERT INTO competition(organizationId,  supportTeamId,projectId,endingAt ,prizeMoney,rules,cType,pType,competitionName,headerId,startingAt,overView ,status) " +
+                "VALUES (?, ?, ?,?,?,?,CAST(? AS cp),CAST(? AS pte),?,?,?,?,CAST(? AS status2))";
 
         int n = 0;
 
@@ -57,8 +57,10 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
             stmt.setString(7, String.valueOf(competition.getCType()));
             stmt.setString(8, String.valueOf(competition.getPType()));
             stmt.setString(9,String.valueOf(competition.getCompetitionName()));
-
-
+            stmt.setString(10, competition.getHeaderId());
+            stmt.setTimestamp(11, competition.getStartingAt());
+            stmt.setString(12,competition.getOverView());
+            stmt.setString(13, String.valueOf(competition.getStatus()));
 
 
 
@@ -89,6 +91,10 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
             competition.setCType(rs.getString("cType").charAt(0));
             competition.setPType(rs.getString("pType").charAt(0));
             competition.setCompetitionName(rs.getString("competitionName"));
+            competition.setSupportTeamId(rs.getString("headerId"));
+            competition.setEndingAt(rs.getTimestamp("startingAt"));
+            competition.setOverView(rs.getString("overView"));
+            competition.setStatus(rs.getString("status").charAt(0));
 
 
         } catch (SQLException e) {
@@ -159,7 +165,7 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
     @Override
     public boolean update(Competition competition) {
 
-        String query = String.format("UPDATE competition SET organizationId=?, supportTeamId=?, projectId=?, endingAt=?, prizeMoney=?, rules=?,cType=CAST(? AS cp),pType=CAST(? AS pte),competitionName=? WHERE competitionId =?");
+        String query = String.format("UPDATE competition SET organizationId=?, supportTeamId=?, projectId=?, endingAt=?, prizeMoney=?, rules=?,cType=CAST(? AS cp),pType=CAST(? AS pte),competitionName=?,headerId=?,startingAt=?,overView=? ,status=CAST(? AS status2)WHERE competitionId =?");
 
         try{
 
@@ -174,7 +180,12 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
             stmt.setString(7, String.valueOf(competition.getCType()));
             stmt.setString(8, String.valueOf(competition.getPType()));
             stmt.setString(9,competition.getCompetitionName());
-            stmt.setInt(10, Integer.parseInt(competition.getCompetitionId()));
+            stmt.setString(10, competition.getHeaderId());
+            stmt.setTimestamp(11, competition.getStartingAt());
+            stmt.setString(12,competition.getOverView());
+            stmt.setString(13, String.valueOf(competition.getStatus()));
+            stmt.setInt(14, Integer.parseInt(competition.getCompetitionId()));
+
 
 
 

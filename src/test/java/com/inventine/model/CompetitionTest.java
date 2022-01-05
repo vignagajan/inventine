@@ -18,7 +18,7 @@ class CompetitionTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
-    void getterSetter(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name) {
+    void getterSetter(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name, String header_Id,Timestamp starting_At,String over_view, char status) {
 
         this.competition.setCompetitionId(competition_Id);
         this.competition.setOrganizationId(organization_Id);
@@ -31,6 +31,10 @@ class CompetitionTest {
         this.competition.setCType(c_type);
         this.competition.setPType(p_type);
         this.competition.setCompetitionName(competition_name);
+        this.competition.setHeaderId(header_Id);
+        this.competition.setStartingAt(starting_At);
+        this.competition.setOverView(over_view);
+        this.competition.setStatus(status);
 
         assertEquals(competition_Id, this.competition.getCompetitionId());
         assertEquals(organization_Id, this.competition.getOrganizationId());
@@ -43,5 +47,9 @@ class CompetitionTest {
         assertEquals(c_type,this.competition.getCType());
         assertEquals(p_type,this.competition.getPType());
         assertEquals(competition_name,this.competition.getCompetitionName());
+        assertEquals(header_Id,this.competition.getHeaderId());
+        assertEquals(starting_At,this.competition.getStartingAt());
+        assertEquals(over_view,this.competition.getOverView());
+        assertEquals(status,this.competition.getStatus());
     }
 }

@@ -33,7 +33,7 @@ class OrganizationDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
-    void create(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at) {
+    void create(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number,String created_at,String header_Id,String logo_Id,char org_type,char status) {
 
         this.organization.setOrganizationId(organization_Id);
         this.organization.setCreatorId(creator_Id);
@@ -42,7 +42,12 @@ class OrganizationDaoImplementationTest {
         this.organization.setAddress(address);
         this.organization.setDistrict(district);
         this.organization.setContactNumber(contact_number);
-        this.organization.setCreatedAt(created_at);
+      //this.organization.setCreatedAt(created_at);
+
+        this.organization.setHeaderId(header_Id);
+        this.organization.setLogoId(logo_Id);
+        this.organization.setOrgType(org_type);
+        this.organization.setStatus(status);
 
 
         assertTrue(this.organizationDao.create(organization));
@@ -51,7 +56,7 @@ class OrganizationDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
-    void getOrganization(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number) {
+    void getOrganization(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type,char status) {
 
         this.organization = this.organizationDao.getOrganization(organization_Id);
 
@@ -60,15 +65,21 @@ class OrganizationDaoImplementationTest {
         assertEquals(support_Team_Id, this.organization.getSupportTeamId());
         assertEquals(name, this.organization.getName());
         assertEquals(address, this.organization.getAddress());
+        assertEquals(district,this.organization.getDistrict());
         assertEquals(contact_number, this.organization.getContactNumber());
+       // assertEquals(created_at,this.organization.getCreatedAt());
+        assertEquals(header_Id, this.organization.getHeaderId());
+        assertEquals(logo_Id, this.organization.getLogoId());
+        assertEquals(org_type,this.organization.getOrgType());
+        assertEquals(status,this.organization.getStatus());
 
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
-    void getOrganizations(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number) {
+    void getOrganizations(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type,char status) {
 
-        List<Organization> ls = this.organizationDao.getOrganizations("creatorid=3");
+        List<Organization> ls = this.organizationDao.getOrganizations("");
 
         this.organization.setOrganizationId(organization_Id);
         this.organization.setCreatorId(creator_Id);
@@ -77,6 +88,11 @@ class OrganizationDaoImplementationTest {
         this.organization.setAddress(address);
         this.organization.setDistrict(district);
         this.organization.setContactNumber(contact_number);
+      //  this.organization.setCreatedAt(created_at);
+        this.organization.setHeaderId(header_Id);
+        this.organization.setLogoId(logo_Id);
+        this.organization.setOrgType(org_type);
+        this.organization.setStatus(status);
 
 
         assertEquals(ls.get(0).getOrganizationId(),this.organization.getOrganizationId());
@@ -86,21 +102,32 @@ class OrganizationDaoImplementationTest {
         assertEquals(ls.get(0).getAddress(),this.organization.getAddress());
         assertEquals(ls.get(0).getDistrict(),this.organization.getDistrict());
         assertEquals(ls.get(0).getContactNumber(),this.organization.getContactNumber());
+       // assertEquals(ls.get(0).getCreatedAt(),this.organization.getCreatedAt());
+        assertEquals(ls.get(0).getHeaderId(),this.organization.getHeaderId());
+        assertEquals(ls.get(0).getLogoId(),this.organization.getLogoId());
+        assertEquals(ls.get(0).getOrgType(),this.organization.getOrgType());
+        assertEquals(ls.get(0).getStatus(),this.organization.getStatus());
+
 
 
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
-    void update(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number) {
+    void update(String organization_Id,String creator_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type,char status) {
 
         this.organization.setOrganizationId(organization_Id);
-        this.organization.setCreatorId("5");
-        this.organization.setSupportTeamId("4");
+        this.organization.setCreatorId(creator_Id);
+        this.organization.setSupportTeamId(support_Team_Id);
         this.organization.setName(name);
         this.organization.setAddress(address);
         this.organization.setDistrict("jaffna");
         this.organization.setContactNumber(contact_number);
+     //   this.organization.setCreatedAt(created_at);
+        this.organization.setHeaderId(header_Id);
+        this.organization.setLogoId(logo_Id);
+        this.organization.setOrgType(org_type);
+        this.organization.setStatus(status);
 
 
         this.organizationDao.update(this.organization);
@@ -108,12 +135,18 @@ class OrganizationDaoImplementationTest {
         Organization updated = this.organizationDao.getOrganization(organization_Id);
 
         assertEquals(this.organization.getOrganizationId(),updated.getOrganizationId());
-        assertEquals("5",updated.getCreatorId());
-        assertEquals("4",updated.getSupportTeamId());
+        assertEquals(this.organization.getCreatorId(),updated.getCreatorId());
+        assertEquals(this.organization.getSupportTeamId(),updated.getSupportTeamId());
         assertEquals(this.organization.getName(),updated.getName());
         assertEquals(this.organization.getAddress(),updated.getAddress());
         assertEquals("jaffna",updated.getDistrict());
         assertEquals(this.organization.getContactNumber(),updated.getContactNumber());
+       // assertEquals(this.organization.getCreatedAt(),updated.getCreatedAt());
+        assertEquals(this.organization.getHeaderId(),updated.getHeaderId());
+        assertEquals(this.organization.getLogoId(),updated.getLogoId());
+        assertEquals(this.organization.getOrgType(),updated.getOrgType());
+        assertEquals(this.organization.getStatus(),updated.getStatus());
+
 
 
     }

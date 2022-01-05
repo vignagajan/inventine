@@ -45,39 +45,37 @@
     <!-- the 4 cards containing data at top -->
     <div class="main-overview">
 
-        <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
-            <div><i class="far fa-lightbulb fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card1_color}">
+            <div><i class="far ${card1_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div> Organizations</div>
-                <div class="overviewcard__info" style="font-size: 36px; float: right;">10</div>
+                <div>${card1_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card1_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(255, 196, 0);">
-            <div><i class="far fa-lightbulb fa-2x"></i></div>
-            <div class="overviewcard__icon" >
-                <div>School</div>
-                <div class="overviewcard__info"style="font-size: 36px;float: right">8</div>
-            </div>
-        </div>
-
-        <div class="overviewcard" style="background-color:white;color: rgb(255, 0, 76);">
-            <div><i class="far fa-lightbulb fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card2_color}">
+            <div><i class="far ${card2_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Universities</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">4</div>
+                <div>${card2_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card2_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(0, 110, 255);">
-            <div><i class="far fa-lightbulb fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card3_color}">
+            <div><i class="far ${card3_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Deleted</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">4</div>
+                <div>${card3_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card3_count}</div>
             </div>
         </div>
 
-
+        <div class="overviewcard" style="background-color:white;color: ${card4_color}">
+            <div><i class="far ${card4_icon} fa-2x"></i></div>
+            <div class="overviewcard__icon">
+                <div>${card4_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card4_count}</div>
+            </div>
+        </div>
 
     </div>
     <!-- end of 4 data cards -->
@@ -86,8 +84,13 @@
         <a href="http://localhost:8080/inventine_war/dashboard/organization/create">
             <button class="createbutton">Create </button></a>
     </div>
+    <% if (session.getAttribute("role").toString().charAt(0) == 'C'
+             ) {
+    %>
 
     <div class="main-tables">
+
+
         <table id="example" class="table" cellspacing="0" width="100%">
             <thead>
             <tr>
@@ -124,8 +127,8 @@
                 <td><% out.print(organization.getAddress());%></td>
                 <td><% out.print(organization.getDistrict());%></td>
 
-                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${host_url}/organization-profile'">View</button>
-                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/organization/update'">Update</button>
+                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/organization-profile'">View</button>
+                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/organization/update/<% out.print(organization.getOrganizationId());%>'">Update</button>
                     <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
 
                 </td>
@@ -136,6 +139,76 @@
             </tbody>
         </table>
     </div>
+    <%} else{%>
+
+    <div class="main-tables">
+    <table id="example1" class="table" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>Organization ID</th>
+                <th>Creator ID</th>
+                <th>Support team ID</th>
+                <th>Organization Name</th>
+                <th>Organization Address</th>
+                <th>Organization District</th>
+                <th>Organization Contact_Number</th>
+                <th>Organization CreatedAt</th>
+
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tfoot>
+            <tr>
+                <th>Organization ID</th>
+                <th>Creator ID</th>
+                <th>Support team ID</th>
+                <th>Organization Name</th>
+                <th>Organization Address</th>
+                <th>Organization District</th>
+                <th>Organization Contact_Number</th>
+                <th>Organization CreatedAt</th>
+
+            </tr>
+            </tfoot>
+
+            <tbody>
+            <%
+                for (Organization organization: (ArrayList<Organization>)request.getAttribute("organizations")){
+            %>
+            <tr>
+                <td><% out.print(organization.getOrganizationId());%></td>
+                <td><% out.print(organization.getCreatorId());%></td>
+                <td><% out.print(organization.getSupportTeamId());%></td>
+                <td><% out.print(organization.getName());%></td>
+                <td><% out.print(organization.getAddress());%></td>
+
+                <td><% out.print(organization.getDistrict());%></td>
+                <td><% out.print(organization.getContactNumber());%></td>
+                <td><% out.print(organization.getCreatedAt());%></td>
+
+
+                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/organization-profile'">View</button>
+
+                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/organization/update/<% out.print(organization.getOrganizationId());%>'">Update</button>
+                    <% if (session.getAttribute("role").toString().charAt(0) == 'A' ) {
+
+                    %>
+                    <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+                    <%}%>
+
+
+                </td>
+            </tr>
+            <%}%>
+
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <%}%>
 
 
 
@@ -204,6 +277,6 @@
 
     }
 </script>
-<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>

@@ -101,8 +101,8 @@
                 <td><% out.print(competition.getPrizeMoney());%></td>
                 <td><% out.print(competition.getCreatedAt());%></td>
                 <td><% out.print(competition.getEndingAt());%></td>
-                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${host_url}/competition-profile'">View</button>
-                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/competition/update'">Update</button>
+                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/competition-profile'">View</button>
+                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/competition/update'">Update</button>
                     <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
 
                 </td>
@@ -154,6 +154,6 @@
 
     }
 </script>
-<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>
