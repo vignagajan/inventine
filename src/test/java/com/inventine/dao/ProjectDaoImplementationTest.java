@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -31,7 +32,7 @@ class ProjectDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Project.csv", numLinesToSkip = 1)
-    void create( String project_id, String creator_id, String support_team_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry, String project_name, String details, String category) {
+    void create( String project_id, String creator_id, String support_team_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry, String project_name, String description, String category) {
 
         this.project.setProjectId(project_id);
         this.project.setCreatorId(creator_id);
@@ -42,7 +43,7 @@ class ProjectDaoImplementationTest {
         this.project.setDateOfExpiry(date_of_expiry);
         this.project.setCreatedAt(created_at);
         this.project.setProjectName(project_name);
-        this.project.setDetails(details);
+        this.project.setDescription(description);
         this.project.setCategory(category);
 
         assertTrue(this.projectDao.create(project));
@@ -50,7 +51,7 @@ class ProjectDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Project.csv", numLinesToSkip = 1)
-    void getProject(String project_id, String creator_id, String support_team_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry, String project_name, String details, String category) {
+    void getProject(String project_id, String creator_id, String support_team_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry, String project_name, String description, String category) {
 
         this.project = this.projectDao.getProject(project_id);
 
@@ -62,14 +63,14 @@ class ProjectDaoImplementationTest {
         assertEquals(requested_amount, this.project.getRequestedAmount());
         assertEquals(date_of_expiry, this.project.getDateOfExpiry());
         assertEquals(project_name, this.project.getProjectName());
-        assertEquals(details, this.project.getDetails());
+        assertEquals(description, this.project.getDescription());
         assertEquals(category, this.project.getCategory());
 
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Project.csv", numLinesToSkip = 1)
-    void getProjects(String project_id, String creator_id, String support_team_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry, String project_name, String details, String category) {
+    void getProjects(String project_id, String creator_id, String support_team_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry, String project_name, String description, String category) {
 
         List<Project> ls = this.projectDao.getProjects("creatorid=5");
 
@@ -81,7 +82,7 @@ class ProjectDaoImplementationTest {
         this.project.setRequestedAmount(requested_amount);
         this.project.setDateOfExpiry(date_of_expiry);
         this.project.setProjectName(project_name);
-        this.project.setDetails(details);
+        this.project.setDescription(description);
         this.project.setCategory(category);
 
 
@@ -93,14 +94,14 @@ class ProjectDaoImplementationTest {
         assertEquals(ls.get(0).getRequestedAmount(),this.project.getRequestedAmount());
         assertEquals(ls.get(0).getDateOfExpiry(),this.project.getDateOfExpiry());
         assertEquals(ls.get(0).getProjectName(),this.project.getProjectName());
-        assertEquals(ls.get(0).getDetails(),this.project.getDetails());
+        assertEquals(ls.get(0).getDescription(),this.project.getDescription());
         assertEquals(ls.get(0).getCategory(),this.project.getCategory());
 
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Project.csv", numLinesToSkip = 1)
-    void update(String project_id, String creator_id, String support_team_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry, String project_name, String details, String category) {
+    void update(String project_id, String creator_id, String support_team_id, Timestamp created_at, char financial_status, char status, int requested_amount, Timestamp date_of_expiry, String project_name, String description, String category) {
 
         this.project.setProjectId(project_id);
         this.project.setCreatorId(creator_id);
@@ -110,7 +111,7 @@ class ProjectDaoImplementationTest {
         this.project.setRequestedAmount(requested_amount);
         this.project.setDateOfExpiry(date_of_expiry);
         this.project.setProjectName(project_name);
-        this.project.setDetails(details);
+        this.project.setDescription(description);
         this.project.setCategory(category);
 
 
@@ -126,7 +127,7 @@ class ProjectDaoImplementationTest {
         assertEquals(this.project.getRequestedAmount(),updated.getRequestedAmount());
         assertEquals(this.project.getDateOfExpiry(),updated.getDateOfExpiry());
         assertEquals(this.project.getProjectName(),updated.getProjectName());
-        assertEquals(this.project.getDetails(),updated.getDetails());
+        assertEquals(this.project.getDescription(),updated.getDescription());
         assertEquals(this.project.getCategory(),updated.getCategory());
 
     }

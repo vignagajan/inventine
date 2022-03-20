@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("host_url",System.getenv("HOST_URL"));
         request.setAttribute("title","Home");
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 

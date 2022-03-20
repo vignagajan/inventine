@@ -42,7 +42,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     @Override
     public boolean create(Project project) {
 
-        String query = "INSERT INTO project( creatorId, supportTeamId, financialStatus , status, requestedAmount, dateOfExpiry, projectName , details, category) " +
+        String query = "INSERT INTO project( creatorId, supportTeamId, financialStatus , status, requestedAmount, dateOfExpiry, projectName , description, category) " +
                 "VALUES (?, ?, CAST(? AS stat2), CAST(? AS stat1), ?, ?, ?, ?, ?)";
 
         int n = 0;
@@ -59,7 +59,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             stmt.setInt(5, project.getRequestedAmount());
             stmt.setTimestamp(6, project.getDateOfExpiry());
             stmt.setString(7, project.getProjectName());
-            stmt.setString(8, project.getDetails());
+            stmt.setString(8, project.getDescription());
             stmt.setString(9, project.getCategory());
 
 
@@ -87,7 +87,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             project.setRequestedAmount(rs.getInt("requestedAmount"));
             project.setDateOfExpiry(rs.getTimestamp("dateOfExpiry"));
             project.setProjectName(rs.getString("projectName"));
-            project.setDetails(rs.getString("details"));
+            project.setDescription(rs.getString("description"));
             project.setCategory(rs.getString("category"));
 
 
@@ -173,7 +173,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     @Override
     public boolean update(Project project) {
 
-        String query = String.format("UPDATE project SET creatorId=?, supportTeamId=?,  financialStatus=CAST(? AS stat2), status=CAST(? AS stat1), requestedAmount=?, dateOfExpiry=? , projectName=?, details=?, category=? WHERE projectId =?");
+        String query = String.format("UPDATE project SET creatorId=?, supportTeamId=?,  financialStatus=CAST(? AS stat2), status=CAST(? AS stat1), requestedAmount=?, dateOfExpiry=? , projectName=?, description=?, category=? WHERE projectId =?");
 
         try {
 
@@ -187,7 +187,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             stmt.setInt(5, project.getRequestedAmount());
             stmt.setTimestamp(6, project.getDateOfExpiry());
             stmt.setString(7,project.getProjectName());
-            stmt.setString(8,project.getDetails());
+            stmt.setString(8,project.getDescription());
             stmt.setString(9,project.getCategory());
             stmt.setInt(10, Integer.parseInt(project.getProjectId()));
 
