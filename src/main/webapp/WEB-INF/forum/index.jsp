@@ -10,8 +10,8 @@
 
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${host_url}/static/css/home.css">
-    <link rel="stylesheet" href="${host_url}/static/css/forum.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/home.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/forum.css">
 
 </head>
 <body>
@@ -218,7 +218,7 @@
 
 
 <%@ include file="/WEB-INF/components/footer.jsp" %>
-<script src="${host_url}/static/js/forum.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/forum.js"></script>
 </body>
 </html>
 

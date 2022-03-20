@@ -17,19 +17,7 @@ public class School extends Organization{
         return organizationId;
     }
 
-    @Override
-    public boolean setOrganizationId(String organizationId) {
-        this.validator.setTxt(organizationId);
-        this.validator.setMaxLength(6);
-        if(this.validator.isNumber())
-        {
-            this.organizationId = organizationId;
-            return true;
-        }
-        return false;
 
-
-    }
 
     public boolean setSchoolId(String schoolId) {
 
@@ -42,6 +30,20 @@ public class School extends Organization{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean setOrganizationId(String organizationId) {
+        this.validator.setTxt(organizationId);
+        this.validator.setMaxLength(6);
+        if(this.validator.isNumber())
+        {
+            this.organizationId = organizationId;
+            return true;
+        }
+        return false;
+
+
     }
 
 

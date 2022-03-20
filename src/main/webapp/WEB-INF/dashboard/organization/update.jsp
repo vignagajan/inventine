@@ -1,3 +1,4 @@
+<%@ page import="com.inventine.model.Organization" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -8,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/dashboard/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${host_url}/static/css/dashboard/form.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/dashboard/form.css">
 
 
 </head>
@@ -16,7 +17,7 @@
 
 <%@ include file="/WEB-INF/components/dashboard/sidebar.jsp" %>
 <%@ include file="/WEB-INF/components/dashboard/header.jsp" %>
-
+<%   Organization organization = (Organization)request.getAttribute("organization");%>
 
 <div class="container">
     <div class="content">
@@ -27,20 +28,27 @@
 
                 <div class="input-box">
                     <span class="details">Organization Name</span>
-                    <input type="text" name="name" id="name"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}">
+                    <input type="text" name="name" id="name"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(organization.getName());%>">
                     <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Organization Address</span>
-                    <input type="text" name="address" id="address"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}">
+                    <input type="text" name="address" id="address"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(organization.getAddress());%>">
                     <span class="error" aria-live="polite" style="display: none;">A address of length 1-100 and (/*-+.,) special characters are allowed</span>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Organization district</span>
-                    <input type="text" name="district" id="district"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}">
+                    <input type="text" name="district" id="district"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(organization.getDistrict());%>" >
                     <span class="error" aria-live="polite" style="display: none;">A district of length 1-100 and (/*-+.,) special characters are allowed</span>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Contact Number</span>
+                    <input type="text"
+                           id="contactnumber" type="tel" name="contactnumber" placeholder="" required pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" value="<%out.print(organization.getContactNumber());%>">
+                    <span class="error" aria-live="polite" style="display: none;" >Enter phone number in international code</span>
                 </div>
 
                 <%--                <div class="input-box">--%>
@@ -99,14 +107,14 @@
         </div>
 
         <div style="display: flex">
-            <button type="button" id="cancelBtn" onclick="location.href='${host_url}/project';">Cancel</button>
+            <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/project';">Cancel</button>
             <button onclick="signupValidation()">Update</button>
         </div>
 
     </div>
 </div>
 </div>
-<script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/validate.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/validate.js"></script>
 
 <script>
 
@@ -151,11 +159,10 @@
 
 </script>
 
-<script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/dashboard.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 
 
 
 
 </body>
 </html>
-

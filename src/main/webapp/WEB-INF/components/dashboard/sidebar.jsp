@@ -4,7 +4,7 @@
 
     <!--div for logo and hamburger button -->
     <div class="logo-details">
-        <a href="${host_url}/" style="text-decoration: none;">
+        <a href="${System.getenv("HOST_URL")}/" style="text-decoration: none;">
             <div class="logo_name">inventine </div>
         </a>
         <i class="bx bx-menu" id="btn" ></i>
@@ -16,7 +16,7 @@
     <ul class="nav-list">
 
         <li>
-            <a href="${host_url}/dashboard">
+            <a href="${System.getenv("HOST_URL")}/dashboard">
                 <i class="fab fa-dashcube"></i>
                 <span class="links_name">Dashboard</span>
             </a>
@@ -25,7 +25,7 @@
         <% if(session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
-            <a href="${host_url}/dashboard/employee">
+            <a href="${System.getenv("HOST_URL")}/dashboard/employee">
                 <i class="fas fa-users-cog"></i>
                 <span class="links_name">Employee</span>
             </a>
@@ -37,7 +37,7 @@
         <%--            session.getAttribute("role").toString().charAt(0) == 'S'){--%>
         <%--    %>--%>
         <%--    <li>--%>
-        <%--      <a href="${host_url}/dashboard/investor">--%>
+        <%--      <a href="${System.getenv("HOST_URL")}/dashboard/investor">--%>
         <%--        <i class="fas fa-money-check-alt"></i>--%>
         <%--        <span class="links_name">Investors</span>--%>
         <%--      </a>--%>
@@ -49,7 +49,7 @@
         <%--            session.getAttribute("role").toString().charAt(0) == 'S'){--%>
         <%--    %>--%>
         <%--    <li>--%>
-        <%--      <a href="${host_url}/dashboard/creator">--%>
+        <%--      <a href="${System.getenv("HOST_URL")}/dashboard/creator">--%>
         <%--        <i class="fas fa-chalkboard-teacher fa-2x"></i>--%>
         <%--        <span class="links_name">Creators</span>--%>
         <%--      </a>--%>
@@ -63,7 +63,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
-            <a href="${host_url}/dashboard/project">
+            <a href="${System.getenv("HOST_URL")}/dashboard/project">
                 <i class="far fa-lightbulb"></i>
                 <span class="links_name">Projects</span>
             </a>
@@ -77,7 +77,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
-            <a href="${host_url}/dashboard/meeting">
+            <a href="${System.getenv("HOST_URL")}/dashboard/meeting">
                 <i class="fas fa-people-carry"></i>
                 <span class="links_name">Meetings</span>
             </a>
@@ -91,7 +91,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
-            <a href="${host_url}/dashboard/issue">
+            <a href="${System.getenv("HOST_URL")}/dashboard/issue">
                 <i class="fas fa-ticket-alt"></i>
                 <span class="links_name">Issues</span>
             </a>
@@ -104,7 +104,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
-            <a href="${host_url}/dashboard/payment">
+            <a href="${System.getenv("HOST_URL")}/dashboard/payment">
                 <i class="fas fa-funnel-dollar"></i>
                 <span class="links_name">Transactions</span>
             </a>
@@ -112,10 +112,11 @@
         <%}%>
 
         <% if(session.getAttribute("role").toString().charAt(0) == 'C' ||
-                session.getAttribute("role").toString().charAt(0) == 'A'){
+                session.getAttribute("role").toString().charAt(0) == 'A'||
+                session.getAttribute("role").toString().charAt(0) == 'S'){
         %>
         <li>
-            <a href="${host_url}/dashboard/organization">
+            <a href="${System.getenv("HOST_URL")}/dashboard/organization">
                 <i class="far fa-building"></i>
                 <span class="links_name">Organization</span>
             </a>
@@ -124,10 +125,12 @@
 
 
         <% if(session.getAttribute("role").toString().charAt(0) == 'C' ||
-                session.getAttribute("role").toString().charAt(0) == 'A'){
+                session.getAttribute("role").toString().charAt(0) == 'A'||
+                session.getAttribute("role").toString().charAt(0) == 'S'||
+                session.getAttribute("role").toString().charAt(0) == 'F'){
         %>
         <li>
-            <a href="${host_url}/dashboard/competition">
+            <a href="${System.getenv("HOST_URL")}/dashboard/competition">
                 <i class="fas fa-trophy"></i>
                 <span class="links_name">Competition</span>
             </a>
@@ -135,19 +138,19 @@
         <%}%>
 
 
-        <%--        <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||--%>
-        <%--                session.getAttribute("role").toString().charAt(0) == 'C' ||--%>
-        <%--                session.getAttribute("role").toString().charAt(0) == 'F' ||--%>
-        <%--                session.getAttribute("role").toString().charAt(0) == 'S' ||--%>
-        <%--                session.getAttribute("role").toString().charAt(0) == 'A'){--%>
-        <%--        %>--%>
-        <%--        <li>--%>
-        <%--            <a href="${host_url}/dashboard/chat">--%>
-        <%--                <i class="fas fa-comments"></i>--%>
-        <%--                <span class="links_name">Chat</span>--%>
-        <%--            </a>--%>
-        <%--        </li>--%>
-        <%--        <%}%>--%>
+                <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||
+                        session.getAttribute("role").toString().charAt(0) == 'C' ||
+                        session.getAttribute("role").toString().charAt(0) == 'F' ||
+                        session.getAttribute("role").toString().charAt(0) == 'S' ||
+                        session.getAttribute("role").toString().charAt(0) == 'A'){
+                %>
+                <li>
+                    <a href="${System.getenv("HOST_URL")}/dashboard/chat">
+                        <i class="fas fa-comments"></i>
+                        <span class="links_name">Chat</span>
+                    </a>
+                </li>
+                <%}%>
 
         <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||
                 session.getAttribute("role").toString().charAt(0) == 'C' ||
@@ -156,7 +159,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
-            <a href="${host_url}/forum">
+            <a href="${System.getenv("HOST_URL")}/forum">
                 <i class="far fa-comment-alt"></i>
                 <span class="links_name">Forum</span>
             </a>
@@ -166,7 +169,7 @@
         <%--        <% if( session.getAttribute("role").toString().charAt(0) == 'A'){--%>
         <%--        %>--%>
         <%--        <li>--%>
-        <%--            <a href="${host_url}/dashboard/supportTeam">--%>
+        <%--            <a href="${System.getenv("HOST_URL")}/dashboard/supportTeam">--%>
         <%--                <i class="fas fa-hands-helping"></i>--%>
         <%--                <span class="links_name">Support Team</span>--%>
         <%--            </a>--%>
@@ -176,7 +179,7 @@
         <%--        <% if( session.getAttribute("role").toString().charAt(0) == 'A'){--%>
         <%--        %>--%>
         <%--        <li>--%>
-        <%--            <a href="${host_url}/dashboard/financeAdmin">--%>
+        <%--            <a href="${System.getenv("HOST_URL")}/dashboard/financeAdmin">--%>
         <%--                <i class="fas fa-suitcase"></i>--%>
         <%--                <span class="links_name">Finance Admin</span>--%>
         <%--            </a>--%>
@@ -197,7 +200,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li class="logout">
-            <a href="${host_url}/logout">
+            <a href="${System.getenv("HOST_URL")}/logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="links_name">Logout</span>
             </a>

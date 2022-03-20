@@ -138,8 +138,10 @@
         <td><% out.print(status_values.get(creds.get(i).getStatus()));%></td>
         <td><% out.print(new Date(users.get(i).getCreatedAt().getTime()));%></td>
         <td>
-          <button class="updatebutton" id="idUpdateButton" style=":hover{cursor: pointer;}" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/employee/update/<% out.print(users.get(i).getUserId());%>'">Update</button>
-          <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
+
+        <button class="updatebutton" id="idUpdateButton" style=":hover{cursor: pointer;}" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/employee/update/<% out.print(users.get(i).getUserId());%>'">Update</button>
+
+        <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
         </td>
       </tr>
       <%}%>

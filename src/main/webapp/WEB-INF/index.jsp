@@ -1,3 +1,8 @@
+<%@ page import="com.inventine.model.Project" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.util.Hashtable" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -5,7 +10,8 @@
 
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${host_url}/static/css/home.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/home.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/project-cards.css">
 
 </head>
 <body>
@@ -38,88 +44,76 @@
     <!-- discription and image end -->
 
     <div class="search-container">
-        <div class="wrap">
-            <div class="search">
-                <input type="text" class="searchTerm" placeholder="What are you looking for?">
-                <button type="submit" class="searchButton">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
+        <div class="search-bar">
+            <table class="search-bar-element">
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Search" class="search">
+                    </td>
+                    <td>
+                        <a href="#"><i class="fas fa-search" style="color:#0e4a6c;text-align:right"></i></a>
+                    </td>
+                </tr>
+            </table>
         </div>
+<%--        <div class="wrap">--%>
+<%--            <div class="search">--%>
+<%--                <input type="text" class="searchTerm" placeholder="What are you looking for?">--%>
+<%--                <button type="submit" class="searchButton">--%>
+<%--                    <i class="fa fa-search"></i>--%>
+<%--                </button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
         <div class="rowbutton">
             <a href=""><button class="b">Food</button></a>
             <a href=""><button class="b">Software</button></a>
             <a href=""><button class="b">Tech</button></a>
             <a href=""><button class="b">All</button></a>
             <a href=""><button class="b">Art</button></a>
-            <a href=""><button class="b">Film</button></a>
-            <a href=""><button class="b">Punlication</button></a>
+            <a href=""><button class="b">Design</button></a>
+            <a href=""><button class="b">Publication</button></a>
         </div>
     </div>
 
 
     <div class="main">
         <ul class="cards">
-            <li class="cards_item">
-                <div class="card">
-                    <div class="card_image"><img style="height: 100%; width: 100%;" src="https://www.gavias-theme.com/wp/krowd/wp-content/uploads/2016/03/campaign-4-180x180.jpg"></div>
-                    <div class="card_content">
-                        <h2 class="card_title">Mirror One | Your life at a glance</h2>
-                        <button class="btn card_btn">View</button>
+            <%
+                for ( Project project: (ArrayList<Project>)request.getAttribute("project")){
+            %>
+            <div class="card">
+                <div class="card-header">
+                    <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
+                    <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                    </a>
+                </div>
+                <div class="card-body">
+                    <span class="tag tag-purple"><% out.print(project.getCategory());%></span>
+                    <h4>
+                        <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
+                            <% out.print(project.getProjectName()); %>
+                        </a>
+                    </h4>
+                    <p>
+                        The future can be scary, but there are ways to
+                        deal with that fear.
+                    </p>
+                    <div class="user">
+                        <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                        <div class="user-info">
+                            <h5></h5>
+                            <small><%out.print(new Date(project.getCreatedAt().getTime()));%></small>
+                        </div>
                     </div>
                 </div>
-            </li>
-            <li class="cards_item">
-                <div class="card">
-                    <div class="card_image"><img style="height: 100%; width: 100%;" src="https://i.etsystatic.com/6563235/r/il/328096/2585488407/il_570xN.2585488407_3gpt.jpg"></div>
-                    <div class="card_content">
-                        <h2 class="card_title">Wildlife Illustrated GiftWrap</h2>
-                        <button class="btn card_btn">View</button>
-                    </div>
-                </div>
-            </li>
-            <li class="cards_item">
-                <div class="card">
-                    <div class="card_image"><img style="height: 100%; width: 100%;" src="https://www.gavias-theme.com/wp/krowd/wp-content/uploads/2016/03/campaign-5-180x180.jpg"></div>
-                    <div class="card_content">
-                        <h2 class="card_title">VR Ears | Hear Off-World Listen Off-Ear</h2>
-                        <button class="btn card_btn">View</button>
-                    </div>
-                </div>
-            </li>
-            <li class="cards_item">
-                <div class="card">
-                    <div class="card_image"><img style="height: 100%; width: 100%;" src="https://ae01.alicdn.com/kf/HTB1YA5RedqUQKJjSZFIq6AOkFXaW/Creative-Notebook-Cactus-Leaves-PU-Leather-Cover-Planner-Diary-Book-Exercise-Composition-Binding-Notepad-Gift-Stationery.jpg"></div>
-                    <div class="card_content">
-                        <h2 class="card_title">Notebook for your creative observation</h2>
-                        <button class="btn card_btn">View</button>
-                    </div>
-                </div>
-            </li>
-            <li class="cards_item">
-                <div class="card">
-                    <div class="card_image"><img style="height: 100%; width: 100%;" src="https://www.ofdesign.net/wp-content/uploads/images/100-interior-design-ideas-for-kids-room-with-bright-colors-for-girls-and-boys-0-2061936751.jpg"></div>
-                    <div class="card_content">
-                        <h2 class="card_title">Beautiful colors for all the designers & students</h2>
-                        <button class="btn card_btn">View</button>
-                    </div>
-                </div>
-            </li>
-            <li class="cards_item">
-                <div class="card">
-                    <div class="card_image"><img style="height: 100%; width: 100%;" src="https://www.gavias-theme.com/wp/krowd/wp-content/uploads/2016/03/campaign-2-180x180.jpg"></div>
-                    <div class="card_content">
-                        <h2 class="card_title">SelfDriving Robot for Target Shooting Game</h2>
-                        <button class="btn card_btn">View</button>
-                    </div>
-                </div>
-            </li>
+            </div>
+           <%}%>
 
         </ul>
-        </div>
+    </div>
     </div>
 
-    <%@ include file="/WEB-INF/components/footer.jsp" %>
 
 </body>
+<%@ include file="/WEB-INF/components/footer.jsp" %>
 </html>

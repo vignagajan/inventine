@@ -12,7 +12,6 @@ public class SubmitDaoImplementation implements SubmitDaoInterface {
 
     static Connection conn = DBManager.getConnection();
 
-
     @Override
     public int getCount(String condition)  {
 
@@ -39,11 +38,30 @@ public class SubmitDaoImplementation implements SubmitDaoInterface {
         return count;
     }
 
+//    @Override
+//    public ResultSet executeQuery(String query)  {
+//        ResultSet rs = null;
+//
+//        try {
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            rs = stmt.executeQuery();
+//            rs.next();
+//
+//        }catch (SQLException e){
+//
+//
+//            e.printStackTrace();
+//        }
+//
+//        return rs;
+//    }
+
+
     @Override
     public boolean create(Submit submit) {
 
-        String query = "INSERT INTO submit(projectId,competitionId) " +
-                "VALUES (?, ?)";
+        String query = "INSERT INTO Submit(  projectId,competitionId) " +
+                "VALUES ( ?,?)";
 
         int n = 0;
 
@@ -51,9 +69,8 @@ public class SubmitDaoImplementation implements SubmitDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
-            stmt.setInt(1, Integer.parseInt(submit.getProjectId()));
-            stmt.setInt(2, Integer.parseInt(submit.getCompetitionId()));
+            stmt.setInt(1,Integer.parseInt(submit.getProjectId()));
+            stmt.setInt(2,Integer.parseInt(submit.getCompetitionId()));
 
 
 
@@ -78,6 +95,7 @@ public class SubmitDaoImplementation implements SubmitDaoInterface {
             submit.setCompetitionId(rs.getString("competitionId"));
 
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -88,7 +106,7 @@ public class SubmitDaoImplementation implements SubmitDaoInterface {
     @Override
     public Submit getSubmit(String submitId) {
 
-        String query = "SELECT * FROM submit WHERE submitId= ? ";
+        String query = "SELECT * FROM Submit WHERE submitId= ?";
 
         Submit submit = new Submit();
 
@@ -96,14 +114,12 @@ public class SubmitDaoImplementation implements SubmitDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(submitId));
-
+            stmt.setInt(1,Integer.parseInt(submitId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 submit = setSubmit(submit, rs);
             }
-
 
             return submit;
 
@@ -111,25 +127,14 @@ public class SubmitDaoImplementation implements SubmitDaoInterface {
             e.printStackTrace();
         }
 
-
         return null;
 
     }
 
     @Override
-
     public List<Submit> getSubmits(String condition) {
 
-
         String query = "SELECT * FROM submit";
-
-        if (!condition.isEmpty()){
-
-            condition = String.format(" WHERE %s",condition);
-
-            query = query.concat(condition);
-
-        }
 
         List<Submit> ls = new ArrayList();
 
@@ -144,39 +149,31 @@ public class SubmitDaoImplementation implements SubmitDaoInterface {
                 ls.add(submit);
             }
 
-
             return ls;
-
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
         return null;
-
     }
 
     @Override
     public boolean update(Submit submit) {
 
-        String query = String.format("UPDATE submit SET projectId=?, competitionId=? WHERE submitId =?");
+        String query = String.format("UPDATE submit SET projectId=?,competitionId=? WHERE submitId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-
             stmt.setInt(1, Integer.parseInt(submit.getProjectId()));
             stmt.setInt(2, Integer.parseInt(submit.getCompetitionId()));
             stmt.setInt(3, Integer.parseInt(submit.getSubmitId()));
 
-
-
-
             stmt.executeUpdate();
 
-            return  true;
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();

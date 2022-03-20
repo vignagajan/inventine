@@ -59,7 +59,7 @@ class ParticipateDaoImplementationTest {
     @CsvFileSource(resources = "/model/Participate.csv", numLinesToSkip = 1)
     void getParticipates(String participate_id,  Timestamp created_at,String creator_id, String competition_id ) {
 
-        List<Participate> ls = this.participateDao.getParticipates("creatorid=5");
+        List<Participate> ls = this.participateDao.getParticipates("participate=20");
 
         this.participate.setParticipateId(participate_id);
         this.participate.setCreatorId(creator_id);
@@ -80,7 +80,7 @@ class ParticipateDaoImplementationTest {
 
         this.participate.setParticipateId(participate_id);
         this.participate.setCreatorId(creator_id);
-        this.participate.setCompetitionId("8");
+        this.participate.setCompetitionId("43");
 
 
 
@@ -90,7 +90,7 @@ class ParticipateDaoImplementationTest {
 
         assertEquals(this.participate.getParticipateId(),updated.getParticipateId());
         assertEquals(this.participate.getCreatorId(),updated.getCreatorId());
-        assertEquals("8",updated.getCompetitionId());
+        assertEquals("43",updated.getCompetitionId());
 
 
     }

@@ -1,3 +1,2 @@
- chat_id,receiver,content,created_at
- 2568,jack,howareyou12344,2021-09-25 10:23:12.0
- 453,sahar,fine,2021-09-24 10:23:12.0
+String chat_id, String sender_id,String receiver_id, String message, Timestamp created_at
+ 3,78,77,I LOVE YOU,2021-09-25 10:23:12.0
