@@ -1,50 +1,44 @@
-//package com.inventine.util;
-//
-//import javax.mail.*;
-//import javax.mail.internet.InternetAddress;
-//import javax.mail.internet.MimeMessage;
-//import java.util.Map;
-//import java.util.Properties;
-//
-//public class Mailer {
-//
-//    public static void main(String[] args) {
-//
-//        Map<String,String> dotEnv = DotEnv.load();
-//
-//        final String username = dotEnv.get("EMAIL_USERNAME");
-//        final String password = dotEnv.get("EMAIL_PASSWORD");
-//
-//        Properties prop = new Properties();
-//        prop.put("mail.smtp.host", "smtp.gmail.com");
-//        prop.put("mail.smtp.port", "587");
-//        prop.put("mail.smtp.auth", "true");
-//        prop.put("mail.smtp.starttls.enable", "true"); //TLS
-//
-//        Session session = Session.getInstance(prop,
-//                new javax.mail.Authenticator() {
-//                    protected PasswordAuthentication getPasswordAuthentication() {
-//                        return new PasswordAuthentication(username, password);
-//                    }
-//                });
-//
-//        try {
-//
-//            Message message = new MimeMessage(session);
-//            message.setFrom(new InternetAddress(username));
-//            message.setRecipients(
-//                    Message.RecipientType.TO,
-//                    InternetAddress.parse(mailId)
-//            );
-//            message.setSubject(subject);
-//            message.setText(body);
-//
-//            Transport.send(message);
-//
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//
-//        }
-//    }
-//
-//}
+package com.inventine.util;
+
+import java.io.UnsupportedEncodingException;
+import java.util.Properties;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+public class Mailer {
+
+    public static void send(String to,String subject,String msg){
+
+        final String user="mail.inventine@gmail.com";//change accordingly
+        final String pass="F%Zpg2K!m2=F$x-";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.ssl.enable", "true");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(user,pass);
+                    }
+                });
+
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(user,"Inventine Team"));
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+            message.setSubject(subject);
+            message.setContent(msg,"text/html");
+
+            Transport.send(message);
+
+        } catch (MessagingException | UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+}
