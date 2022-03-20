@@ -7,12 +7,12 @@
 //
 //class MailerTest {
 //
-//    Mailer mailer;
+//    Email mailer;
 //
 //    @Test
 //    void sendMail() {
 //
-//        mailer = new Mailer();
+//        mailer = new Email();
 //
 //        assertTrue(mailer.sendMail("ztxkaxvdxzpkcvy@metalunits.com","Hello World", "<h1>895</h1>"));
 //    }
