@@ -48,7 +48,7 @@
         <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
             <div><i class="far fa-lightbulb fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Private Organizations</div>
+                <div> Organizations</div>
                 <div class="overviewcard__info" style="font-size: 36px; float: right;">10</div>
             </div>
         </div>
@@ -124,9 +124,9 @@
                 <td><% out.print(organization.getAddress());%></td>
                 <td><% out.print(organization.getDistrict());%></td>
 
-                <td><button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
-                    <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
-                    <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${host_url}/organization-profile'">View</button>
+                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${host_url}/dashboard/organization/update'">Update</button>
+                    <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
 
                 </td>
             </tr>
@@ -188,7 +188,22 @@
 
         } );
     });
+
+
+    function deleteIt(){
+
+        Swal.fire({
+            title: 'Delete confirmation',
+            input: 'text',
+            inputLabel: 'Enter the Organization Name in the given box',
+            inputPlaceholder: 'Organization-Name',
+            iconColor: "#900",
+            confirmButtonColor: "#900",
+            showCancelButton: true,
+        })
+
+    }
 </script>
-<script src="static/js/dashboard/dashboard.js"></script>
+<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>

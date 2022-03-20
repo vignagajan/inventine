@@ -17,4 +17,6 @@ public interface PaymentDaoInterface{
 
     public int getCount(String condition) throws SQLException;
 
+    public  int getCountAmount(String condition) throws SQLException;
+
 }
