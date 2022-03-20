@@ -56,6 +56,20 @@
         <%--    </li>--%>
         <%--    <%}%>--%>
 
+
+        <% if(
+                session.getAttribute("role").toString().charAt(0) == 'A'||
+                        session.getAttribute("role").toString().charAt(0) == 'S'||
+                        session.getAttribute("role").toString().charAt(0) == 'F'){
+        %>
+        <li>
+            <a href="${System.getenv("HOST_URL")}/dashboard/competition">
+                <i class="fas fa-trophy"></i>
+                <span class="links_name">Customer</span>
+            </a>
+        </li>
+        <%}%>
+
         <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||
                 session.getAttribute("role").toString().charAt(0) == 'C' ||
                 session.getAttribute("role").toString().charAt(0) == 'F' ||
@@ -111,7 +125,7 @@
         </li>
         <%}%>
 
-        <% if(session.getAttribute("role").toString().charAt(0) == 'C' ||
+        <% if(session.getAttribute("role").toString().charAt(0) == 'F' ||
                 session.getAttribute("role").toString().charAt(0) == 'A'||
                 session.getAttribute("role").toString().charAt(0) == 'S'){
         %>
@@ -124,7 +138,7 @@
         <%}%>
 
 
-        <% if(session.getAttribute("role").toString().charAt(0) == 'C' ||
+        <% if(
                 session.getAttribute("role").toString().charAt(0) == 'A'||
                 session.getAttribute("role").toString().charAt(0) == 'S'||
                 session.getAttribute("role").toString().charAt(0) == 'F'){
