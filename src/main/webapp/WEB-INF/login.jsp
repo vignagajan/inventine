@@ -47,7 +47,7 @@
         </div>
 
         <hr style="margin-top: 20px; height: 10px;     border: none; border-top: medium double #0097e6;"/>
-        <div class="desc" style="color: #0097e6; margin-top: 20px; text-align: center" >Don't have an account? <a href="/signup">Signup</a></div>
+        <div class="desc" style="color: #0097e6; margin-top: 20px; text-align: center" >Don't have an account? <a href="${host_url}/signup">Signup</a></div>
 
     </div>
 

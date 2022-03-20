@@ -1,8 +1,11 @@
 package com.inventine.controller.dashboard.employee;
 
+import com.inventine.dao.CredsDaoImplementation;
 import com.inventine.dao.UserDaoImplementation;
+import com.inventine.model.Creds;
 import com.inventine.model.User;
 import com.inventine.util.DotEnv;
+import com.inventine.util.SHA256;
 import org.json.simple.JSONObject;
 
 import javax.servlet.*;
@@ -23,7 +26,6 @@ public class EmployeeCreateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
         request.setAttribute("title","Employee");
         request.getRequestDispatcher("/WEB-INF/dashboard/employee/create.jsp").forward(request, response);
     }
@@ -39,6 +41,8 @@ public class EmployeeCreateServlet extends HttpServlet {
         // Models and DAOs
         User user = new User();
         UserDaoImplementation userDao = new UserDaoImplementation();
+        Creds creds = new Creds();
+        CredsDaoImplementation credsDao = new CredsDaoImplementation();
 
         // Parse request data
         String first_name = request.getParameter("firstName");
@@ -49,10 +53,17 @@ public class EmployeeCreateServlet extends HttpServlet {
         String address = request.getParameter("address");
         String district = request.getParameter("district");
         char type = 'A';
+
         String username = request.getParameter("username");
+        String email= request.getParameter("email");
+        String password_ = request.getParameter("password");
+        char role = request.getParameter("role").charAt(0);
+        char status = 'A';
+
 
         // Data to be processed
         Timestamp dob = null;
+        String password = null;
 
         // Data preprocessing
         try {
@@ -61,6 +72,9 @@ public class EmployeeCreateServlet extends HttpServlet {
             Date date = dateFormat.parse(dob_);
             dob = new java.sql.Timestamp(date.getTime());
 
+            SHA256 hasher = new SHA256();
+            password = hasher.getHexString(password_);
+
         }catch (Exception e){
             ok = false;
             messages.clear();
@@ -68,11 +82,18 @@ public class EmployeeCreateServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Logic
-//        if(userDao.getCount("WHERE username=vicky") >= 1){
-//            ok=false;
-//            messages.add("Username is already found!");
-//        }
+        //////////////////////   Logic    //////////////////////////
+
+        String condition = "";
+
+        // Username availability check
+        condition = String.format("WHERE username=%s",username);
+        if(credsDao.getCount(condition) == 1){
+            ok=false;
+            messages.add("Username is already found!");
+        }
+
+        ////////////////////////////////////////////////////////////
 
         // Transactions
         if(ok){
@@ -86,6 +107,12 @@ public class EmployeeCreateServlet extends HttpServlet {
             ok = user.setDistrict(district);
             ok = user.setType(type);
 
+            ok = creds.setEmail(username);
+            ok = creds.setEmail(email);
+            ok = creds.setPassword(password);
+            ok = creds.setRole(role);
+            ok = creds.setStatus(status);
+
             if(!ok){
 
                 messages.clear();
@@ -94,8 +121,10 @@ public class EmployeeCreateServlet extends HttpServlet {
 
             }
 
+            int userId = userDao.create(user);
+
             // Pass model to DAO
-            if(userDao.create(user) == -1){
+            if(ok && (userId == -1) && !credsDao.create(creds)){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");

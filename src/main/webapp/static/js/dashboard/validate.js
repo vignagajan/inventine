@@ -84,6 +84,8 @@ function requestHandler(elements, url,success_msg,redirect_url) {
 
     const requestData = serialize(elements);
 
+    // requestData.append('ck',ck);
+
     request.open('post', url);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(requestData);
@@ -115,13 +117,13 @@ function responseHandler (responseObject,success_msg,redirect_url) {
 
             setTimeout(function () {
                 location.reload();
-            }, 2000);
+            }, 1000);
 
         } else{
 
             setTimeout(function () {
                 location.href = redirect_url;
-            }, 2000);
+            }, 1000);
 
         }
 

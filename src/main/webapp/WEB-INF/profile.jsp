@@ -1,3 +1,5 @@
+<%@ page import="com.inventine.model.User" %>
+<%@ page import="com.inventine.model.Creds" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -7,9 +9,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
-    <link rel="stylesheet" href="${host_url}/static/css/profile.css">
-    <link rel="stylesheet" href="${host_url}/static/css/contactus.css">
-    <link rel="stylesheet" href="${host_url}/static/css/project-cards.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/profile.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/contactus.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/project-cards.css">
 
 
 
@@ -18,19 +20,22 @@
 
 <%@ include file="/WEB-INF/components/nav-bar.jsp" %>
 
-
+<%
+    User user = (User)request.getAttribute("user");
+    Creds creds = (Creds)request.getAttribute("creds");
+%>
 
 <main id="main">
 
     <div class="container">
         <div class="top-image">
-            <img  src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Midpoint_Nokia_Karaportti.jpg" style="height: 270px;width: 100%;">
+            <img  src="${System.getenv("HOST_URL")}/image/<% out.print(user.getHeaderId());%>" style="height: 270px;width: 100%;">
         </div>
         <div class="row">
             <div class="left">
-                <img class="photo" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80">
-                <h4 class="name">Emily Wilson</h4>
-                <p class="info">emily.wilson@gmail.com</p>
+                <img class="photo" src="${System.getenv("HOST_URL")}/image/<% out.print(creds.getProfileId());%>">
+                <h4 class="name"><% out.print(user.getFirstName());%> <% out.print(user.getLastName());%> </h4>
+                <p class="info"><% out.print(creds.getEmail());%> </p>
                 <p class="number-stat">7.8</p>
                 <p class="desc-stat">Rating</p>
                 <div class="desc">
@@ -179,6 +184,6 @@ Through technology leadership and trusted partnerships, we deliver critical netw
 
 <%@ include file="/WEB-INF/components/footer.jsp" %>
 
-<script src="static/js/profile.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/profile.js"></script>
 </body>
 </html>

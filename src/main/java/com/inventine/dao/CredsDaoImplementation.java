@@ -82,6 +82,7 @@ public class CredsDaoImplementation implements CredsDaoInterface {
             creds.setRole(rs.getString("role").charAt(0));
             creds.setStatus(rs.getString("status").charAt(0));
             creds.setCreatedAt(rs.getTimestamp("createdAt"));
+            creds.setProfileId((rs.getString("profileId")));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -157,7 +158,7 @@ public class CredsDaoImplementation implements CredsDaoInterface {
     public boolean update(Creds creds) {
 
         String query = String.format("UPDATE creds SET username=?, email=?, password=?, " +
-                "role=CAST(? AS rl), status=CAST(? AS sts) WHERE userid=?");
+                "role=CAST(? AS rl), status=CAST(? AS sts), profileId=? WHERE userid=?");
 
         try {
 
@@ -169,6 +170,7 @@ public class CredsDaoImplementation implements CredsDaoInterface {
             stmt.setString(4, String.valueOf(creds.getRole()));
             stmt.setString(5, String.valueOf(creds.getStatus()));
             stmt.setInt(6, Integer.parseInt(creds.getUserId()));
+            stmt.setString(7, creds.getProfileId());
 
             stmt.executeUpdate();
 

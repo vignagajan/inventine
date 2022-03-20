@@ -85,7 +85,7 @@
                     <div class="input-box">
                       <span class="details">Address</span>
                       <input type="text"
-                             id="address"name="address" placeholder="" required pattern="^([a-zA-z0-9]{10,255})$">
+                             id="address"name="address" placeholder="" required pattern="{10,255}$">
                       <span class="error" aria-live="polite" style="display: none;" >Enter valid postal address</span>
                     </div>
 
@@ -188,6 +188,9 @@
                 <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                 <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
             </div>
+
+            <hr style="margin-top: 20px; height: 10px;     border: none; border-top: medium double #0097e6;"/>
+            <div class="desc" style="color: #0097e6; margin-top: 20px; text-align: center" >Already have an account? <a href="${host_url}/login">Login</a></div>
             <!-- Circles which indicates the steps of the form: -->
             <div style="text-align:center;margin-top:20px;">
                 <span class="step"></span>
@@ -234,7 +237,7 @@
 
                 Swal.fire({
                     icon: 'error',
-                    title: 'Form fields should be valid!',
+                    title: 'Signuo is successfull!',
                     iconColor: "#0097e6",
                     confirmButtonColor: "#0097e6",
                 });

@@ -14,10 +14,10 @@
     <script src="https://cdn.datatables.net/v/dt/dt-1.10.15/datatables.min.js"></script>
     <!-- js for tables -->
 
-    <link rel="stylesheet" href="${host_url}/static/css/dashboard/base.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/dashboard/base.css">
     <!-- base css stylesheet -->
 
-    <link rel="stylesheet" href="${host_url}/static/css/dashboard/dashboard.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/dashboard/dashboard.css">
     <!-- dashboard css stylesheet -->
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

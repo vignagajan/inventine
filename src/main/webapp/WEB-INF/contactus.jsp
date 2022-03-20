@@ -5,7 +5,7 @@
 
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${host_url}/static/css/home.css">
+    <link rel="stylesheet" href="${host_url}/static/css/contactus.css">
 
 </head>
 <body>

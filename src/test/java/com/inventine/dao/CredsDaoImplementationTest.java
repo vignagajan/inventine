@@ -49,7 +49,7 @@ class CredsDaoImplementationTest {
     void getCreds(String userId, String username, String email,String password,
                   char role, char status, String created_at) {
 
-        this.creds = this.credsDao.getCreds(userId);
+        this.creds = this.credsDao.getCreds("1");
 
         assertEquals(userId,this.creds.getUserId());
         assertEquals(username,this.creds.getUsername());
