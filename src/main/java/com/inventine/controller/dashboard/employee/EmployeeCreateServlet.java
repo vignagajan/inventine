@@ -26,7 +26,6 @@ public class EmployeeCreateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
         request.setAttribute("title","Employee");
         request.getRequestDispatcher("/WEB-INF/dashboard/employee/create.jsp").forward(request, response);
     }
@@ -46,7 +45,6 @@ public class EmployeeCreateServlet extends HttpServlet {
         CredsDaoImplementation credsDao = new CredsDaoImplementation();
 
         // Parse request data
-
         String first_name = request.getParameter("firstName");
         String last_name = request.getParameter("lastName");
         String dob_ = request.getParameter("dob");

@@ -108,7 +108,6 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("role", creds.getRole());
                     session.setAttribute("profileId", creds.getProfileId());
 
-                    System.out.println("Success!");
 
                 } catch (Exception e){
                     ok = false;
