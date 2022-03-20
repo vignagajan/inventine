@@ -11,6 +11,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,13 +23,20 @@ import java.util.List;
 public class ProjectCreateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("role") == null){
+            session.setAttribute("role", 'A' );
+        }
         response.setContentType("text/html");
+        request.setAttribute("title", "Create Project");
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
         request.getRequestDispatcher("/WEB-INF/dashboard/project/create.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
 
         // JSON parameters
         JSONObject json = new JSONObject();
@@ -40,7 +48,7 @@ public class ProjectCreateServlet extends HttpServlet {
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
 
         // Parse request data
-        String creatorId = "5";
+        String creatorId = (String)session.getAttribute("userid");
         String supportTeamId = "1";
         char financialStatus = 'I';
         char status = 'A';
@@ -48,7 +56,7 @@ public class ProjectCreateServlet extends HttpServlet {
         int requestedAmount = Integer.parseInt(request.getParameter("requestedAmount"));
         String projectName = request.getParameter("projectName");
         String category = request.getParameter("category");
-        String description = request.getParameter("description");
+        String description = request.getParameter("ck");
 
 
         // Data to be processed
@@ -85,7 +93,7 @@ public class ProjectCreateServlet extends HttpServlet {
             ok = project.setRequestedAmount(requestedAmount);
             ok = project.setCategory(category);
             ok = project.setProjectName(projectName);
-            ok = project.setDetails(description);
+            ok = project.setDescription(description);
 
             if(!ok){
 
@@ -95,7 +103,7 @@ public class ProjectCreateServlet extends HttpServlet {
 
             }
 
-            // Pass model to DAO
+  //           Pass model to DAO
             if(!projectDao.create(project)){
                 ok=false;
                 messages.clear();
@@ -103,6 +111,13 @@ public class ProjectCreateServlet extends HttpServlet {
                 System.out.println("There is a issue with dao!");
 
             }
+            System.out.println(description);
+            System.out.println(creatorId);
+            System.out.println(status);
+            System.out.println(projectName);
+            System.out.println(requestedAmount);
+
+
         }
 
         // JSON response

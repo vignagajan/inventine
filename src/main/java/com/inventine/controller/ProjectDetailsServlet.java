@@ -50,7 +50,7 @@ public class ProjectDetailsServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("host_url",System.getenv("HOST_URL"));
         request.setAttribute("title","Project-Details");
         request.getRequestDispatcher("/WEB-INF/project-details.jsp").forward(request, response);
     }

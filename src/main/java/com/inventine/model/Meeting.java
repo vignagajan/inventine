@@ -10,6 +10,8 @@ public class Meeting {
         private Timestamp createdAt;
         private Timestamp launchedAt;
         private String link;
+        private String description;
+        private char status;
         private DataValidator validator = new DataValidator();
 
         public String getMeetingId(){ return meetingId;}
@@ -79,6 +81,27 @@ public class Meeting {
             }
 
             return false;
+        }
+
+
+        public char getStatus(){ return status;}
+
+        public boolean setStatus(char status){
+
+            if (status == 'A' || status == 'R' || status == 'D') {
+                this.status = status;
+                return true;
+            }
+
+            return false;
+        }
+
+        public String getDescription(){ return description;}
+
+        public boolean setDescription(String description){
+
+            this.description=description;
+            return true;
         }
 
 

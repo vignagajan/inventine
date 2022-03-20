@@ -14,7 +14,7 @@ public class Project {
     private char status;
     private int requestedAmount;
     private String projectName;
-    private String details;
+    private String description;
     private String category;
     private Timestamp dateOfExpiry;
     private DataValidator validator = new DataValidator();
@@ -134,13 +134,12 @@ public class Project {
         return true;
     }
 
-    public String getDetails(){ return details;}
+    public String getDescription(){ return description;}
 
-    public boolean setDetails(String details){
-        this.validator.setTxt(details);
-        this.validator.setMinLength(2);
+    public boolean setDescription(String description){
 
-        this.details=details;
+
+        this.description=description;
         return true;
     }
 

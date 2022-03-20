@@ -18,13 +18,15 @@ public class MeetingTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Meeting.csv", numLinesToSkip = 1)
-    void getterSetter(String meeting_id, String creator_id, Timestamp created_at, Timestamp launched_at, String link) {
+    void getterSetter(String meeting_id, String creator_id, Timestamp created_at, Timestamp launched_at, String link, String description, char status) {
 
         this.meeting.setMeetingId(meeting_id);
         this.meeting.setCreatorId(creator_id);
         this.meeting.setCreatedAt(created_at);
         this.meeting.setLaunchedAt(launched_at);
         this.meeting.setLink(link);
+        this.meeting.setDescription(description);
+        this.meeting.setStatus(status);
 
 
         assertEquals(meeting_id, this.meeting.getMeetingId());
@@ -32,5 +34,7 @@ public class MeetingTest {
         assertEquals(created_at, this.meeting.getCreatedAt());
         assertEquals(launched_at, this.meeting.getLaunchedAt());
         assertEquals(link, this.meeting.getLink());
+        assertEquals(description, this.meeting.getDescription());
+        assertEquals(status, this.meeting.getStatus());
     }
 }

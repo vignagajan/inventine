@@ -38,6 +38,48 @@ public class AcceptMeetingDaoImplementation implements AcceptMeetingDaoInterface
         return count;
     }
 
+//    @Override
+//    public  int getCountAmount(String condition){
+//        int count = 0;
+//        String query = "select sum(amount) from payment";
+//
+//        if (!condition.isEmpty()){
+//
+//            condition = String.format(" WHERE %s",condition);
+//            query = query.concat(condition);
+//
+//        }
+//
+//        try {
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            ResultSet rs = stmt.executeQuery();
+//            rs.next();
+//            count = rs.getInt("sum");
+//        }catch (SQLException e){
+//            count = 0;
+//        }
+//
+//        return count;
+//    }
+//
+//    @Override
+//    public ResultSet executeQuery(String query)  {
+//        ResultSet rs = null;
+//
+//        try {
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            rs = stmt.executeQuery();
+//            rs.next();
+//
+//        }catch (SQLException e){
+//
+//
+//            e.printStackTrace();
+//        }
+//
+//        return rs;
+//    }
+
     @Override
     public boolean create(AcceptMeeting acceptMeeting) {
 
