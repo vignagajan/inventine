@@ -96,7 +96,7 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
             stmt.setInt(1, Integer.parseInt(payment.getProjectId()));
             stmt.setInt(2, Integer.parseInt(payment.getInvestorId()));
             stmt.setInt(3, Integer.parseInt(payment.getFinancialDetailsId()));
-            stmt.setString(4, String.valueOf(payment.getAmount()));
+            stmt.setInt(4, (payment.getAmount()));
 
 
             n = stmt.executeUpdate();
