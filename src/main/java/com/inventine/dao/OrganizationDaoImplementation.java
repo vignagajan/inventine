@@ -56,7 +56,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
             stmt.setString(5, organization.getDistrict());
             stmt.setString(6, organization.getContactNumber());
             stmt.setString(7,  organization.getHeaderId());
-            stmt.setInt(8, Integer.parseInt(organization.getLogoId()));
+            stmt.setString(8, organization.getLogoId());
             stmt.setString(9, String.valueOf(organization.getOrgType()));
             stmt.setString(10, String.valueOf(organization.getStatus()));
 
@@ -184,7 +184,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
             stmt.setString(5, organization.getDistrict());
             stmt.setString(6, organization.getContactNumber());
             stmt.setString(7, organization.getHeaderId());
-            stmt.setInt(8, Integer.parseInt(organization.getLogoId()));
+            stmt.setString(8, organization.getLogoId());
             stmt.setString(9, String.valueOf(organization.getOrgType()));
             stmt.setString(10, String.valueOf(organization.getStatus()));
             stmt.setInt(11, Integer.parseInt(organization.getOrganizationId()));

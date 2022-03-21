@@ -1,2 +1,2 @@
- competition_Id, organization_Id  , support_Team_Id, project_Id,   Timestamp created_At    , Timestamp ending_at,  prize_money,  rules , c_type, p_type, competition_name, header_Id,   Timestamp starting_At,       over_view    , status
-   57, 60, 2 , 26 ,2022-01-02 10:37:16.584939 ,2021-11-30 19:23:30.0, 10000 ,only3memberorlessmemberparticipate, T, I,moodforcode,1640618179717, 2021-11-30 19:23:30.0,deatails about competition,A
+competition_Id,organization_Id,support_Team_Id,created_At,ending_at,  prize_money,rules,c_type, p_type,competition_name,header_Id, staring_At,over_view, status
+   50, 60, 1,2022-03-20 08:11:21.583557+00,2022-05-20 16:33:56,10000,only3memberparticipate, H, A,HackX,12614,2022-03-20 16:33:56,nokiawillcontactthecompetition,A

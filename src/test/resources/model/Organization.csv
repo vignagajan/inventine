@@ -1,2 +1,2 @@
 organization_id,creator_Id,support_Team_Id, name, address , district, contact_number,created_at,header_Id,logo_Id,org_type,status
-60 , 3 , 1 , Ucsc, reid avenue , jaffna , +94764653943 , 2022-01-01 15:30:03.283079 ,1640618179717, 1234 , U , A
+60 , 6, 1 , WSO2, SIR Baron Jayathilake Mawatha , Colombo , 111014561, 2021-10-26 16:33:56 ,12345,1640618091700 , P, A

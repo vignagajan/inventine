@@ -79,8 +79,9 @@ public class CompetitionUpdateServlet extends HttpServlet {
 
         // Parse request data
         String organizationId = "42";
+
         String supportTeamId = "2";
-        String projectId = "1";
+      //  String projectId = "1";
         String headerId = "123";
 
         //  char financialStatus = 'I';
@@ -136,7 +137,7 @@ public class CompetitionUpdateServlet extends HttpServlet {
 
             ok = competition.setOrganizationId(organizationId);
             ok = competition.setSupportTeamId(supportTeamId);
-            ok = competition.setProjectId(projectId);
+           // ok = competition.setProjectId(projectId);
             ok = competition.setHeaderId(headerId);
 
             //    ok = competition.setFinancialStatus(financialStatus);
