@@ -118,83 +118,83 @@
     </div>
     <!-- the charts end -->
 
-    <div class="main-tables">
-        <table id="example" class="table" cellspacing="0" width="100%">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Project Name</th>
-                <th>Creator</th>
-                <th>Date Created</th>
-                <th>Amount</th>
-            </tr>
-            </thead>
+<%--    <div class="main-tables">--%>
+<%--        <table id="example" class="table" cellspacing="0" width="100%">--%>
+<%--            <thead>--%>
+<%--            <tr>--%>
+<%--                <th>Name</th>--%>
+<%--                <th>ID</th>--%>
+<%--                <th>Project Name</th>--%>
+<%--                <th>Creator</th>--%>
+<%--                <th>Date Created</th>--%>
+<%--                <th>Amount</th>--%>
+<%--            </tr>--%>
+<%--            </thead>--%>
 
-            <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Project Name</th>
-                <th>Creator</th>
-                <th>Date Created</th>
-                <th>Amount</th>
-            </tr>
-            </tfoot>
+<%--            <tfoot>--%>
+<%--            <tr>--%>
+<%--                <th>Name</th>--%>
+<%--                <th>ID</th>--%>
+<%--                <th>Project Name</th>--%>
+<%--                <th>Creator</th>--%>
+<%--                <th>Date Created</th>--%>
+<%--                <th>Amount</th>--%>
+<%--            </tr>--%>
+<%--            </tfoot>--%>
 
-            <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>000102</td>
-                <td>Mirror One | Your life at a glance</td>
-                <td>Emily Wilson</td>
-                <td>2021/04/25</td>
-                <td>$400,00</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>000102</td>
-                <td>Mirror One | Your life at a glance</td>
-                <td>Emily Wilson</td>
-                <td>2021/04/25</td>
-                <td>$400,00</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>000102</td>
-                <td>Mirror One | Your life at a glance</td>
-                <td>Emily Wilson</td>
-                <td>2021/04/25</td>
-                <td>$400,00</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>000102</td>
-                <td>Mirror One | Your life at a glance</td>
-                <td>Emily Wilson</td>
-                <td>2021/04/25</td>
-                <td>$400,00</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>000102</td>
-                <td>Mirror One | Your life at a glance</td>
-                <td>Emily Wilson</td>
-                <td>2021/04/25</td>
-                <td>$400,00</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>000102</td>
-                <td>Mirror One | Your life at a glance</td>
-                <td>Emily Wilson</td>
-                <td>2021/04/25</td>
-                <td>$400,00</td>
-            </tr>
+<%--            <tbody>--%>
+<%--            <tr>--%>
+<%--                <td>Tiger Nixon</td>--%>
+<%--                <td>000102</td>--%>
+<%--                <td>Mirror One | Your life at a glance</td>--%>
+<%--                <td>Emily Wilson</td>--%>
+<%--                <td>2021/04/25</td>--%>
+<%--                <td>$400,00</td>--%>
+<%--            </tr>--%>
+<%--            <tr>--%>
+<%--                <td>Tiger Nixon</td>--%>
+<%--                <td>000102</td>--%>
+<%--                <td>Mirror One | Your life at a glance</td>--%>
+<%--                <td>Emily Wilson</td>--%>
+<%--                <td>2021/04/25</td>--%>
+<%--                <td>$400,00</td>--%>
+<%--            </tr>--%>
+<%--            <tr>--%>
+<%--                <td>Tiger Nixon</td>--%>
+<%--                <td>000102</td>--%>
+<%--                <td>Mirror One | Your life at a glance</td>--%>
+<%--                <td>Emily Wilson</td>--%>
+<%--                <td>2021/04/25</td>--%>
+<%--                <td>$400,00</td>--%>
+<%--            </tr>--%>
+<%--            <tr>--%>
+<%--                <td>Tiger Nixon</td>--%>
+<%--                <td>000102</td>--%>
+<%--                <td>Mirror One | Your life at a glance</td>--%>
+<%--                <td>Emily Wilson</td>--%>
+<%--                <td>2021/04/25</td>--%>
+<%--                <td>$400,00</td>--%>
+<%--            </tr>--%>
+<%--            <tr>--%>
+<%--                <td>Tiger Nixon</td>--%>
+<%--                <td>000102</td>--%>
+<%--                <td>Mirror One | Your life at a glance</td>--%>
+<%--                <td>Emily Wilson</td>--%>
+<%--                <td>2021/04/25</td>--%>
+<%--                <td>$400,00</td>--%>
+<%--            </tr>--%>
+<%--            <tr>--%>
+<%--                <td>Tiger Nixon</td>--%>
+<%--                <td>000102</td>--%>
+<%--                <td>Mirror One | Your life at a glance</td>--%>
+<%--                <td>Emily Wilson</td>--%>
+<%--                <td>2021/04/25</td>--%>
+<%--                <td>$400,00</td>--%>
+<%--            </tr>--%>
 
-            </tbody>
-        </table>
-    </div>
+<%--            </tbody>--%>
+<%--        </table>--%>
+<%--    </div>--%>
 
 
 </main>
@@ -202,41 +202,41 @@
 
 <!-- javascript -->
 <script>
-    $(document).ready(function() {
+<%--    $(document).ready(function() {--%>
 
-        const modal = document.querySelector(".modal"); //selects the modal
-        const btnCloseModal = document.querySelector(".close-modal"); //selects the button to close the modal
-        const btnOpenModal = document.querySelector(".show-modal"); //selects the button to show the modal
-        const overlay = document.querySelector(".overlay"); //selects the overlay
+<%--        const modal = document.querySelector(".modal"); //selects the modal--%>
+<%--        const btnCloseModal = document.querySelector(".close-modal"); //selects the button to close the modal--%>
+<%--        const btnOpenModal = document.querySelector(".show-modal"); //selects the button to show the modal--%>
+<%--        const overlay = document.querySelector(".overlay"); //selects the overlay--%>
 
-        const toggleModal = function () {
-            modal.classList.toggle("hidden");
-            overlay.classList.toggle("hidden");
-        };
+<%--        const toggleModal = function () {--%>
+<%--            modal.classList.toggle("hidden");--%>
+<%--            overlay.classList.toggle("hidden");--%>
+<%--        };--%>
 
-        btnOpenModal.addEventListener("click", toggleModal);
+<%--        btnOpenModal.addEventListener("click", toggleModal);--%>
 
-        btnCloseModal.addEventListener("click", toggleModal);
+<%--        btnCloseModal.addEventListener("click", toggleModal);--%>
 
-        overlay.addEventListener("click", toggleModal);
+<%--        overlay.addEventListener("click", toggleModal);--%>
 
-        var table = $('#example').DataTable({
-            select: false,
-            "columnDefs": [{
-                className: "Name",
-                "targets":[0],
-                "visible": false,
-                "searchable":false
-            }]
-        });//End of create main table
+<%--        var table = $('#example').DataTable({--%>
+<%--            select: false,--%>
+<%--            "columnDefs": [{--%>
+<%--                className: "Name",--%>
+<%--                "targets":[0],--%>
+<%--                "visible": false,--%>
+<%--                "searchable":false--%>
+<%--            }]--%>
+<%--        });//End of create main table--%>
 
 
-        $('#example tbody').on( 'click', 'tr', function () {
+<%--        $('#example tbody').on( 'click', 'tr', function () {--%>
 
-            alert(table.row( this ).data()[0]);
+<%--            alert(table.row( this ).data()[0]);--%>
 
-        } );
-    });
+<%--        } );--%>
+<%--    });--%>
 
     const labels =${graph_labels}
 
