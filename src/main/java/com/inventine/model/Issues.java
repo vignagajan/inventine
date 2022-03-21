@@ -8,6 +8,7 @@ public class Issues {
     private String userId;
     private String description;
     private char category;
+    private char status;
     private DataValidator validator = new DataValidator();
 
 
@@ -65,4 +66,19 @@ public class Issues {
         this.description = description;
         return true;
     }
+
+
+
+    public char getStatus(){ return status;}
+
+    public boolean setStatus(char status){
+
+        if (status == 'A' || status == 'R' || status == 'B' || status == 'S') {
+            this.status = status;
+            return true;
+        }
+
+        return false;
+    }
+
 }

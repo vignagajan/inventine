@@ -63,8 +63,8 @@ public class IssuesDaoImplementation implements IssuesDaoInterface {
     @Override
     public boolean create(Issues issues) {
 
-        String query = "INSERT INTO Issues(userId,Category,description) " +
-                "VALUES (?,cast(? AS stat3) ,?)";
+        String query = "INSERT INTO Issues(userId,Category,description,status) " +
+                "VALUES (?,cast(? AS stat3) ,?,cast(? AS stati))";
 
         int n = 0;
 
@@ -75,6 +75,7 @@ public class IssuesDaoImplementation implements IssuesDaoInterface {
             stmt.setInt(1,Integer.parseInt(issues.getUserId()));
             stmt.setString(2,String.valueOf(issues.getCategory()));
             stmt.setString(3,issues.getDescription());
+            stmt.setString(4, String.valueOf(issues.getStatus()));
 
 
             n = stmt.executeUpdate();
