@@ -31,11 +31,10 @@ class CompetitionDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
-    void create(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name,String header_Id,Timestamp staring_At,String over_view,char status) {
+    void create(String competition_Id,String organization_Id,String support_Team_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name,String header_Id,Timestamp staring_At,String over_view,char status) {
         this.competition.setCompetitionId(competition_Id);
         this.competition.setOrganizationId(organization_Id);
         this.competition.setSupportTeamId(support_Team_Id);
-        this.competition.setProjectId(project_Id);
         this.competition.setCreatedAt(created_At);
         this.competition.setEndingAt(ending_at);
         this.competition.setPrizeMoney(prize_money);
@@ -54,14 +53,13 @@ class CompetitionDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
-    void getCompetition(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name,String header_Id,Timestamp starting_At,String over_view,char status) {
+    void getCompetition(String competition_Id,String organization_Id,String support_Team_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name,String header_Id,Timestamp starting_At,String over_view,char status) {
 
         this.competition = this.competitionDao.getCompetition(competition_Id);
 
         assertEquals(competition_Id, this.competition.getCompetitionId());
         assertEquals(organization_Id, this.competition.getOrganizationId());
         assertEquals(support_Team_Id, this.competition.getSupportTeamId());
-        assertEquals(project_Id, this.competition.getProjectId());
         assertEquals(created_At, this.competition.getCreatedAt());
         assertEquals(ending_at, this.competition.getEndingAt());
         assertEquals(prize_money, this.competition.getPrizeMoney());
@@ -77,14 +75,14 @@ class CompetitionDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
-    void getCompetitions(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name,String header_Id,Timestamp starting_At,String over_view,char status) {
+    void getCompetitions(String competition_Id,String organization_Id,String support_Team_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name,String header_Id,Timestamp starting_At,String over_view,char status) {
 
         List<Competition> ls = this.competitionDao.getCompetitions("");
 
         this.competition.setCompetitionId(competition_Id);
         this.competition.setOrganizationId(organization_Id);
         this.competition.setSupportTeamId(support_Team_Id);
-        this.competition.setProjectId(project_Id);
+      //  this.competition.setProjectId(project_Id);
         this.competition.setCreatedAt(created_At);
         this.competition.setEndingAt(ending_at);
         this.competition.setPrizeMoney(prize_money);
@@ -99,7 +97,7 @@ class CompetitionDaoImplementationTest {
         assertEquals(ls.get(0).getCompetitionId(),this.competition.getCompetitionId());
         assertEquals(ls.get(0).getOrganizationId(),this.competition.getOrganizationId());
         assertEquals(ls.get(0).getSupportTeamId(),this.competition.getSupportTeamId());
-        assertEquals(ls.get(0).getProjectId(),this.competition.getProjectId());
+     //   assertEquals(ls.get(0).getProjectId(),this.competition.getProjectId());
         assertEquals(ls.get(0).getCreatedAt(),this.competition.getCreatedAt());
         assertEquals(ls.get(0).getEndingAt(),this.competition.getEndingAt());
         assertEquals(ls.get(0).getPrizeMoney(),this.competition.getPrizeMoney());
@@ -117,12 +115,12 @@ class CompetitionDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Competition.csv", numLinesToSkip = 1)
-    void update(String competition_Id,String organization_Id,String support_Team_Id,String project_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name,String header_Id,Timestamp starting_At,String over_view,char status) {
+    void update(String competition_Id,String organization_Id,String support_Team_Id, Timestamp created_At, Timestamp ending_at, int prize_money,  String rules,char c_type, char p_type,String competition_name,String header_Id,Timestamp starting_At,String over_view,char status) {
 
         this.competition.setCompetitionId(competition_Id);
         this.competition.setOrganizationId(organization_Id);
         this.competition.setSupportTeamId(support_Team_Id);
-        this.competition.setProjectId(project_Id);
+   //     this.competition.setProjectId(project_Id);
        // this.competition.setCreatedAt(created_At);
         this.competition.setEndingAt(ending_at);
         this.competition.setPrizeMoney(prize_money);
@@ -142,7 +140,7 @@ class CompetitionDaoImplementationTest {
         assertEquals(this.competition.getCompetitionId(),updated.getCompetitionId());
         assertEquals(this.competition.getOrganizationId(),updated.getOrganizationId());
         assertEquals(this.competition.getSupportTeamId(),updated.getSupportTeamId());
-        assertEquals(this.competition.getProjectId(),updated.getProjectId());
+      //  assertEquals(this.competition.getProjectId(),updated.getProjectId());
        // assertEquals(this.competition.getCreatedAt(),updated.getCreatedAt());
         assertEquals(this.competition.getEndingAt(),updated.getEndingAt());
         assertEquals(this.competition.getPrizeMoney(),updated.getPrizeMoney());
