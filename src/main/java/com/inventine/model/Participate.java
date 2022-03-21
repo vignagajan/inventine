@@ -8,7 +8,7 @@ public class Participate {
     private String participateId;
     private Timestamp createdAt;
     private String competitionId;
-    private String creatorId;
+    private String projectId;
     private DataValidator validator = new DataValidator();
 
     public String getParticipateId() {
@@ -60,17 +60,17 @@ public class Participate {
         return false;
     }
 
-    public String getCreatorId() {
-        return creatorId;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public boolean setCreatorId(String creatorId) {
-        this.validator.setTxt(creatorId);
+    public boolean setProjectId(String projectId) {
+        this.validator.setTxt(projectId);
         this.validator.setMaxLength(6);
 
         if(this.validator.isNumber())
         {
-            this.creatorId = creatorId;
+            this.projectId = projectId;
             return true;
         }
         return false;

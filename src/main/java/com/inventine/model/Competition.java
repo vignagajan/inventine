@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class Competition {
     private String competitionId;
     private String organizationId;
-    private String projectId;
+   // private String projectId;
     private String supportTeamId;
     private Timestamp createdAt;
     private Timestamp endingAt;
@@ -200,21 +200,21 @@ public class Competition {
 
     }
 
-    public String getProjectId() {
-        return projectId;
-    }
-
-    public boolean setProjectId(String projectId) {
-        this.validator.setTxt(projectId);
-        this.validator.setMaxLength(6);
-
-        if(this.validator.isNumber())
-        {
-            this.projectId = projectId;
-            return true;
-        }
-         return false;
-    }
+//    public String getProjectId() {
+//        return projectId;
+//    }
+//
+//    public boolean setProjectId(String projectId) {
+//        this.validator.setTxt(projectId);
+//        this.validator.setMaxLength(6);
+//
+//        if(this.validator.isNumber())
+//        {
+//            this.projectId = projectId;
+//            return true;
+//        }
+//         return false;
+//    }
 
     public char getStatus() {
         return status;
