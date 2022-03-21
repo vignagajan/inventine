@@ -28,7 +28,7 @@ class OrganizationDaoImplementationTest {
 
     @Test
     void getCount() {
-        assertEquals(organizationDao.getCount("creatorid=3 "),5);
+        assertEquals(organizationDao.getCount("creatorid=6 "),1);
     }
 
     @ParameterizedTest
@@ -121,7 +121,7 @@ class OrganizationDaoImplementationTest {
         this.organization.setSupportTeamId(support_Team_Id);
         this.organization.setName(name);
         this.organization.setAddress(address);
-        this.organization.setDistrict("jaffna");
+        this.organization.setDistrict(district);
         this.organization.setContactNumber(contact_number);
      //   this.organization.setCreatedAt(created_at);
         this.organization.setHeaderId(header_Id);
@@ -139,7 +139,7 @@ class OrganizationDaoImplementationTest {
         assertEquals(this.organization.getSupportTeamId(),updated.getSupportTeamId());
         assertEquals(this.organization.getName(),updated.getName());
         assertEquals(this.organization.getAddress(),updated.getAddress());
-        assertEquals("jaffna",updated.getDistrict());
+        assertEquals(this.organization.getDistrict(),updated.getDistrict());
         assertEquals(this.organization.getContactNumber(),updated.getContactNumber());
        // assertEquals(this.organization.getCreatedAt(),updated.getCreatedAt());
         assertEquals(this.organization.getHeaderId(),updated.getHeaderId());
