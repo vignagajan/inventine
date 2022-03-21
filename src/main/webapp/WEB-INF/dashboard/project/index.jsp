@@ -3,6 +3,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.sql.Timestamp" %>
+<%@ page import="com.inventine.model.Payment" %>
+<%@ page import="java.util.Hashtable" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -43,58 +45,66 @@
   <!-- the 4 cards containing data at top -->
   <div class="main-overview">
 
-    <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
-      <div><i class="far fa-lightbulb fa-2x"></i></div>
+    <div class="overviewcard" style="background-color:white;color: ${card1_color}">
+      <div><i class="far ${card1_icon} fa-2x"></i></div>
       <div class="overviewcard__icon">
-        <div>Active</div>
-        <div class="overviewcard__info" style="font-size: 36px; float: right;">${active}</div>
+        <div>${card1_label}</div>
+        <div class="overviewcard__info" style="font-size: 36px; float: right;">${card1_count}</div>
       </div>
     </div>
 
-    <div class="overviewcard" style="background-color:white;color: rgb(255, 196, 0);">
-      <div><i class="far fa-lightbulb fa-2x"></i></div>
-      <div class="overviewcard__icon" >
-        <div>Blocked</div>
-        <div class="overviewcard__info"style="font-size: 36px;float: right">${blocked}</div>
-      </div>
-    </div>
-
-    <div class="overviewcard" style="background-color:white;color: rgb(255, 0, 76);">
-      <div><i class="far fa-lightbulb fa-2x"></i></div>
+    <div class="overviewcard" style="background-color:white;color: ${card2_color}">
+      <div><i class="far ${card2_icon} fa-2x"></i></div>
       <div class="overviewcard__icon">
-        <div>Deleted</div>
-        <div class="overviewcard__info" style="font-size: 36px;float: right">${deleted}</div>
+        <div>${card2_label}</div>
+        <div class="overviewcard__info" style="font-size: 36px; float: right;">${card2_count}</div>
       </div>
     </div>
 
-    <div class="overviewcard" style="background-color:white;color: rgb(0, 110, 255);">
-      <div><i class="far fa-lightbulb fa-2x"></i></div>
+    <div class="overviewcard" style="background-color:white;color: ${card3_color}">
+      <div><i class="far ${card3_icon} fa-2x"></i></div>
       <div class="overviewcard__icon">
-        <div>Total</div>
-        <div class="overviewcard__info" style="font-size: 36px;float: right">${total}</div>
+        <div>${card3_label}</div>
+        <div class="overviewcard__info" style="font-size: 36px; float: right;">${card3_count}</div>
       </div>
     </div>
 
-
+    <div class="overviewcard" style="background-color:white;color: ${card4_color}">
+      <div><i class="far ${card4_icon} fa-2x"></i></div>
+      <div class="overviewcard__icon">
+        <div>${card4_label}</div>
+        <div class="overviewcard__info" style="font-size: 36px; float: right;">${card4_count}</div>
+      </div>
+    </div>
 
   </div>
   <!-- end of 4 data cards -->
 
   <div class="cbutton">
-    <a href="${host_url}/dashboard/create-project">
-    <button class="createbutton">Create Project</button></a>
+    <a href="${System.getenv("HOST_URL")}/dashboard/create-project">
+      <% if (session.getAttribute("role").toString().charAt(0) == 'S' ||  session.getAttribute("role").toString().charAt(0) == 'A' || session.getAttribute("role").toString().charAt(0) == 'C') {
+
+      %><button class="createbutton">Create Project</button>
+    <%}%>
+    </a>
   </div>
 
-  <% if (session.getAttribute("role").toString().charAt(0) == 'C'){
+  <% if (session.getAttribute("role").toString().charAt(0) == 'S' ||  session.getAttribute("role").toString().charAt(0) == 'F' || session.getAttribute("role").toString().charAt(0) == 'A' ) {
 
   %>
   <div class="main-tables">
+
     <table id="example" class="table" cellspacing="0" width="100%">
       <thead>
       <tr>
         <th>Project ID</th>
+        <th>Support Team ID</th>
+        <th>Creator ID</th>
         <th>Project Name</th>
         <th>Requested Amount</th>
+        <th>Funded Amount</th>
+        <th>Status</th>
+        <th>Financial Status</th>
         <th>Category</th>
         <th>Created date</th>
         <th>Ending date</th>
@@ -105,8 +115,13 @@
       <tfoot>
       <tr>
         <th>Project ID</th>
+        <th>Support Team ID</th>
+        <th>Creator ID</th>
         <th>Project Name</th>
         <th>Requested Amount</th>
+        <th>Funded Amount</th>
+        <th>Status</th>
+        <th>Financial Status</th>
         <th>Category</th>
         <th>Created date</th>
         <th>Ending date</th>
@@ -115,20 +130,57 @@
       </tfoot>
 
       <tbody>
+
+
       <%
-        for (Project project: (ArrayList<Project>)request.getAttribute("projects")){
+        List<Project> projects = (ArrayList<Project>)request.getAttribute("projects");
+        List<Payment> payments = (ArrayList<Payment>)request.getAttribute("payments");
+        Hashtable<Character, String> role_values = new Hashtable<Character, String>();
+
+        role_values.put('A',"Admin");
+        role_values.put('F',"Finance Admin");
+        role_values.put('S',"Support Team");
+        role_values.put('C',"Creator");
+        role_values.put('I',"Investor");
+
+        Hashtable<Character, String> status_values = new Hashtable<Character, String>();
+
+        status_values.put('A',"Active");
+        status_values.put('B',"Blocked");
+        status_values.put('D',"Deleted");
+
+        Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
+
+        financialstatus_values.put('C',"Complete");
+        financialstatus_values.put('I',"Incomplete");
+
+
+        for (int i=0; i<projects.size();i++){
       %>
       <tr>
-        <th><% out.print(project.getProjectId());%></th>
-        <td><% out.print(project.getProjectName());%></td>
-        <td><% out.print(project.getRequestedAmount());%></td>
-        <td><% out.print(project.getCategory());%></td>
-        <td><% out.print(project.getCreatedAt());%></td>
-        <td><% out.print(project.getDateOfExpiry());%></td>
-        <td><button class="viewbutton" id="idViewButtonp" onclick="idViewButtonp_onclick();">View</button>
-          <button class="updatebutton" id="idUpdateButton" onclick="location.href='${host_url}/dashboard/update-project'">Update</button>
-          <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+        <td><% out.print(projects.get(i).getProjectId());%></td>
+        <td><% out.print(projects.get(i).getSupportTeamId());%></td>
+        <td><% out.print(projects.get(i).getCreatorId());%></td>
+        <td><% out.print(projects.get(i).getProjectName());%></td>
+        <td><% out.print(projects.get(i).getRequestedAmount());%></td>
+        <td><% out.print(payments.get(i));%></td>
+        <td><% out.print(status_values.get(projects.get(i).getStatus()));%></td>
+        <td><% out.print(financialstatus_values.get(projects.get(i).getFinancialStatus()));%></td>
+        <td><% out.print(projects.get(i).getCategory());%></td>
+        <td><% out.print(projects.get(i).getCreatedAt());%></td>
+        <td><% out.print(projects.get(i).getDateOfExpiry());%></td>
+        <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/project/<% out.print(projects.get(i).getProjectId());%>'">View</button>
 
+          <% if (session.getAttribute("role").toString().charAt(0) == 'S' || session.getAttribute("role").toString().charAt(0) == 'A' ) {
+
+          %>
+          <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/project/update/<% out.print(projects.get(i).getProjectId());%>'">Update</button>
+          <%}%>
+          <% if (session.getAttribute("role").toString().charAt(0) == 'A' ) {
+
+          %>
+          <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+          <%}%>
         </td>
       </tr>
       <%}%>
@@ -138,7 +190,7 @@
     </table>
   </div>
 
-  <%} else{%>
+  <%} else if(session.getAttribute("role").toString().charAt(0) == 'C') {%>
 
 
   <div class="main-tables">
@@ -171,16 +223,114 @@
 
       <tbody>
       <%
-        for (Project project: (ArrayList<Project>)request.getAttribute("projects")){
-      %>
+      List<Project> projects = (ArrayList<Project>)request.getAttribute("projects");
+        List<Payment> payments = (ArrayList<Payment>)request.getAttribute("payments");
+          Hashtable<Character, String> role_values = new Hashtable<Character, String>();
+
+          role_values.put('A',"Admin");
+          role_values.put('F',"Finance Admin");
+          role_values.put('S',"Support Team");
+          role_values.put('C',"Creator");
+          role_values.put('I',"Investor");
+
+          Hashtable<Character, String> status_values = new Hashtable<Character, String>();
+
+          status_values.put('A',"Active");
+          status_values.put('B',"Blocked");
+          status_values.put('D',"Deleted");
+
+          Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
+
+          financialstatus_values.put('C',"Complete");
+          financialstatus_values.put('I',"Incomplete");
+
+
+          for (int i=0; i<projects.size();i++){
+          %>
       <tr>
 
-        <th><% out.print(project.getProjectId());%></th>
-        <td><% out.print(project.getProjectName());%></td>
-        <td>5000</td>
-        <td><% out.print(project.getCategory());%></td>
-        <td><% out.print(project.getCreatedAt());%></td>
-        <td><% out.print(project.getDateOfExpiry());%></td>
+        <td><% out.print(projects.get(i).getProjectId());%></td>
+        <td><% out.print(projects.get(i).getProjectName());%></td>
+        <td><% out.print(payments.get(i));%></td>
+        <td><% out.print(projects.get(i).getCategory());%></td>
+        <td><% out.print(projects.get(i).getCreatedAt());%></td>
+        <td><% out.print(projects.get(i).getDateOfExpiry());%></td>
+        <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/project/<% out.print(projects.get(i).getProjectId());%>'">View</button>
+          <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/project/update/<% out.print(projects.get(i).getProjectId());%>'">Update</button>
+          <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+
+        </td>
+      </tr>
+      <%}%>
+
+      </tbody>
+    </table>
+  </div>
+
+  <%} else if(session.getAttribute("role").toString().charAt(0) == 'I'){%>
+
+  <div class="main-tables">
+    <table id="example2" class="table" cellspacing="0" width="100%">
+      <thead>
+      <tr>
+
+        <th>Project ID</th>
+        <th>Project Name</th>
+        <th>Funded Amount</th>
+        <th>Category</th>
+        <th>Created date</th>
+        <th>Ending date</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tfoot>
+      <tr>
+
+        <th>Project ID</th>
+        <th>Project Name</th>
+        <th>Funded Amount</th>
+        <th>Category</th>
+        <th>Created date</th>
+        <th>Ending date</th>
+        <th>Actions</th>
+      </tr>
+      </tfoot>
+
+      <tbody>
+      <%
+      List<Project> projects = (ArrayList<Project>)request.getAttribute("projects");
+        List<Payment> payments = (ArrayList<Payment>)request.getAttribute("payments");
+          Hashtable<Character, String> role_values = new Hashtable<Character, String>();
+
+          role_values.put('A',"Admin");
+          role_values.put('F',"Finance Admin");
+          role_values.put('S',"Support Team");
+          role_values.put('C',"Creator");
+          role_values.put('I',"Investor");
+
+          Hashtable<Character, String> status_values = new Hashtable<Character, String>();
+
+          status_values.put('A',"Active");
+          status_values.put('B',"Blocked");
+          status_values.put('D',"Deleted");
+
+          Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
+
+          financialstatus_values.put('C',"Complete");
+          financialstatus_values.put('I',"Incomplete");
+
+
+          for (int i=0; i<projects.size();i++){
+          %>
+      <tr>
+
+        <td><% out.print(projects.get(i).getProjectId());%></td>
+        <td><% out.print(projects.get(i).getProjectName());%></td>
+        <td><% out.print(payments.get(i));%></td>
+        <td><% out.print(projects.get(i).getCategory());%></td>
+        <td><% out.print(projects.get(i).getCreatedAt());%></td>
+        <td><% out.print(projects.get(i).getDateOfExpiry());%></td>
         <td> <button class="viewbutton" id="idViewButton" onclick="idViewButton_onclick();">View</button>
         </td>
       </tr>
@@ -240,6 +390,6 @@
     } );
   });
 </script>
-<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>

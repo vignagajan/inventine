@@ -20,34 +20,52 @@ public class ProjectServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("role") == null){
-            session.setAttribute("role", 'A' );
+        if (session.getAttribute("role") == null) {
+            session.setAttribute("role", 'A');
         }
 
-        ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
         PaymentDaoImplementation paymentDao = new PaymentDaoImplementation();
+        ProjectDaoImplementation projectsDao = new ProjectDaoImplementation();
 
-
+        String card1_condition= null;
+        String card2_condition= null;
+        String card3_condition= null;
+        String card4_condition= null;
         String get_condition = "";
-//        String totalq= null;
+        String totalq= null;
+
         char role = (char)request.getSession().getAttribute("role");
 
         if (role == 'A' || role == 'F' || role == 'S'){
+            card1_condition = "status = 'A'";
+            card2_condition = "select count(DISTINCT projectid) from payment";
+            card3_condition = "select count(DISTINCT investorid) from payment";
+            card4_condition = "select sum(amount/(1000)) from payment";
             get_condition = "";
         }
 
         if (role == 'C'){
-            get_condition = String.format("creatorid=%s", session.getAttribute("userid"));
+            card2_condition = "select count(DISTINCT projectid) from payment";
+            card3_condition = "select count(DISTINCT investorid) from payment";
+            card4_condition = "select sum(amount/(1000)) from payment";
+            totalq = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
         }
 
         if (role == 'I'){
-            get_condition = String.format("projectid=(select projectid from payment where investorid=%s)",session.getAttribute("userid"));
+            card2_condition = "select count(DISTINCT projectid) from payment";
+            card3_condition = "select count(DISTINCT investorid) from payment";
+            card4_condition = "select sum(amount/(1000)) from payment";
+            totalq = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
         }
-        
 
-        List<Project> projects = projectDao.getProjects(get_condition);
-        List<Payment> payments = new ArrayList<Payment>();
-        String payment_condition = null;
+//        String creators = String.format("select count(investorid) from payment where investorid=%s;",investorId);
+//        String projects = String.format("select count(investorid) from payment where investorid=%s;",investorId);
+//        String meetings = String.format("select count(investorid) from acceptmeeting where investorid=%s;",investorId);
+//        String transactions = String.format("select sum(amount/(1000)) from payment where investorid=%s;",investorId);
+
+        List<Payment> payments = paymentDao.getPayments(get_condition);
+        List<Project> projects = projectsDao.getProjects(get_condition);
+
 
         int card1_count = 0;
         int card2_count = 0;
@@ -66,8 +84,6 @@ public class ProjectServlet extends HttpServlet {
                 card3_count += 1;
             }
 
-            payment_condition = String.format("select sum(amount) from payment where projectid=%s", project.getProjectId());
-           payments.add(paymentDao.getPayment(payment_condition));
 
         }
 
@@ -88,8 +104,8 @@ public class ProjectServlet extends HttpServlet {
         // Add card colors
         request.setAttribute("card1_color","#03D815");
         request.setAttribute("card2_color","#FFC400");
-        request.setAttribute("card3_color","#FF0000");
-        request.setAttribute("card4_color","#0097E6");
+        request.setAttribute("card3_color","#FF004C");
+        request.setAttribute("card4_color","#006EFF");
 
         // Add card icons
         request.setAttribute("card1_icon","fa-lightbulb");
@@ -97,14 +113,13 @@ public class ProjectServlet extends HttpServlet {
         request.setAttribute("card3_icon","fa-lightbulb");
         request.setAttribute("card4_icon","fa-lightbulb");
 
-
-        request.setAttribute("projects",projects);
+        // Add table data
         request.setAttribute("payments",payments);
+        request.setAttribute("projects",projects);
 
-        request.setAttribute("host_url",System.getenv("HOST_URL"));
         request.setAttribute("title","Project");
-        response.setContentType("text/html");
         request.getRequestDispatcher("/WEB-INF/dashboard/project/index.jsp").forward(request, response);
+
     }
 
     @Override
