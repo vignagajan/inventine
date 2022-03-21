@@ -3,6 +3,10 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.util.Hashtable" %>
+<%@ page import="com.inventine.model.Issues" %>
+<%@ page import="com.inventine.model.User" %>
+<%@ page import="com.inventine.model.Creds" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -43,35 +47,35 @@
     <!-- the 4 cards containing data at top -->
     <div class="main-overview">
 
-        <div class="overviewcard" style="background-color:white;color: rgb(182, 0, 182);">
-            <div><i class="fas fa-money-check-alt fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card1_color}">
+            <div><i class="far ${card1_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Investors</div>
-                <div class="overviewcard__info" style="font-size: 36px; float: right;">59</div>
+                <div>${card1_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card1_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
-            <div><i class="far fa-lightbulb fa-2x"></i></div>
-            <div class="overviewcard__icon" >
-                <div>Projects</div>
-                <div class="overviewcard__info"style="font-size: 36px;float: right">9</div>
+        <div class="overviewcard" style="background-color:white;color: ${card2_color}">
+            <div><i class="far ${card2_icon} fa-2x"></i></div>
+            <div class="overviewcard__icon">
+                <div>${card2_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card2_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(0, 110, 255);">
-            <div><i class="fas fa-people-carry fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card3_color}">
+            <div><i class="far ${card3_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Meetings</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">203</div>
+                <div>${card3_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card3_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(255, 0, 76);">
-            <div><i class="fas fa-hand-holding-usd fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card4_color}">
+            <div><i class="far ${card4_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Funds (k)</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">123</div>
+                <div>${card4_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card4_count}</div>
             </div>
         </div>
 
@@ -83,6 +87,9 @@
         <button class="createbutton">Create Issue</button>
     </div>
 
+    <% if (session.getAttribute("role").toString().charAt(0) == 'S'   || session.getAttribute("role").toString().charAt(0) == 'A' ) {
+
+    %>
     <div class="main-tables">
         <table id="example" class="table" cellspacing="0" width="100%">
             <thead>
@@ -91,7 +98,6 @@
                 <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Date Created</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -102,32 +108,45 @@
                 <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Date Created</th>
                 <th>Actions</th>
             </tr>
             </tfoot>
 
             <tbody>
+            <%
+                List<Issues> issues = (ArrayList<Issues>)request.getAttribute("issues");
+                List<User> users = (ArrayList<User>)request.getAttribute("users");
+                List<Creds> creds = (ArrayList<Creds>)request.getAttribute("creds");
+                Hashtable<Character, String> role_values = new Hashtable<Character, String>();
+
+                role_values.put('A',"Admin");
+                role_values.put('F',"Finance Admin");
+                role_values.put('S',"Support Team");
+                role_values.put('C',"Creator");
+                role_values.put('I',"Investor");
+
+                Hashtable<Character, String> status_values = new Hashtable<Character, String>();
+
+                status_values.put('A',"Active");
+                status_values.put('B',"Blocked");
+                status_values.put('R',"Rejected");
+                status_values.put('S',"Solved");
+
+
+                for (int i=0; i<issues.size();i++){
+            %>
             <tr>
 
-                <td>100028</td>
-                <td>Jack</td>
-                <td>Jack@gmail.com</td>
-                <td>2011/04/25</td>
-                <td> <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
+                <td><% out.print(issues.get(i).getIssueId());%></td>
+                <td><% out.print(users.get(i).getFirstName());%> <% out.print(users.get(i).getLastName());%></td>
+                <td><% out.print(creds.get(i).getEmail());%></td>
+                <td><% out.print(issues.get(i).getDescription());%></td>
+                <td>
                     <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
-                </td>
-            </tr>
-            <tr>
 
-                <td>100099</td>
-                <td>Sahar</td>
-                <td>sahar@gmail.com</td>
-                <td>2011/07/25</td>
-                <td> <button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>
-                    <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
                 </td>
             </tr>
+            <%}%>
 
 
 
