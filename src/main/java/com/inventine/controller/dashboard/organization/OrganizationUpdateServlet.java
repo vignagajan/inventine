@@ -20,6 +20,7 @@ public class OrganizationUpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+
         if (session.getAttribute("role") == null){
             session.setAttribute("role", 'A' );
         }
@@ -63,9 +64,9 @@ public class OrganizationUpdateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         String creatorId = session.getAttribute("userId").toString();
-        String supportTeamId = "1";
-        String logoId = "1234";
-        String headerId = "789";
+        String supportTeamId = "-1";
+        String logoId = "1640618179717";
+        String headerId = "1640618091700";
 
         //  char financialStatus = 'I';
         // char status = 'A';

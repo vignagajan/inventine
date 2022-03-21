@@ -68,8 +68,8 @@ public class OrganizationCreateServlet extends HttpServlet {
 
         String creatorId = session.getAttribute("userId").toString();
         String supportTeamId = "1";
-        String logoId = "1234";
-        String headerId = "1640618179717";
+        String logoId = "1640618179717";
+        String headerId = "1640618091700";
 
         //  char financialStatus = 'I';
         // char status = 'A';

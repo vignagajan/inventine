@@ -39,8 +39,8 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
     @Override
     public boolean create(Competition competition) {
 
-        String query = "INSERT INTO competition(organizationId,  supportTeamId,projectId,endingAt ,prizeMoney,rules,cType,pType,competitionName,headerId,startingAt,overView ,status) " +
-                "VALUES (?, ?, ?,?,?,?,CAST(? AS cp),CAST(? AS pte),?,?,?,?,CAST(? AS status2))";
+        String query = "INSERT INTO competition(organizationId,supportTeamId,endingAt ,prizeMoney,rules,cType,pType,competitionName,headerId,startingAt,overView ,status) " +
+                "VALUES (?, ?,?,?,?,CAST(? AS cp),CAST(? AS pte),?,?,?,?,CAST(? AS status2))";
 
         int n = 0;
 
@@ -50,17 +50,17 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
 
             stmt.setInt(1, Integer.parseInt(competition.getOrganizationId()));
             stmt.setInt(2, Integer.parseInt(competition.getSupportTeamId()));
-            stmt.setInt(3, Integer.parseInt(competition.getProjectId()));
-            stmt.setTimestamp(4, competition.getEndingAt());
-            stmt.setInt(5, competition.getPrizeMoney());
-            stmt.setString(6, competition.getRules());
-            stmt.setString(7, String.valueOf(competition.getCType()));
-            stmt.setString(8, String.valueOf(competition.getPType()));
-            stmt.setString(9,String.valueOf(competition.getCompetitionName()));
-            stmt.setString(10, competition.getHeaderId());
-            stmt.setTimestamp(11, competition.getStartingAt());
-            stmt.setString(12,competition.getOverView());
-            stmt.setString(13, String.valueOf(competition.getStatus()));
+            //stmt.setInt(3, Integer.parseInt(competition.getProjectId()));
+            stmt.setTimestamp(3, competition.getEndingAt());
+            stmt.setInt(4, competition.getPrizeMoney());
+            stmt.setString(5, competition.getRules());
+            stmt.setString(6, String.valueOf(competition.getCType()));
+            stmt.setString(7, String.valueOf(competition.getPType()));
+            stmt.setString(8,String.valueOf(competition.getCompetitionName()));
+            stmt.setString(9, competition.getHeaderId());
+            stmt.setTimestamp(10, competition.getStartingAt());
+            stmt.setString(11,competition.getOverView());
+            stmt.setString(12, String.valueOf(competition.getStatus()));
 
 
 
@@ -83,7 +83,7 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
             competition.setCompetitionId(rs.getString("competitionId"));
             competition.setOrganizationId(rs.getString("organizationId"));
             competition.setSupportTeamId(rs.getString("supportTeamId"));
-            competition.setProjectId(rs.getString("projectId"));
+          //  competition.setProjectId(rs.getString("projectId"));
             competition.setCreatedAt(rs.getTimestamp("createdAt"));
             competition.setEndingAt(rs.getTimestamp("endingAt"));
             competition.setPrizeMoney(rs.getInt("prizeMoney"));
@@ -165,7 +165,7 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
     @Override
     public boolean update(Competition competition) {
 
-        String query = String.format("UPDATE competition SET organizationId=?, supportTeamId=?, projectId=?, endingAt=?, prizeMoney=?, rules=?,cType=CAST(? AS cp),pType=CAST(? AS pte),competitionName=?,headerId=?,startingAt=?,overView=? ,status=CAST(? AS status2)WHERE competitionId =?");
+        String query = String.format("UPDATE competition SET organizationId=?, supportTeamId=?, endingAt=?, prizeMoney=?, rules=?,cType=CAST(? AS cp),pType=CAST(? AS pte),competitionName=?,headerId=?,startingAt=?,overView=? ,status=CAST(? AS status2)WHERE competitionId =?");
 
         try{
 
@@ -173,18 +173,18 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
 
             stmt.setInt(1, Integer.parseInt(competition.getOrganizationId()));
             stmt.setInt(2, Integer.parseInt(competition.getSupportTeamId()));
-            stmt.setInt(3, Integer.parseInt(competition.getProjectId()));
-            stmt.setTimestamp(4, competition.getEndingAt());
-            stmt.setInt(5,competition.getPrizeMoney());
-            stmt.setString(6,competition.getRules());
-            stmt.setString(7, String.valueOf(competition.getCType()));
-            stmt.setString(8, String.valueOf(competition.getPType()));
-            stmt.setString(9,competition.getCompetitionName());
-            stmt.setString(10, competition.getHeaderId());
-            stmt.setTimestamp(11, competition.getStartingAt());
-            stmt.setString(12,competition.getOverView());
-            stmt.setString(13, String.valueOf(competition.getStatus()));
-            stmt.setInt(14, Integer.parseInt(competition.getCompetitionId()));
+           // stmt.setInt(3, Integer.parseInt(competition.getProjectId()));
+            stmt.setTimestamp(3, competition.getEndingAt());
+            stmt.setInt(4,competition.getPrizeMoney());
+            stmt.setString(5,competition.getRules());
+            stmt.setString(6, String.valueOf(competition.getCType()));
+            stmt.setString(7, String.valueOf(competition.getPType()));
+            stmt.setString(8,competition.getCompetitionName());
+            stmt.setString(9, competition.getHeaderId());
+            stmt.setTimestamp(10, competition.getStartingAt());
+            stmt.setString(11,competition.getOverView());
+            stmt.setString(12, String.valueOf(competition.getStatus()));
+            stmt.setInt(13, Integer.parseInt(competition.getCompetitionId()));
 
 
 

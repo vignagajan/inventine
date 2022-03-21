@@ -60,7 +60,7 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     @Override
     public boolean create(Participate participate) {
 
-        String query = "INSERT INTO Participate(  creatorId,competitionId) " +
+        String query = "INSERT INTO Participate(  projectId,competitionId) " +
                 "VALUES ( ?,?)";
 
         int n = 0;
@@ -69,7 +69,7 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(participate.getCreatorId()));
+            stmt.setInt(1,Integer.parseInt(participate.getProjectId()));
             stmt.setInt(2,Integer.parseInt(participate.getCompetitionId()));
 
 
@@ -91,7 +91,7 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
 
             participate.setParticipateId(rs.getString("participateId"));
             participate.setCreatedAt(rs.getTimestamp("createdAt"));
-            participate.setCreatorId(rs.getString("creatorId"));
+            participate.setProjectId(rs.getString("projectId"));
             participate.setCompetitionId(rs.getString("competitionId"));
 
 
@@ -161,13 +161,13 @@ public class ParticipateDaoImplementation implements ParticipateDaoInterface {
     @Override
     public boolean update(Participate participate) {
 
-        String query = String.format("UPDATE participate SET creatorId=?,competitionId=? WHERE participateId =?");
+        String query = String.format("UPDATE participate SET projectId=?,competitionId=? WHERE participateId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(participate.getCreatorId()));
+            stmt.setInt(1, Integer.parseInt(participate.getProjectId()));
             stmt.setInt(2, Integer.parseInt(participate.getCompetitionId()));
             stmt.setInt(3, Integer.parseInt(participate.getParticipateId()));
 
