@@ -75,7 +75,7 @@ public class OrganizationServlet extends HttpServlet {
                     request.setAttribute("card1_label", "P.Organizations");
                     request.setAttribute("card2_label", "Schools");
                     request.setAttribute("card3_label", "Universities");
-                    request.setAttribute("card4_label", "Deleted");
+                    request.setAttribute("card4_label", "Total");
 
                     // Add card values
                     request.setAttribute("card1_count", card1_count);
