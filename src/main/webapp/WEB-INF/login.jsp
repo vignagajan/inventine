@@ -96,7 +96,7 @@
             y,
             window.location.href,
             'Login is successfull!',
-            '${System.getenv("HOST_URL")}/dashboard/employee',
+            '${System.getenv("HOST_URL")}/dashboard',
         )
     }
 
