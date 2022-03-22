@@ -24,7 +24,7 @@ public class ProjectServlet extends HttpServlet {
             session.setAttribute("role", 'A');
         }
 
-        PaymentDaoImplementation paymentDao = new PaymentDaoImplementation();
+
         ProjectDaoImplementation projectsDao = new ProjectDaoImplementation();
 
         String card1_condition= null;
@@ -45,10 +45,11 @@ public class ProjectServlet extends HttpServlet {
         }
 
         if (role == 'C'){
-            card2_condition = "select count from project where status='A' && creatorid=%s";
-            card3_condition = "select count from project where status='B' && creatorid=%s";
-            card4_condition = "select count from project where status='D' && creatorid=%s";
-            totalq = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+            card1_condition = "select count from project where status='A' && creatorid=%s";
+            card2_condition = "select count from project where status='B' && creatorid=%s";
+            card3_condition = "select count from project where status='D' && creatorid=%s";
+            card4_condition = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+            get_condition = "";
         }
 
         if (role == 'I'){
@@ -56,14 +57,16 @@ public class ProjectServlet extends HttpServlet {
             card2_condition = "(select count from payment where projectid=(select projectid from project where financialstatus='C') && investorid=%s)";
             card3_condition = "select count(DISTINCT investorid) from payment";
             card4_condition = "select sum(amount/(1000)) from payment where investorid=%s";
+            get_condition = "";
         }
+
 
 //        String creators = String.format("select count(investorid) from payment where investorid=%s;",investorId);
 //        String projects = String.format("select count(investorid) from payment where investorid=%s;",investorId);
 //        String meetings = String.format("select count(investorid) from acceptmeeting where investorid=%s;",investorId);
 //        String transactions = String.format("select sum(amount/(1000)) from payment where investorid=%s;",investorId);
 
-        List<Payment> payments = paymentDao.getPayments(get_condition);
+
         List<Project> projects = projectsDao.getProjects(get_condition);
 
 
@@ -127,9 +130,7 @@ public class ProjectServlet extends HttpServlet {
         request.setAttribute("card4_icon","fa-lightbulb");
 
         // Add table data
-        request.setAttribute("payments",payments);
         request.setAttribute("projects",projects);
-
         request.setAttribute("title","Project");
         request.getRequestDispatcher("/WEB-INF/dashboard/project/index.jsp").forward(request, response);
 
@@ -140,3 +141,4 @@ public class ProjectServlet extends HttpServlet {
 
     }
 }
+

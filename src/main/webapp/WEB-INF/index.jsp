@@ -3,6 +3,8 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.Hashtable" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.inventine.model.User" %>
+<%@ page import="com.inventine.model.Creds" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,6 +81,9 @@
     <div class="main">
         <ul class="cards">
             <%
+                List<User>  users= (ArrayList<User>)request.getAttribute("users");
+                List<Creds> creds= (ArrayList<Creds>)request.getAttribute("creds");
+                int i = 0;
                 for ( Project project: (ArrayList<Project>)request.getAttribute("project")){
             %>
             <div class="card">
@@ -99,15 +104,15 @@
                         deal with that fear.
                     </p>
                     <div class="user">
-                        <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                        <img src="${System.getenv("HOST_URL")}/image/<%out.print(creds.get(i).getProfileId());%>" />
                         <div class="user-info">
-                            <h5></h5>
-                            <small><%out.print(new Date(project.getCreatedAt().getTime()));%></small>
+                            <h5>
+                                <%out.print(users.get(i).getFirstName());%> <%out.print(users.get(i).getLastName());%></h5>
                         </div>
                     </div>
                 </div>
             </div>
-           <%}%>
+           <%i++;}%>
 
         </ul>
     </div>

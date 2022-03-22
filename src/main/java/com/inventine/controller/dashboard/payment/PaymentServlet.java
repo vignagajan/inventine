@@ -42,25 +42,38 @@ public class PaymentServlet extends HttpServlet {
         char role = (char)request.getSession().getAttribute("role");
 
         if (role == 'A' || role == 'F' || role == 'S'){
-            card1_condition = "select count from payment where status = 'A'";
-            card2_condition = "select count from project where status = 'B'";
-            card3_condition = "select count from project where status = 'D'";
-            card4_condition = "select count(DISTINCT projectid) from project";
-            get_condition = "";
+            card1_condition = "select sum(amount/(1000)) from payment\n" +
+                    "WHERE createdat >= date_trunc('month', current_date - interval '1' month)\n" +
+                    "  and createdat < date_trunc('month', current_date)";
+            card2_condition = "select sum(amount/(1000)) from payment\n" +
+                    "WHERE createdat >= date_trunc('week', current_date - interval '1 week')\n" +
+                    "  and createdat < date_trunc('week', current_date)";
+            card3_condition = "select count(DISTINCT paymentid) from payment";
+            card4_condition = "select sum(amount/(1000)) from payment";
         }
 
         if (role == 'C'){
-            card2_condition = "select count from project where status='A' && creatorid=%s";
-            card3_condition = "select count from project where status='B' && creatorid=%s";
-            card4_condition = "select count from project where status='D' && creatorid=%s";
-            totalq = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+            card1_condition = "select sum(amount/(1000)) from payment\n" +
+                    "WHERE createdat >= date_trunc('month', current_date - interval '1 month')\n" +
+                    "  and createdat < date_trunc('month', current_date) and projectid=(select projectid from project where creatorid=%s)";
+            card2_condition = "select sum(amount/(1000)) from payment\n" +
+                    "WHERE createdat >= date_trunc('week', current_date - interval '1 week')\n" +
+                    "  and createdat < date_trunc('week', current_date) and projectid=(select projectid from project where creatorid=%s)";;
+            card3_condition = "select count(DISTINCT paymentid) from payment where projectid=(select projectid from project where creatorid=%s)";
+            card4_condition = "select sum(amount/1000) from payment where projectid=(select projectid from project where creatorid=%s)";
+
         }
 
         if (role == 'I'){
-            card1_condition = "select count(DISTINCT projectid) from project";
-            card2_condition = "(select count from payment where projectid=(select projectid from project where financialstatus='C') && investorid=%s)";
-            card3_condition = "select count(DISTINCT investorid) from payment";
-            card4_condition = "select sum(amount/(1000)) from payment where investorid=%s";
+            card1_condition = "select sum(amount/(1000)) from payment\n" +
+                    "WHERE createdat >= date_trunc('month', current_date - interval '1 month')\n" +
+                    "  and createdat < date_trunc('month', current_date) and investorid=%s";
+            card2_condition = "select sum(amount/(1000)) from payment\n" +
+                    "WHERE createdat >= date_trunc('week', current_date - interval '1 week')\n" +
+                    "  and createdat < date_trunc('week', current_date) and investorid=%s";;
+            card3_condition = "select count(DISTINCT paymentid) from payment where investorid=%s";
+            card4_condition = "select sum(amount/1000) from payment where inevestorid=%s";
+
         }
 
 //        String creators = String.format("select count(investorid) from payment where investorid=%s;",investorId);
@@ -95,30 +108,32 @@ public class PaymentServlet extends HttpServlet {
 //        card4_count = card1_count+card2_count+card3_count;
 
         // Add card labels
-        if (role == 'A' || role == 'F' || role == 'S' || role == 'C' || role == 'I') {
             request.setAttribute("card1_label", "This Month");
             request.setAttribute("card2_label", "This Week");
             request.setAttribute("card3_label", "Transactions");
             request.setAttribute("card4_label", "Total Funds");
-        }
+
 
         // Add card values
-        request.setAttribute("card1_count",card1_count);
+        request.setAttribute("card1_condition",card1_count);
         request.setAttribute("card2_count",card2_count);
         request.setAttribute("card3_count",card3_count);
         request.setAttribute("card4_count",card4_count);
-
+        System.out.println(card1_count);
+        System.out.println(card2_count);
+        System.out.println(card3_count);
+        System.out.println(card4_count);
         // Add card colors
         request.setAttribute("card1_color","#006EFF");
-        request.setAttribute("card2_color","#FFC400");
-        request.setAttribute("card3_color","#FF004C");
+        request.setAttribute("card2_color","#3AC3FF");
+        request.setAttribute("card3_color","#7EFC00");
         request.setAttribute("card4_color","#03D815");
 
         // Add card icons
-        request.setAttribute("card1_icon","fa-lightbulb");
-        request.setAttribute("card2_icon","fa-lightbulb");
-        request.setAttribute("card3_icon","fa-lightbulb");
-        request.setAttribute("card4_icon","fa-lightbulb");
+        request.setAttribute("card1_icon","fas fa-funnel-dollar");
+        request.setAttribute("card2_icon","fas fa-funnel-dollar");
+        request.setAttribute("card3_icon","fas fa-funnel-dollar");
+        request.setAttribute("card4_icon","fas fa-funnel-dollar");
 
         // Add table data
 //        request.setAttribute("payments",payments);
@@ -184,7 +199,7 @@ public class PaymentServlet extends HttpServlet {
 
 
         request.setAttribute("payments",payments);
-
+        request.setAttribute("projects",projects);
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
         request.setAttribute("title","Payment");
         response.setContentType("text/html");
