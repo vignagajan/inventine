@@ -138,8 +138,8 @@
                 <td><% out.print(competition.getPrizeMoney());%></td>
                 <td><% out.print(competition.getCreatedAt());%></td>
                 <td><% out.print(competition.getEndingAt());%></td>
-                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/competition-profile'">View</button>
-                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/competition/update'">Update</button>
+                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/competition-profile/'">View</button>
+                    <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/competition/update/<% out.print(competition.getCompetitionId());%>'">Update</button>
                     <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
 
                 </td>
