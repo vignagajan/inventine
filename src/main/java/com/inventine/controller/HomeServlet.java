@@ -1,14 +1,17 @@
 package com.inventine.controller;
 
+import com.inventine.dao.CredsDaoImplementation;
 import com.inventine.dao.ProjectDaoImplementation;
 import com.inventine.dao.PostDaoImplementation;
 import com.inventine.dao.UserDaoImplementation;
+import com.inventine.model.Creds;
 import com.inventine.model.Project;
 import com.inventine.model.Post;
 import com.inventine.model.User;
 import com.inventine.util.DotEnv;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -23,19 +26,25 @@ public class HomeServlet extends HttpServlet {
 
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
         UserDaoImplementation userDao = new UserDaoImplementation();
+        CredsDaoImplementation credsDao = new CredsDaoImplementation();
 
         String condition;
 
         List<Project> projects = projectDao.getProjects("");
+        List<User> users=new ArrayList<>();
+        List<Creds> creds=new ArrayList<>();
         for (final Project project: projects){
             condition = String.format("%s",project.getCreatorId());
-            User user = userDao.getUser(condition);
-//            user.setFirstName(user.getFirstName());
-//            user.setLastName(user.getLastName());
+            users.add(userDao.getUser(condition));
+            creds.add(credsDao.getCreds(condition));
             project.setProjectName(project.getProjectName());
             project.setCreatedAt(project.getCreatedAt());
+            System.out.println(credsDao.getCreds(condition).getProfileId());
         }
+
         request.setAttribute("project",projects);
+        request.setAttribute("users",users);
+        request.setAttribute("creds", creds);
         request.setAttribute("title","Home");
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
