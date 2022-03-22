@@ -31,19 +31,8 @@
                     <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
                 </div>
 
-                <div class="input-box">
-                    <span class="details">Prize Amount</span>
-                    <input type="text"
-                           name="prizeMoney" id="prizeMoney" required pattern="^(?:0|[1-9]\d*)$">
-                    <span class="error" aria-live="polite" style="display: none;">Enter an amount no decimals needed</span>
-                </div>
 
-                <div class="input-box">
-                    <span class="details">Ending Date</span>
-                    <input type="date"
-                           name="endingAt" id="endingAt" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
-                    <span class="error" aria-live="polite" style="display: none;" >Select the date of Competition expiry</span>
-                </div>
+
 
                 <div class="input-box">
                     <span class="details">Starting Date</span>
@@ -54,10 +43,32 @@
 
 
                 <div class="input-box">
+                    <span class="details">Ending Date</span>
+                    <input type="date"
+                           name="endingAt" id="endingAt" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
+                    <span class="error" aria-live="polite" style="display: none;" >Select the date of Competition expiry</span>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">Prize Amount</span>
+                    <input type="text"
+                           name="prizeMoney" id="prizeMoney" required pattern="^(?:0|[1-9]\d*)$">
+                    <span class="error" aria-live="polite" style="display: none;">Enter an amount no decimals needed</span>
+                </div>
+
+
+                <div class="input-box">
                     <span class="details">Rules</span>
                     <input type="text"
                            name="rules" id="rules" required >
                     <span class="error" aria-live="polite" style="display: none;" >Input the description</span>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">OverView</span>
+                    <input type="text"
+                           name="overView" id="overView" required >
+                    <span class="error" aria-live="polite" style="display: none;" >Input the OverviewofCompetition</span>
                 </div>
                 <%--                <div class="input-box">--%>
                 <%--                    <span class="details">Description</span>--%>
@@ -80,26 +91,18 @@
             </div>
 
 
-<%--            <div class="input-box">--%>
-<%--                <span class="details">Participate  Type</span>--%>
-<%--                <select class="category" name="pType" id="pType" required>--%>
-<%--                    <option disabled selected value> -- select a category for Participate Type -- </option>--%>
-<%--                    <option value="I">Internal</option>--%>
-<%--                    <option value="A">All</option>--%>
 
-<%--                </select>--%>
-<%--                <span class="error" aria-live="polite" style="display: none;" >Select a category</span>--%>
-<%--            </div>--%>
-            <!-- input boxes end -->
+
+
         </div>
 
             <div style="display: flex">
-                <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/project';">Cancel</button>
+            </div>
+    </div>
+                <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/dashboard/competition';">Cancel</button>
                 <button onclick="signupValidation()">Create</button>
             </div>
 
-        </div>
-    </div>
 </div>
 <script src="${System.getenv("HOST_URL")}/static/js/dashboard/validate.js"></script>
 

@@ -1,3 +1,6 @@
+<%@ page import="com.inventine.model.Competition" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -72,29 +75,65 @@
 
 
         <div class="main">
-            <ul class="cards">
-                <div class="card">
-                    <div class="card-header">
-                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
-                    </div>
-                    <div class="card-body">
-                        <span class="tag tag-purple">Popular</span>
-                        <h4>
-                            How to Keep Going When You Don’t Know What’s Next
-                        </h4>
-                        <p>
-                            The future can be scary, but there are ways to
-                            deal with that fear.
-                        </p>
-                        <div class="user">
-                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
-                            <div class="user-info">
-                                <h5>Eyup Ucmaz</h5>
-                                <small>Yesterday</small>
+
+                <ul class="cards">
+                    <%
+                        for ( Competition competition: (ArrayList<Competition>)request.getAttribute("competitions")){
+                    %>
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="${System.getenv("HOST_URL")}/competition/<% out.print(competition.getCompetitionId());%>">
+                                <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <span class="tag tag-purple"><% out.print(competition.getCType());%></span>
+                            <h4>
+                                <a href="${System.getenv("HOST_URL")}/competition/<% out.print(competition.getCompetitionId());%>">
+                                    <% out.print(competition.getCompetitionName()); %>
+                                </a>
+                            </h4>
+                            <p>
+                                The future can be scary, but there are ways to
+                                deal with that fear.
+                            </p>
+                            <div class="user">
+                                <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                                <div class="user-info">
+                                    <h5></h5>
+                                    <small><%out.print(new Date(competition.getCreatedAt().getTime()));%></small>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <%}%>
+
+                </ul>
+<%--                <div class="card">--%>
+<%--                    <div class="card-header">--%>
+<%--                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />--%>
+<%--                    </div>--%>
+<%--                    <div class="card-body">--%>
+<%--                        <span class="tag tag-purple">Popular</span>--%>
+<%--                        <h4>--%>
+<%--                            How to Keep Going When You Don’t Know What’s Next--%>
+<%--                        </h4>--%>
+<%--                        <p>--%>
+<%--                            The future can be scary, but there are ways to--%>
+<%--                            deal with that fear.--%>
+<%--                        </p>--%>
+<%--                        <div class="user">--%>
+<%--                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />--%>
+<%--                            <div class="user-info">--%>
+<%--                                <h5>Eyup Ucmaz</h5>--%>
+<%--                                <small>Yesterday</small>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+
+
+
                 <div class="card">
                     <div class="card-header">
                         <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
