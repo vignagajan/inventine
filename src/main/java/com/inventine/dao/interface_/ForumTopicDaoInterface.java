@@ -16,6 +16,8 @@ public interface ForumTopicDaoInterface {
 
     public List<ForumTopic> getForumTopics(String condition);
 
+//    public  List<ForumTopic> getForumTopicsFilter(String condition);
+
     public boolean update(ForumTopic forumTopic);
 
     public int getCount(String condition) throws SQLException;

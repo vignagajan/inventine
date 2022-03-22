@@ -11,6 +11,8 @@ public interface PostDaoInterface {
 
     public Post getPost(String postId);
 
+//    public Post getPostPI(String postId);
+
     public List<Post> getPosts(String condition);
 
     public boolean update(Post post);

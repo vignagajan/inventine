@@ -2,7 +2,9 @@ package com.inventine.dao;
 
 import com.inventine.conf.DBManager;
 import com.inventine.dao.interface_.PostDaoInterface;
+import com.inventine.dao.interface_.PostLikeDaoInterface;
 import com.inventine.model.Post;
+import com.inventine.model.PostLike;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,23 +13,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostDaoImplementation implements PostDaoInterface {
-
+public class PostLikeDaoImplementation implements PostLikeDaoInterface {
     static Connection conn = DBManager.getConnection();
 
     @Override
     public int getCount(String condition)  {
 
         int count = 0;
-        String query = "select count(*) from post";
+        String query = "select count(*) from postlike ";
 
         if (!condition.isEmpty()){
 
-            condition = String.format(" WHERE %s",condition);
+            condition = String.format(" WHERE postid=%s;",condition);
 
             query = query.concat(condition);
 
         }
+
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -61,10 +63,10 @@ public class PostDaoImplementation implements PostDaoInterface {
 
 
     @Override
-    public int create(Post post) {
+    public boolean create(PostLike postlike) {
 
-        String query = "INSERT INTO post(description,userId) " +
-                "VALUES (?,?) RETURNING postId";
+        String query = "INSERT INTO postlike(userId,postId) " +
+                "VALUES (?,?) RETURNING postLikeId";
 
         int n = 0;
 
@@ -72,61 +74,56 @@ public class PostDaoImplementation implements PostDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1,post.getDescription());
-            stmt.setInt(2,Integer.parseInt(post.getUserId()));
+            stmt.setInt(1,Integer.parseInt(postlike.getUserId()));
+            stmt.setInt(2,Integer.parseInt(postlike.getPostId()));
+
 
             ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
-                n = rs.getInt("postId");
-            }
 
-
-            return n;
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();  }
 
-        return -1;
+        return false;
 
     }
 
-    private Post setPost(Post post, ResultSet rs) {
+    private PostLike setPostLike(PostLike postLike, ResultSet rs) {
 
         try {
-
-            post.setPostId(rs.getString("postId"));
-            post.setUserId(rs.getString("userId"));
-            post.setDescription(rs.getString("description"));
-            post.setCreatedAt(rs.getTimestamp("createDate"));
-
+            postLike.setPostLikeId(rs.getString("postLikeId"));
+            postLike.setPostId(rs.getString("postId"));
+            postLike.setUserId(rs.getString("userId"));
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return post;
+        return postLike;
     }
 
     @Override
-    public Post getPost(String postId) {
+    public PostLike getPostLike(String userId,String postId) {
 
-        String query = "SELECT * FROM post WHERE postId= ?";
+        String query = "SELECT * FROM postLike WHERE userId= ? and postId=?";
 
-        Post post = new Post();
+        PostLike postLike = new PostLike();
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(postId));
+            stmt.setInt(1,Integer.parseInt(userId));
+            stmt.setInt(2,Integer.parseInt(postId));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                post = setPost(post,rs);
+                postLike = setPostLike(postLike,rs);
             }
 
-            return post;
+            return postLike;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -164,45 +161,71 @@ public class PostDaoImplementation implements PostDaoInterface {
 //
 //    }
 
+//    @Override
+//    public List<Post> getPosts(String condition) {
+//
+//        String query = "SELECT * FROM post";
+//
+//        List<Post> ls = new ArrayList();
+//
+//        try {
+//
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//            ResultSet rs = stmt.executeQuery();
+//
+//            while (rs.next()) {
+//                Post post = new Post();
+//                post = setPost(post,rs);
+//                ls.add(post);
+//            }
+//
+//            return ls;
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
+
     @Override
-    public List<Post> getPosts(String condition) {
+    public boolean update(PostLike postLike) {
 
-        String query = "SELECT * FROM post";
-
-        List<Post> ls = new ArrayList();
+        String query = String.format("UPDATE postLike SET userId=?, postId=? WHERE postlikeId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
-                Post post = new Post();
-                post = setPost(post,rs);
-                ls.add(post);
-            }
 
-            return ls;
+            stmt.setInt(1, Integer.parseInt(postLike.getUserId()));
+            stmt.setInt(2, Integer.parseInt(postLike.getPostId()));
+            stmt.setInt(3,Integer.parseInt(postLike.getPostLikeId()));
+
+            stmt.executeUpdate();
+
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
 
-        return null;
+        return false;
     }
 
     @Override
-    public boolean update(Post post) {
+    public boolean delete(PostLike postLike) {
 
-        String query = String.format("UPDATE post SET userId=?, description=? WHERE postId =?");
+        String query = String.format("delete from postLike WHERE postlikeId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(post.getUserId()));
-            stmt.setString(2,post.getDescription());
-            stmt.setInt(3, Integer.parseInt(post.getPostId()));
+
+            stmt.setInt(1, Integer.parseInt(postLike.getUserId()));
+
 
             stmt.executeUpdate();
 

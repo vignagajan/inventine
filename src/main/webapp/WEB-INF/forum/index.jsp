@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.inventine.model.ForumTopic" %>
 <%@ page import="com.inventine.dao.PostDaoImplementation" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,15 +11,17 @@
 
     <%@ include file="/WEB-INF/components/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/home.css">
-    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/forum.css">
+    <link rel="stylesheet" href="${host_url}/static/css/home.css">
+    <link rel="stylesheet" href="${host_url}/static/css/dashboard/forum_form.css">
+    <link rel="stylesheet" href="${host_url}/static/css/forum.css">
+
 
 </head>
 <body>
 
 <%@ include file="/WEB-INF/components/nav-bar.jsp" %>
 
-<div class="content">
+<div class="content" id="content">
     <!-- description and image start -->
     <div class="container">
         <div class="column-1">
@@ -82,7 +85,7 @@
     <!-- discription and image end -->
 
 </div>
-<div class="main">
+<div class="main" id="main">
     <ul class="cards">
         <li class="cards_item">
             <div class="card">
@@ -123,102 +126,313 @@
 
     </ul>
 </div>
-
-<div class="forum-cont">
-    <div class="container-2">
-        <div class="grid-container">
-            <div class="item1">Community Activity</div>
-            <div class="item23">
-                <div class="item2"><label>Sorted by: </label></div>
-                <div class="item3">
-                    <select class="dropbox" name="" id="">
-                        <option value="">Most Recent</option>
-                        <option value="">Most Viewed</option>
-                        <option value="">Most Commented</option>
-                        <option value="">Most Helpful</option>
-                    </select>
+<div class="forum-cont-main">
+    <div class="forum-cont" id="forum-cont">
+        <div class="container-2">
+            <div class="grid-container">
+                <div class="item1">Community Activity</div>
+                <div class="item23">
+                    <div class="item2"><label>Sorted by: </label></div>
+                    <div class="item3">
+                        <select class="dropbox" name="" id="">
+                            <option value="">Most Recent</option>
+                            <option value="">Most Viewed</option>
+                            <option value="">Most Commented</option>
+                            <option value="">Most Helpful</option>
+                        </select>
+                    </div>
                 </div>
+                <div class="item4"><button onclick="document.getElementById('cont').style.display='block';make_blur('content');make_blur('main');make_blur('forum-cont');make_blur('menu')" class="button2">Start Conversation</button></div>
             </div>
-            <div class="item4"><a href="http://localhost:8080/inventine_war/dashboard/forumTopic/create"><button class="button2">Start Conversation</button></a></div>
+        </div>
+        <div class="posts">
+            <%
+                for ( ForumTopic forumTopic: (ArrayList<ForumTopic>)request.getAttribute("forumTopic")){
+            %>
+
+            <div class="grid-container-2">
+
+                <div class="post-header">
+                    <div class="post-header-container-1">
+                        <div class="profile-pic">
+                            <img style="width: 60px; height: 60px; vertical-align:super;" src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg">
+                        </div>
+                        <div class="profile-owner">
+                            <% out.print(forumTopic.getFirstName() + " " + forumTopic.getLastName());%>
+                        </div>
+                    </div>
+                    <div class="post-header-container-2">
+                        <div class="like-amount">
+                            <div class="like">
+                                <i class="fas fa-thumbs-up "></i>
+                            </div>
+                            <div class="amount">
+                                100
+                            </div>
+                        </div>
+                        <div class="views-amount">
+                            <div class="views">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="amount">
+                                200
+                            </div>
+                        </div>
+                        <div class="comment-amount">
+                            <div class="comments">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div class="amount">
+                                300
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-title">
+                    <% out.print(forumTopic.getTitle());%>
+                </div>
+                <div class="post-cont">
+                    <% out.print(forumTopic.getDescription());%>
+                </div>
+
+                <div class="post-footer">
+                    <div class="time">
+                        <% DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
+                            out.print(dtf.format(forumTopic.getCreatedAt().toLocalDateTime()));%>
+                    </div>
+                    <div class="catogory">
+                        Posted in <label>Catogory</label>
+                    </div>
+                    <div class="latest-reply">
+                        Latest reply by <label>User</label> on <label>30/05/2021 05:30:21 PM</label>
+                    </div>
+                    <div class="like-btn">
+                        <button >Like</button>
+                    </div>
+                    <div class="reply-btn">
+                        <button onclick="document.getElementById('cont-reply').style.display='block';make_blur('content');make_blur('main');make_blur('forum-cont');make_blur('menu')">Reply</button>
+                    </div>
+                </div>
+
+            </div>
+            <%}%>
+        </div>
+
+
+    </div>
+    <div class="forum-cont-category">
+        <div class="container-2">
+
         </div>
     </div>
-    <div class="posts">
-        <%
-            for ( ForumTopic forumTopic: (ArrayList<ForumTopic>)request.getAttribute("forumTopic")){
-        %>
+</div>
 
-        <div class="grid-container-2">
+<div class="container-form" style="display:none;z-index:100;" id="cont">
+    <div class="content_forum">
+        <div class="form">
 
-            <div class="post-header">
-                <div class="post-header-container-1">
-                    <div class="profile-pic">
-                        <img style="width: 60px; height: 60px; vertical-align:super;" src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg">
-                    </div>
-                    <div class="profile-owner">
-                        <% out.print(forumTopic.getFirstName() + " " + forumTopic.getLastName());%>
-                    </div>
-                </div>
-                <div class="post-header-container-2">
-                    <div class="like-amount">
-                        <div class="like">
-                            <i class="fas fa-thumbs-up "></i>
-                        </div>
-                        <div class="amount">
-                            100
-                        </div>
-                    </div>
-                    <div class="views-amount">
-                        <div class="views">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <div class="amount">
-                            200
-                        </div>
-                    </div>
-                    <div class="comment-amount">
-                        <div class="comments">
-                            <i class="fas fa-comment"></i>
-                        </div>
-                        <div class="amount">
-                            300
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="post-title">
-                <% out.print(forumTopic.getTitle());%>
-            </div>
-            <div class="post-cont">
-                <% out.print(forumTopic.getDescription());%>
-            </div>
-            <div class="post-footer">
-                <div class="time">
-                    <% out.print(forumTopic.getCreatedAt());%>
-                </div>
-                <div class="catogory">
-                    Posted in <label>Catogory</label>
-                </div>
-                <div class="latest-reply">
-                    Latest reply by <label>User</label> on <label>30/05/2021 05:30:21 PM</label>
-                </div>
-                <div class="like-btn">
-                    <button>Like</button>
-                </div>
-                <div class="reply-btn">
-                    <button>Reply</button>
-                </div>
-            </div>
+            <!-- input boxes start -->
+            <div class="details">
 
+                <div class="input-box">
+                    <span class="details">Title</span>
+                    <input type="text"
+                           name="title" id="title"  required >
+                    <span class="error" aria-live="polite" style="display: none;">letters and number of length 1-150 is allowed</span>
+                </div>
+
+
+
+                <div class="input-box">
+                    <span class="details">Description</span>
+                    <textarea rows="4" class="description-textarea" type="text"  name="description" id="description"  required ></textarea>
+
+                    <span class="error" aria-live="polite" style="display: none;">letters and number of length 1-150 is allowed</span>
+                </div>
+
+                <!-- input boxes end -->
+
+                <div class="form_btn">
+                    <button class="btn-cancel" type="button" id="cancelBtn" onclick="document.getElementById('cont').style.display='none';cancel_blur('content');cancel_blur('main');cancel_blur('forum-cont');cancel_blur('menu')">Cancel</button>
+                    <button class="btn-create" onclick="signupValidation();document.getElementById('cont').style.display='none';cancel_blur('content');cancel_blur('main');cancel_blur('forum-cont');cancel_blur('menu')">Create</button>
+                </div>
+
+            </div>
         </div>
-        <%}%>
     </div>
 
 
+    <script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/validate.js"></script>
+
+    <script>
+
+        function signupValidation(){
+            y = new Array;
+            y.push(document.getElementById("title"));
+            y.push(document.getElementById("description"));
+            console.log(y)
+            // z = Array.prototype.slice.call(document.getElementsByTagName("select"));
+            // y = y.concat(z);
+
+            for (i = 0; i < y.length; i++) {
+
+                if(y[i].value == ""){
+
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Form fields cannot be empty!',
+                        iconColor: "#0097e6",
+                        confirmButtonColor: "#0097e6",
+                    });
+
+                    return false;
+                }
+
+                if(!y[i].checkValidity()){
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Form fields should be valid!',
+                        iconColor: "#0097e6",
+                        confirmButtonColor: "#0097e6",
+                    });
+
+                    return false;
+                }
+
+            }
+
+
+
+            requestHandler(
+                y,
+                window.location.href,
+                'Forum post is created successfully!',
+                '${host_url}/forum'
+
+
+            )
+        }
+
+    </script>
+
+    <script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/dashboard.js"></script>
+    <script src="${host_url}/static/js/forum.js"></script>
+</div>
+<div class="container-form" style="display:none;z-index:100;" id="cont-reply">
+    <div class="content_forum" >
+
+        <div class="form">
+
+            <!-- input boxes start -->
+            <div class="details">
+
+                <%--                <div class="input-box">--%>
+                <%--                    <span class="details">Title</span>--%>
+                <%--                    <input type="text"--%>
+                <%--                           name="title" id="title"  required >--%>
+                <%--                    <span class="error" aria-live="polite" style="display: none;">letters and number of length 1-150 is allowed</span>--%>
+                <%--                </div>--%>
+
+                <%--                <div class="post-title">--%>
+                <%--                    <% out.print(forumTopic.getTitle());%>--%>
+                <%--                </div>--%>
+                <%--                <div class="post-cont">--%>
+                <%--                    <% out.print(forumTopic.getDescription());%>--%>
+                <%--                </div>--%>
+                <%--                    <div class="posts">--%>
+                <%--                        <%--%>
+                <%--                            for ( ForumTopic forumTopic: (ArrayList<ForumTopic>)request.getAttribute("forumTopic")){--%>
+                <%--                        %>--%>
+
+                <%--                        <div class="grid-container-2">--%>
+
+                <%--                            <div class="post-header">--%>
+                <%--                                <div class="post-header-container-1">--%>
+                <%--                                    <div class="profile-pic">--%>
+                <%--                                        <img style="width: 60px; height: 60px; vertical-align:super;" src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg">--%>
+                <%--                                    </div>--%>
+                <%--                                    <div class="profile-owner">--%>
+                <%--                                        <% out.print(forumTopic.getFirstName() + " " + forumTopic.getLastName());%>--%>
+                <%--                                    </div>--%>
+                <%--                                </div>--%>
+                <%--                                <div class="post-header-container-2">--%>
+                <%--                                    <div class="like-amount">--%>
+                <%--                                        <div class="like">--%>
+                <%--                                            <i class="fas fa-thumbs-up "></i>--%>
+                <%--                                        </div>--%>
+                <%--                                        <div class="amount">--%>
+                <%--                                            100--%>
+                <%--                                        </div>--%>
+                <%--                                    </div>--%>
+                <%--                                    <div class="views-amount">--%>
+                <%--                                        <div class="views">--%>
+                <%--                                            <i class="fas fa-eye"></i>--%>
+                <%--                                        </div>--%>
+                <%--                                        <div class="amount">--%>
+                <%--                                            200--%>
+                <%--                                        </div>--%>
+                <%--                                    </div>--%>
+                <%--                                    <div class="comment-amount">--%>
+                <%--                                        <div class="comments">--%>
+                <%--                                            <i class="fas fa-comment"></i>--%>
+                <%--                                        </div>--%>
+                <%--                                        <div class="amount">--%>
+                <%--                                            300--%>
+                <%--                                        </div>--%>
+                <%--                                    </div>--%>
+                <%--                                </div>--%>
+                <%--                            </div>--%>
+                <%--                            <div class="post-title">--%>
+                <%--                                <% out.print(forumTopic.getTitle());%>--%>
+                <%--                            </div>--%>
+                <%--                            <div class="post-cont">--%>
+                <%--                                <% out.print(forumTopic.getDescription());%>--%>
+                <%--                            </div>--%>
+
+                <%--                            <div class="post-footer">--%>
+                <%--                                <div class="time">--%>
+                <%--                                    <% DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");--%>
+                <%--                                        out.print(dtf.format(forumTopic.getCreatedAt().toLocalDateTime()));%>--%>
+                <%--                                </div>--%>
+                <%--                                <div class="catogory">--%>
+                <%--                                    Posted in <label>Catogory</label>--%>
+                <%--                                </div>--%>
+                <%--                                <div class="latest-reply">--%>
+                <%--                                    Latest reply by <label>User</label> on <label>30/05/2021 05:30:21 PM</label>--%>
+                <%--                                </div>--%>
+                <%--                                <div class="like-btn">--%>
+                <%--                                    <button >Like</button>--%>
+                <%--                                </div>--%>
+                <%--                                <div class="reply-btn">--%>
+                <%--                                    <button onclick="document.getElementById('cont-reply').style.display='block';make_blur('content');make_blur('main');make_blur('forum-cont');make_blur('menu')">Reply</button>--%>
+                <%--                                </div>--%>
+                <%--                            </div>--%>
+
+                <%--                        </div>--%>
+                <%--                        <%}%>--%>
+                <%--                    </div>--%>
+                <div class="input-box">
+                    <span class="details">Reply</span>
+                    <textarea rows="4" class="description-textarea" type="text"  name="description" id="description-reply"  required ></textarea>
+
+                    <span class="error" aria-live="polite" style="display: none;">letters and number of length 1-150 is allowed</span>
+                </div>
+
+                <!-- input boxes end -->
+
+                <div class="form_btn">
+                    <button class="btn-cancel" type="button" id="cancelBtn-reply" onclick="document.getElementById('cont-reply').style.display='none';cancel_blur('content');cancel_blur('main');cancel_blur('forum-cont');cancel_blur('menu')">Cancel</button>
+                    <button class="btn-create" onclick="signupValidation();document.getElementById('cont-reply').style.display='none';cancel_blur('content');cancel_blur('main');cancel_blur('forum-cont');cancel_blur('menu')">Create</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 
+
 <%@ include file="/WEB-INF/components/footer.jsp" %>
-<script src="${System.getenv("HOST_URL")}/static/js/forum.js"></script>
 </body>
 </html>
-
