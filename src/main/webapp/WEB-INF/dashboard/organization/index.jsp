@@ -127,7 +127,7 @@
                 <td><% out.print(organization.getAddress());%></td>
                 <td><% out.print(organization.getDistrict());%></td>
 
-                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/organization-profile'">View</button>
+                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/organization-profile/<% out.print(organization.getOrganizationId());%>'">View</button>
                     <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/organization/update/<% out.print(organization.getOrganizationId());%>'">Update</button>
                     <button class="deletebutton" id="idDeleteButton" onclick="deleteIt()">Delete</button>
 
@@ -188,7 +188,7 @@
                 <td><% out.print(organization.getCreatedAt());%></td>
 
 
-                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/organization-profile'">View</button>
+                <td><button class="viewbutton" id="idViewButtonp" onclick="window.location.href='${System.getenv("HOST_URL")}/organization-profile/'">View</button>
 
                     <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/organization/update/<% out.print(organization.getOrganizationId());%>'">Update</button>
                     <% if (session.getAttribute("role").toString().charAt(0) == 'A' ) {
@@ -255,11 +255,11 @@
         });//End of create main table
 
 
-        $('#example1 tbody').on( 'click', 'tr', function () {
-
-            alert(table.row( this ).data()[0]);
-
-        } );
+        // $('#example1 tbody').on( 'click', 'tr', function () {
+        //
+        //     alert(table.row( this ).data()[0]);
+        //
+        // } );
     });
 
 

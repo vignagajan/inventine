@@ -107,7 +107,7 @@
         </div>
 
         <div style="display: flex">
-            <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/project';">Cancel</button>
+            <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/dashboard/organization';">Cancel</button>
             <button onclick="signupValidation()">Update</button>
         </div>
 
