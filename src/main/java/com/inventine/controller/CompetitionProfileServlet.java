@@ -45,7 +45,7 @@ public class CompetitionProfileServlet extends HttpServlet {
         request.setAttribute("organization",organization);
         request.setAttribute("competition",competition);
 
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("host_url",System.getenv("HOST_URL"));
         request.setAttribute("title","CompetitionProfile");
         request.getRequestDispatcher("/WEB-INF/competition-profile.jsp").forward(request, response);
 
