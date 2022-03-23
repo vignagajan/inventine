@@ -27,20 +27,20 @@
 
     <button style="display: none" class="show-modal">Log       In</button>
 
-    <!-- the modal itself -->
-    <div style="display: none" class="modal hidden">
+<%--    <!-- the modal itself -->--%>
+<%--    <div style="display: none" class="modal hidden">--%>
 
-        <!-- button to close the modal -->
-        <button  class="close-modal">&times;</button>
+<%--        <!-- button to close the modal -->--%>
+<%--        <button  class="close-modal">&times;</button>--%>
 
-        <h3 >Do you want to delete the project?</h3>
-        <form action="">
-            <p style="text-align: left;margin-top: 20px;">Type the project name to delete...</p>
-            <input type="email" id="" placeholder="restored-cars">
-            <button type="submit">Delete project</button>
-        </form>
-    </div>
-    <div style="display: none" class="overlay hidden"></div>
+<%--        <h3 >Do you want to delete the project?</h3>--%>
+<%--        <form action="">--%>
+<%--            <p style="text-align: left;margin-top: 20px;">Type the project name to delete...</p>--%>
+<%--            <input type="email" id="" placeholder="restored-cars">--%>
+<%--            <button type="submit">Delete project</button>--%>
+<%--        </form>--%>
+<%--    </div>--%>
+<%--    <div style="display: none" class="overlay hidden"></div>--%>
 
     <!-- the 4 cards containing data at top -->
     <div class="main-overview">
