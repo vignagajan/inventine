@@ -51,59 +51,16 @@
                     <span class="error" aria-live="polite" style="display: none;" >Enter phone number in international code</span>
                 </div>
 
-                <%--                <div class="input-box">--%>
-                <%--                    <span class="details">Prize Amount</span>--%>
-                <%--                    <input type="text"--%>
-                <%--                           name="prizeMoney" id="prizeMoney" required pattern="^(?:0|[1-9]\d*)$">--%>
-                <%--                    <span class="error" aria-live="polite" style="display: none;">Enter an amount no decimals needed</span>--%>
-                <%--                </div>--%>
-
-                <%--                <div class="input-box">--%>
-                <%--                    <span class="details">Ending Date</span>--%>
-                <%--                    <input type="date"--%>
-                <%--                           name="endingAt" id="endingAt" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">--%>
-                <%--                    <span class="error" aria-live="polite" style="display: none;" >Select the date of Competition expiry</span>--%>
-                <%--                </div>--%>
 
 
-                <%--                <div class="input-box">--%>
-                <%--                    <span class="details">Rules</span>--%>
-                <%--                    <input type="text"--%>
-                <%--                           name="rules" id="rules" required >--%>
-                <%--                    <span class="error" aria-live="polite" style="display: none;" >Input the description</span>--%>
-                <%--                </div>--%>
-                <%--                &lt;%&ndash;                <div class="input-box">&ndash;%&gt;--%>
-                <%--                    <span class="details">Description</span>--%>
-                <%--                    <textarea--%>
-                <%--                            id="description" name="description" placeholder="" required>--%>
-                <%--                    </textarea>--%>
-                <%--                </div>--%>
 
-                <%--                <div class="input-box">--%>
-                <%--                    <span class="details">Competition Type</span>--%>
-                <%--                    <select class="category" name="cType" id="cType" required>--%>
-                <%--                        <option disabled selected value> -- select a category for Competition Type -- </option>--%>
-                <%--                        <option value="T">Target</option>--%>
-                <%--                        <option value="H">Hackathon</option>--%>
 
-                <%--                    </select>--%>
-                <%--                    <span class="error" aria-live="polite" style="display: none;" >Select a category</span>--%>
-                <%--                </div>--%>
-                <!-- input boxes end -->
+
             </div>
 
 
-            <%--            <div class="input-box">--%>
-            <%--                <span class="details">Participate  Type</span>--%>
-            <%--                <select class="category" name="pType" id="pType" required>--%>
-            <%--                    <option disabled selected value> -- select a category for Participate Type -- </option>--%>
-            <%--                    <option value="I">Internal</option>--%>
-            <%--                    <option value="A">All</option>--%>
 
-            <%--                </select>--%>
-            <%--                <span class="error" aria-live="polite" style="display: none;" >Select a category</span>--%>
-            <%--            </div>--%>
-            <!-- input boxes end -->
+
         </div>
 
         <div style="display: flex">
