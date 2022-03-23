@@ -148,6 +148,7 @@
                 status_values.put('A',"Active");
                 status_values.put('B',"Blocked");
                 status_values.put('D',"Deleted");
+                status_values.put('U',"Undecided");
 
                 Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
 
@@ -238,6 +239,7 @@
                 status_values.put('A',"Active");
                 status_values.put('B',"Blocked");
                 status_values.put('D',"Deleted");
+                status_values.put('U',"Undecided");
 
                 Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
 
@@ -251,7 +253,7 @@
 
                 <td><% out.print(projects.get(i).getProjectId());%></td>
                 <td><% out.print(projects.get(i).getProjectName());%></td>
-                <td><% out.print(payments.get(i));%></td>
+                <td>7</td>
                 <td><% out.print(projects.get(i).getCategory());%></td>
                 <td><% out.print(projects.get(i).getCreatedAt());%></td>
                 <td><% out.print(projects.get(i).getDateOfExpiry());%></td>
@@ -314,6 +316,7 @@
                 status_values.put('A',"Active");
                 status_values.put('B',"Blocked");
                 status_values.put('D',"Deleted");
+                status_values.put('U',"Undecided");
 
                 Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
 
