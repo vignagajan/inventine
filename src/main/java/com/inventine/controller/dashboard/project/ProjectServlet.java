@@ -26,6 +26,7 @@ public class ProjectServlet extends HttpServlet {
 
 
         ProjectDaoImplementation projectsDao = new ProjectDaoImplementation();
+        PaymentDaoImplementation paymentDao = new PaymentDaoImplementation();
 
         String card1_condition= null;
         String card2_condition= null;
@@ -50,6 +51,7 @@ public class ProjectServlet extends HttpServlet {
             card3_condition = "select count from project where status='D' && creatorid=%s";
             card4_condition = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
             get_condition = "";
+            //            get_condition = "select * from project where creatorid=%s";
         }
 
         if (role == 'I'){
@@ -58,6 +60,7 @@ public class ProjectServlet extends HttpServlet {
             card3_condition = "select count(DISTINCT investorid) from payment";
             card4_condition = "select sum(amount/(1000)) from payment where investorid=%s";
             get_condition = "";
+            //            get_condition = "select * from project where projectid=(select projectid from payment where investorid=%s)";
         }
 
 
@@ -68,6 +71,7 @@ public class ProjectServlet extends HttpServlet {
 
 
         List<Project> projects = projectsDao.getProjects(get_condition);
+        List<Payment> payments = paymentDao.getPayments(get_condition);
 
 
         int card1_count = 0;
@@ -131,6 +135,7 @@ public class ProjectServlet extends HttpServlet {
 
         // Add table data
         request.setAttribute("projects",projects);
+        request.setAttribute("payments",payments);
         request.setAttribute("title","Project");
         request.getRequestDispatcher("/WEB-INF/dashboard/project/index.jsp").forward(request, response);
 

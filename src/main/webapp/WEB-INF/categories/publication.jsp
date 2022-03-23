@@ -18,29 +18,18 @@
 </head>
 <body>
 
-    <%@ include file="/WEB-INF/components/nav-bar.jsp" %>
+<%@ include file="/WEB-INF/components/nav-bar.jsp" %>
 
-    <div class="content">
+<div class="content">
     <!-- description and image start -->
     <div class="container">
         <div class="column-1">
-            <h1>MAKE YOUR IDEAS WORKABLE!</h1>
-            <span class="paragraph">We are inventine, who makes tour Ideas get funded and mentoring to enhance the business process.</span>
-            <div class="hostbutton">
-                <a href="">
-                    <button class="button1" >
-                        <span class="host">Browse</span>
-                    </button>
-                </a>
-                <a href="">
-                    <button class="button2">
-                        <span class="host">Start Project</span>
-                    </button>
-                </a>
-            </div>
+            <h1>Publication</h1>
+            <span class="paragraph">"A room without books is like a body without a soul." <br>"A truly great magazine cover surprises, even shocks, and connects in a nano-second. "</span>
+
         </div>
         <div class="column-2">
-            <img src="static/img/img.png" style="width: 500px;height: 250px;">
+            <img src="https://img.jakpost.net/c/2016/07/27/2016_07_27_8941_1469611578._large.jpg" style="width:650px;height: 300px">
         </div>
     </div>
     <!-- discription and image end -->
@@ -58,19 +47,19 @@
                 </tr>
             </table>
         </div>
-<%--        <div class="wrap">--%>
-<%--            <div class="search">--%>
-<%--                <input type="text" class="searchTerm" placeholder="What are you looking for?">--%>
-<%--                <button type="submit" class="searchButton">--%>
-<%--                    <i class="fa fa-search"></i>--%>
-<%--                </button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+        <%--        <div class="wrap">--%>
+        <%--            <div class="search">--%>
+        <%--                <input type="text" class="searchTerm" placeholder="What are you looking for?">--%>
+        <%--                <button type="submit" class="searchButton">--%>
+        <%--                    <i class="fa fa-search"></i>--%>
+        <%--                </button>--%>
+        <%--            </div>--%>
+        <%--        </div>--%>
         <div class="rowbutton">
             <a href="${System.getenv("HOST_URL")}/categories/food"><button class="b">Food</button></a>
             <a href="${System.getenv("HOST_URL")}/categories/software"><button class="b">Software</button></a>
             <a href="${System.getenv("HOST_URL")}/categories/technology"><button class="b">Tech</button></a>
-            <a href=""><button class="b">All</button></a>
+            <a href="${System.getenv("HOST_URL")}"><button class="b">All</button></a>
             <a href="${System.getenv("HOST_URL")}/categories/art"><button class="b">Art</button></a>
             <a href="${System.getenv("HOST_URL")}/categories/design"><button class="b">Design</button></a>
             <a href="${System.getenv("HOST_URL")}/categories/publication"><button class="b">Publication</button></a>
@@ -89,7 +78,7 @@
             <div class="card">
                 <div class="card-header">
                     <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
-                    <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
                     </a>
                 </div>
                 <div class="card-body">
@@ -112,11 +101,11 @@
                     </div>
                 </div>
             </div>
-           <%i++;}%>
+            <%i++;}%>
 
         </ul>
     </div>
-    </div>
+</div>
 
 
 </body>
