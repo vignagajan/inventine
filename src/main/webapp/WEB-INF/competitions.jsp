@@ -93,7 +93,7 @@
                         <span class="tag tag-purple">`<%out.print(competition.getCType());%>`</span>
                         <h4>
 
-                            <a href="${System.getenv("HOST_URL")}/project/<% out.print(competition.getCompetitionId());%>">
+                            <a href="${System.getenv("HOST_URL")}/competition-profile/<% out.print(competition.getCompetitionId());%>">
                                 <% out.print(competition.getCompetitionName()); %>
                             </a></h4>
                         <p>
