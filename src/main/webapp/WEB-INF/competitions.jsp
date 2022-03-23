@@ -1,3 +1,9 @@
+<%@ page import="com.inventine.model.User" %>
+<%@ page import="com.inventine.model.Creds" %>
+<%@ page import="com.inventine.model.Project" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.inventine.model.Competition" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -73,181 +79,41 @@
 
         <div class="main">
             <ul class="cards">
+                <%
+                    List<User> users= (ArrayList<User>)request.getAttribute("users");
+                    List<Creds> creds= (ArrayList<Creds>)request.getAttribute("creds");
+                    int i = 0;
+                    for ( Competition competition: (ArrayList<Competition>)request.getAttribute("competition")){
+                %>
                 <div class="card">
                     <div class="card-header">
                         <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
                     </div>
                     <div class="card-body">
-                        <span class="tag tag-purple">Popular</span>
+                        <span class="tag tag-purple">`<%out.print(competition.getCType());%>`</span>
                         <h4>
-                            How to Keep Going When You Don’t Know What’s Next
-                        </h4>
-                        <p>
-                            The future can be scary, but there are ways to
-                            deal with that fear.
-                        </p>
-                        <div class="user">
-                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
-                            <div class="user-info">
-                                <h5>Eyup Ucmaz</h5>
-                                <small>Yesterday</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
-                    </div>
-                    <div class="card-body">
-                        <span class="tag tag-pink">Design</span>
-                        <h4>
-                            10 Rules of Dashboard Design
-                        </h4>
-                        <p>
-                            Dashboard Design Guidelines
-                        </p>
-                        <div class="user">
-                            <img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
-                            <div class="user-info">
-                                <h5>Carrie Brewer</h5>
-                                <small>1w ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
-                    </div>
-                    <div class="card-body">
-                        <span class="tag tag-teal">Technology</span>
-                        <h4>
-                            Why is the Tesla Cybertruck designed the way it
-                            is?
-                        </h4>
-                        <p>
-                            An exploration into the truck's polarising design
-                        </p>
-                        <div class="user">
-                            <img src="https://cbsnews2.cbsistatic.com/hub/i/r/2014/11/15/028d7403-becc-414c-8e0a-96c69478c187/thumbnail/1200x630/956b9f22bd7910836f484686d8eac35b/mark-ruffalo-interview-promo.jpg" alt="user" />
-                            <div class="user-info">
-                                <h5>July Dec</h5>
-                                <small>2h ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
-                    </div>
-                    <div class="card-body">
-                        <span class="tag tag-purple">Popular</span>
-                        <h4>
-                            How to Keep Going When You Don’t Know What’s Next
-                        </h4>
-                        <p>
-                            The future can be scary, but there are ways to
-                            deal with that fear.
-                        </p>
-                        <div class="user">
-                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
-                            <div class="user-info">
-                                <h5>Eyup Ucmaz</h5>
-                                <small>Yesterday</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
-                    </div>
-                    <div class="card-body">
-                        <span class="tag tag-pink">Design</span>
-                        <h4>
-                            10 Rules of Dashboard Design
-                        </h4>
-                        <p>
-                            Dashboard Design Guidelines
-                        </p>
-                        <div class="user">
-                            <img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
-                            <div class="user-info">
-                                <h5>Carrie Brewer</h5>
-                                <small>1w ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
-                    </div>
-                    <div class="card-body">
-                        <span class="tag tag-teal">Technology</span>
-                        <h4>
-                            Why is the Tesla Cybertruck designed the way it
-                            is?
-                        </h4>
-                        <p>
-                            An exploration into the truck's polarising design
-                        </p>
-                        <div class="user">
-                            <img src="https://cbsnews2.cbsistatic.com/hub/i/r/2014/11/15/028d7403-becc-414c-8e0a-96c69478c187/thumbnail/1200x630/956b9f22bd7910836f484686d8eac35b/mark-ruffalo-interview-promo.jpg" alt="user" />
-                            <div class="user-info">
-                                <h5>July Dec</h5>
-                                <small>2h ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
-                    </div>
-                    <div class="card-body">
-                        <span class="tag tag-purple">Popular</span>
-                        <h4>
-                            How to Keep Going When You Don’t Know What’s Next
-                        </h4>
-                        <p>
-                            The future can be scary, but there are ways to
-                            deal with that fear.
-                        </p>
-                        <div class="user">
-                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
-                            <div class="user-info">
-                                <h5>Eyup Ucmaz</h5>
-                                <small>Yesterday</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
-                    </div>
-                    <div class="card-body">
-                        <span class="tag tag-pink">Design</span>
-                        <h4>
-                            10 Rules of Dashboard Design
-                        </h4>
-                        <p>
-                            Dashboard Design Guidelines
-                        </p>
-                        <div class="user">
-                            <img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
-                            <div class="user-info">
-                                <h5>Carrie Brewer</h5>
-                                <small>1w ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
+                            <a href="${System.getenv("HOST_URL")}/competition-profile/<% out.print(competition.getCompetitionId());%>">
+                                <% out.print(competition.getCompetitionName()); %>
+                            </a></h4>
+                        <p>
+                            The future can be scary, but there are ways to
+                            deal with that fear.
+                        </p>
+                        <div class="user">
+                            <img src="${System.getenv("HOST_URL")}/image/<%out.print(creds.get(i).getProfileId());%>" />
+                            <div class="user-info">
+                                <h5><%out.print(users.get(i).getFirstName());%> <%out.print(users.get(i).getLastName());%></h5>
+                                </h5>
+                                <small>Yesterday</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%i++;}%>
             </ul>
+
+
         </div>
     </div>
 

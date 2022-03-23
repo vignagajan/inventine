@@ -1,4 +1,5 @@
-
+<%@ page import="com.inventine.model.Competition" %>
+<%@ page import="java.sql.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -17,7 +18,7 @@
 
 <%@ include file="/WEB-INF/components/dashboard/sidebar.jsp" %>
 <%@ include file="/WEB-INF/components/dashboard/header.jsp" %>
-
+<% Competition competition = (Competition)request.getAttribute("competition");%>
 
 <div class="container">
     <div class="content">
@@ -26,32 +27,51 @@
 
             <div class="details">
 
+
                 <div class="input-box">
                     <span class="details">Competition Name</span>
-                    <input type="text" name="competitionName" id="competitionName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}">
+                    <input type="text" name="competitionName" id="competitionName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(competition.getCompetitionName());%>">
                     <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
+                </div>
+
+
+
+
+                <div class="input-box">
+                    <span class="details">Starting Date</span>
+                    <input type="date"
+                           name="startingAt" id="startingAt" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" value="<%out.print(competition.getStartingAt());%>">
+                    <span class="error" aria-live="polite" style="display: none;" >Select the date of Competition </span>
+                </div>
+
+
+                <div class="input-box">
+                    <span class="details">Ending Date</span>
+                    <input type="date"
+                           name="endingAt" id="endingAt" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" value="<%out.print(competition.getEndingAt());%>">
+                    <span class="error" aria-live="polite" style="display: none;" >Select the date of Competition expiry</span>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Prize Amount</span>
                     <input type="text"
-                           name="prizeMoney" id="prizeMoney" required pattern="^(?:0|[1-9]\d*)$">
+                           name="prizeMoney" id="prizeMoney" required pattern="^(?:0|[1-9]\d*)$" value="<%out.print(competition.getPrizeMoney());%>">
                     <span class="error" aria-live="polite" style="display: none;">Enter an amount no decimals needed</span>
-                </div>
-
-                <div class="input-box">
-                    <span class="details">Ending Date</span>
-                    <input type="date"
-                           name="endingAt" id="endingAt" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
-                    <span class="error" aria-live="polite" style="display: none;" >Select the date of Competition expiry</span>
                 </div>
 
 
                 <div class="input-box">
                     <span class="details">Rules</span>
                     <input type="text"
-                           name="rules" id="rules" required >
+                           name="rules" id="rules" required value="<%out.print(competition.getRules());%>">
                     <span class="error" aria-live="polite" style="display: none;" >Input the description</span>
+                </div>
+
+                <div class="input-box">
+                    <span class="details">OverView</span>
+                    <input type="text"
+                           name="overView" id="overView" required value="<%out.print(competition.getOverView());%>">
+                    <span class="error" aria-live="polite" style="display: none;" >Input the OverviewofCompetition</span>
                 </div>
                 <%--                <div class="input-box">--%>
                 <%--                    <span class="details">Description</span>--%>
@@ -62,7 +82,7 @@
 
                 <div class="input-box">
                     <span class="details">Competition Type</span>
-                    <select class="category" name="cType" id="cType" required>
+                    <select class="category" name="cType" id="cType" required value="<%out.print(competition.getCType());%>">
                         <option disabled selected value> -- select a category for Competition Type -- </option>
                         <option value="T">Target</option>
                         <option value="H">Hackathon</option>
@@ -70,25 +90,15 @@
                     </select>
                     <span class="error" aria-live="polite" style="display: none;" >Select a category</span>
                 </div>
-                <!-- input boxes end -->
-            </div>
 
 
-            <%--            <div class="input-box">--%>
-            <%--                <span class="details">Participate  Type</span>--%>
-            <%--                <select class="category" name="pType" id="pType" required>--%>
-            <%--                    <option disabled selected value> -- select a category for Participate Type -- </option>--%>
-            <%--                    <option value="I">Internal</option>--%>
-            <%--                    <option value="A">All</option>--%>
 
-            <%--                </select>--%>
-            <%--                <span class="error" aria-live="polite" style="display: none;" >Select a category</span>--%>
-            <%--            </div>--%>
-            <!-- input boxes end -->
-        </div>
+
+
+
 
         <div style="display: flex">
-            <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/project';">Cancel</button>
+            <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/dashboard/competition';">Cancel</button>
             <button onclick="signupValidation()">Update</button>
         </div>
 
@@ -133,7 +143,7 @@
         requestHandler(
             y,
             window.location.href,
-            'Competition created successfully!',
+            'Competition updated successfully!',
             ''
         )
     }

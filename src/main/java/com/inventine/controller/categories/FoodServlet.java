@@ -1,26 +1,23 @@
-package com.inventine.controller;
+package com.inventine.controller.categories;
 
 import com.inventine.dao.CredsDaoImplementation;
 import com.inventine.dao.ProjectDaoImplementation;
-import com.inventine.dao.PostDaoImplementation;
 import com.inventine.dao.UserDaoImplementation;
 import com.inventine.model.Creds;
 import com.inventine.model.Project;
-import com.inventine.model.Post;
 import com.inventine.model.User;
-import com.inventine.util.DotEnv;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.ServletException;
+import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "home-servlet", value = "/")
-public class HomeServlet extends HttpServlet {
-
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+@WebServlet(name = "FoodServlet", value = "/categories/food")
+public class FoodServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         request.setAttribute("host_url",System.getenv("HOST_URL"));
 
@@ -28,7 +25,7 @@ public class HomeServlet extends HttpServlet {
         UserDaoImplementation userDao = new UserDaoImplementation();
         CredsDaoImplementation credsDao = new CredsDaoImplementation();
 
-        String condition;
+        String condition ="select * from project where category='Food';";
 
         List<Project> projects = projectDao.getProjects("");
         List<User> users=new ArrayList<>();
@@ -45,7 +42,11 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("users",users);
         request.setAttribute("creds", creds);
         request.setAttribute("title","Home");
-        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/categories/food.jsp").forward(request, response);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
 }
