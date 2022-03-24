@@ -97,8 +97,8 @@
                                 <% out.print(competition.getCompetitionName()); %>
                             </a></h4>
                         <p>
-                            The future can be scary, but there are ways to
-                            deal with that fear.
+<%--                            The future can be scary, but there are ways to--%>
+<%--                            deal with that fear.--%>
                         </p>
                         <div class="user">
                             <img src="${System.getenv("HOST_URL")}/image/<%out.print(creds.get(i).getProfileId());%>" />
