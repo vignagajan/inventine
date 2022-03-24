@@ -154,8 +154,8 @@
         financialstatus_values.put('C',"Complete");
         financialstatus_values.put('I',"Incomplete");
 
-
-        for (int i=0; i<projects.size();i++){
+        int i = 0;
+        for (Project project: projects){
       %>
       <tr>
         <td><% out.print(projects.get(i).getProjectId());%></td>
@@ -174,13 +174,13 @@
           <% if (session.getAttribute("role").toString().charAt(0) == 'S' || session.getAttribute("role").toString().charAt(0) == 'A' ) {
 
           %>
-          <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/project/update/<% out.print(projects.get(i).getProjectId());%>'">Update</button>
+          <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/project/update/<% out.print(project.getProjectId());%>'">Update</button>
           <%}%>
           <% if (session.getAttribute("role").toString().charAt(0) == 'A' ) {
 
           %>
           <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
-          <%}%>
+          <% i++; }%>
         </td>
       </tr>
       <%}%>

@@ -49,6 +49,7 @@ public class ProjectServlet extends HttpServlet {
             card3_condition = "select count(DISTINCT investorid) from payment";
             card4_condition = "select sum(amount/(1000)) from payment";
             totalq = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+            get_condition = "";
         }
 
         if (role == 'I'){
