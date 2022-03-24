@@ -94,14 +94,15 @@
                 </div>
                 <div class="card-body">
                     <span class="tag tag-purple"><% out.print(project.getCategory());%></span>
+                    
                     <h4>
                         <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
                             <% out.print(project.getProjectName()); %>
                         </a>
                     </h4>
                     <p>
-                        The future can be scary, but there are ways to
-                        deal with that fear.
+<%--                        The future can be scary, but there are ways to--%>
+<%--                        deal with that fear.--%>
                     </p>
                     <div class="user">
                         <img src="${System.getenv("HOST_URL")}/image/<%out.print(creds.get(i).getProfileId());%>" />
