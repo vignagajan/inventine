@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/dashboard/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${host_url}/static/css/dashboard/forum_form.css">
+    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/dashboard/form.css">
 
 
 </head>
@@ -17,9 +17,8 @@
 <%@ include file="/WEB-INF/components/dashboard/sidebar.jsp" %>
 <%@ include file="/WEB-INF/components/dashboard/header.jsp" %>
 
-<button onclick="document.getElementById('cont').style.display='block';document.getElementsByClassName('sidebar')[0].style.filter='blur(10px)'" style="position: fixed;top: 100px;right:100px;">123</button>
-<button onclick="document.getElementById('cont').style.display='none';document.getElementsByClassName('sidebar')[0].style.filter='blur(0px)'" style="position: fixed;top: 200px;right:100px;">456</button>
-<div class="container" style="display: none" id="cont">
+
+<div class="container">
     <div class="content">
 
         <div class="form">
@@ -38,15 +37,15 @@
 
                 <div class="input-box">
                     <span class="details">Description</span>
-                    <textarea class="description-textarea" type="text"  name="description" id="description"  required ></textarea>
-
+                    <input type="text"
+                           name="description" id="description"  required >
                     <span class="error" aria-live="polite" style="display: none;">letters and number of length 1-150 is allowed</span>
                 </div>
 
                 <!-- input boxes end -->
 
                 <div style="display: flex">
-                    <button type="button" id="cancelBtn" onclick="location.href='${host_url}/forum';">Cancel</button>
+                    <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/forum';">Cancel</button>
                     <button onclick="signupValidation()">Create</button>
                 </div>
 
@@ -54,7 +53,7 @@
         </div>
     </div>
 
-    <script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/validate.js"></script>
+    <script src="${System.getenv("HOST_URL")}/static/js/dashboard/validate.js"></script>
 
     <script>
 
@@ -94,7 +93,7 @@
                 y,
                 window.location.href,
                 'Forum post is created successfully!',
-                '${host_url}/forum'
+                '${System.getenv("HOST_URL")}/forum'
 
 
             )
@@ -102,7 +101,7 @@
 
     </script>
 
-    <script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/dashboard.js"></script>
+    <script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 
 </div>
 </body>

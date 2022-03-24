@@ -1,6 +1,5 @@
 <%@ page import="com.inventine.model.Project" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -11,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%@ include file="/WEB-INF/components/dashboard/head-import.jsp" %>
 
-    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/dashboard/form.css">
+    <link rel="stylesheet" href="${host_url}/static/css/dashboard/form.css">
 
 
 </head>
@@ -20,7 +19,6 @@
 <%@ include file="/WEB-INF/components/dashboard/sidebar.jsp" %>
 <%@ include file="/WEB-INF/components/dashboard/header.jsp" %>
 
-<%   Project project = (Project)request.getAttribute("project");   %>
 
 <div class="container">
     <div class="content">
@@ -31,14 +29,8 @@
 
 
                 <div class="input-box">
-                    <span class="details">Project Id</span>
-                    <input type="text" name="projectId" id="projectId"   value="<%out.print(project.getProjectId());%>" disabled>
-
-                </div>
-
-                <div class="input-box">
                     <span class="details">Project Name</span>
-                    <input type="text" name="projectName" id="projectName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(project.getProjectName());%>" >
+                    <input type="text" name="projectName" id="projectName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" >
 
                     <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
                 </div>
@@ -46,7 +38,7 @@
                 <div class="input-box">
                     <span class="details">Requested Amount</span>
                     <input type="text"
-                           name="requestedAmount" id="requestedAmount" required pattern="^(?:0|[1-9]\d*)$"  value="<%out.print(project.getRequestedAmount());%>" disabled>
+                           name="requestedAmount" id="requestedAmount" required pattern="^(?:0|[1-9]\d*)$" >
 
                     <span class="error" aria-live="polite" style="display: none;">Enter an amount no decimals needed</span>
                 </div>
@@ -54,28 +46,29 @@
                 <div class="input-box">
                     <span class="details">Ending Date</span>
                     <input type="date"
-                           name="dateOfExpiry" id="dateOfExpiry" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])"  value="<%out.print(new Date(project.getDateOfExpiry().getTime()));%>" disabled>
+                           name="dateOfExpiry" id="dateOfExpiry" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" >
 
                     <span class="error" aria-live="polite" style="display: none;" >Select the date of funding expiry</span>
                 </div>
 
-<%--                <div class="input-box">--%>
-<%--                    <span class="details">Description</span>--%>
-<%--                    <input type="text"--%>
-<%--                           name="description" id="description" value="<%out.print(project.getDetails());%>" >--%>
-<%--                    <span class="error" aria-live="polite" style="display: none;" >Input the description</span>--%>
-<%--                </div>--%>
                 <div class="input-box">
                     <span class="details">Description</span>
-                    <textarea
-                            id="description" name="description" >
-                         <%out.print(project.getDetails());%>
-                    </textarea>
+                    <input type="text"
+                           name="description" id="description" required >
+                    <span class="error" aria-live="polite" style="display: none;" >Input the description</span>
                 </div>
+<%--                <div class="input-box">--%>
+<%--                    <span class="details">Description</span>--%>
+<%--                    <textarea--%>
+<%--                            id="description" name="description" placeholder="" required>--%>
+<%--                        <%out.print(project.getDetails());%>--%>
+<%--                    </textarea>--%>
+<%--                </div>--%>
 
                 <div class="input-box">
                     <span class="details">Category</span>
-                    <select class="category" name="category" id="category" required  value="<%out.print(project.getCategory());%>">
+                    <select class="category" name="category" id="category" required>
+                        <option  ></option>
                         <option value="Art">Art</option>
                         <option value="Design">Design</option>
                         <option value="Food">Food</option>
@@ -84,21 +77,21 @@
                         <option value="Technology">Technology</option>
                         <option value="Other">Other</option>
                     </select>
-                    <span class="error" aria-live="polite" style="display: none;" >--Select a Category--</span>
+                    <span class="error" aria-live="polite" style="display: none;" >Select a category</span>
                 </div>
                 <!-- input boxes end -->
 
             </div>
 
             <div style="display: flex">
-                <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/dashboard/project';">Cancel</button>
+                <button type="button" id="cancelBtn" onclick="location.href='${host_url}/project';">Cancel</button>
                 <button onclick="signupValidation()">Update</button>
             </div>
 
         </div>
     </div>
 </div>
-<script src="${System.getenv("HOST_URL")}/static/js/dashboard/validate.js"></script>
+<script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/validate.js"></script>
 
 <script>
 
@@ -144,7 +137,7 @@
 
 </script>
 
-<script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
+<script src="<%= request.getAttribute("host_url") %>/static/js/dashboard/dashboard.js"></script>
 
 
 

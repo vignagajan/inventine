@@ -22,8 +22,13 @@ public class CompetitionProfileServlet extends HttpServlet {
         response.setContentType("text/html");
 
 
+
+
+
         CompetitionDaoImplementation CompetitionDao = new CompetitionDaoImplementation();
-        OrganizationDaoImplementation OrganizationDao = new OrganizationDaoImplementation();
+        OrganizationDaoImplementation OrganazationDao = new OrganizationDaoImplementation();
+
+
 
 
         String uri = URLDecoder.decode( request.getRequestURI(), "UTF-8" ).toLowerCase();
@@ -35,13 +40,12 @@ public class CompetitionProfileServlet extends HttpServlet {
         }
 
         Competition competition = CompetitionDao.getCompetition(competitionId);
-        Organization organization = OrganizationDao.getOrganization(competition.getOrganizationId());
 
+        Organization organization = OrganazationDao.getOrganization(competition.getOrganizationId());
         request.setAttribute("organization",organization);
         request.setAttribute("competition",competition);
-        System.out.println(organization.getName());
 
-        request.setAttribute("host_url",System.getenv("HOST_URL"));
+        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
         request.setAttribute("title","CompetitionProfile");
         request.getRequestDispatcher("/WEB-INF/competition-profile.jsp").forward(request, response);
 

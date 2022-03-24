@@ -2,7 +2,6 @@ package com.inventine.model;
 
 import com.inventine.util.DataValidator;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 public class Post extends User{
@@ -10,17 +9,8 @@ public class Post extends User{
     private String postId;
     private String description;
     private Timestamp createdAt;
-    private Timestamp dateStr;
     private String userId;
     private DataValidator validator = new DataValidator();
-
-    public Timestamp getDateStr() {
-        return dateStr;
-    }
-
-    public void setDateStr(Timestamp dateStr) {
-        this.dateStr = dateStr;
-    }
 
     public String getPostId() {
         return postId;

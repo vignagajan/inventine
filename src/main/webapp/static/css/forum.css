@@ -34,9 +34,9 @@ body {
 }
 
 .search-bar{
-    width: 90%;
+    width: 300px;
     height:42px;
-    margin-right: 10%;
+    margin: auto;
     margin-top: 50px;
     position: relative;
     border: 2px solid #0e4a6c ;
@@ -356,8 +356,8 @@ img {
 .forum-cont{
     margin: 50px;
     display: grid;
-    /*  grid-template-areas: '.container-2'*/
-/'post';/
+    grid-template-areas: '.container-2'
+  'post';
 
 }
 
@@ -423,7 +423,7 @@ img {
 }
 
 .post{
-    display: grid;
+    display: flex;
 }
 
 .grid-container-2{
@@ -433,170 +433,101 @@ img {
     width: 100%;
     margin-bottom: 30px;
     display:grid;
-    grid-template-areas:
-            'post-header post-header'
-            'post-cont post-cont'
-            'post-footer post-footer';
+    grid-template-areas: 'post-header'
+  'post-title'
+  'post-cont'
+  'post-footer';
     width: 100%;
 }
 
-
-
 .post-header{
-    width:100%;
     display:grid;
-    grid-area: post-header;
-    grid-template-areas: 'post-header-container-1 . post-header-container-2';
+    grid-template-areas: 'post-header-container-1 post-header-container-2';
     margin: 30px;
 }
 .post-header-container-1{
-    display:inline-grid;
-    align-content: center;
-    align-items: center;
-    margin: 10px;
-    grid-area: post-header-container-1;
-    grid-template-areas:
-            'profile-pic post-title . . .'
-            'profile-pic profile-owner time1 latest-reply catogory';
+    display:grid;
+    grid-template-areas:'profile-pic profile-owner . . . . . . .';
 }
 
 .post-header-container-2{
     display:grid;
-    margin: 10px;
-    grid-area: post-header-container-2;
-    grid-template-areas: 'like-amount views-amount comment-amount .';
-/justify-content: center;/
+    grid-template-areas: 'like-amount views-amount comment-amount';
 }
 
 .like-amount{
     display:grid;
-    grid-area: like-amount;
-    grid-template-areas: 'like amount';
+    grid-template-areas: '. . like amount . .';
 }
 
 .views-amount{
     display:grid;
-    grid-area: views-amount;
-    grid-template-areas:'views amount';
+    grid-template-areas:'. . views amount. . ';
 }
 
 .comment-amount{
     display:grid;
-    grid-area: comment-amount;
-    grid-template-areas:'comments amount';
+    grid-template-areas:'. . comments amount . . ';
 }
 
 .post-footer{
     display:grid;
-    grid-area: post-footer;
-    margin-left: 50%;
-    grid-template-areas: 'like-btn reply-btn view-btn';
-}
-
-.profile-pic{
-    grid-area: profile-pic;
+    grid-template-areas:'time catogory latest-reply  like-btn reply-btn';
 }
 
 .profile-pic img{
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
 
 .profile-owner{
     font-weight: bold;
     font-size: 18px;
-    grid-area: profile-owner;
-    padding-left: 10px;
+    text-align: left;
 }
 
 .amount{
     text-align: left;
     font-weight: bold;
-    grid-area: amount;
 }
 
-.like{
-    grid-area: like;
-    text-align: left;
-    margin-right: 10px;
+/* .like{
+  text-align: right;
+  margin-right: 10px;
 }
 
 .comments{
-    grid-area: comments;
-    text-align: left;
-    margin-right: 10px;
+  text-align: left;
+  margin-right: 10px;
 }
 
 .views{
-    grid-area: views;
-    text-align: left;
-    margin-right: 10px;
-}
+  text-align: left;
+  margin-right: 10px;
+} */
 
 .post-title{
     text-align: left;
     font-size: 30px;
-/margin-top:30px;/
-/margin-bottom: 30px;/
-grid-area: post-title;
-    padding-left: 10px;
+    margin-bottom:20px;
 }
 
 .post-cont{
-    margin:30px;
+    margin-bottom:20px;
     font-style: italic;
-    grid-area: post-cont;
 }
 
 .time{
     font-weight: bold;
-    grid-area: time1;
-    margin: 10px;
 }
 
 .catogory{
     font-weight: bold;
-    grid-area: catogory;
-    margin: 10px;
 }
 
 .latest-reply{
     font-weight: bold;
-    grid-area: latest-reply;
-    margin: 10px;
-}
-
-.like-btn{
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.unlike-btn{
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.reply-btn{
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.view-post{
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-}
-
-.view-post button{
-    color: #fff;
-    background-color: #0097E6;
-    border-radius: 35px;
-    font-weight: 600;
-    width: 80%;
-    height: 30px;
-    grid-area: view-btn;
 }
 
 .reply-btn button{
@@ -606,7 +537,6 @@ grid-area: post-title;
     font-weight: 600;
     width: 80%;
     height: 30px;
-    grid-area: reply-btn;
 }
 
 .like-btn button{
@@ -616,11 +546,6 @@ grid-area: post-title;
     font-weight: 600;
     width: 80%;
     height: 30px;
-    grid-area: like-btn;
-}
-
-.view-post button:hover{
-    background-color: #62b9e7;
 }
 
 .like-btn button:hover{
@@ -631,6 +556,5 @@ grid-area: post-title;
     background-color: #3b3b3b;
 }
 
-.amount{
-    margin-right:10px;
-}
+
+

@@ -159,8 +159,6 @@ public class ForumTopicDaoImplementation implements ForumTopicDaoInterface {
         return null;
     }
 
-
-
     @Override
     public boolean update(ForumTopic forumTopic) {
 

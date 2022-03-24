@@ -7,7 +7,6 @@ public class ForumReply extends Post{
     private String forumReplyId;
     private String postId;
     private String forumTopicId;
-    private Integer amount;
     private DataValidator validator = new DataValidator();
 
     public String getForumReplyId() {
@@ -47,13 +46,5 @@ public class ForumReply extends Post{
             return true;
         }
         return false;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
     }
 }

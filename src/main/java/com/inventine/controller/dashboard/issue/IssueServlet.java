@@ -41,27 +41,26 @@ public class IssueServlet extends HttpServlet {
         char role = (char)request.getSession().getAttribute("role");
 
         if (role == 'A' || role == 'F' || role == 'S'){
-            card1_condition = "select count(DISTINCT issueid) from issues where status = 'A'";
-            card2_condition = "select count(DISTINCT issueid) from issues where status = 'B'";
-            card3_condition = "select count(DISTINCT issueid) from issues where status = 'R'";
-            card4_condition = "select count(DISTINCT issueid) from issues where status = 'S'";
+            card1_condition = "status = 'A'";
+            card2_condition = "status = 'B'";
+            card3_condition = "status = 'R'";
+            card4_condition = "status = 'S'";
             get_condition = "";
         }
 
-        if (role == 'C'){
-            card1_condition = "select count(DISTINCT issueid) from issues where status = 'A' and userid=%s";
-            card2_condition = "select count(DISTINCT issueid) from issues where status = 'B' and userid=%s";
-            card3_condition = "select count(DISTINCT issueid) from issues where status = 'R' and userid=%s";
-            card4_condition = "select count(DISTINCT issueid) from issues where status = 'S' and userid=%s";
-            get_condition = "";
-        }
-
-        if (role == 'I'){
-            card2_condition = "select count(DISTINCT projectid) from payment";
-            card3_condition = "select count(DISTINCT investorid) from payment";
-            card4_condition = "select sum(amount/(1000)) from payment";
-            totalq = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
-        }
+//        if (role == 'C'){
+//            card2_condition = "select count(DISTINCT projectid) from payment";
+//            card3_condition = "select count(DISTINCT investorid) from payment";
+//            card4_condition = "select sum(amount/(1000)) from payment";
+//            totalq = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+//        }
+//
+//        if (role == 'I'){
+//            card2_condition = "select count(DISTINCT projectid) from payment";
+//            card3_condition = "select count(DISTINCT investorid) from payment";
+//            card4_condition = "select sum(amount/(1000)) from payment";
+//            totalq = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+//        }
 
 //        String creators = String.format("select count(investorid) from payment where investorid=%s;",investorId);
 //        String projects = String.format("select count(investorid) from payment where investorid=%s;",investorId);
