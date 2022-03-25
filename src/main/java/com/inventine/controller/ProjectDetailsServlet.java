@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "ProjectViewServlet", value = "/project/*")
 public class ProjectDetailsServlet extends HttpServlet {
@@ -40,8 +41,10 @@ public class ProjectDetailsServlet extends HttpServlet {
         User user = userDao.getUser(project.getCreatorId());
         String query = String.format("select sum(amount) from payment where projectid=%s;",projectId);
         String query1 = String.format("select count(DISTINCT investorid) from payment where projectid=%s",projectId);
- //       String query2 = String.format("select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s",projectId);
+//        String query2 = String.format("select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s",projectId);
+        String condition = "select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s";
 
+        List<Project> projectsdate = projectDao.getProjects(condition);
         request.setAttribute("project",project);
         request.setAttribute("user",user);
         ResultSet rs = paymentDao.executeQuery(query);
@@ -56,7 +59,7 @@ public class ProjectDetailsServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        request.setAttribute("projectsdate",projectsdate);
         request.setAttribute("host_url",System.getenv("HOST_URL"));
         request.setAttribute("title","Project-Details");
         request.getRequestDispatcher("/WEB-INF/project-details.jsp").forward(request, response);

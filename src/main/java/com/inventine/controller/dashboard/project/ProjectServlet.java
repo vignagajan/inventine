@@ -50,15 +50,18 @@ public class ProjectServlet extends HttpServlet {
             card2_condition = "select count from project where status='B' && creatorid=%s";
             card3_condition = "select count from project where status='D' && creatorid=%s";
             card4_condition = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+//            get_condition = "creatorid=%s";
             get_condition = "";
-            //            get_condition = "select * from project where creatorid=%s";
         }
+
+
 
         if (role == 'I'){
             card1_condition = "select count(DISTINCT projectid) from project";
             card2_condition = "(select count from payment where projectid=(select projectid from project where financialstatus='C') && investorid=%s)";
             card3_condition = "select count(DISTINCT investorid) from payment";
             card4_condition = "select sum(amount/(1000)) from payment where investorid=%s";
+//            get_condition = "select projectid from payment where investorid=%s";
             get_condition = "";
             //            get_condition = "select * from project where projectid=(select projectid from payment where investorid=%s)";
         }

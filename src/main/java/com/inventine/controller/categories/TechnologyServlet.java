@@ -25,9 +25,9 @@ public class TechnologyServlet extends HttpServlet {
         UserDaoImplementation userDao = new UserDaoImplementation();
         CredsDaoImplementation credsDao = new CredsDaoImplementation();
 
-        String condition = "select * from project where category='Technology';";
+        String condition = "category='technology';";
 
-        List<Project> projects = projectDao.getProjects("");
+        List<Project> projects = projectDao.getProjects(condition);
         List<User> users=new ArrayList<>();
         List<Creds> creds=new ArrayList<>();
         for (final Project project: projects){

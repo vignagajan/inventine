@@ -36,20 +36,21 @@ public class PaymentServlet extends HttpServlet {
         String card2_condition= null;
         String card3_condition= null;
         String card4_condition= null;
-        String get_condition = "";
+        String get_condition = null;
         String totalq= null;
 
         char role = (char)request.getSession().getAttribute("role");
 
         if (role == 'A' || role == 'F' || role == 'S'){
-            card1_condition = "select sum(amount/(1000)) from payment\n" +
-                    "WHERE createdat >= date_trunc('month', current_date - interval '1' month)\n" +
+            card1_condition = "sum(amount/(1000)) from payment\n" +
+                    "WHERE createdat >= date_trunc('month', current_date - interval '10' month)\n" +
                     "  and createdat < date_trunc('month', current_date)";
-            card2_condition = "select sum(amount/(1000)) from payment\n" +
-                    "WHERE createdat >= date_trunc('week', current_date - interval '1 week')\n" +
+            card2_condition = "sum(amount/(1000)) from payment\n" +
+                    "WHERE createdat >= date_trunc('week', current_date - interval '100 week')\n" +
                     "  and createdat < date_trunc('week', current_date)";
-            card3_condition = "select count(DISTINCT paymentid) from payment";
-            card4_condition = "select sum(amount/(1000)) from payment";
+            card3_condition = "count(DISTINCT paymentid)";
+            card4_condition = "sum(amount/(1000))";
+            get_condition = "";
         }
 
         if (role == 'C'){
@@ -115,7 +116,7 @@ public class PaymentServlet extends HttpServlet {
 
 
         // Add card values
-        request.setAttribute("card1_condition",card1_count);
+        request.setAttribute("card1_count",card1_count);
         request.setAttribute("card2_count",card2_count);
         request.setAttribute("card3_count",card3_count);
         request.setAttribute("card4_count",card4_count);
