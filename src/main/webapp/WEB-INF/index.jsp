@@ -18,9 +18,9 @@
 </head>
 <body>
 
-    <%@ include file="/WEB-INF/components/nav-bar.jsp" %>
+<%@ include file="/WEB-INF/components/nav-bar.jsp" %>
 
-    <div class="content">
+<div class="content">
     <!-- description and image start -->
     <div class="container">
         <div class="column-1">
@@ -50,7 +50,7 @@
             <table class="search-bar-element">
                 <tr>
                     <td>
-                        <input type="text" placeholder="Search" class="search">
+                        <input type="text" placeholder="Search" class="search" id="search" onkeyup="ajaxSearch()">
                     </td>
                     <td>
                         <a href="#"><i class="fas fa-search" style="color:#0e4a6c;text-align:right"></i></a>
@@ -58,14 +58,14 @@
                 </tr>
             </table>
         </div>
-<%--        <div class="wrap">--%>
-<%--            <div class="search">--%>
-<%--                <input type="text" class="searchTerm" placeholder="What are you looking for?">--%>
-<%--                <button type="submit" class="searchButton">--%>
-<%--                    <i class="fa fa-search"></i>--%>
-<%--                </button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+        <%--        <div class="wrap">--%>
+        <%--            <div class="search">--%>
+        <%--                <input type="text" class="searchTerm" placeholder="What are you looking for?">--%>
+        <%--                <button type="submit" class="searchButton">--%>
+        <%--                    <i class="fa fa-search"></i>--%>
+        <%--                </button>--%>
+        <%--            </div>--%>
+        <%--        </div>--%>
         <div class="rowbutton">
             <a href="${System.getenv("HOST_URL")}/categories/food"><button class="b">Food</button></a>
             <a href="${System.getenv("HOST_URL")}/categories/software"><button class="b">Software</button></a>
@@ -79,7 +79,7 @@
 
 
     <div class="main">
-        <ul class="cards">
+        <ul class="cards" id="cards">
             <%
                 List<User>  users= (ArrayList<User>)request.getAttribute("users");
                 List<Creds> creds= (ArrayList<Creds>)request.getAttribute("creds");
@@ -87,22 +87,24 @@
                 for ( Project project: (ArrayList<Project>)request.getAttribute("project")){
             %>
             <div class="card">
+
                 <div class="card-header">
                     <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
-                    <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
                     </a>
                 </div>
+
                 <div class="card-body">
                     <span class="tag tag-purple"><% out.print(project.getCategory());%></span>
-                    
-                    <h4>
+
+                    <h4 class="card-title">
                         <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
                             <% out.print(project.getProjectName()); %>
                         </a>
                     </h4>
                     <p>
-<%--                        The future can be scary, but there are ways to--%>
-<%--                        deal with that fear.--%>
+                        <%--                        The future can be scary, but there are ways to--%>
+                        <%--                        deal with that fear.--%>
                     </p>
                     <div class="user">
                         <img src="${System.getenv("HOST_URL")}/image/<%out.print(creds.get(i).getProfileId());%>" />
@@ -113,12 +115,30 @@
                     </div>
                 </div>
             </div>
-           <%i++;}%>
+            <%i++;}%>
 
         </ul>
     </div>
-    </div>
+</div>
 
+<script>
+    function ajaxSearch() {
+        var input, filter, cards, cardContainer, title, i;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        cardContainer = document.getElementById("cards");
+        cards = cardContainer.getElementsByClassName("card");
+        for (i = 0; i < cards.length; i++) {
+            title = cards[i].querySelector(".card-title");
+            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+
+</script>
 
 </body>
 <%@ include file="/WEB-INF/components/footer.jsp" %>
