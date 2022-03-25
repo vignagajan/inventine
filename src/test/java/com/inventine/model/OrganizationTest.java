@@ -19,10 +19,9 @@ public class OrganizationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/organization.csv", numLinesToSkip = 1)
-    void getterSetter(String organization_Id, String creator_Id, String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type,char status) {
+    void getterSetter(String organization_Id, String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type,char status) {
 
         this.organization.setOrganizationId(organization_Id);
-        this.organization.setCreatorId(creator_Id);
         this.organization.setSupportTeamId(support_Team_Id);
         this.organization.setName(name);
         this.organization.setAddress(address);
@@ -37,7 +36,6 @@ public class OrganizationTest {
 
 
         assertEquals(organization_Id, this.organization.getOrganizationId());
-        assertEquals(creator_Id,this.organization.getCreatorId());
         assertEquals(support_Team_Id,this.organization.getSupportTeamId());
         assertEquals(name, this.organization.getName());
         assertEquals(address,this.organization.getAddress());
