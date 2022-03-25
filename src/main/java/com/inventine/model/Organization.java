@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 public class Organization {
     private String organizationId;
-    private String creatorId;
+  //  private String creatorId;
     private String SupportTeamId;
     private String name;
     private String address;
@@ -139,21 +139,21 @@ public class Organization {
         return false;
     }
 
-    public String getCreatorId() {
-        return creatorId;
-    }
-
-    public boolean setCreatorId(String creatorId) {
-        this.validator.setTxt(creatorId);
-        this.validator.setMaxLength(6);
-
-        if (this.validator.isNumber()) {
-            this.creatorId = creatorId;
-            return true;
-        }
-        return false;
-
-    }
+//    public String getCreatorId() {
+//        return creatorId;
+//    }
+//
+//    public boolean setCreatorId(String creatorId) {
+//        this.validator.setTxt(creatorId);
+//        this.validator.setMaxLength(6);
+//
+//        if (this.validator.isNumber()) {
+//            this.creatorId = creatorId;
+//            return true;
+//        }
+//        return false;
+//
+//    }
 
     public Timestamp getCreatedAt() {
         return createdAt;

@@ -1,2 +1,2 @@
-String chat_id, String sender_id,String receiver_id, String message, Timestamp created_at
- 3,78,77,I LOVE YOU,2021-09-25 10:23:12.0
+chat_id, sender_id,receiver_id,  message, created_at
+ 1,55,11,how are you,2022-03-22 10:57:16.00
