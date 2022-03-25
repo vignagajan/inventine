@@ -146,7 +146,6 @@
             <thead>
             <tr>
                 <th>Organization ID</th>
-                <th>Creator ID</th>
                 <th>Support team ID</th>
                 <th>Organization Name</th>
                 <th>Organization Address</th>
@@ -161,7 +160,6 @@
             <tfoot>
             <tr>
                 <th>Organization ID</th>
-                <th>Creator ID</th>
                 <th>Support team ID</th>
                 <th>Organization Name</th>
                 <th>Organization Address</th>
@@ -178,11 +176,9 @@
             %>
             <tr>
                 <td><% out.print(organization.getOrganizationId());%></td>
-                <td><% out.print(organization.getCreatorId());%></td>
                 <td><% out.print(organization.getSupportTeamId());%></td>
                 <td><% out.print(organization.getName());%></td>
                 <td><% out.print(organization.getAddress());%></td>
-
                 <td><% out.print(organization.getDistrict());%></td>
                 <td><% out.print(organization.getContactNumber());%></td>
                 <td><% out.print(organization.getCreatedAt());%></td>

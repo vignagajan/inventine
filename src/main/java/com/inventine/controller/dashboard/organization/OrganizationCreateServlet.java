@@ -56,8 +56,7 @@ public class OrganizationCreateServlet extends HttpServlet {
         boolean ok = true;
 
         // Models and DAOs
-//        Competition competition = new Competition();
-//        CompetitionDaoImplementation competitionDao = new CompetitionDaoImplementation();
+
 
         Organization organization = new Organization();
         OrganizationDaoImplementation organizationDao = new OrganizationDaoImplementation();
@@ -66,7 +65,7 @@ public class OrganizationCreateServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        String creatorId = session.getAttribute("userId").toString();
+     //   String creatorId = session.getAttribute("userId").toString();
         String supportTeamId = "1";
         String logoId = "1640618179717";
         String headerId = "1640618091700";
@@ -81,6 +80,11 @@ public class OrganizationCreateServlet extends HttpServlet {
         String district = request.getParameter("district");
         String contactnumber = request.getParameter("contactnumber");
         char orgtype = request.getParameter("orgtype").charAt(0);
+//
+//        String username = request.getParameter("username");
+//        String email= request.getParameter("email");
+//        String password_ = request.getParameter("password");
+//        char type = 'O';
 
         char status = 'A';
 
@@ -129,9 +133,9 @@ public class OrganizationCreateServlet extends HttpServlet {
         // Transactions
         if(ok){
 
-           ok = organization.setCreatorId(creatorId);
+           //ok = organization.setCreatorId(creatorId);
 
-            System.out.println(organization.getCreatorId());
+            //System.out.println(organization.getCreatorId());
            ok = organization.setSupportTeamId(supportTeamId);
            System.out.println(organization.getSupportTeamId());
            ok = organization.setHeaderId(headerId);

@@ -53,10 +53,10 @@ public class CompetitionCreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         // Parse request data
-        String organizationId = "42";
+        String organizationId = "60";
         String supportTeamId = "2";
       //  String projectId = "1";
-        String headerId = "123";
+        String headerId = "1640618179717";
 
       //  char financialStatus = 'I';
        // char status = 'A';
@@ -66,8 +66,11 @@ public class CompetitionCreateServlet extends HttpServlet {
         String competitionName = request.getParameter("competitionName");
         //String category = request.getParameter("category");
         String rules = request.getParameter("rules");
+        String overView = request.getParameter("overView");
         char cType = request.getParameter("cType").charAt(0);
-        char pType = 'A';
+        char pType = 'I';
+        char status = 'A';
+        //char pType = 'A';
 
         // Data to be processed
         Timestamp endingAt = null;
@@ -110,20 +113,35 @@ public class CompetitionCreateServlet extends HttpServlet {
         if(ok){
 
             ok = competition.setOrganizationId(organizationId);
+            System.out.println(competition.getOrganizationId());
             ok = competition.setSupportTeamId(supportTeamId);
+            System.out.println(competition.getSupportTeamId());
          //   ok = competition.setProjectId(projectId);
             ok = competition.setHeaderId(headerId);
+            System.out.println(competition.getHeaderId());
+
 
         //    ok = competition.setFinancialStatus(financialStatus);
           //  ok = competition.setStatus(status);
             ok = competition.setEndingAt(endingAt);
+            System.out.println(competition.getEndingAt());
             ok = competition.setStartingAt(startingAt);
+            System.out.println(competition.getStartingAt());
             ok = competition.setPrizeMoney(prizeMoney);
+            System.out.println(competition.getPrizeMoney());
             //ok = competition.setCategory(category);
             ok = competition.setCompetitionName(competitionName);
+            System.out.println(competition.getCompetitionName());
             ok = competition.setRules(rules);
+            System.out.println(competition.getRules());
             ok = competition.setCType(cType);
+            System.out.println(competition.getCType());
             ok = competition.setPType(pType);
+            System.out.println(competition.getPType());
+            ok = competition.setOverView(overView);
+            System.out.println(competition.getOverView());
+            ok = competition.setStatus(status);
+            System.out.println(competition.getStatus());
 
             if(!ok){
 

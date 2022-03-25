@@ -19,52 +19,40 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "UpdateServlet", value = "/dashboard/competition/update")
+@WebServlet(name = "UpdateServlet", value = "/dashboard/competition/update/*")
 public class CompetitionUpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("role") == null){
-            session.setAttribute("role", 'A' );
+        if (session.getAttribute("role") == null) {
+            session.setAttribute("role", 'A');
         }
-
 
 
         response.setContentType("text/html");
 
 
+        String uri = URLDecoder.decode(request.getRequestURI(), "UTF-8").toLowerCase();
 
+        String competitionId = uri.substring(uri.lastIndexOf('/') + 1);//"ImageDaoInterface not found!";
 
-        String uri = URLDecoder.decode( request.getRequestURI(), "UTF-8" ).toLowerCase();
-
-        String competitionId =  uri.substring(uri.lastIndexOf('/') + 1);//"ImageDaoInterface not found!";
-
-        CompetitionDaoImplementation  competitionDao = new CompetitionDaoImplementation();
+        CompetitionDaoImplementation competitionDao = new CompetitionDaoImplementation();
         Competition competition = new Competition();
         competition = competitionDao.getCompetition(competitionId);
 
 
-
-
-
-
-
-
-
-
-
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("competition",competition);
 
-        String topic= "Competition update-page";
-        request.setAttribute("title",topic);
+        String topic = "Competition update-page";
+        request.setAttribute("title", topic);
         request.getRequestDispatcher("/WEB-INF/dashboard/competition/update.jsp").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 
 
         // JSON parameters
@@ -78,11 +66,10 @@ public class CompetitionUpdateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         // Parse request data
-        String organizationId = "42";
-
+        String organizationId = "61";
         String supportTeamId = "2";
-      //  String projectId = "1";
-        String headerId = "123";
+        //  String projectId = "1";
+        String headerId = "1640618179717";
 
         //  char financialStatus = 'I';
         // char status = 'A';
@@ -92,8 +79,11 @@ public class CompetitionUpdateServlet extends HttpServlet {
         String competitionName = request.getParameter("competitionName");
         //String category = request.getParameter("category");
         String rules = request.getParameter("rules");
+        String overView = request.getParameter("overView");
         char cType = request.getParameter("cType").charAt(0);
-        char pType = 'A';
+        char pType = 'I';
+        char status = 'A';
+        //char pType = 'A';
 
         // Data to be processed
         Timestamp endingAt = null;
@@ -136,20 +126,35 @@ public class CompetitionUpdateServlet extends HttpServlet {
         if(ok){
 
             ok = competition.setOrganizationId(organizationId);
+            System.out.println(competition.getOrganizationId());
             ok = competition.setSupportTeamId(supportTeamId);
-           // ok = competition.setProjectId(projectId);
+            System.out.println(competition.getSupportTeamId());
+            //   ok = competition.setProjectId(projectId);
             ok = competition.setHeaderId(headerId);
+            System.out.println(competition.getHeaderId());
+
 
             //    ok = competition.setFinancialStatus(financialStatus);
             //  ok = competition.setStatus(status);
             ok = competition.setEndingAt(endingAt);
+            System.out.println(competition.getEndingAt());
             ok = competition.setStartingAt(startingAt);
+            System.out.println(competition.getStartingAt());
             ok = competition.setPrizeMoney(prizeMoney);
+            System.out.println(competition.getPrizeMoney());
             //ok = competition.setCategory(category);
             ok = competition.setCompetitionName(competitionName);
+            System.out.println(competition.getCompetitionName());
             ok = competition.setRules(rules);
+            System.out.println(competition.getRules());
             ok = competition.setCType(cType);
+            System.out.println(competition.getCType());
             ok = competition.setPType(pType);
+            System.out.println(competition.getPType());
+            ok = competition.setOverView(overView);
+            System.out.println(competition.getOverView());
+            ok = competition.setStatus(status);
+            System.out.println(competition.getStatus());
 
             if(!ok){
 
@@ -178,9 +183,8 @@ public class CompetitionUpdateServlet extends HttpServlet {
         out.print(json);
         out.flush();
 
-    }
-
-
 
     }
 
+
+}

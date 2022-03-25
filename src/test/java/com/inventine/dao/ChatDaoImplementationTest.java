@@ -52,7 +52,7 @@ class ChatDaoImplementationTest {
         assertEquals(sender_id, this.chat.getSenderId());
         assertEquals(receiver_id, this.chat.getReceiverId());
         assertEquals(message, this.chat.getMessage());
-        //assertEquals(created_at, this.chat.getCreatedAt());
+       // assertEquals(created_at, this.chat.getCreatedAt());
 
     }
 

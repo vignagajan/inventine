@@ -39,8 +39,8 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
     @Override
     public boolean create(Competition competition) {
 
-        String query = "INSERT INTO competition(organizationId,supportTeamId,endingAt ,prizeMoney,rules,cType,pType,competitionName,headerId,startingAt,overView ,status) " +
-                "VALUES (?, ?,?,?,?,CAST(? AS cp),CAST(? AS pte),?,?,?,?,CAST(? AS status2))";
+        String query = "INSERT INTO competition(organizationId,supportTeamId,endingAt,prizeMoney,rules,cType,pType,competitionName,headerId,startingAt,overView ,status) " +
+                "VALUES (?,?,?,?,?,CAST(? AS cp),CAST(? AS pte),?,?,?,?,CAST(? AS status2))";
 
         int n = 0;
 
@@ -50,7 +50,6 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
 
             stmt.setInt(1, Integer.parseInt(competition.getOrganizationId()));
             stmt.setInt(2, Integer.parseInt(competition.getSupportTeamId()));
-            //stmt.setInt(3, Integer.parseInt(competition.getProjectId()));
             stmt.setTimestamp(3, competition.getEndingAt());
             stmt.setInt(4, competition.getPrizeMoney());
             stmt.setString(5, competition.getRules());
@@ -83,7 +82,7 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
             competition.setCompetitionId(rs.getString("competitionId"));
             competition.setOrganizationId(rs.getString("organizationId"));
             competition.setSupportTeamId(rs.getString("supportTeamId"));
-          //  competition.setProjectId(rs.getString("projectId"));
+
             competition.setCreatedAt(rs.getTimestamp("createdAt"));
             competition.setEndingAt(rs.getTimestamp("endingAt"));
             competition.setPrizeMoney(rs.getInt("prizeMoney"));
