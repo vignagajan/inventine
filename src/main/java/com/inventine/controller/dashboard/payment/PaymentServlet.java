@@ -62,7 +62,7 @@ public class PaymentServlet extends HttpServlet {
                     "  and createdat < date_trunc('week', current_date) and projectid=(select projectid from project where creatorid=%s)";;
             card3_condition = "select count(DISTINCT paymentid) from payment where projectid=(select projectid from project where creatorid=%s)";
             card4_condition = "select sum(amount/1000) from payment where projectid=(select projectid from project where creatorid=%s)";
-
+            get_condition = "";
         }
 
         if (role == 'I'){
@@ -74,6 +74,7 @@ public class PaymentServlet extends HttpServlet {
                     "  and createdat < date_trunc('week', current_date) and investorid=%s";;
             card3_condition = "select count(DISTINCT paymentid) from payment where investorid=%s";
             card4_condition = "select sum(amount/1000) from payment where inevestorid=%s";
+            get_condition = "";
 
         }
 

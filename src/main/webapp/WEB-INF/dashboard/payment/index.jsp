@@ -148,6 +148,7 @@
 
                     %>
                         <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/payment/update/<% out.print(payments.get(i).getPaymentId());%>'">Update</button>
+                        <button class="refundbutton" id="idRefundButton" onclick="">Refund</button>
                         <%}%></td>
                   </tr>
                  <%}%>

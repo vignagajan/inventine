@@ -107,6 +107,23 @@ td {
   background: #fff;
   border: 2px #ff0000 solid;
 }
+.refundbutton {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #ff0000;
+  border-radius: 50px;
+  background: #fff;
+  border: 2px #ff0000 solid;
+}
+
+.paybutton {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #03D815;
+  border-radius: 50px;
+  background: #fff;
+  border: 2px #03D815 solid;
+}
 
 .viewbutton{
   padding-left: 5px;
