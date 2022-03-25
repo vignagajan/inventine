@@ -54,12 +54,12 @@
                     <span class="error" aria-live="polite" style="display: none;">Enter the description</span>
                 </div>
 
-                <div class="input-box">
-                    <span class="details">Project Name</span>
-                    <input type="text"
-                           name="projectName" id="projectName">
-                    <span class="error" aria-live="polite" style="display: none;">letters,numbers and special characters allowed</span>
-                </div>
+<%--                <div class="input-box">--%>
+<%--                    <span class="details">Project Name</span>--%>
+<%--                    <input type="text"--%>
+<%--                           name="projectName" id="projectName">--%>
+<%--                    <span class="error" aria-live="polite" style="display: none;">letters,numbers and special characters allowed</span>--%>
+<%--                </div>--%>
 
                 <div class="input-box">
                     <span class="details">Category</span>
