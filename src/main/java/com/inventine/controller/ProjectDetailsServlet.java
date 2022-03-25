@@ -1,13 +1,7 @@
 package com.inventine.controller;
 
-import com.inventine.dao.CreatorDaoImplementation;
-import com.inventine.dao.PaymentDaoImplementation;
-import com.inventine.dao.ProjectDaoImplementation;
-import com.inventine.dao.UserDaoImplementation;
-import com.inventine.model.Creator;
-import com.inventine.model.Payment;
-import com.inventine.model.Project;
-import com.inventine.model.User;
+import com.inventine.dao.*;
+import com.inventine.model.*;
 import com.inventine.util.DotEnv;
 
 import javax.servlet.*;
@@ -17,6 +11,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ProjectViewServlet", value = "/project/*")
@@ -25,9 +20,13 @@ public class ProjectDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
+
+
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
         UserDaoImplementation userDao = new UserDaoImplementation();
         PaymentDaoImplementation paymentDao = new PaymentDaoImplementation();
+        CredsDaoImplementation credsDao = new CredsDaoImplementation();
+
 
         String uri = URLDecoder.decode( request.getRequestURI(), "UTF-8" ).toLowerCase();
 
@@ -39,14 +38,19 @@ public class ProjectDetailsServlet extends HttpServlet {
 
         Project project = projectDao.getProject(projectId);
         User user = userDao.getUser(project.getCreatorId());
+        Creds creds = credsDao.getCreds(project.getCreatorId());
+
         String query = String.format("select sum(amount) from payment where projectid=%s;",projectId);
         String query1 = String.format("select count(DISTINCT investorid) from payment where projectid=%s",projectId);
 //        String query2 = String.format("select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s",projectId);
         String condition = "select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s";
 
         List<Project> projectsdate = projectDao.getProjects(condition);
+
+
         request.setAttribute("project",project);
         request.setAttribute("user",user);
+        request.setAttribute("creds",creds);
         ResultSet rs = paymentDao.executeQuery(query);
         try {
             request.setAttribute("pledge", rs.getInt("sum"));

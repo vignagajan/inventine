@@ -42,7 +42,7 @@
                 <p class="number-stat">7.8</p>
                 <p class="desc-stat">Rating</p>
                 <div class="desc">
-                    <p >Hi ! My name is Emily Wilson. I'm a UI/UX Designer from Paris, in France. I really enjoy photography and mountains.</p>
+<%--                  <p >Hi ! My name is Emily Wilson. I'm a UI/UX Designer from Paris, in France. I really enjoy photography and mountains.</p>--%>
                 </div>
                 <div class="social">
                     <i class="fa fa-facebook-square" aria-hidden="true"></i>
