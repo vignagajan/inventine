@@ -12,7 +12,7 @@ public class Mailer {
     public static void send(String to,String subject,String msg){
 
         final String user="mail.inventine@gmail.com";//change accordingly
-        final String pass="F%Zpg2K!m2=F$x-";
+        final String pass="Sahar05#";
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
