@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostDaoImplementation implements PostDaoInterface {
-    
+
     static Connection conn = DBManager.getConnection();
 
     @Override
@@ -135,6 +135,34 @@ public class PostDaoImplementation implements PostDaoInterface {
         return null;
 
     }
+
+//    @Override
+//    public Post getPostPI(String postId) {
+//
+//        String query = "SELECT * FROM post WHERE forumreplyId= ?";
+//
+//        Post post = new Post();
+//
+//        try {
+//
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//
+//            stmt.setInt(1,Integer.parseInt(postId));
+//            ResultSet rs = stmt.executeQuery();
+//
+//            while (rs.next()) {
+//                post = setPost(post,rs);
+//            }
+//
+//            return post;
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//
+//    }
 
     @Override
     public List<Post> getPosts(String condition) {

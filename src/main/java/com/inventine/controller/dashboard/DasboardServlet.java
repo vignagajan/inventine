@@ -16,9 +16,9 @@ public class DasboardServlet extends HttpServlet {
         String graph_labels = "['Week1', 'Week2', 'Week3', 'Week4']";
 
         request.setAttribute("graph_labels",graph_labels);
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("host_url", System.getenv("HOST_URL"));
         request.setAttribute("title","Creator");
-        request.getRequestDispatcher("/WEB-INF/dashboard/admin.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/dashboard/index.jsp").forward(request, response);
     }
 
     @Override

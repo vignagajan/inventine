@@ -1,3 +1,8 @@
+<%@ page import="com.inventine.model.Meeting" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Hashtable" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.inventine.model.Project" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -38,49 +43,53 @@
   <!-- the 4 cards containing data at top -->
   <div class="main-overview">
 
-    <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
-      <div><i class="fas fa-people-carry"></i></div>
+    <div class="overviewcard" style="background-color:white;color: ${card1_color}">
+      <div><i class="far ${card1_icon} fa-2x"></i></div>
       <div class="overviewcard__icon">
-        <div>Accepted</div>
-        <div class="overviewcard__info" style="font-size: 36px; float: right;">${accepted}</div>
+        <div>${card1_label}</div>
+        <div class="overviewcard__info" style="font-size: 36px; float: right;">${card1_count}</div>
       </div>
     </div>
 
-    <div class="overviewcard" style="background-color:white;color: rgb(255, 0, 76);">
-      <div><i class="fas fa-people-carry"></i></div>
+    <div class="overviewcard" style="background-color:white;color: ${card2_color}">
+      <div><i class="far ${card2_icon} fa-2x"></i></div>
       <div class="overviewcard__icon">
-        <div>Rejected</div>
-        <div class="overviewcard__info" style="font-size: 36px;float: right">${rejected}</div>
+        <div>${card2_label}</div>
+        <div class="overviewcard__info" style="font-size: 36px; float: right;">${card2_count}</div>
       </div>
     </div>
 
-    <div class="overviewcard" style="background-color:white;color: rgb(255, 196, 0);">
-      <div><i class="fas fa-people-carry"></i></div>
-      <div class="overviewcard__icon" >
-        <div>Upcoming</div>
-        <div class="overviewcard__info"style="font-size: 36px;float: right">${upcoming}</div>
-      </div>
-    </div>
-
-    <div class="overviewcard" style="background-color:white;color: rgb(0, 110, 255);">
-      <div><i class="fas fa-people-carry"></i></div>
+    <div class="overviewcard" style="background-color:white;color: ${card3_color}">
+      <div><i class="far ${card3_icon} fa-2x"></i></div>
       <div class="overviewcard__icon">
-        <div>Total</div>
-        <div class="overviewcard__info" style="font-size: 36px;float: right">${total}</div>
+        <div>${card3_label}</div>
+        <div class="overviewcard__info" style="font-size: 36px; float: right;">${card3_count}</div>
       </div>
     </div>
 
-
+    <div class="overviewcard" style="background-color:white;color: ${card4_color}">
+      <div><i class="far ${card4_icon} fa-2x"></i></div>
+      <div class="overviewcard__icon">
+        <div>${card4_label}</div>
+        <div class="overviewcard__info" style="font-size: 36px; float: right;">${card4_count}</div>
+      </div>
+    </div>
 
   </div>
   <!-- end of 4 data cards -->
 
   <div class="cbutton">
-    <a href="/inventine_war/dashboard/create-meeting">
-    <button class="createbutton">Create Meeting</button>
+    <a href="${System.getenv("HOST_URL")}/dashboard/create-meeting">
+      <% if (session.getAttribute("role").toString().charAt(0) == 'S' || session.getAttribute("role").toString().charAt(0) == 'A' ||session.getAttribute("role").toString().charAt(0) == 'C') {
+
+      %><button class="createbutton">Create Meeting</button>
+      <%}%>
     </a>
   </div>
 
+  <% if (session.getAttribute("role").toString().charAt(0) == 'S'   || session.getAttribute("role").toString().charAt(0) == 'A' ) {
+
+  %>
   <div class="main-tables">
     <table id="example" class="table" cellspacing="0" width="100%">
       <thead>
@@ -89,6 +98,7 @@
         <th>Creator Name</th>
         <th>Link</th>
         <th>Launch Date</th>
+        <th>Description</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -99,31 +109,57 @@
         <th>Creator Name</th>
         <th>Link</th>
         <th>Launch Date</th>
+        <th>Description</th>
         <th>Actions</th>
       </tr>
       </tfoot>
 
       <tbody>
-<%--      <%--%>
-<%--        for (Meetng meeting: (ArrayList<Meeting>)request.getAttribute("meetings")){--%>
-<%--      %>--%>
-<%--      <tr>--%>
-<%--        <th><% out.print(meeting.getMeeting());%></th>--%>
-<%--        <td>Sahar</td>--%>
-<%--        <td><% out.print(meeting.getLink());%></td>--%>
-<%--        <td><% out.print(meeting.getLaunchedAt());%></td>--%>
-<%--        <td><button class="updatebutton" id="idUpdateButton" onclick="idUpdateButton_onclick();">Update</button>--%>
-<%--          <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>--%>
+      <%
+        List<Project> projects = (ArrayList<Project>)request.getAttribute("projects");
+        List<Meeting> meetings = (ArrayList<Meeting>)request.getAttribute("meetings");
+        Hashtable<Character, String> role_values = new Hashtable<Character, String>();
 
-<%--        </td>--%>
-<%--      </tr>--%>
-<%--     <%}%>--%>
+        role_values.put('A',"Admin");
+        role_values.put('F',"Finance Admin");
+        role_values.put('S',"Support Team");
+        role_values.put('C',"Creator");
+        role_values.put('I',"Investor");
+
+        Hashtable<Character, String> status_values = new Hashtable<Character, String>();
+
+        status_values.put('A',"Active");
+        status_values.put('B',"Blocked");
+        status_values.put('D',"Deleted");
+
+        Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
+
+        financialstatus_values.put('C',"Complete");
+        financialstatus_values.put('I',"Incomplete");
+
+
+        for (int i=0; i<meetings.size();i++){
+      %>
+      <tr>
+        <td><% out.print(meetings.get(i).getMeetingId());%></td>
+        <td>Sahar</td>
+        <td><% out.print(meetings.get(i).getLink());%></td>
+        <td><% out.print(meetings.get(i).getLaunchedAt());%></td>
+        <td><% out.print(meetings.get(i).getDescription());%></td>
+        <td>
+          <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/meeting/update/<% out.print(meetings.get(i).getMeetingId());%>'">Update</button>
+          <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+
+        </td>
+      </tr>
+     <%}%>
 
 
       </tbody>
     </table>
   </div>
 
+  <%} else if(session.getAttribute("role").toString().charAt(0) == 'C') {%>
   <div class="main-tables">
     <table id="example1" class="table" cellspacing="0" width="100%">
       <thead>
@@ -132,6 +168,7 @@
         <th>Creator Name</th>
         <th>Link</th>
         <th>Launch Date</th>
+        <th>Description</th>
         <th>Actions</th>
       </tr>
       </thead>
@@ -142,29 +179,120 @@
         <th>Creator Name</th>
         <th>Link</th>
         <th>Launch Date</th>
+        <th>Description</th>
         <th>Actions</th>
       </tr>
       </tfoot>
 
       <tbody>
-<%--      <%--%>
-<%--        for (Meetng meeting: (ArrayList<Meeting>)request.getAttribute("meetings")){--%>
-<%--      %>--%>
-<%--      <tr>--%>
-<%--        <th><% out.print(meeting.getMeeting());%></th>--%>
-<%--        <td>Sahar</td>--%>
-<%--        <td><% out.print(meeting.getLink());%></td>--%>
-<%--        <td><% out.print(meeting.getLaunchedAt());%></td>--%>
-<%--        <td><button class="updatebutton" >Accept</button>--%>
-<%--          <button class="deletebutton"  >Reject</button>--%>
+      <%
+        List<Project> projects = (ArrayList<Project>)request.getAttribute("projects");
+        List<Meeting> meetings = (ArrayList<Meeting>)request.getAttribute("meetings");
+        Hashtable<Character, String> role_values = new Hashtable<Character, String>();
 
-<%--        </td>--%>
-<%--      </tr>--%>
-<%--      <%}%>--%>
+        role_values.put('A',"Admin");
+        role_values.put('F',"Finance Admin");
+        role_values.put('S',"Support Team");
+        role_values.put('C',"Creator");
+        role_values.put('I',"Investor");
+
+        Hashtable<Character, String> status_values = new Hashtable<Character, String>();
+
+        status_values.put('A',"Active");
+        status_values.put('B',"Blocked");
+        status_values.put('D',"Deleted");
+
+        Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
+
+        financialstatus_values.put('C',"Complete");
+        financialstatus_values.put('I',"Incomplete");
+
+
+        for (int i=0; i<meetings.size();i++){
+      %>
+      <tr>
+        <td><% out.print(meetings.get(i).getMeetingId());%></td>
+        <td><% out.print(projects.get(i)); %></td>
+        <td><% out.print(meetings.get(i).getLink());%></td>
+        <td><% out.print(meetings.get(i).getLaunchedAt());%></td>
+        <td><% out.print(meetings.get(i).getDescription());%></td>
+        <td>
+        <td><button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/meeting/update/<% out.print(meetings.get(i).getMeetingId());%>'">Update</button>
+          <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+
+        </td>
+      </tr>
+      <%}%>
       </tbody>
     </table>
   </div>
 
+  <% }else{ %>
+  <div class="main-tables">
+    <table id="example2" class="table" cellspacing="0" width="100%">
+      <thead>
+      <tr>
+        <th>Meeting ID</th>
+        <th>Creator Name</th>
+        <th>Link</th>
+        <th>Launch Date</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+
+      <tfoot>
+      <tr>
+        <th>Meeting ID</th>
+        <th>Creator Name</th>
+        <th>Link</th>
+        <th>Launch Date</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+      </tfoot>
+
+      <tbody>
+      <%
+        List<Project> projects = (ArrayList<Project>)request.getAttribute("projects");
+        List<Meeting> meetings = (ArrayList<Meeting>)request.getAttribute("meetings");
+        Hashtable<Character, String> role_values = new Hashtable<Character, String>();
+
+        role_values.put('A',"Admin");
+        role_values.put('F',"Finance Admin");
+        role_values.put('S',"Support Team");
+        role_values.put('C',"Creator");
+        role_values.put('I',"Investor");
+
+        Hashtable<Character, String> status_values = new Hashtable<Character, String>();
+
+        status_values.put('A',"Active");
+        status_values.put('B',"Blocked");
+        status_values.put('D',"Deleted");
+
+        Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
+
+        financialstatus_values.put('C',"Complete");
+        financialstatus_values.put('I',"Incomplete");
+
+
+        for (int i=0; i< meetings.size();i++){
+      %>
+            <tr>
+              <td><% out.print(meetings.get(i).getMeetingId());%></td>
+              <td>Sahar</td>
+              <td><% out.print(meetings.get(i).getLink());%></td>
+              <td><% out.print(meetings.get(i).getLaunchedAt());%></td>
+              <td><% out.print(meetings.get(i).getDescription());%></td>
+              <button class="updatebutton" >Accept</button>
+              <button class="deletebutton"  >Reject</button>
+              </td>
+            </tr>
+            <%}%>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
 
 
 
@@ -215,6 +343,6 @@
     } );
   });
 </script>
-<script src="${host_url}/static/js/dashboard/dashboard.js"></script>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/dashboard.js"></script>
 </body>
 </html>

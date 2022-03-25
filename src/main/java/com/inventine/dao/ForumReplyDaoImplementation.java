@@ -131,16 +131,45 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
 
     }
 
+//    @Override
+//    public ForumReply getForumReplyPI(String forumTopicId) {
+//
+//        String query = "SELECT TOP 1 FROM ForumReply WHERE forumTopicId= ? ORDER BY forumreplyid DESC";
+//
+//        ForumReply forumReply = new ForumReply();
+//
+//        try {
+//
+//            PreparedStatement stmt = conn.prepareStatement(query);
+//
+//            stmt.setInt(1,Integer.parseInt(forumTopicId));
+//            ResultSet rs = stmt.executeQuery();
+//
+//            while (rs.next()) {
+//                forumReply = setForumReply(forumReply,rs);
+//            }
+//
+//            return forumReply;
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//
+//    }
+
     @Override
     public List<ForumReply> getForumReplys(String condition) {
 
-        String query = "SELECT * FROM forumreply";
+        String query = "SELECT * FROM forumreply where forumtopicid=?";
 
         List<ForumReply> ls = new ArrayList();
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,Integer.parseInt(condition));
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -161,7 +190,7 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
     @Override
     public boolean update(ForumReply forumReply) {
 
-        String query = String.format("UPDATE forumReply SET forumTopicId=?, postId=? WHERE financeAdminId =?");
+        String query = String.format("UPDATE forumReply SET forumTopicId=?, postId=? WHERE forumreplyId =?");
 
         try {
 

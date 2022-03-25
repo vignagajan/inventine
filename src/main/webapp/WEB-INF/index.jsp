@@ -3,6 +3,8 @@
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.Hashtable" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.inventine.model.User" %>
+<%@ page import="com.inventine.model.Creds" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,13 +67,13 @@
 <%--            </div>--%>
 <%--        </div>--%>
         <div class="rowbutton">
-            <a href=""><button class="b">Food</button></a>
-            <a href=""><button class="b">Software</button></a>
-            <a href=""><button class="b">Tech</button></a>
+            <a href="${System.getenv("HOST_URL")}/categories/food"><button class="b">Food</button></a>
+            <a href="${System.getenv("HOST_URL")}/categories/software"><button class="b">Software</button></a>
+            <a href="${System.getenv("HOST_URL")}/categories/technology"><button class="b">Tech</button></a>
             <a href=""><button class="b">All</button></a>
-            <a href=""><button class="b">Art</button></a>
-            <a href=""><button class="b">Design</button></a>
-            <a href=""><button class="b">Publication</button></a>
+            <a href="${System.getenv("HOST_URL")}/categories/art"><button class="b">Art</button></a>
+            <a href="${System.getenv("HOST_URL")}/categories/design"><button class="b">Design</button></a>
+            <a href="${System.getenv("HOST_URL")}/categories/publication"><button class="b">Publication</button></a>
         </div>
     </div>
 
@@ -79,6 +81,9 @@
     <div class="main">
         <ul class="cards">
             <%
+                List<User>  users= (ArrayList<User>)request.getAttribute("users");
+                List<Creds> creds= (ArrayList<Creds>)request.getAttribute("creds");
+                int i = 0;
                 for ( Project project: (ArrayList<Project>)request.getAttribute("project")){
             %>
             <div class="card">
@@ -89,25 +94,26 @@
                 </div>
                 <div class="card-body">
                     <span class="tag tag-purple"><% out.print(project.getCategory());%></span>
+                    
                     <h4>
                         <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
                             <% out.print(project.getProjectName()); %>
                         </a>
                     </h4>
                     <p>
-                        The future can be scary, but there are ways to
-                        deal with that fear.
+<%--                        The future can be scary, but there are ways to--%>
+<%--                        deal with that fear.--%>
                     </p>
                     <div class="user">
-                        <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                        <img src="${System.getenv("HOST_URL")}/image/<%out.print(creds.get(i).getProfileId());%>" />
                         <div class="user-info">
-                            <h5></h5>
-                            <small><%out.print(new Date(project.getCreatedAt().getTime()));%></small>
+                            <h5>
+                                <%out.print(users.get(i).getFirstName());%> <%out.print(users.get(i).getLastName());%></h5>
                         </div>
                     </div>
                 </div>
             </div>
-           <%}%>
+           <%i++;}%>
 
         </ul>
     </div>

@@ -6,6 +6,8 @@ public class ForumTopic extends Post{
     private String forumTopicId;
     private String postId;
     private String title;
+    private Integer likeAmount;
+    private Integer replyAmount;
     private DataValidator validator = new DataValidator();
 
     public String getForumTopicId() {
@@ -44,5 +46,21 @@ public class ForumTopic extends Post{
         this.validator.setMaxLength(150);
         this.title = title;
         return true;
+    }
+
+    public Integer getLikeAmount() {
+        return likeAmount;
+    }
+
+    public void setLikeAmount(Integer likeAmount) {
+        this.likeAmount = likeAmount;
+    }
+
+    public Integer getReplyAmount() {
+        return replyAmount;
+    }
+
+    public void setReplyAmount(Integer replyAmount) {
+        this.replyAmount = replyAmount;
     }
 }

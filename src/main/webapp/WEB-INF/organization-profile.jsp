@@ -66,73 +66,179 @@
                     <div id="Creators" class="tabcontent">
                         <div class="main">
                             <ul class="cards">
-                                <li class="cards_item">
-                                    <div class="card">
-                                        <div class="card_image"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"></div>
-                                        <div class="card_content">
-                                            <h2 class="card_title">Emily Wilson</h2>
-                                            <a href="/inventine_war/profile">
-                                                <button class="btn card_btn">View</button>
-                                            </a>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-purple">Popular</span>
+                                        <h4>
+                                            How to Keep Going When You Don’t Know What’s Next
+                                        </h4>
+                                        <p>
+                                            The future can be scary, but there are ways to
+                                            deal with that fear.
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Eyup Ucmaz</h5>
+                                                <small>Yesterday</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="cards_item">
-                                    <div class="card">
-                                        <div class="card_image"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"></div>
-                                        <div class="card_content">
-                                            <h2 class="card_title">Jane Doe</h2>
-                                            <a href="/inventine_war/profile">
-                                                <button class="btn card_btn">View</button>
-                                            </a>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-pink">Design</span>
+                                        <h4>
+                                            10 Rules of Dashboard Design
+                                        </h4>
+                                        <p>
+                                            Dashboard Design Guidelines
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Carrie Brewer</h5>
+                                                <small>1w ago</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="cards_item">
-                                    <div class="card">
-                                        <div class="card_image"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"></div>
-                                        <div class="card_content">
-                                            <h2 class="card_title">Fred Denvers</h2>
-                                            <a href="/inventine_war/profile">
-                                                <button class="btn card_btn">View</button>
-                                            </a>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-teal">Technology</span>
+                                        <h4>
+                                            Why is the Tesla Cybertruck designed the way it
+                                            is?
+                                        </h4>
+                                        <p>
+                                            An exploration into the truck's polarising design
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://cbsnews2.cbsistatic.com/hub/i/r/2014/11/15/028d7403-becc-414c-8e0a-96c69478c187/thumbnail/1200x630/956b9f22bd7910836f484686d8eac35b/mark-ruffalo-interview-promo.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>July Dec</h5>
+                                                <small>2h ago</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
-
-                                <li class="cards_item">
-                                    <div class="card">
-                                        <div class="card_image"><img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg"></div>
-                                        <div class="card_content">
-                                            <h2 class="card_title">Beth Wickers</h2>
-                                            <a href="/inventine_war/profile">
-                                                <button class="btn card_btn">View</button>
-                                            </a>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-purple">Popular</span>
+                                        <h4>
+                                            How to Keep Going When You Don’t Know What’s Next
+                                        </h4>
+                                        <p>
+                                            The future can be scary, but there are ways to
+                                            deal with that fear.
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Eyup Ucmaz</h5>
+                                                <small>Yesterday</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="cards_item">
-                                    <div class="card">
-                                        <div class="card_image"><img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg"></div>
-                                        <div class="card_content">
-                                            <h2 class="card_title">Tim Buonapart</h2>
-                                            <a href="/inventine_war/profile">
-                                                <button class="btn card_btn">View</button>
-                                            </a>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-pink">Design</span>
+                                        <h4>
+                                            10 Rules of Dashboard Design
+                                        </h4>
+                                        <p>
+                                            Dashboard Design Guidelines
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Carrie Brewer</h5>
+                                                <small>1w ago</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="cards_item">
-                                    <div class="card">
-                                        <div class="card_image"><img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg"></div>
-                                        <div class="card_content">
-                                            <h2 class="card_title">Jennifer Le Fay</h2>
-                                            <a href="/inventine_war/profile">
-                                                <button class="btn card_btn">View</button>
-                                            </a>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-teal">Technology</span>
+                                        <h4>
+                                            Why is the Tesla Cybertruck designed the way it
+                                            is?
+                                        </h4>
+                                        <p>
+                                            An exploration into the truck's polarising design
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://cbsnews2.cbsistatic.com/hub/i/r/2014/11/15/028d7403-becc-414c-8e0a-96c69478c187/thumbnail/1200x630/956b9f22bd7910836f484686d8eac35b/mark-ruffalo-interview-promo.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>July Dec</h5>
+                                                <small>2h ago</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-purple">Popular</span>
+                                        <h4>
+                                            How to Keep Going When You Don’t Know What’s Next
+                                        </h4>
+                                        <p>
+                                            The future can be scary, but there are ways to
+                                            deal with that fear.
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Eyup Ucmaz</h5>
+                                                <small>Yesterday</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-pink">Design</span>
+                                        <h4>
+                                            10 Rules of Dashboard Design
+                                        </h4>
+                                        <p>
+                                            Dashboard Design Guidelines
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Carrie Brewer</h5>
+                                                <small>1w ago</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </ul>
                         </div>
@@ -141,28 +247,180 @@
                     <div id="Competitions" class="tabcontent">
                         <div class="main">
                             <ul class="cards">
-                                <li class="cards_item">
-                                    <div class="card">
-                                        <div class="card_image"><img src="https://digitaltimes-media.s3.amazonaws.com/original_images/ai.jpeg"></div>
-                                        <div class="card_content">
-                                            <h2 class="card_title">Digit Recognizer: Learn computer vision fundamentals with the famous MNIST data</h2>
-                                            <a href="/inventine_war/competition-profile">
-                                                <button class="btn card_btn">View</button>
-                                            </a>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-purple">Popular</span>
+                                        <h4>
+                                            How to Keep Going When You Don’t Know What’s Next
+                                        </h4>
+                                        <p>
+                                            The future can be scary, but there are ways to
+                                            deal with that fear.
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Eyup Ucmaz</h5>
+                                                <small>Yesterday</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li class="cards_item">
-                                    <div class="card">
-                                        <div class="card_image"><img src="https://media.nationalgeographic.org/assets/photos/292/614/dc236c71-ed37-4299-9678-e414e1d9aeed_c0-121-2400-1381_r1200x630.jpg?80a71820ca54ba44e21f71c1d177158ff7dd2956"></div>
-                                        <div class="card_content">
-                                            <h2 class="card_title">LearnPlatform COVID-19 Impact on Digital Learning</h2>
-                                            <a href="/inventine_war/competition-profile">
-                                                <button class="btn card_btn">View</button>
-                                            </a>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-pink">Design</span>
+                                        <h4>
+                                            10 Rules of Dashboard Design
+                                        </h4>
+                                        <p>
+                                            Dashboard Design Guidelines
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Carrie Brewer</h5>
+                                                <small>1w ago</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </li>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-teal">Technology</span>
+                                        <h4>
+                                            Why is the Tesla Cybertruck designed the way it
+                                            is?
+                                        </h4>
+                                        <p>
+                                            An exploration into the truck's polarising design
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://cbsnews2.cbsistatic.com/hub/i/r/2014/11/15/028d7403-becc-414c-8e0a-96c69478c187/thumbnail/1200x630/956b9f22bd7910836f484686d8eac35b/mark-ruffalo-interview-promo.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>July Dec</h5>
+                                                <small>2h ago</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-purple">Popular</span>
+                                        <h4>
+                                            How to Keep Going When You Don’t Know What’s Next
+                                        </h4>
+                                        <p>
+                                            The future can be scary, but there are ways to
+                                            deal with that fear.
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Eyup Ucmaz</h5>
+                                                <small>Yesterday</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-pink">Design</span>
+                                        <h4>
+                                            10 Rules of Dashboard Design
+                                        </h4>
+                                        <p>
+                                            Dashboard Design Guidelines
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Carrie Brewer</h5>
+                                                <small>1w ago</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-teal">Technology</span>
+                                        <h4>
+                                            Why is the Tesla Cybertruck designed the way it
+                                            is?
+                                        </h4>
+                                        <p>
+                                            An exploration into the truck's polarising design
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://cbsnews2.cbsistatic.com/hub/i/r/2014/11/15/028d7403-becc-414c-8e0a-96c69478c187/thumbnail/1200x630/956b9f22bd7910836f484686d8eac35b/mark-ruffalo-interview-promo.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>July Dec</h5>
+                                                <small>2h ago</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-purple">Popular</span>
+                                        <h4>
+                                            How to Keep Going When You Don’t Know What’s Next
+                                        </h4>
+                                        <p>
+                                            The future can be scary, but there are ways to
+                                            deal with that fear.
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://images.gr-assets.com/authors/1353452301p8/1406384.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Eyup Ucmaz</h5>
+                                                <small>Yesterday</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="https://images6.alphacoders.com/312/thumb-1920-312773.jpg" alt="city" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-pink">Design</span>
+                                        <h4>
+                                            10 Rules of Dashboard Design
+                                        </h4>
+                                        <p>
+                                            Dashboard Design Guidelines
+                                        </p>
+                                        <div class="user">
+                                            <img src="https://studyinbaltics.ee/wp-content/uploads/2020/03/3799Ffxy.jpg" alt="user" />
+                                            <div class="user-info">
+                                                <h5>Carrie Brewer</h5>
+                                                <small>1w ago</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </ul>
                         </div>
                     </div>

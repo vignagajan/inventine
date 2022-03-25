@@ -14,7 +14,7 @@ public class AboutUsServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("host_url",System.getenv("HOST_URL"));
         request.setAttribute("title","AboutUs");
         request.getRequestDispatcher("/WEB-INF/aboutus.jsp").forward(request, response);
     }

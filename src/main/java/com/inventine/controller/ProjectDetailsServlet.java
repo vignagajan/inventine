@@ -39,9 +39,9 @@ public class ProjectDetailsServlet extends HttpServlet {
         Project project = projectDao.getProject(projectId);
         User user = userDao.getUser(project.getCreatorId());
         String query = String.format("select sum(amount) from payment where projectid=%s;",projectId);
-       // String query = "select sum(amount) from payment where projectid=1";
+        String query1 = String.format("select count(DISTINCT investorid) from payment where projectid=%s",projectId);
+ //       String query2 = String.format("select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s",projectId);
 
-        System.out.println();
         request.setAttribute("project",project);
         request.setAttribute("user",user);
         ResultSet rs = paymentDao.executeQuery(query);
@@ -50,7 +50,14 @@ public class ProjectDetailsServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        ResultSet rs1 = paymentDao.executeQuery(query1);
+        try {
+            request.setAttribute("investors", rs1.getInt("count"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        request.setAttribute("host_url",System.getenv("HOST_URL"));
         request.setAttribute("title","Project-Details");
         request.getRequestDispatcher("/WEB-INF/project-details.jsp").forward(request, response);
     }

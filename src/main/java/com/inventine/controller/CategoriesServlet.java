@@ -14,7 +14,7 @@ public class CategoriesServlet extends HttpServlet {
 
         response.setContentType("text/html");
 
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
+        request.setAttribute("host_url",System.getenv("HOST_URL"));
         request.setAttribute("title","Categories");
         request.getRequestDispatcher("/WEB-INF/categories.jsp").forward(request, response);
     }
