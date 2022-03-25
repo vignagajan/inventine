@@ -63,7 +63,7 @@
         <div class = "project-content">
 
             <div class="cat-rate">
-                <a href = "#" class = "project-link">automobile</a>
+                <a href = "#" class = "project-link"><% out.print(project.getCategory());%></a>
                 <div class = "project-rating">
                     <i class = "fas fa-star"></i>
                     <i class = "fas fa-star"></i>
@@ -87,13 +87,13 @@
                     <div class="column">
                         <div class="card">
                             <div class="title">Investors</div>
-                            <div class="count">43</div>
+                            <div class="count"><% out.print(request.getAttribute("investors"));%></div>
                         </div>
                     </div>
                     <div class="column">
                         <div class="card">
                             <div class="title">Days Left</div>
-                            <div class="count">122</div>
+                            <div class="count"><% out.print(request.getAttribute("projectsdate"));%></div>
                         </div>
                     </div>
                 </div>

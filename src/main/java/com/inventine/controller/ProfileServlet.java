@@ -31,9 +31,9 @@ public class ProfileServlet extends HttpServlet {
 
         User user = userDao.getUser(userId);
         Creds cred = credsDao.getCreds(userId);
-        String condition;
+        String condition = "category='art';";
 
-        List<Project> projects = projectDao.getProjects("");
+        List<Project> projects = projectDao.getProjects(condition);
         List<User> users=new ArrayList<>();
         List<Creds> creds=new ArrayList<>();
         for (final Project project: projects){

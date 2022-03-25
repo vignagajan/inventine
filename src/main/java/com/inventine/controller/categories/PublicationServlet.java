@@ -25,9 +25,9 @@ public class PublicationServlet extends HttpServlet {
         UserDaoImplementation userDao = new UserDaoImplementation();
         CredsDaoImplementation credsDao = new CredsDaoImplementation();
 
-        String condition = "select * from project where category='Publication';";
+        String condition = "category='publication';";
 
-        List<Project> projects = projectDao.getProjects("");
+        List<Project> projects = projectDao.getProjects(condition);
         List<User> users=new ArrayList<>();
         List<Creds> creds=new ArrayList<>();
         for (final Project project: projects){
