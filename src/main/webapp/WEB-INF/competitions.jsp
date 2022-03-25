@@ -62,15 +62,15 @@
                 </tr>
             </table>
         </div>
-<%--        <div class="rowbutton">--%>
-<%--            <a href=""><button class="b">Food</button></a>--%>
-<%--            <a href=""><button class="b">Software</button></a>--%>
-<%--            <a href=""><button class="b">Tech</button></a>--%>
-<%--            <a href=""><button class="b">All</button></a>--%>
-<%--            <a href=""><button class="b">Art</button></a>--%>
-<%--            <a href=""><button class="b">Film</button></a>--%>
-<%--            <a href=""><button class="b">Punlication</button></a>--%>
-<%--        </div>--%>
+        <%--        <div class="rowbutton">--%>
+        <%--            <a href=""><button class="b">Food</button></a>--%>
+        <%--            <a href=""><button class="b">Software</button></a>--%>
+        <%--            <a href=""><button class="b">Tech</button></a>--%>
+        <%--            <a href=""><button class="b">All</button></a>--%>
+        <%--            <a href=""><button class="b">Art</button></a>--%>
+        <%--            <a href=""><button class="b">Film</button></a>--%>
+        <%--            <a href=""><button class="b">Punlication</button></a>--%>
+        <%--        </div>--%>
 
 
 
@@ -97,8 +97,8 @@
                                 <% out.print(competition.getCompetitionName()); %>
                             </a></h4>
                         <p>
-<%--                            The future can be scary, but there are ways to--%>
-<%--                            deal with that fear.--%>
+                            <%--                            The future can be scary, but there are ways to--%>
+                            <%--                            deal with that fear.--%>
                         </p>
                         <div class="user">
                             <img src="${System.getenv("HOST_URL")}/image/<%out.print(creds.get(i).getProfileId());%>" />

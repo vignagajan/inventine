@@ -1,3 +1,4 @@
+<%@ page import="com.inventine.model.Chat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -18,9 +19,10 @@
 <%@ include file="/WEB-INF/components/dashboard/header.jsp" %>
 
 
+
 <main id="main">
 
-
+<%--    <%   Chat chat = (Chat)request.getAttribute("chats");%>--%>
 
     <div class="main-container">
         <div class="container">
@@ -115,13 +117,16 @@
                             <div class="comment me">
                                 <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="">
                                 <div class="bubble">
-                                    Let me know if this works
+
+<%--                                     <%out.print(chat.getMessage());%>--%>
+                                    how are you ?
                                 </div>
                             </div>
                             <div class="comment other">
                                 <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg" alt="">
                                 <div class="bubble">
-                                    yes this is great
+<%--                                    <%out.print(chat.getMessage());%>--%>
+                                    i'm fine.
                                 </div>
                             </div>
                             <div class="divider"><span>
@@ -188,7 +193,7 @@
                         </div>
                         <div class="input-container">
                             <button class="attach">
-                                <i class="fa fa-paperclip"></i>
+                                <i class="fa fa-paper-plane"></i>
                             </button>
                             <div class="textarea-container">
                                 <textarea type="text" placeholder="message"></textarea>
