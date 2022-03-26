@@ -190,7 +190,9 @@
                     <% if (session.getAttribute("role").toString().charAt(0) == 'A' ) {
 
                     %>
-                    <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
+                    <button class="deletebutton" id="idDeleteButton" onclick="
+
+                    idDeleteButton_onclick();">Delete</button>
                     <%}%>
 
 

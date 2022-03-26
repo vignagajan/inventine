@@ -1,7 +1,9 @@
 package com.inventine.controller.dashboard.organization;
 
 import com.inventine.dao.CompetitionDaoImplementation;
+import com.inventine.dao.CredsDaoImplementation;
 import com.inventine.dao.OrganizationDaoImplementation;
+import com.inventine.model.Creds;
 import com.inventine.model.Organization;
 import com.inventine.model.Organization;
 import com.inventine.model.Organization;
@@ -28,6 +30,7 @@ public class OrganizationServlet extends HttpServlet {
         }
 
         OrganizationDaoImplementation organizationDao = new OrganizationDaoImplementation();
+        CredsDaoImplementation credsDao = new CredsDaoImplementation();
 
 
 
@@ -47,16 +50,19 @@ public class OrganizationServlet extends HttpServlet {
 
 
         List<Organization> organizations = organizationDao.getOrganizations(get_condition);
+        List<Creds> creds = credsDao.getManyCreds(get_condition);
 
         int card1_count = 0;
         int card2_count = 0;
         int card3_count = 0;
         int card4_count = 0;
 
+        int i = 0;
+
         for (Organization organization : organizations) {
 
-
-            if (Character.compare(organization.getStatus(), 'D') == 0) {
+            System.out.println(creds.get(i).getUserId());
+            if (Character.compare(creds.get(i).getStatus(), 'D') == 0) {
                 card4_count += 1;}
                 if (Character.compare(organization.getOrgType(), 'S') == 0) {
                     card2_count += 1;}
@@ -66,7 +72,7 @@ public class OrganizationServlet extends HttpServlet {
                             card1_count += 1;
                         }
 
-
+                            i++;
                     }
 
                     card4_count = card1_count + card2_count + card3_count;

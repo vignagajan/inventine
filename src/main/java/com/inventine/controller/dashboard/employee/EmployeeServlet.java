@@ -68,6 +68,8 @@ public class EmployeeServlet extends HttpServlet {
 
         for (Creds cred : creds) {
 
+            System.out.println(cred.getUserId());
+
             if(Character.compare(cred.getStatus(),'A') == 0){
                 card1_count += 1;
             }

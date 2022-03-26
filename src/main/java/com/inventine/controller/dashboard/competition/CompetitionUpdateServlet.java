@@ -62,32 +62,28 @@ public class CompetitionUpdateServlet extends HttpServlet {
 
         // Models and DAOs
         Competition competition = new Competition();
-        CompetitionDaoImplementation competitionDao = new CompetitionDaoImplementation();
-        HttpSession session = request.getSession();
+        CompetitionDaoImplementation competitionDao = new CompetitionDaoImplementation();;
 
         // Parse request data
-        String organizationId = "61";
+        String organizationId = (String) request.getSession().getAttribute("userId");
         String supportTeamId = "2";
-        //  String projectId = "1";
         String headerId = "1640618179717";
-
-        //  char financialStatus = 'I';
-        // char status = 'A';
         String endingAt_ = request.getParameter("endingAt");
         String startingAt_ = request.getParameter("startingAt");
         int prizeMoney = Integer.parseInt(request.getParameter("prizeMoney"));
         String competitionName = request.getParameter("competitionName");
-        //String category = request.getParameter("category");
         String rules = request.getParameter("rules");
         String overView = request.getParameter("overView");
         char cType = request.getParameter("cType").charAt(0);
         char pType = 'I';
         char status = 'A';
+        String competitionid = request.getParameter("competitionid");
+
         //char pType = 'A';
 
         // Data to be processed
         Timestamp endingAt = null;
-
+        Timestamp startingAt = null;
 
         // Data preprocessing
         try {
@@ -95,18 +91,7 @@ public class CompetitionUpdateServlet extends HttpServlet {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date = dateFormat.parse(endingAt_);
             endingAt = new java.sql.Timestamp(date.getTime());
-
-        }catch (Exception e){
-            ok = false;
-            messages.clear();
-            messages.add("Something went wrong at get data!");
-            e.printStackTrace();
-        }
-        Timestamp startingAt = null;
-        try {
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date date = dateFormat.parse(startingAt_);
+            date = dateFormat.parse(startingAt_);
             startingAt = new java.sql.Timestamp(date.getTime());
 
         }catch (Exception e){
@@ -116,45 +101,23 @@ public class CompetitionUpdateServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Logic
-//        if(competitionDao.getCount("WHERE competitionname=vicky") >= 1){
-//            ok=false;
-//            messages.add("competitionname is already found!");
-//        }
 
         // Transactions
         if(ok){
-
+            ok = competition.setCompetitionId(competitionid);
             ok = competition.setOrganizationId(organizationId);
-            System.out.println(competition.getOrganizationId());
             ok = competition.setSupportTeamId(supportTeamId);
-            System.out.println(competition.getSupportTeamId());
-            //   ok = competition.setProjectId(projectId);
             ok = competition.setHeaderId(headerId);
-            System.out.println(competition.getHeaderId());
-
-
-            //    ok = competition.setFinancialStatus(financialStatus);
-            //  ok = competition.setStatus(status);
-            ok = competition.setEndingAt(endingAt);
-            System.out.println(competition.getEndingAt());
             ok = competition.setStartingAt(startingAt);
-            System.out.println(competition.getStartingAt());
+            ok = competition.setEndingAt(endingAt);
             ok = competition.setPrizeMoney(prizeMoney);
-            System.out.println(competition.getPrizeMoney());
-            //ok = competition.setCategory(category);
             ok = competition.setCompetitionName(competitionName);
-            System.out.println(competition.getCompetitionName());
             ok = competition.setRules(rules);
-            System.out.println(competition.getRules());
             ok = competition.setCType(cType);
-            System.out.println(competition.getCType());
             ok = competition.setPType(pType);
-            System.out.println(competition.getPType());
             ok = competition.setOverView(overView);
-            System.out.println(competition.getOverView());
             ok = competition.setStatus(status);
-            System.out.println(competition.getStatus());
+
 
             if(!ok){
 
@@ -163,9 +126,10 @@ public class CompetitionUpdateServlet extends HttpServlet {
                 System.out.println("There is a issue with setting attributes!");
 
             }
+            ok = competitionDao.update(competition);
 
             // Pass model to DAO
-            if(!competitionDao.create(competition)){
+            if(!ok){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");

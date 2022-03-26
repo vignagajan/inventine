@@ -50,10 +50,13 @@ public class CompetitionCreateServlet extends HttpServlet {
         // Models and DAOs
         Competition competition = new Competition();
         CompetitionDaoImplementation competitionDao = new CompetitionDaoImplementation();
+
         HttpSession session = request.getSession();
 
         // Parse request data
-        String organizationId = "60";
+        String organizationId = (String) request.getSession().getAttribute("userId");
+        System.out.println(organizationId);
+
         String supportTeamId = "2";
       //  String projectId = "1";
         String headerId = "1640618179717";

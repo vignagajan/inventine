@@ -194,9 +194,9 @@ public class CompetitionDaoImplementation implements CompetitionDaoInterface {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
 

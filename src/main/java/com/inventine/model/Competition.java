@@ -186,7 +186,7 @@ public class Competition {
 
     public boolean setOrganizationId(String organizationId) {
         this.validator.setTxt(organizationId);
-        this.validator.setMaxLength(6);
+        this.validator.setMaxLength(10);
         if(this.validator.isNumber())
         {
             this.organizationId = organizationId;

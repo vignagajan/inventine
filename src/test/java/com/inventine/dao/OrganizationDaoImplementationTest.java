@@ -33,7 +33,7 @@ class OrganizationDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
-    void create(String organization_Id,String support_Team_Id, String name, String address , String district, String  contact_number,String created_at,String header_Id,String logo_Id,char org_type,char status) {
+    void create(String organization_Id,String support_Team_Id, String name, String address , String district, String  contact_number,String created_at,String header_Id,String logo_Id,char org_type) {
 
         this.organization.setOrganizationId(organization_Id);
         this.organization.setSupportTeamId(support_Team_Id);
@@ -46,16 +46,16 @@ class OrganizationDaoImplementationTest {
         this.organization.setHeaderId(header_Id);
         this.organization.setLogoId(logo_Id);
         this.organization.setOrgType(org_type);
-        this.organization.setStatus(status);
 
 
-        assertTrue(this.organizationDao.create(organization));
+
+        assertEquals(this.organizationDao.create(organization),0);
     }
 
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
-    void getOrganization(String organization_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type,char status) {
+    void getOrganization(String organization_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type) {
 
         this.organization = this.organizationDao.getOrganization(organization_Id);
 
@@ -69,13 +69,13 @@ class OrganizationDaoImplementationTest {
         assertEquals(header_Id, this.organization.getHeaderId());
         assertEquals(logo_Id, this.organization.getLogoId());
         assertEquals(org_type,this.organization.getOrgType());
-        assertEquals(status,this.organization.getStatus());
+
 
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
-    void getOrganizations(String organization_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type,char status) {
+    void getOrganizations(String organization_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type) {
 
         List<Organization> ls = this.organizationDao.getOrganizations("");
 
@@ -89,7 +89,7 @@ class OrganizationDaoImplementationTest {
         this.organization.setHeaderId(header_Id);
         this.organization.setLogoId(logo_Id);
         this.organization.setOrgType(org_type);
-        this.organization.setStatus(status);
+
 
 
         assertEquals(ls.get(0).getOrganizationId(),this.organization.getOrganizationId());
@@ -102,7 +102,7 @@ class OrganizationDaoImplementationTest {
         assertEquals(ls.get(0).getHeaderId(),this.organization.getHeaderId());
         assertEquals(ls.get(0).getLogoId(),this.organization.getLogoId());
         assertEquals(ls.get(0).getOrgType(),this.organization.getOrgType());
-        assertEquals(ls.get(0).getStatus(),this.organization.getStatus());
+
 
 
 
@@ -110,7 +110,7 @@ class OrganizationDaoImplementationTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/Organization.csv", numLinesToSkip = 1)
-    void update(String organization_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type,char status) {
+    void update(String organization_Id,String support_Team_Id, String name, String address , String district, String  contact_number,Timestamp created_at,String header_Id,String logo_Id,char org_type) {
 
         this.organization.setOrganizationId(organization_Id);
         this.organization.setSupportTeamId(support_Team_Id);
@@ -122,7 +122,7 @@ class OrganizationDaoImplementationTest {
         this.organization.setHeaderId(header_Id);
         this.organization.setLogoId(logo_Id);
         this.organization.setOrgType(org_type);
-        this.organization.setStatus(status);
+
 
 
         this.organizationDao.update(this.organization);
@@ -139,7 +139,7 @@ class OrganizationDaoImplementationTest {
         assertEquals(this.organization.getHeaderId(),updated.getHeaderId());
         assertEquals(this.organization.getLogoId(),updated.getLogoId());
         assertEquals(this.organization.getOrgType(),updated.getOrgType());
-        assertEquals(this.organization.getStatus(),updated.getStatus());
+
 
 
 
