@@ -28,10 +28,13 @@ public class ProfileServlet extends HttpServlet {
 
         String uri = URLDecoder.decode( request.getRequestURI(), "UTF-8" ).toLowerCase();
         String userId = uri.substring(uri.lastIndexOf('/') + 1);
+        String userID = request.getParameter("id");
+        System.out.println(userID);
 
         User user = userDao.getUser(userId);
         Creds cred = credsDao.getCreds(userId);
-        String condition = "category='art';";
+        String condition= "creatorid="+userID;
+        System.out.println(condition);
 
         List<Project> projects = projectDao.getProjects(condition);
         List<User> users=new ArrayList<>();

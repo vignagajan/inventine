@@ -12,6 +12,7 @@
     <%@ include file="/WEB-INF/components/dashboard/head-import.jsp" %>
 
     <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/dashboard/form.css">
+    <script src="${System.getenv("HOST_URL")}/static/js/img_upload.js"></script>
 
 
 </head>
@@ -20,7 +21,7 @@
 <%@ include file="/WEB-INF/components/dashboard/sidebar.jsp" %>
 <%@ include file="/WEB-INF/components/dashboard/header.jsp" %>
 
-<%   Project project = (Project)request.getAttribute("project");   %>
+<%Project project = (Project)request.getAttribute("project"); %>
 
 <div class="container">
     <div class="content">
@@ -29,53 +30,52 @@
 
             <div class="details">
 
-
-                <div class="input-box">
-                    <span class="details">Project Id</span>
-                    <input type="text" name="projectId" id="projectId"   value="<%out.print(project.getProjectId());%>" disabled>
-
-                </div>
-
                 <div class="input-box">
                     <span class="details">Project Name</span>
-                    <input type="text" name="projectName" id="projectName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(project.getProjectName());%>" >
-
-                    <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
+                    <input type="text"
+                           name="projectName" id="projectName"  value="<%out.print(project.getProjectName());%>">
+                    <span class="error" aria-live="polite" style="display: none;">letters,numbers and special characters allowed</span>
                 </div>
 
                 <div class="input-box">
                     <span class="details">Requested Amount</span>
                     <input type="text"
-                           name="requestedAmount" id="requestedAmount" required pattern="^(?:0|[1-9]\d*)$"  value="<%out.print(project.getRequestedAmount());%>" disabled>
-
-                    <span class="error" aria-live="polite" style="display: none;">Enter an amount no decimals needed</span>
+                           name="requestedAmount" id="requestedAmount" required pattern="^(?:0|[1-9]\d*)$" value="<%out.print(project.getRequestedAmount());%>">
+                    <span class="error" aria-live="polite" style="display: none;"></span>
                 </div>
 
                 <div class="input-box">
-                    <span class="details">Ending Date</span>
+                    <span class="details">Date of Birth</span>
                     <input type="date"
-                           name="dateOfExpiry" id="dateOfExpiry" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])"  value="<%out.print(new Date(project.getDateOfExpiry().getTime()));%>" disabled>
-
+                           id="dateOfExpiry" name="dateOfExpiry" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" value="<%out.print(new Date(project.getDateOfExpiry().getTime()));%>">
                     <span class="error" aria-live="polite" style="display: none;" >Select the date of funding expiry</span>
                 </div>
 
-<%--                <div class="input-box">--%>
-<%--                    <span class="details">Description</span>--%>
-<%--                    <input type="text"--%>
-<%--                           name="description" id="description" value="<%out.print(project.getDetails());%>" >--%>
-<%--                    <span class="error" aria-live="polite" style="display: none;" >Input the description</span>--%>
-<%--                </div>--%>
                 <div class="input-box">
                     <span class="details">Description</span>
-                    <textarea
-                            id="description" name="description" >
-                         <%out.print(project.getDetails());%>
-                    </textarea>
+                    <input type="text"
+                           id="description" name="description" style="border-color:#0097E6;border-radius: 10px;width: 100%;min-height: 150px;" value="<%out.print(project.getDescription());%>">
+                    <span class="error" aria-live="polite" style="display: none;">Enter the description</span>
                 </div>
 
                 <div class="input-box">
+                    <span class="details">Cover Image</span>
+                    <button onclick="img_upload('<%=System.getenv("HOST_URL")%>',640,640,'cover_id')" style="margin-top: 10px;"> Upload Image and enter given id in the box</button>
+                    <input type="text" name="imageId" id="imageId" value="<% out.print(project.getImageId());%>">
+                    <span class="error" aria-live="polite" style="display: none;">Enter the imageid</span>
+                </div>
+
+                <%--                <div class="input-box">--%>
+                <%--                    <span class="details">Project Name</span>--%>
+                <%--                    <input type="text"--%>
+                <%--                           name="projectName" id="projectName">--%>
+                <%--                    <span class="error" aria-live="polite" style="display: none;">letters,numbers and special characters allowed</span>--%>
+                <%--                </div>--%>
+
+                <div class="input-box">
                     <span class="details">Category</span>
-                    <select class="category" name="category" id="category" required  value="<%out.print(project.getCategory());%>">
+                    <select class="category" name="category" id="category" required>
+                        <option disabled selected value> value="<%out.print(project.getCategory());%>"</option>
                         <option value="Art">Art</option>
                         <option value="Design">Design</option>
                         <option value="Food">Food</option>
@@ -84,12 +84,13 @@
                         <option value="Technology">Technology</option>
                         <option value="Other">Other</option>
                     </select>
-                    <span class="error" aria-live="polite" style="display: none;" >--Select a Category--</span>
+                    <span class="error" aria-live="polite" style="display: none;" >Select a category</span>
                 </div>
+
                 <!-- input boxes end -->
 
-            </div>
 
+            </div>
             <div style="display: flex">
                 <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/dashboard/project';">Cancel</button>
                 <button onclick="signupValidation()">Update</button>

@@ -42,8 +42,8 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     @Override
     public boolean create(Project project) {
 
-        String query = "INSERT INTO project( creatorId, supportTeamId, financialStatus , status, requestedAmount, dateOfExpiry, projectName , description, category) " +
-                "VALUES (?, ?, CAST(? AS stat2), CAST(? AS stat1), ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO project( creatorId, supportTeamId, financialStatus , status, requestedAmount, dateOfExpiry, projectName , description, category ,imageId) " +
+                "VALUES (?, ?, CAST(? AS stat2), CAST(? AS stat1), ?, ?, ?, ?, ? ,?)";
 
         int n = 0;
 
@@ -61,6 +61,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             stmt.setString(7, project.getProjectName());
             stmt.setString(8, project.getDescription());
             stmt.setString(9, project.getCategory());
+            stmt.setString(10, project.getImageId());
 
 
             n = stmt.executeUpdate();
@@ -89,6 +90,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             project.setProjectName(rs.getString("projectName"));
             project.setDescription(rs.getString("description"));
             project.setCategory(rs.getString("category"));
+            project.setImageId(rs.getString("imageId"));
 
 
         } catch (SQLException e) {
@@ -173,7 +175,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     @Override
     public boolean update(Project project) {
 
-        String query = String.format("UPDATE project SET creatorId=?, supportTeamId=?,  financialStatus=CAST(? AS stat2), status=CAST(? AS stat1), requestedAmount=?, dateOfExpiry=? , projectName=?, description=?, category=? WHERE projectId =?");
+        String query = String.format("UPDATE project SET creatorId=?, supportTeamId=?,  financialStatus=CAST(? AS stat2), status=CAST(? AS stat1), requestedAmount=?, dateOfExpiry=? , projectName=?, description=?, category=?, imageId=? WHERE projectId =?");
 
         try {
 
@@ -190,6 +192,7 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
             stmt.setString(8,project.getDescription());
             stmt.setString(9,project.getCategory());
             stmt.setInt(10, Integer.parseInt(project.getProjectId()));
+            stmt.setString(11, project.getImageId());
 
 
 

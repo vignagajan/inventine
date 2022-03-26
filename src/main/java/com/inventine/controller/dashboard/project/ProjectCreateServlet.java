@@ -56,6 +56,7 @@ public class ProjectCreateServlet extends HttpServlet {
         String projectName = request.getParameter("projectName");
         String category = request.getParameter("category");
         String description = request.getParameter("description");
+        String imageId = request.getParameter("imageId");
 
 
         // Data to be processed
@@ -98,6 +99,7 @@ public class ProjectCreateServlet extends HttpServlet {
             ok = project.setCategory(category);
             ok = project.setProjectName(projectName);
             ok = project.setDescription(description);
+            ok = project.setImageId(imageId);
 
 
             if(!ok){

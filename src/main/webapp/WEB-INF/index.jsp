@@ -90,7 +90,7 @@
 
                 <div class="card-header">
                     <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
-                        <img src="https://www.newsbtc.com/wp-content/uploads/2020/06/mesut-kaya-LcCdl__-kO0-unsplash-scaled.jpg" alt="ballons" />
+                        <img src="${System.getenv("HOST_URL")}/image/<% out.print(project.getImageId());%>">
                     </a>
                 </div>
 
