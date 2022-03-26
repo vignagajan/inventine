@@ -109,7 +109,7 @@
         </div>
 
         <div style="display: flex">
-            <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/dashboard/organization';">Cancel</button>
+            <button type="button" id="cancelBtn" onclick="location.href='${System.getenv("HOST_URL")}/login';">Cancel</button>
             <button onclick="signupValidation()">Create</button>
         </div>
 
@@ -150,11 +150,23 @@
 
         }
 
+        // Password Validation
+
+        const password = document.getElementById("password");
+        const cpassword = document.getElementById("confirm_password");
+
+        if( password.value != cpassword.value){
+            Swal.fire({
+                icon: 'error',
+                title: 'Passwords should be same!',
+            })
+            return false;
+        }
 
         requestHandler(
             y,
             window.location.href,
-            'Organization Apply details successfully!',
+            'Organization is created successfully!',
             ''
         )
     }

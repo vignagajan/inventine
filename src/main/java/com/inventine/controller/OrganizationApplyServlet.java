@@ -5,6 +5,7 @@ import com.inventine.dao.OrganizationDaoImplementation;
 import com.inventine.model.Creds;
 import com.inventine.model.Organization;
 import com.inventine.util.DotEnv;
+import com.inventine.util.SHA256;
 import org.json.simple.JSONObject;
 
 import javax.servlet.*;
@@ -12,7 +13,9 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "OrganizationApplyServlet", value = "/apply")
@@ -69,6 +72,30 @@ public class OrganizationApplyServlet extends HttpServlet {
 
         char status = 'U';
 
+        String password = null;
+
+        // Data preprocessing
+        try {
+
+            SHA256 hasher = new SHA256();
+            password = hasher.getHexString(password_);
+
+        }catch (Exception e){
+            ok = false;
+            messages.clear();
+            messages.add("Something went wrong at get data!");
+            e.printStackTrace();
+        }
+
+        String condition = "";
+
+        // Username availability check
+        condition = String.format("WHERE username=%s",username);
+        if(credsDao.getCount(condition) == 1){
+            ok=false;
+            messages.add("Username is already found!");
+        }
+
         // Transactions
         if(ok){
 
@@ -90,8 +117,19 @@ public class OrganizationApplyServlet extends HttpServlet {
             System.out.println(organization.getContactNumber());
             ok = organization.setOrgType(orgtype);
             System.out.println(organization.getOrgType());
-            ok = organization.setStatus(status);
-            System.out.println(organization.getStatus());
+            ok = creds.setStatus(status);
+            System.out.println(creds.getStatus());
+
+
+            ok = creds.setRole(role);
+            System.out.println(creds.getRole());
+            ok = creds.setUsername(username);
+            System.out.println(creds.getUsername());
+            ok = creds.setEmail(email);
+            System.out.println(creds.getEmail());
+            ok = creds.setPassword(password);
+            System.out.println(creds.getPassword());
+
 
 
             if(!ok){
@@ -102,8 +140,12 @@ public class OrganizationApplyServlet extends HttpServlet {
 
             }
 
+            int organizationid = organizationDao.create(organization);
+            creds.setUserId(Integer.toString(organizationid));
+            ok = credsDao.create(creds);
+
             // Pass model to DAO
-            if(!organizationDao.create(organization)){
+            if(organizationid==0 && !ok ){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");

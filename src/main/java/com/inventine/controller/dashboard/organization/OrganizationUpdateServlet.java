@@ -63,23 +63,20 @@ public class OrganizationUpdateServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        String creatorId = session.getAttribute("userId").toString();
+        String organizationId = session.getAttribute("userId").toString();
         String supportTeamId = "1";
         String logoId = "1640618179717";
         String headerId = "1640618091700";
 
-        //  char financialStatus = 'I';
-        // char status = 'A';
-        //String endingAt_ = request.getParameter("endingAt");
-        //String startingAt_ = request.getParameter("startingAt");
-        //int prizeMoney = Integer.parseInt(request.getParameter("prizeMoney"));
+
         String name = request.getParameter("name");
         String address = request.getParameter("address");
         String district = request.getParameter("district");
         String contactnumber = request.getParameter("contactnumber");
         char orgtype = request.getParameter("orgtype").charAt(0);
+        String organizationid = request.getParameter("organizationid");
 
-        char status = 'A';
+
 
         //String category = request.getParameter("category");
         //String rules = request.getParameter("rules");
@@ -126,10 +123,10 @@ public class OrganizationUpdateServlet extends HttpServlet {
         // Transactions
         if(ok){
 
-           // ok = organization.setCreatorId(creatorId);
 
-           //
-            // System.out.println(organization.getCreatorId());
+
+
+
             ok = organization.setSupportTeamId(supportTeamId);
             System.out.println(organization.getSupportTeamId());
             ok = organization.setHeaderId(headerId);
@@ -146,10 +143,9 @@ public class OrganizationUpdateServlet extends HttpServlet {
             System.out.println(organization.getContactNumber());
             ok = organization.setOrgType(orgtype);
             System.out.println(organization.getOrgType());
-            ok = organization.setStatus(status);
-            System.out.println(organization.getStatus());
-            //    ok = competition.setFinancialStatus(financialStatus);
-            //  ok = competition.setStatus(status);
+            ok = organization.setOrganizationId(organizationId);
+
+
 
 
             if(!ok){
@@ -159,9 +155,9 @@ public class OrganizationUpdateServlet extends HttpServlet {
                 System.out.println("There is a issue with setting attributes!");
 
             }
-
+            ok = organizationDao.update(organization);
             // Pass model to DAO
-            if(!organizationDao.create(organization)){
+            if(!ok){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");
