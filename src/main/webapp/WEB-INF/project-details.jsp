@@ -32,10 +32,7 @@
         <div class = "project-imgs">
             <div class = "img-display">
                 <div class = "img-showcase">
-                    <img src = "https://picsum.photos/640/640/?image=1071" alt = "shoe image">
-                    <img src = "https://picsum.photos/640/640/?image=1070" alt = "shoe image">
-                    <img src = "https://picsum.photos/640/640/?image=1070" alt = "shoe image">
-                    <img src = "https://picsum.photos/640/640/?image=183" alt = "shoe image">
+                    <img src = "${System.getenv("HOST_URL")}/image/<% out.print(project.getImageId());%>">
                 </div>
             </div>
 <%--            <div class = "img-select">--%>

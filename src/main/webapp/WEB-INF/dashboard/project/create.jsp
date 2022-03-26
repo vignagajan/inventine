@@ -9,6 +9,8 @@
     <%@ include file="/WEB-INF/components/dashboard/head-import.jsp" %>
 
     <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/dashboard/form.css">
+    <script src="${System.getenv("HOST_URL")}/static/js/img_upload.js"></script>
+
 
 
 </head>
@@ -25,6 +27,8 @@
 
             <!-- input boxes start -->
             <div class="details">
+
+
 
                 <div class="input-box">
                     <span class="details">Project Name</span>
@@ -54,6 +58,15 @@
                     <span class="error" aria-live="polite" style="display: none;">Enter the description</span>
                 </div>
 
+                <div class="input-box">
+                    <span class="details">Cover Image</span>
+                    <button onclick="img_upload('<%=System.getenv("HOST_URL")%>',640,640,'cover_id')" style="margin-top: 10px;"> Upload Image and enter given id in the box</button>
+                    <input type="text" name="imageId" id="imageId">
+                    <span class="error" aria-live="polite" style="display: none;">Enter the imageid</span>
+                </div>
+
+
+
 <%--                <div class="input-box">--%>
 <%--                    <span class="details">Project Name</span>--%>
 <%--                    <input type="text"--%>
@@ -65,13 +78,13 @@
                     <span class="details">Category</span>
                     <select class="category" name="category" id="category" required>
                         <option disabled selected value> -- select a category for the Project -- </option>
-                        <option value="Art">Art</option>
-                        <option value="Design">Design</option>
-                        <option value="Food">Food</option>
-                        <option value="Publication">Publication</option>
-                        <option value="Software">Software</option>
-                        <option value="Technology">Technology</option>
-                        <option value="Other">Other</option>
+                        <option value="art">Art</option>
+                        <option value="design">Design</option>
+                        <option value="food">Food</option>
+                        <option value="publication">Publication</option>
+                        <option value="software">Software</option>
+                        <option value="technology">Technology</option>
+                        <option value="other">Other</option>
                     </select>
                     <span class="error" aria-live="polite" style="display: none;" >Select a category</span>
                 </div>
@@ -86,8 +99,9 @@
             </div>
         </div>
     </div>
+</div>
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/validate.js"></script>
 
-    <script src="${System.getenv("HOST_URL")}/static/js/dashboard/validate.js"></script>
 
 
     <script>

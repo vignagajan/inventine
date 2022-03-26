@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.inventine.model.Project" %>
+<%@ page import="com.inventine.model.Organization" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -103,23 +104,38 @@
                     </div>
 
                     <div id="Organization" class="tabcontent">
-                        <div class="content">
-                            <div class="container" style="margin-top: -20px">
-                                <div class="column-1">
-                                    <h1 style="color:black" >Nokia Corporation</h1>
-                                    <span class="paragraph" style="margin-top: 30px;margin-bottom: 30px">At Nokia, we create technology that helps the world act together.<br>
+                        <div class="main">
+                            <ul class="cards">
 
-The world is facing fundamental challenges. Pressure on the planet is increasing, productivity is stalling and access to opportunity remains stubbornly unequal. Technology is central to the solution.<br>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a href="${System.getenv("HOST_URL")}/organization-profile/79">
+                                            <img src="https://wso2.cachefly.net/wso2/sites/all/2020-theme-november/images/wso2-sm-banner-02.png" alt="ballons" />
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="tag tag-purple">Private Org.</span>
 
-Through technology leadership and trusted partnerships, we deliver critical networks to help address global issues.  We have the power to bring together the world’s people, machines and devices, sensing and acting in real time at massive scale. Our critical networks go beyond connectivity to enable self-optimizing, intelligent systems both locally and globally.
-
-
-        </span>
+                                        <h4>
+                                            <a href="${System.getenv("HOST_URL")}/organization-profile/79">
+                                                WSO2
+                                            </a>
+                                        </h4>
+                                        <p>
+                                            <%--                        The future can be scary, but there are ways to--%>
+                                            <%--                        deal with that fear.--%>
+                                        </p>
+                                        <div class="user">
+                                            <img src="${System.getenv("HOST_URL")}/image/1640618179717" />
+                                            <div class="user-info">
+                                                <h5>
+                                                    WSO2</h5>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="column-2">
-                                    <img src="https://www.nokia.com/sites/default/files/2020-12/Company-page-header-image-1312.jpg" style="width: 100%;height: 300px;margin-top: 30px">
-                                </div>
-                            </div>
+
+                            </ul>
                         </div>
                     </div>
 
@@ -152,6 +168,9 @@ Through technology leadership and trusted partnerships, we deliver critical netw
                                 <div class="col-xs-12">
                                     <div class="btn-lrg submit-btn" style="margin-left: 10px">Send Message</div>
                                 </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="btn-lrg submit-btn" style="margin-left: 10px">Send Message</div>
                             </div>
                         </div>
 
