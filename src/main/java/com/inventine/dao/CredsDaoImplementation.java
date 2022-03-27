@@ -61,16 +61,6 @@ public class CredsDaoImplementation implements CredsDaoInterface {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                n = rs.getInt("credid");
-            }
-
-            return n;
-
-
-            ResultSet rs = stmt.executeQuery();
-
-
-            while (rs.next()) {
                 n = rs.getInt("userid");
             }
 

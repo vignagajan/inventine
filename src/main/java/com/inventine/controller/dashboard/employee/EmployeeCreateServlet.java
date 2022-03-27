@@ -122,7 +122,7 @@ public class EmployeeCreateServlet extends HttpServlet {
             }
 
             int userId = credsDao.create(creds);
-            ok = user.setUserId(Integer.toString(userId));
+            ok = user.setUserId(String.valueOf(userId));
 
 
 
