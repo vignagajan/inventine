@@ -48,7 +48,7 @@ public class ProjectDetailsServlet extends HttpServlet {
 //        String query2 = String.format("select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s",projectId);
 //        String condition = "select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s";
 
-        int projectsdate = 125;
+        int projectsdate = 128;
 
 
 //        String condition1;

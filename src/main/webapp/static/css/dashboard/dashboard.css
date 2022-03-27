@@ -125,6 +125,15 @@ td {
   border: 2px #03D815 solid;
 }
 
+.ratebutton {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #b86e09;
+  border-radius: 50px;
+  background: #fff;
+  border: 2px #b86e09 solid;
+}
+
 .viewbutton{
   padding-left: 5px;
   padding-right: 5px;

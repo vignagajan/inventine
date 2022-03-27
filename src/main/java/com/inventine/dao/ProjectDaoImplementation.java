@@ -17,18 +17,10 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     public int getCount(String condition)  {
 
         int count = 0;
-        String query = "select count(*) from project";
 
-        if (!condition.isEmpty()){
-
-            condition = String.format(" WHERE %s",condition);
-
-            query = query.concat(condition);
-
-        }
 
         try {
-            PreparedStatement stmt = conn.prepareStatement(query);
+            PreparedStatement stmt = conn.prepareStatement(condition);
             ResultSet rs = stmt.executeQuery();
             rs.next();
             count = rs.getInt("count");
