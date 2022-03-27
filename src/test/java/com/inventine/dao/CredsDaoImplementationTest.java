@@ -33,7 +33,6 @@ class CredsDaoImplementationTest {
     void create(String userId, String username, String email,String password,
                 char role, char status, String created_at) {
 
-        assertTrue(this.creds.setUserId(userId));
         assertTrue(this.creds.setUsername(username));
         assertTrue(this.creds.setEmail(email));
         assertTrue(this.creds.setPassword(password));
@@ -41,7 +40,7 @@ class CredsDaoImplementationTest {
         assertTrue(this.creds.setStatus(status));
         assertTrue(this.creds.setCreatedAt(Timestamp.valueOf(created_at)));
 
-        assertTrue(this.credsDao.create(creds));
+        assertEquals(this.credsDao.create(creds),0);
     }
 
     @ParameterizedTest

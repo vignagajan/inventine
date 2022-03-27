@@ -40,8 +40,8 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     @Override
     public int create(Organization organization) {
 
-        String query = "INSERT INTO organization(supportTeamId,name,address,district,contactNumber,headerId,logoId, orgType) " +
-                "VALUES ( ?,?,?,?,?,?,?,CAST(? AS org1)) RETURNING organizationid";
+        String query = "INSERT INTO organization(organizationId, supportTeamId,name,address,district,contactNumber,headerId,logoId, orgType) " +
+                "VALUES (?, ?,?,?,?,?,?,?,CAST(? AS org1)) RETURNING organizationid";
 
         int n = 0;
 

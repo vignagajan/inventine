@@ -139,10 +139,11 @@ public class OrganizationApplyServlet extends HttpServlet {
                 System.out.println("There is a issue with setting attributes!");
 
             }
-
+            int userid = credsDao.create(creds);
+            organization.setOrganizationId(Integer.toString(userid));
             int organizationid = organizationDao.create(organization);
-            creds.setUserId(Integer.toString(organizationid));
-            ok = credsDao.create(creds);
+//            creds.setUserId(Integer.toString(organizationid));
+
 
             // Pass model to DAO
             if(organizationid==0 && !ok ){

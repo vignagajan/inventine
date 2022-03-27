@@ -27,15 +27,9 @@ public class User {
 
     public boolean setUserId(String userId) {
 
-        this.validator.setTxt(userId);
-        this.validator.setMaxLength(6);
 
-        if (this.validator.isNumber()) {
-            this.userId = userId;
-            return true;
-        }
-
-        return false;
+        this.userId = userId;
+        return true;
     }
 
     public String getFirstName() {

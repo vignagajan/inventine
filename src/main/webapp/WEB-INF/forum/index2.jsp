@@ -254,7 +254,6 @@
                 </div>
 
                 <!-- input boxes end -->
-
                 <div class="form_btn">
                     <button class="btn-cancel" type="button" id="cancelBtn" onclick="document.getElementById('cont').style.display='none';cancel_blur('content');cancel_blur('main');cancel_blur('forum-cont');cancel_blur('menu')">Cancel</button>
                     <button class="btn-create" onclick="signupValidation();document.getElementById('cont').style.display='none';cancel_blur('content');cancel_blur('main');cancel_blur('forum-cont');cancel_blur('menu')">Create</button>
