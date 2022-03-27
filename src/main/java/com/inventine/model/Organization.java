@@ -51,16 +51,9 @@ public class Organization {
     }
 
     public boolean setOrganizationId(String organizationId) {
-        this.validator.setTxt(organizationId);
-        this.validator.setMaxLength(6);
 
-
-        if (this.validator.isNumber()) {
-            this.organizationId = organizationId;
-            return true;
-        }
-
-        return false;
+        this.organizationId = organizationId;
+        return true;
     }
 
     public String getSupportTeamId() {

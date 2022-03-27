@@ -31,11 +31,9 @@ public class ChatServlet extends HttpServlet {
         response.setContentType("text/html");
 
         ChatDaoImplementation chatDao = new ChatDaoImplementation();
-        Chat chat = chatDao.getChat("1");
-        request.setAttribute("chat",chat);
-        System.out.println(chat.getMessage());
-
-      // chat = chatDao.getChat(chatId);
+        List<Chat> chats = chatDao.getChats((String)session.getAttribute("userid"));
+        request.setAttribute("chats",chats);
+        System.out.println(chats.get(0).getMessage());
 
 
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
@@ -46,6 +44,8 @@ public class ChatServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
 
 //        // JSON parameters
 //        JSONObject json = new JSONObject();

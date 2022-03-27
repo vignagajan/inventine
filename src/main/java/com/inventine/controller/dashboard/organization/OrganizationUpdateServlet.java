@@ -64,7 +64,7 @@ public class OrganizationUpdateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         String organizationId = session.getAttribute("userId").toString();
-        String supportTeamId = "1";
+        String supportTeamId = "11";
         String logoId = "1640618179717";
         String headerId = "1640618091700";
 
@@ -78,47 +78,7 @@ public class OrganizationUpdateServlet extends HttpServlet {
 
 
 
-        //String category = request.getParameter("category");
-        //String rules = request.getParameter("rules");
-        //char cType = request.getParameter("cType").charAt(0);
-        // char pType = 'A';
 
-        // Data to be processed
-//        Timestamp endingAt = null;
-//
-//
-//        // Data preprocessing
-//        try {
-//
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = dateFormat.parse(endingAt_);
-//            endingAt = new java.sql.Timestamp(date.getTime());
-//
-//        }catch (Exception e){
-//            ok = false;
-//            messages.clear();
-//            messages.add("Something went wrong at get data!");
-//            e.printStackTrace();
-//        }
-//        Timestamp startingAt = null;
-//        try {
-//
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = dateFormat.parse(startingAt_);
-//            startingAt = new java.sql.Timestamp(date.getTime());
-//
-//        }catch (Exception e){
-//            ok = false;
-//            messages.clear();
-//            messages.add("Something went wrong at get data!");
-//            e.printStackTrace();
-//        }
-
-        // Logic
-//        if(competitionDao.getCount("WHERE competitionname=vicky") >= 1){
-//            ok=false;
-//            messages.add("competitionname is already found!");
-//        }
 
         // Transactions
         if(ok){
