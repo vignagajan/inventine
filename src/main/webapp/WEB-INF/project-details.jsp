@@ -66,7 +66,7 @@
         <div class = "project-content">
 
             <div class="cat-rate">
-                <a href = "#" class = "project-link"><% out.print(project.getCategory());%></a>
+                <a href = "${System.getenv("HOST_URL")}/categories/<% out.print(project.getCategory());%>" class = "project-link"><% out.print(project.getCategory());%></a>
                 <div class = "project-rating">
                     <i class = "fas fa-star"></i>
                     <i class = "fas fa-star"></i>
@@ -107,11 +107,11 @@
                     <p><b>Goal</b>: <b style="color: #0097E6;">Rs. <% out.print(project.getRequestedAmount());%></b></p>
                 </div>
                 <div style="margin-left: auto;">
-                    <p><b>50%</b></p>
+                    <p><b>0%</b></p>
                 </div>
             </div>
 
-            <progress class="progress-bar" max="100" value="50"></progress>
+            <progress class="progress-bar" max="100" value="0"></progress>
 
             <div class = "invest-info">
                 Rs.

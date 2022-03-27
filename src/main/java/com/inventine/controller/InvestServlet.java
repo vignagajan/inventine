@@ -52,10 +52,10 @@ public class InvestServlet extends HttpServlet {
         String login_redirect = System.getenv("HOST_URL")+"/project/"+projectId;
 
 
-//        if (session.getAttribute("role") == null) {
-//           session.setAttribute("login_redirect",login_redirect);
-//            LoginServlet login_servlet = new LoginServlet();
-//            login_servlet.doGet(request,response);
-//        }
+        if (session.getAttribute("role") == null) {
+           session.setAttribute("login_redirect",login_redirect);
+            LoginServlet login_servlet = new LoginServlet();
+            login_servlet.doGet(request,response);
+        }
     }
 }
