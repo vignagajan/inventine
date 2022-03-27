@@ -38,10 +38,10 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     }
 
     @Override
-    public boolean create(Organization organization) {
+    public int create(Organization organization) {
 
         String query = "INSERT INTO organization(supportTeamId,name,address,district,contactNumber,headerId,logoId, orgType) " +
-                "VALUES ( ?,?,?,?,?,?,?,CAST(? AS org1))";
+                "VALUES ( ?,?,?,?,?,?,?,CAST(? AS org1)) RETURNING organizationid";
 
         int n = 0;
 
@@ -59,15 +59,18 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
             stmt.setString(7, organization.getLogoId());
             stmt.setString(8, String.valueOf(organization.getOrgType()));
 
+            ResultSet rs = stmt.executeQuery();
 
+            while (rs.next()) {
+                n = rs.getInt("organizationid");
+            }
 
-            stmt.executeUpdate();
+            return n;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return -1;
         }
-        return true;
     }
 
     private Organization setOrganization(Organization organization, ResultSet rs) {
