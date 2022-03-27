@@ -39,67 +39,67 @@
     <!-- the 4 cards containing data at top -->
     <div class="main-overview">
 
-        <div class="overviewcard" style="background-color:white;color: rgb(182, 0, 182);">
-            <div><i class="fas fa-money-check-alt fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card1_color}">
+            <div><i class="far ${card1_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Investors</div>
-                <div class="overviewcard__info" style="font-size: 36px; float: right;">569</div>
+                <div>${card1_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card1_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(255, 115, 0);">
-            <div><i class="fas fa-chalkboard-teacher fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card2_color}">
+            <div><i class="far ${card2_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Creators</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">236</div>
+                <div>${card2_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card2_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(3, 216, 21);">
-            <div><i class="far fa-lightbulb fa-2x"></i></div>
-            <div class="overviewcard__icon" >
-                <div>Projects</div>
-                <div class="overviewcard__info"style="font-size: 36px;float: right">999</div>
-            </div>
-        </div>
-
-        <div class="overviewcard" style="background-color:white;color: rgb(0, 110, 255);">
-            <div><i class="fas fa-trophy fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card3_color}">
+            <div><i class="far ${card3_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Competitions</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">123</div>
+                <div>${card3_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card3_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(0, 182, 112);">
-            <div><i class="fas fa-sitemap fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card4_color}">
+            <div><i class="far ${card4_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Private.Orgs</div>
-                <div class="overviewcard__info" style="font-size: 36px; float: right;">569</div>
+                <div>${card4_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card4_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(255, 196, 0);">
-            <div><i class="fas fa-school fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card5_color}">
+            <div><i class="far ${card5_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Schools</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">236</div>
+                <div>${card5_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card5_count}</div>
             </div>
         </div>
 
-        <div class="overviewcard" style="background-color:white;color: rgb(64, 44, 179);">
-            <div><i class="fas fa-university fa-2x"></i></div>
-            <div class="overviewcard__icon" >
-                <div>Universities</div>
-                <div class="overviewcard__info"style="font-size: 36px;float: right">999</div>
-            </div>
-        </div>
-
-        <div class="overviewcard" style="background-color:white;color: rgb(255, 0, 76);">
-            <div><i class="fas fa-users fa-2x"></i></div>
+        <div class="overviewcard" style="background-color:white;color: ${card6_color}">
+            <div><i class="far ${card6_icon} fa-2x"></i></div>
             <div class="overviewcard__icon">
-                <div>Org.Members</div>
-                <div class="overviewcard__info" style="font-size: 36px;float: right">123</div>
+                <div>${card6_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card6_count}</div>
+            </div>
+        </div>
+
+        <div class="overviewcard" style="background-color:white;color: ${card7_color}">
+            <div><i class="far ${card7_icon} fa-2x"></i></div>
+            <div class="overviewcard__icon">
+                <div>${car7_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card7_count}</div>
+            </div>
+        </div>
+
+        <div class="overviewcard" style="background-color:white;color: ${card8_color}">
+            <div><i class="far ${card8_icon} fa-2x"></i></div>
+            <div class="overviewcard__icon">
+                <div>${card8_label}</div>
+                <div class="overviewcard__info" style="font-size: 36px; float: right;">${card8_count}</div>
             </div>
         </div>
 
