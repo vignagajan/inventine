@@ -125,6 +125,18 @@
         </li>
         <%}%>
 
+        <% if(
+                session.getAttribute("role").toString().charAt(0) == 'S'||
+                session.getAttribute("role").toString().charAt(0) == 'A'){
+        %>
+        <li>
+            <a href="${System.getenv("HOST_URL")}/dashboard/validation">
+                <i class="fas fa-check"></i>
+                <span class="links_name">Validations</span>
+            </a>
+        </li>
+        <%}%>
+
         <% if(session.getAttribute("role").toString().charAt(0) == 'F' ||
                 session.getAttribute("role").toString().charAt(0) == 'A'||
                 session.getAttribute("role").toString().charAt(0) == 'S'){

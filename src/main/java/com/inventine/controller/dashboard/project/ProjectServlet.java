@@ -50,7 +50,8 @@ public class ProjectServlet extends HttpServlet {
             card2_condition = "count where status='B' && creatorid=%s";
             card3_condition = "count where status='D' && creatorid=%s";
             card4_condition = "sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
-            List<Project> projects = projectsDao.getProjects("");
+            get_condition= "";
+//            get_condition = "select *  from project where creatorid=%s";
         }
 
 
@@ -60,7 +61,7 @@ public class ProjectServlet extends HttpServlet {
             card2_condition = "(select count from payment where projectid=(select projectid from project where financialstatus='C') && investorid=%s)";
             card3_condition = "select count(DISTINCT investorid) from payment";
             card4_condition = "select sum(amount/(1000)) from payment where investorid=%s";
-//            get_condition = "select projectid from payment where investorid=%s";
+            get_condition = "select * from project where projectid=(select projectid from payment where investorid=%s)";
             get_condition = "";
             //            get_condition = "select * from project where projectid=(select projectid from payment where investorid=%s)";
         }
@@ -75,6 +76,7 @@ public class ProjectServlet extends HttpServlet {
         List<Project> projects = projectsDao.getProjects(get_condition);
         List<Payment> payments = paymentDao.getPayments(get_condition);
 
+        System.out.println(get_condition);
 
         int card1_count = 0;
         int card2_count = 0;
@@ -109,13 +111,13 @@ public class ProjectServlet extends HttpServlet {
             request.setAttribute("card1_label", "Active");
             request.setAttribute("card2_label", "Blocked");
             request.setAttribute("card3_label", "Deleted");
-            request.setAttribute("card4_label", "Funds");
+            request.setAttribute("card4_label", "Total");
         }
         if (role == 'I') {
-            request.setAttribute("card1_label", "Total");
-            request.setAttribute("card2_label", "Completed");
-            request.setAttribute("card3_label", "Funded");
-            request.setAttribute("card4_label", "Funds");
+            request.setAttribute("card1_label", "Active");
+            request.setAttribute("card2_label", "Blocked");
+            request.setAttribute("card3_label", "Deleted");
+            request.setAttribute("card4_label", "Total");
         }
         // Add card values
         request.setAttribute("card1_count",card1_count);
