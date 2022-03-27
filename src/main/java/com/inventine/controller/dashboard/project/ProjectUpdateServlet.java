@@ -60,7 +60,7 @@ public class ProjectUpdateServlet extends HttpServlet {
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
 
         // Parse request data
-        String supportTeamId = "1";
+        String supportTeamId = "11";
         char financialStatus = 'I';
         char status = 'A';
         String dateOfExpiry_ = request.getParameter("dateOfExpiry");
