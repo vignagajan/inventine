@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface OrganizationDaoInterface {
-    public int create(Organization organization);
+    public boolean create(Organization organization);
 
     public Organization getOrganization(String organizationId);
 
