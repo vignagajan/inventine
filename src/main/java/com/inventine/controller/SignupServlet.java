@@ -134,10 +134,13 @@ public class SignupServlet extends HttpServlet {
 
             } else{
 
-                userId = userDao.create(user);
+                userId = credsDao.create(creds);
                 System.out.println(userId);
-                ok = creds.setUserId(Integer.toString(userId));
-                ok = credsDao.create(creds);
+                ok = user.setUserId(String.valueOf(userId));
+                System.out.println(ok);
+                System.out.println(Integer.toString(userId));
+                System.out.println(user.getUserId());;
+                ok = userDao.create(user);
 
                 System.out.println(ok);
 

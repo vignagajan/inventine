@@ -121,10 +121,13 @@ public class EmployeeCreateServlet extends HttpServlet {
 
             }
 
-            int userId = userDao.create(user);
+            int userId = credsDao.create(creds);
+            ok = user.setUserId(Integer.toString(userId));
+
+
 
             // Pass model to DAO
-            if(ok && (userId == -1) && !credsDao.create(creds)){
+            if(ok && (userId == -1) && !userDao.create(user)){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");

@@ -43,10 +43,10 @@ public class UserDaoImplementation implements UserDaoInterface {
     }
 
     @Override
-    public int create(User user) {
+    public boolean create(User user) {
 
-        String query = "INSERT INTO users(firstName, lastName, dob, gender, phone, address, district, type ) " +
-                "VALUES (?, ?,?, CAST(? AS ge),?, ?,?, CAST(? AS te)) RETURNING userid";
+        String query = "INSERT INTO users(userid, firstName, lastName, dob, gender, phone, address, district, type ) " +
+                "VALUES (?, ?, ?,?, CAST(? AS ge),?, ?,?, CAST(? AS te)) RETURNING userid";
 
         int n = 0;
 
@@ -54,28 +54,26 @@ public class UserDaoImplementation implements UserDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setString(1, user.getFirstName());
-            stmt.setString(2, user.getLastName());
-            stmt.setTimestamp(3, user.getDob());
-            stmt.setString(4, String.valueOf(user.getGender()));
-            stmt.setString(5, user.getPhone());
-            stmt.setString(6, user.getAddress());
-            stmt.setString(7, user.getDistrict());
-            stmt.setString(8, String.valueOf(user.getType()));
+            stmt.setInt(1, Integer.parseInt(user.getUserId()));
+            stmt.setString(2, user.getFirstName());
+            stmt.setString(3, user.getLastName());
+            stmt.setTimestamp(4, user.getDob());
+            stmt.setString(5, String.valueOf(user.getGender()));
+            stmt.setString(6, user.getPhone());
+            stmt.setString(7, user.getAddress());
+            stmt.setString(8, user.getDistrict());
+            stmt.setString(9, String.valueOf(user.getType()));
 
             ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
-                n = rs.getInt("userid");
-            }
 
-            return n;
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return -1;
+        return false;
 
     }
 

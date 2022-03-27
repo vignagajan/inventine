@@ -39,11 +39,11 @@ public class CredsDaoImplementation implements CredsDaoInterface {
     }
 
     @Override
-    public boolean create(Creds creds) {
+    public int create(Creds creds) {
 
       
-        String query = "INSERT INTO creds(userid, username, email, password, role, status)" +
-                "VALUES (?,?, ?,?, CAST(? AS rl),CAST(? AS sts))";
+        String query = "INSERT INTO creds(username, email, password, role, status)" +
+                "VALUES (?, ?,?, CAST(? AS rl),CAST(? AS sts)) RETURNING userid" ;
 
         int n = 0;
 
@@ -51,23 +51,26 @@ public class CredsDaoImplementation implements CredsDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-          
-            stmt.setInt(1, Integer.parseInt(creds.getUserId()));
-            stmt.setString(2, creds.getUsername());
-            stmt.setString(3, creds.getEmail());
-            stmt.setString(4, creds.getPassword());
-            stmt.setString(5, String.valueOf(creds.getRole()));
-            stmt.setString(6, String.valueOf(creds.getStatus()));
+
+            stmt.setString(1, creds.getUsername());
+            stmt.setString(2, creds.getEmail());
+            stmt.setString(3, creds.getPassword());
+            stmt.setString(4, String.valueOf(creds.getRole()));
+            stmt.setString(5, String.valueOf(creds.getStatus()));
 
 
+            ResultSet rs = stmt.executeQuery();
 
-            n = stmt.executeUpdate();
 
-            return true;
+            while (rs.next()) {
+                n = rs.getInt("userid");
+            }
+
+            return n;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 

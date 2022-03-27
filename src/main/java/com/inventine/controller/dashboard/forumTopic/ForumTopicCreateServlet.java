@@ -43,7 +43,7 @@ public class ForumTopicCreateServlet extends HttpServlet {
         System.out.println("pass 1");
 
         // Parse request data
-        String userId = "1";
+        String userId = (String)request.getSession().getAttribute("userId") ;
         String description = request.getParameter("description");
 
         String postId ;

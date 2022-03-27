@@ -8,7 +8,7 @@ public interface CredsDaoInterface {
 
     public int getCount(String condition);
 
-    public boolean create(Creds creds);
+    public int create(Creds creds);
 
     public Creds getCreds(String userid);
 
