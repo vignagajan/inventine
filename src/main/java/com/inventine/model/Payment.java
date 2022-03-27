@@ -12,6 +12,7 @@ public class Payment {
     private String financialDetailsId;
     private int amount;
     private Timestamp createdAt;
+    private String countSum;
     private DataValidator validator = new DataValidator();
 
 
@@ -99,5 +100,13 @@ public class Payment {
         }
 
         return false;
+    }
+
+    public String getCountSum() {
+        return countSum;
+    }
+
+    public void setCountSum(String countSum) {
+        this.countSum = countSum;
     }
 }

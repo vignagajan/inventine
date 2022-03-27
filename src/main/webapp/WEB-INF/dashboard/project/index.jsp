@@ -164,7 +164,7 @@
                 <td><% out.print(projects.get(i).getCreatorId());%></td>
                 <td><% out.print(projects.get(i).getProjectName());%></td>
                 <td><% out.print(projects.get(i).getRequestedAmount());%></td>
-                <td>7</td>
+                <td>0</td>
                 <td><% out.print(status_values.get(projects.get(i).getStatus()));%></td>
                 <td><% out.print(financialstatus_values.get(projects.get(i).getFinancialStatus()));%></td>
                 <td><% out.print(projects.get(i).getCategory());%></td>

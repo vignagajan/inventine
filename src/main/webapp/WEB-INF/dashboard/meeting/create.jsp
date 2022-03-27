@@ -25,16 +25,17 @@
 
             <div class="details">
 
+                <button onclick="">Generate Link</button>
 
                 <div class="input-box">
-                    <span class="details"> Date</span>
+                    <span class="details">Date of Meeting</span>
                     <input type="date"
-                           name="date" id="date" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
+                           id="dob" name="dob" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
                     <span class="error" aria-live="polite" style="display: none;" >Select the date of the meeting</span>
                 </div>
 
                 <div class="input-box">
-                    <span class="details"> Time</span>
+                    <span class="details">Time</span>
                     <input type="time"
                            name="time" id="time" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
                     <span class="error" aria-live="polite" style="display: none;" >Select the time of the meeting</span>
@@ -50,9 +51,9 @@
 
                 <div class="input-box">
                     <span class="details">Description</span>
-                    <input type="text"
-                           name="description" id="description" required >
-                    <span class="error" aria-live="polite" style="display: none;" >Input the meeting description</span>
+                    <textarea class="description-textarea" style="width: 100%;min-height: 150px;border-color: #0097e6;border-radius: 10px;"  name="description" id="description"  required ></textarea>
+
+                    <span class="error" aria-live="polite" style="display: none;">Input the meeting description</span>
                 </div>
 
 
@@ -60,6 +61,7 @@
             <div style="display: flex">
                 <button type="button" id="cancelBtn" onclick="location.href='${host_url}/project';">Cancel</button>
                 <button onclick="signupValidation()">Create</button>
+
             </div>
 
         </div>

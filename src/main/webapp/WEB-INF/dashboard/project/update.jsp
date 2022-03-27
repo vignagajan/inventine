@@ -31,6 +31,12 @@
             <div class="details">
 
                 <div class="input-box">
+                    <span class="details">Project Id</span>
+                    <input type="text"
+                           name="projectId" id="projectId"  value="<%out.print(project.getProjectId());%>" disabled>
+                </div>
+
+                <div class="input-box">
                     <span class="details">Project Name</span>
                     <input type="text"
                            name="projectName" id="projectName"  value="<%out.print(project.getProjectName());%>">
@@ -45,7 +51,7 @@
                 </div>
 
                 <div class="input-box">
-                    <span class="details">Date of Birth</span>
+                    <span class="details">Date of Expiry</span>
                     <input type="date"
                            id="dateOfExpiry" name="dateOfExpiry" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" value="<%out.print(new Date(project.getDateOfExpiry().getTime()));%>">
                     <span class="error" aria-live="polite" style="display: none;" >Select the date of funding expiry</span>
@@ -75,14 +81,14 @@
                 <div class="input-box">
                     <span class="details">Category</span>
                     <select class="category" name="category" id="category" required>
-                        <option disabled selected value> value="<%out.print(project.getCategory());%>"</option>
-                        <option value="Art">Art</option>
-                        <option value="Design">Design</option>
-                        <option value="Food">Food</option>
-                        <option value="Publication">Publication</option>
-                        <option value="Software">Software</option>
-                        <option value="Technology">Technology</option>
-                        <option value="Other">Other</option>
+                        <option> <%out.print(project.getCategory());%></option>
+                        <option value="Art">art</option>
+                        <option value="Design">design</option>
+                        <option value="Food">food</option>
+                        <option value="Publication">publication</option>
+                        <option value="Software">software</option>
+                        <option value="Technology">technology</option>
+                        <option value="Other">other</option>
                     </select>
                     <span class="error" aria-live="polite" style="display: none;" >Select a category</span>
                 </div>
@@ -138,7 +144,7 @@
         requestHandler(
             y,
             window.location.href,
-            'Project created successfully!',
+            'Project updated successfully!',
             ''
         )
     }

@@ -9,6 +9,7 @@ public class Issues {
     private String description;
     private char category;
     private char status;
+    private String count;
     private DataValidator validator = new DataValidator();
 
 
@@ -81,4 +82,11 @@ public class Issues {
         return false;
     }
 
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
 }

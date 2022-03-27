@@ -46,12 +46,11 @@ public class ProjectServlet extends HttpServlet {
         }
 
         if (role == 'C'){
-            card1_condition = "select count from project where status='A' && creatorid=%s";
-            card2_condition = "select count from project where status='B' && creatorid=%s";
-            card3_condition = "select count from project where status='D' && creatorid=%s";
-            card4_condition = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
-//            get_condition = "creatorid=%s";
-            get_condition = "";
+            card1_condition = "count where status='A' && creatorid=%s";
+            card2_condition = "count where status='B' && creatorid=%s";
+            card3_condition = "count where status='D' && creatorid=%s";
+            card4_condition = "sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+            List<Project> projects = projectsDao.getProjects("");
         }
 
 
@@ -82,22 +81,22 @@ public class ProjectServlet extends HttpServlet {
         int card3_count = 0;
         int card4_count = 0;
 
-//        for (Project project : projects) {
-//
-//            if(Character.compare(project.getStatus(),'A') == 0){
-//                card1_count += 1;
-//            }
-//            if(Character.compare(project.getStatus(),'B') == 0){
-//                card2_count += 1;
-//            }
-//            if(Character.compare(project.getStatus(),'D') == 0){
-//                card3_count += 1;
-//            }
-//
-//
-//        }
+        for (Project project : projects) {
 
-//        card4_count = card1_count+card2_count+card3_count;
+            if(Character.compare(project.getStatus(),'A') == 0){
+                card1_count += 1;
+            }
+            if(Character.compare(project.getStatus(),'B') == 0){
+                card2_count += 1;
+            }
+            if(Character.compare(project.getStatus(),'D') == 0){
+                card3_count += 1;
+            }
+
+
+        }
+
+       card4_count = card1_count+card2_count+card3_count;
 
         // Add card labels
         if (role == 'A' || role == 'F' || role == 'S') {

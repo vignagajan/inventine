@@ -85,7 +85,7 @@
                     <div class="input-box">
                       <span class="details">Address</span>
                       <input type="text"
-                             id="address"name="address" placeholder="" required pattern="{10,255}$">
+                             id="address"name="address" placeholder="">
                       <span class="error" aria-live="polite" style="display: none;" >Enter valid postal address</span>
                     </div>
 

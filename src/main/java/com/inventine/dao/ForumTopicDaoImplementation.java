@@ -72,7 +72,7 @@ public class ForumTopicDaoImplementation implements ForumTopicDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1,Integer.parseInt(forumTopic.getPostId()));
+            stmt.setString(1,forumTopic.getPostId());
             stmt.setString(2,forumTopic.getTitle());
 
 

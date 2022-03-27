@@ -73,7 +73,7 @@ public class PostDaoImplementation implements PostDaoInterface {
             PreparedStatement stmt = conn.prepareStatement(query);
 
             stmt.setString(1,post.getDescription());
-            stmt.setInt(2,Integer.parseInt(post.getUserId()));
+            stmt.setString(2,post.getUserId());
 
             ResultSet rs = stmt.executeQuery();
 

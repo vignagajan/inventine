@@ -175,24 +175,24 @@ public class ProjectDaoImplementation implements ProjectDaoInterface {
     @Override
     public boolean update(Project project) {
 
-        String query = String.format("UPDATE project SET creatorId=?, supportTeamId=?,  financialStatus=CAST(? AS stat2), status=CAST(? AS stat1), requestedAmount=?, dateOfExpiry=? , projectName=?, description=?, category=?, imageId=? WHERE projectId =?");
+        String query = String.format("UPDATE project SET supportTeamId=?,  financialStatus=CAST(? AS stat2), status=CAST(? AS stat1), requestedAmount=?, dateOfExpiry=? , projectName=?, description=?, category=?, imageId=? WHERE projectId =?");
 
         try {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
 
-            stmt.setInt(1, Integer.parseInt(project.getCreatorId()));
-            stmt.setInt(2, Integer.parseInt(project.getSupportTeamId()));
-            stmt.setString(3, String.valueOf(project.getFinancialStatus()));
-            stmt.setString(4, String.valueOf(project.getStatus()));
-            stmt.setInt(5, project.getRequestedAmount());
-            stmt.setTimestamp(6, project.getDateOfExpiry());
-            stmt.setString(7,project.getProjectName());
-            stmt.setString(8,project.getDescription());
-            stmt.setString(9,project.getCategory());
+            stmt.setInt(1, Integer.parseInt(project.getSupportTeamId()));
+            stmt.setString(2, String.valueOf(project.getFinancialStatus()));
+            stmt.setString(3, String.valueOf(project.getStatus()));
+            stmt.setInt(4, project.getRequestedAmount());
+            stmt.setTimestamp(5, project.getDateOfExpiry());
+            stmt.setString(6,project.getProjectName());
+            stmt.setString(7,project.getDescription());
+            stmt.setString(8,project.getCategory());
+            stmt.setString(9, project.getImageId());
             stmt.setInt(10, Integer.parseInt(project.getProjectId()));
-            stmt.setString(11, project.getImageId());
+
 
 
 

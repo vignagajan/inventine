@@ -60,7 +60,6 @@ public class ProjectUpdateServlet extends HttpServlet {
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
 
         // Parse request data
-        String creatorId = (String)request.getSession().getAttribute("userId");
         String supportTeamId = "1";
         char financialStatus = 'I';
         char status = 'A';
@@ -70,6 +69,7 @@ public class ProjectUpdateServlet extends HttpServlet {
         String category = request.getParameter("category");
         String description = request.getParameter("description");
         String imageId = request.getParameter("imageId");
+        String projectId = request.getParameter("projectId");
 
 
         // Data to be processed
@@ -95,7 +95,6 @@ public class ProjectUpdateServlet extends HttpServlet {
 //            messages.add("projectname is already found!");
 //        }
         System.out.println(description);
-        System.out.println(creatorId);
         System.out.println(status);
         System.out.println(projectName);
         System.out.println(requestedAmount);
@@ -103,7 +102,7 @@ public class ProjectUpdateServlet extends HttpServlet {
         // Transactions
         if(ok){
 
-            ok = project.setCreatorId(creatorId);
+            ok = project.setProjectId(projectId);
             ok = project.setSupportTeamId(supportTeamId);
             ok = project.setFinancialStatus(financialStatus);
             ok = project.setStatus(status);
@@ -124,7 +123,7 @@ public class ProjectUpdateServlet extends HttpServlet {
             }
 
             //           Pass model to DAO
-            if(!projectDao.create(project)){
+            if(!projectDao.update(project)){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");

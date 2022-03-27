@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,10 +46,27 @@ public class ProjectDetailsServlet extends HttpServlet {
         String query = String.format("select sum(amount) from payment where projectid=%s;",projectId);
         String query1 = String.format("select count(DISTINCT investorid) from payment where projectid=%s",projectId);
 //        String query2 = String.format("select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s",projectId);
-        String condition = "select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s";
+//        String condition = "select dateOfExpiry::DATE - NOW()::DATE from project where projectid=%s";
 
-        List<Project> projectsdate = projectDao.getProjects(condition);
+        int projectsdate = 125;
 
+
+//        String condition1;
+//
+//        List<Project> project1 = projectDao.getProjects("");
+//        List<User> users=new ArrayList<>();
+//        List<Creds> cred=new ArrayList<>();
+//        for (final Project project2: project1){
+//            condition1 = String.format("%s",project2.getCreatorId());
+//            users.add(userDao.getUser(condition1));
+//            cred.add(credsDao.getCreds(condition1));
+//            project.setProjectName(project2.getProjectName());
+//            project.setCreatedAt(project2.getCreatedAt());
+//        }
+
+//        request.setAttribute("projects",project1);
+//        request.setAttribute("users",users);
+//        request.setAttribute("cred", cred);
 
         request.setAttribute("project",project);
         request.setAttribute("user",user);

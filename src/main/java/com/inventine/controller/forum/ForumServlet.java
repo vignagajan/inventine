@@ -128,6 +128,7 @@ public class ForumServlet extends HttpServlet {
             ok = post.setDescription(description);
 //            System.out.println(ok);
             postId = String.valueOf(postDao.create(post));
+            System.out.println(postId);
             ok = forumTopic.setPostId(postId);
 //            System.out.println(ok);
             ok = forumTopic.setTitle(title);

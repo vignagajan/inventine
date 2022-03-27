@@ -108,10 +108,15 @@ public class EmployeeCreateServlet extends HttpServlet {
             ok = user.setType(type);
 
             ok = creds.setEmail(username);
+            System.out.println(creds.getUsername());
             ok = creds.setEmail(email);
+            System.out.println(creds.getEmail());
             ok = creds.setPassword(password);
+            System.out.println(creds.getPassword());
             ok = creds.setRole(role);
+            System.out.println(creds.getRole());
             ok = creds.setStatus(status);
+            System.out.println(creds.getStatus());
 
             if(!ok){
 
@@ -122,6 +127,7 @@ public class EmployeeCreateServlet extends HttpServlet {
             }
 
             int userId = credsDao.create(creds);
+            System.out.println(userId);
             ok = user.setUserId(String.valueOf(userId));
 
 

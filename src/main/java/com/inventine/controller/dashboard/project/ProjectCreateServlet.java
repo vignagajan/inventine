@@ -48,7 +48,7 @@ public class ProjectCreateServlet extends HttpServlet {
 
         // Parse request data
         String creatorId = (String)request.getSession().getAttribute("userId");
-        String supportTeamId = "1";
+        String supportTeamId = "11";
         char financialStatus = 'I';
         char status = 'A';
         String dateOfExpiry_ = request.getParameter("dateOfExpiry");

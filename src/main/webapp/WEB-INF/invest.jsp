@@ -22,7 +22,7 @@ Creds creds = (Creds) request.getAttribute("creds");
     <input type="hidden" name="merchant_id" value="1219497">    <!-- Replace your Merchant ID -->
     <input type="hidden" name="return_url" value="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
     <input type="hidden" name="cancel_url" value="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
-    <input type="hidden" name="notify_url" value="http://sample.com/notify">
+    <input type="hidden" name="notify_url" value="${System.getenv("HOST_URL")}/payhere">
     <br><br>Item Details<br>
     <input type="text" name="order_id" value="<% out.print(project.getProjectId());%>">
     <input type="text" name="items" value="<% out.print(project.getProjectName());%>"><br>
