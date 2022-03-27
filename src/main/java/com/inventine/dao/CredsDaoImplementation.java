@@ -58,6 +58,14 @@ public class CredsDaoImplementation implements CredsDaoInterface {
             stmt.setString(4, String.valueOf(creds.getRole()));
             stmt.setString(5, String.valueOf(creds.getStatus()));
 
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                n = rs.getInt("credid");
+            }
+
+            return n;
+
 
             ResultSet rs = stmt.executeQuery();
 
@@ -70,8 +78,8 @@ public class CredsDaoImplementation implements CredsDaoInterface {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return -1;
         }
+        return -1;
     }
 
     private Creds setCreds(Creds creds, ResultSet rs) {
