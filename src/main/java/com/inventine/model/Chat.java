@@ -71,16 +71,9 @@ public class Chat {
 
     public boolean setMessage(String message) {
 
-        this.validator.setTxt(message);
-        this.validator.setMaxLength(255);
-        this.validator.setMinLength(1);
+        this.message = message;
+        return true;
 
-        if(this.validator.isAddress())
-        {
-            this.message = message;
-            return true;
-        }
-         return false;
     }
 
     public Timestamp getCreatedAt() {

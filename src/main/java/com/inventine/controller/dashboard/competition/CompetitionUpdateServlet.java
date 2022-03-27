@@ -66,7 +66,7 @@ public class CompetitionUpdateServlet extends HttpServlet {
 
         // Parse request data
         String organizationId = (String) request.getSession().getAttribute("userId");
-        String supportTeamId = "2";
+        String supportTeamId = "11";
         String headerId = "1640618179717";
         String endingAt_ = request.getParameter("endingAt");
         String startingAt_ = request.getParameter("startingAt");
