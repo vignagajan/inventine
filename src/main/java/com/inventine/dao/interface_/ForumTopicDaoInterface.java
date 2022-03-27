@@ -14,11 +14,15 @@ public interface ForumTopicDaoInterface {
 
     public ForumTopic getForumTopic(String forumTopicId);
 
-    public List<ForumTopic> getForumTopics(String condition);
+    public List<ForumTopic> getForumTopics(String condition, String condition2);
 
 //    public  List<ForumTopic> getForumTopicsFilter(String condition);
 
     public boolean update(ForumTopic forumTopic);
+
+    public boolean viewcount(ForumTopic forumTopic);
+
+    public String latest_reply(ForumTopic forumTopic);
 
     public int getCount(String condition) throws SQLException;
 

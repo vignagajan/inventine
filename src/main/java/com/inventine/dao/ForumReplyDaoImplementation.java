@@ -188,6 +188,35 @@ public class ForumReplyDaoImplementation implements ForumReplyDaoInterface {
     }
 
     @Override
+    public ForumReply getForumReplyLatest(String forumReplyId) {
+
+        String query = "select * from forumreply where forumtopicid=? order by postid desc limit 1";
+
+        ForumReply forumReply = new ForumReply();
+
+        try {
+
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+            stmt.setInt(1,Integer.parseInt(forumReplyId));
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                forumReply = setForumReply(forumReply,rs);
+            }
+
+            return forumReply;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+
+    @Override
     public boolean update(ForumReply forumReply) {
 
         String query = String.format("UPDATE forumReply SET forumTopicId=?, postId=? WHERE forumreplyId =?");

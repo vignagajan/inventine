@@ -40,7 +40,7 @@
     <div class="main-overview">
 
         <div class="overviewcard" style="background-color:white;color: rgb(182, 0, 182);">
-            <div><i class="fas fa-money-check-alt fa-2x"></i></i></div>
+            <div><i class="fas fa-money-check-alt fa-2x"></i></div>
             <div class="overviewcard__icon">
                 <div>Investors</div>
                 <div class="overviewcard__info" style="font-size: 36px; float: right;">569</div>
@@ -64,7 +64,7 @@
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(0, 110, 255);">
-            <div><i class="fas fa-trophy fa-2x"></i></i></div>
+            <div><i class="fas fa-trophy fa-2x"></i></div>
             <div class="overviewcard__icon">
                 <div>Competitions</div>
                 <div class="overviewcard__info" style="font-size: 36px;float: right">123</div>
@@ -72,7 +72,7 @@
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(0, 182, 112);">
-            <div><i class="fas fa-sitemap fa-2x"></i></i></i></div>
+            <div><i class="fas fa-sitemap fa-2x"></i></div>
             <div class="overviewcard__icon">
                 <div>Private.Orgs</div>
                 <div class="overviewcard__info" style="font-size: 36px; float: right;">569</div>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="overviewcard" style="background-color:white;color: rgb(255, 196, 0);">
-            <div><i class="fas fa-school fa-2x"></i></i></div>
+            <div><i class="fas fa-school fa-2x"></i></div>
             <div class="overviewcard__icon">
                 <div>Schools</div>
                 <div class="overviewcard__info" style="font-size: 36px;float: right">236</div>

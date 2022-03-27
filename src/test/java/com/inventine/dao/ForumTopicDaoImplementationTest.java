@@ -38,12 +38,13 @@ public class ForumTopicDaoImplementationTest {
         this.forumTopic.setTitle(title);
 
 
+
         assertTrue(this.forumTopicDao.create(forumTopic));
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/model/ForumTopic.csv", numLinesToSkip = 1)
-    void getForumTopic(String forum_topic_id,String post_id, String title) {
+    void getForumTopic(String forum_topic_id,String post_id, String title, String views) {
 
 
         this.forumTopic = this.forumTopicDao.getForumTopic(forum_topic_id);
@@ -51,6 +52,7 @@ public class ForumTopicDaoImplementationTest {
         assertEquals(forum_topic_id,this.forumTopic.getForumTopicId());
         assertEquals(post_id,this.forumTopic.getPostId());
         assertEquals(title,this.forumTopic.getTitle());
+        assertEquals(views,this.forumTopic.getViews());
 
 
     }
@@ -60,7 +62,7 @@ public class ForumTopicDaoImplementationTest {
     @CsvFileSource(resources = "/model/ForumTopic.csv", numLinesToSkip = 1)
     void getForumTopics(String forum_topic_id ,String post_id, String title) {
 
-        List<ForumTopic> ls = this.forumTopicDao.getForumTopics("forumTopicId=1");
+        List<ForumTopic> ls = this.forumTopicDao.getForumTopics("forumTopicId=1","");
 
 
         this.forumTopic.setForumTopicId(forum_topic_id);

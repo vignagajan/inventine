@@ -1,13 +1,7 @@
 package com.inventine.controller.forum;
 
-import com.inventine.dao.ForumTopicDaoImplementation;
-import com.inventine.dao.PostDaoImplementation;
-import com.inventine.dao.ProjectDaoImplementation;
-import com.inventine.dao.UserDaoImplementation;
-import com.inventine.model.ForumTopic;
-import com.inventine.model.Post;
-import com.inventine.model.Project;
-import com.inventine.model.User;
+import com.inventine.dao.*;
+import com.inventine.model.*;
 import com.inventine.util.DotEnv;
 import org.json.simple.JSONObject;
 
@@ -20,36 +14,70 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ForumServlet", value = "/forum/view")
+@WebServlet(name = "ForumViewServlet", value = "/forum/view")
 public class ForumViewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+        String forumTopicId = request.getParameter("id");
+        String cd = request.getParameter("sc");
 
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
 //        int id = Integer.parseInt(request.getParameter("id"));
 //        System.out.println(id);
 
         PostDaoImplementation postDao = new PostDaoImplementation();
+        ForumReplyDaoImplementation forumReplyDao = new ForumReplyDaoImplementation();
         ForumTopicDaoImplementation forumTopicDao = new ForumTopicDaoImplementation();
         UserDaoImplementation userDao = new UserDaoImplementation();
+        PostLikeDaoImplementation postLikeDao = new PostLikeDaoImplementation();
+        CredsDaoImplementation credsDao = new CredsDaoImplementation();
+
 
         String condition;
-        String name;
+        String forumReplyId;
+        condition = null;
 
-        List<ForumTopic> forumTopics = forumTopicDao.getForumTopics("");
-        for (final ForumTopic forumTopic: forumTopics){
-            condition = String.format("%s",forumTopic.getPostId());
-            Post post = postDao.getPost(condition);
-            condition = String.format("%s",post.getUserId());
+
+
+
+
+
+        List<ForumReply> forumReplys = forumReplyDao.getForumReplys(forumTopicId);
+        for (final ForumReply forumReply : forumReplys) {
+            condition = String.format("%s", forumReply.getPostId());
+            Post post;
+            post = postDao.getPost(condition);
+            condition = String.format("%s", post.getUserId());
             User user = userDao.getUser(condition);
-            forumTopic.setDescription(post.getDescription());
-            forumTopic.setCreatedAt(post.getCreatedAt());
-            forumTopic.setFirstName(user.getFirstName());
-            forumTopic.setLastName(user.getLastName());
+            forumReply.setAmount(postLikeDao.getCount(post.getPostId()));
+            forumReply.setDescription(post.getDescription());
+            forumReply.setCreatedAt(post.getCreatedAt());
+            forumReply.setFirstName(user.getFirstName());
+            forumReply.setLastName(user.getLastName());
+            Creds cred = credsDao.getCreds(post.getUserId());
+            forumReply.setImage(cred.getProfileId());
         }
-        request.setAttribute("forumTopic",forumTopics);
-        request.getRequestDispatcher("/WEB-INF/forum/index2.jsp").forward(request, response);
+        ForumTopic forumTopic = forumTopicDao.getForumTopic(forumTopicId);
+        forumTopicDao.viewcount(forumTopic);
+
+        condition = String.format("%s", forumTopic.getPostId());
+        Post post = postDao.getPost(condition);
+        condition = String.format("%s", post.getUserId());
+        User user = userDao.getUser(condition);
+        forumTopic.setLikeAmount(postLikeDao.getCount(post.getPostId()));
+        forumTopic.setDescription(post.getDescription());
+        forumTopic.setCreatedAt(post.getCreatedAt());
+        forumTopic.setFirstName(user.getFirstName());
+        forumTopic.setLastName(user.getLastName());
+        forumTopic.setPostId(post.getPostId());
+        forumTopic.setReplyAmount(forumReplyDao.getCount("forumtopicid=" + forumTopic.getForumTopicId()));
+        forumTopic.setViews(Integer.toString(Integer.parseInt(forumTopic.getViews())+1));
+        Creds cred = credsDao.getCreds(post.getUserId());
+        forumTopic.setImage(cred.getProfileId());
+        request.setAttribute("forumTopic", forumTopic);
+        request.setAttribute("forumReply", forumReplys);
+        request.getRequestDispatcher("/WEB-INF/forum/postView.jsp").forward(request, response);
     }
 
     @Override
@@ -58,6 +86,7 @@ public class ForumViewServlet extends HttpServlet {
         JSONObject json = new JSONObject();
         List<String> messages = new ArrayList<>();
         boolean ok = true;
+        System.out.println("correct");
 
         // Models and DAOs
         ForumTopic forumTopic = new ForumTopic();

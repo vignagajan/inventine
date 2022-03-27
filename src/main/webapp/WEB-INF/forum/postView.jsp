@@ -67,7 +67,7 @@
                 <div class="post-header">
                     <div class="post-header-container-1">
                         <div class="profile-pic">
-                            <img style="width: 120px; height: 120px; vertical-align:super;" src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg">
+                            <img style="width: 120px; height: 120px; vertical-align:super;" src="${System.getenv("HOST_URL")}/image/<%out.print(forumTopic.getImage());%>">
                         </div>
                         <div class="post-title">
                             <% out.print(forumTopic.getTitle());%>
@@ -102,7 +102,7 @@
                                 <i class="fas fa-eye"></i>
                             </div>
                             <div class="amount">
-                                200
+                                <%out.print(forumTopic.getViews());%>
                             </div>
                         </div>
                         <div class="comment-amount">
@@ -110,7 +110,7 @@
                                 <i class="fas fa-comment"></i>
                             </div>
                             <div class="amount">
-                                300
+                                <%out.print(forumTopic.getReplyAmount());%>
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                         <button id=<%out.print(forumTopic.getPostId());%> onclick="document.getElementById('forumTopicID').value=<%out.print(forumTopic.getForumTopicId());%>;document.getElementById('cont-reply').style.display='block';make_blur('content');make_blur('main');make_blur('forum-cont');make_blur('menu')">Reply</button>
                     </div>
                     <div class="view-post">
-                        <button onclick="window.location.href='/inventine_war/forum'">Back</button>
+                        <button onclick="window.location.href='/inventine_war/forum?type=0'">Back</button>
                     </div>
                 </div>
 
@@ -160,7 +160,7 @@
                                                                                     'profile-pic profile-owner time1'
                                                                                     'profile-pic . .';">
                         <div class="profile-pic" >
-                            <img style="width: 120px; height: 120px; vertical-align:super;top: 50%" src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg">
+                            <img style="width: 120px; height: 120px; vertical-align:super;top: 50%" src="${System.getenv("HOST_URL")}/image/<%out.print(forumReply.getImage());%>">
                         </div>
 
                         <div class="time" style="top: 0%">

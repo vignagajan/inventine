@@ -22,12 +22,32 @@ public class ForumServlet extends HttpServlet {
         request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
 //        int id = Integer.parseInt(request.getParameter("id"));
 //        System.out.println(id);
+        String type = request.getParameter("type");
+        String conditiontype= null;
+        String conditiontype2= "";
+
+        switch(type){
+            case "0":
+                conditiontype = "forumtopicid";
+                break;
+            case "1":
+                conditiontype = "views";
+                break;
+            case "2":
+                conditiontype = "views";
+                break;
+            case "3":
+                conditiontype = "views";
+                break;
+        }
 
         PostDaoImplementation postDao = new PostDaoImplementation();
         ForumTopicDaoImplementation forumTopicDao = new ForumTopicDaoImplementation();
         ForumReplyDaoImplementation forumReplyDao = new ForumReplyDaoImplementation();
+        ForumReply forumreply = new ForumReply();
         UserDaoImplementation userDao = new UserDaoImplementation();
         PostLikeDaoImplementation postLikeDao = new PostLikeDaoImplementation();
+        CredsDaoImplementation credDao = new CredsDaoImplementation();
 
         Integer forumReplyCount;
 
@@ -36,7 +56,7 @@ public class ForumServlet extends HttpServlet {
 
 
 
-        List<ForumTopic> forumTopics = forumTopicDao.getForumTopics("");
+        List<ForumTopic> forumTopics = forumTopicDao.getForumTopics(conditiontype,conditiontype2);
         for (final ForumTopic forumTopic : forumTopics) {
             condition = String.format("%s", forumTopic.getPostId());
             Post post = postDao.getPost(condition);
@@ -50,6 +70,18 @@ public class ForumServlet extends HttpServlet {
             forumTopic.setFirstName(user.getFirstName());
             forumTopic.setLastName(user.getLastName());
             forumTopic.setPostId(post.getPostId());
+            forumTopic.setViews(Integer.toString(Integer.parseInt(forumTopic.getViews())));
+            Creds cred = credDao.getCreds(post.getUserId());
+            forumTopic.setImage(cred.getProfileId());
+
+
+
+//            forumreply = forumReplyDao.getForumReplyLatest(forumTopic.getForumTopicId());
+//            System.out.println("this servlet");
+//            System.out.println(forumreply.getPostId());
+//            post = postDao.getPost(forumreply.getPostId());
+//            System.out.println(post.getCreatedAt());
+//            forumTopic.setLatest_reply(post.getCreatedAt());
         }
         request.setAttribute("forumTopic", forumTopics);
         request.getRequestDispatcher("/WEB-INF/forum/index2.jsp").forward(request, response);
@@ -70,9 +102,10 @@ public class ForumServlet extends HttpServlet {
         PostDaoImplementation postDao = new PostDaoImplementation();
 
 //        System.out.println("pass 1");
-
-        // Parse request data
-        String userId = "1";
+//        // Parse request data
+//        String userId = (String) session.getAttribute("userid");
+        String userId = (String)request.getSession().getAttribute("userId");
+//        String userId = "1";
         String description = request.getParameter("description");
 
         String postId ;
@@ -106,6 +139,7 @@ public class ForumServlet extends HttpServlet {
 
                 messages.clear();
                 messages.add("Something went wrong at get data!");
+                System.out.println("this servlet");
                 System.out.println("There is a issue with setting attributes!");
 
             }

@@ -13,6 +13,8 @@ public interface ForumReplyDaoInterface {
 
     public ForumReply getForumReply(String forumReplyId);
 
+    public ForumReply getForumReplyLatest(String forumReplyId);
+
 //    public ForumReply getForumReplyPI(String forumTopicId);
 
     public List<ForumReply> getForumReplys(String condition);
