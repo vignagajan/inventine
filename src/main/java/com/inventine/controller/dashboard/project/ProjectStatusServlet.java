@@ -2,25 +2,22 @@ package com.inventine.controller.dashboard.project;
 
 import com.inventine.dao.ProjectDaoImplementation;
 import com.inventine.model.Project;
-import com.inventine.util.DotEnv;
 import org.json.simple.JSONObject;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
+import java.net.URLDecoder;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "ProjectCreateServlet", value = "/dashboard/create-project")
-public class ProjectCreateServlet extends HttpServlet {
+@WebServlet(name = "ProjectStatusServlet", value = "/dashboard/project/status/*")
+public class ProjectStatusServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -28,16 +25,27 @@ public class ProjectCreateServlet extends HttpServlet {
         if (session.getAttribute("role") == null){
             session.setAttribute("role", 'A' );
         }
+
         response.setContentType("text/html");
-        request.setAttribute("title", "Create Project");
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
-        request.getRequestDispatcher("/WEB-INF/dashboard/project/create.jsp").forward(request, response);
+
+        String uri = URLDecoder.decode( request.getRequestURI(), "UTF-8" ).toLowerCase();
+
+        String projectId =  uri.substring(uri.lastIndexOf('/') + 1);//"ImageDaoInterface not found!";
+
+        ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
+        Project project = new Project();
+        project = projectDao.getProject(projectId);
+
+
+
+        request.setAttribute("project",project);
+        request.setAttribute("host_url", System.getenv("HOST_URL"));
+        request.getRequestDispatcher("/WEB-INF/dashboard/project/status.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        // JSON parameters
+// JSON parameters
         JSONObject json = new JSONObject();
         List<String> messages = new ArrayList<>();
         boolean ok = true;
@@ -47,16 +55,16 @@ public class ProjectCreateServlet extends HttpServlet {
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
 
         // Parse request data
-        String creatorId = (String)request.getSession().getAttribute("userId");
         String supportTeamId = "11";
         char financialStatus = 'I';
-        char status = 'U';
+        char status = request.getParameter("status").charAt(0);
         String dateOfExpiry_ = request.getParameter("dateOfExpiry");
         int requestedAmount = Integer.parseInt(request.getParameter("requestedAmount"));
         String projectName = request.getParameter("projectName");
         String category = request.getParameter("category");
         String description = request.getParameter("description");
         String imageId = request.getParameter("imageId");
+        String projectId = request.getParameter("projectId");
 
 
         // Data to be processed
@@ -82,7 +90,6 @@ public class ProjectCreateServlet extends HttpServlet {
 //            messages.add("projectname is already found!");
 //        }
         System.out.println(description);
-        System.out.println(creatorId);
         System.out.println(status);
         System.out.println(projectName);
         System.out.println(requestedAmount);
@@ -90,7 +97,7 @@ public class ProjectCreateServlet extends HttpServlet {
         // Transactions
         if(ok){
 
-            ok = project.setCreatorId(creatorId);
+            ok = project.setProjectId(projectId);
             ok = project.setSupportTeamId(supportTeamId);
             ok = project.setFinancialStatus(financialStatus);
             ok = project.setStatus(status);
@@ -110,8 +117,8 @@ public class ProjectCreateServlet extends HttpServlet {
 
             }
 
-  //           Pass model to DAO
-            if(!projectDao.create(project)){
+            //           Pass model to DAO
+            if(!projectDao.update(project)){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");
@@ -131,6 +138,6 @@ public class ProjectCreateServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         out.print(json);
         out.flush();
-        
     }
-}
+    }
+

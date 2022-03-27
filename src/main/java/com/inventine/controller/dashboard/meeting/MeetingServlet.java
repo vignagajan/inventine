@@ -25,21 +25,53 @@ public class MeetingServlet extends HttpServlet {
 
         MeetingDaoImplementation meetingDao = new MeetingDaoImplementation();
 
-
+        String card1_condition= null;
+        String card2_condition= null;
+        String card3_condition= null;
+        String card4_condition= null;
         String get_condition = "";
+        String totalq= null;
+
 //        String totalq= null;
         char role = (char) request.getSession().getAttribute("role");
 
-        if (role == 'A' || role == 'F' || role == 'S') {
-            get_condition = "";
-        }
+
 
         if (role == 'C') {
-            get_condition = String.format("creatorid=%s", session.getAttribute("userid"));
+
         }
 
         if (role == 'I') {
-            get_condition = String.format("meetingid=(select meetingid from acceptmeeting where investorid=%s)", session.getAttribute("userid"));
+            get_condition = String.format("meetingid=(select meetingid from acceptmeeting where investorid=%s)", session.getAttribute("userId"));
+        }
+
+
+
+        if (role == 'A' || role == 'F' || role == 'S'){
+            card1_condition = "select count(DISTINCT projectid) from project where status = 'A'";
+            card2_condition = "select count(DISTINCT projectid) from project where status = 'B'";
+            card3_condition = "select count(DISTINCT projectid) from project where status = 'D'";
+            card4_condition = "select count(DISTINCT projectid) from project";
+            get_condition = "";
+        }
+
+        if (role == 'C'){
+            card1_condition = "select count(DISTINCT projectid) from project where status='A' and creatorId=%s;";
+            card2_condition = "select count(DISTINCT projectid) from project where status='B' and creatorId=%s;";
+            card3_condition = "select count(DISTINCT projectid) from project where status='D' and creatorId=%s;";
+            card4_condition = "sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s);";
+            get_condition = String.format("creatorId=%s", session.getAttribute("userId"));
+        }
+
+
+
+        if (role == 'I'){
+            card1_condition = "select count(DISTINCT projectid) from project";
+            card2_condition = "(select count from payment where projectid=(select projectid from project where financialstatus='C') && investorid=%s)";
+            card3_condition = "select count(DISTINCT investorid) from payment";
+            card4_condition = "select sum(amount/(1000)) from payment where investorid=%s";
+            get_condition = String.format("meetingId=(select projectid from payment where investorid=%s)", session.getAttribute("userId"));
+            //            get_condition = "select * from project where projectid=(select projectid from payment where investorid=%s)";
         }
 
 

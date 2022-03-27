@@ -29,8 +29,9 @@ public class HomeServlet extends HttpServlet {
         CredsDaoImplementation credsDao = new CredsDaoImplementation();
 
         String condition;
+        String get_condition = ("status='A'");
 
-        List<Project> projects = projectDao.getProjects("");
+        List<Project> projects = projectDao.getProjects(get_condition);
         List<User> users=new ArrayList<>();
         List<Creds> creds=new ArrayList<>();
         for (final Project project: projects){

@@ -182,6 +182,11 @@
                     %>
                     <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
                     <%}%>
+                    <% if (session.getAttribute("role").toString().charAt(0) == 'S' || session.getAttribute("role").toString().charAt(0) == 'A' ) {
+
+                    %>
+                    <button class="updatebutton" id="idStatusButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/project/status/<% out.print(projects.get(i).getProjectId());%>'">Status</button>
+                    <%}%>
                     <% if (session.getAttribute("role").toString().charAt(0) == 'A' || session.getAttribute("role").toString().charAt(0) == 'F') {
 
                     %>
