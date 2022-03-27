@@ -39,11 +39,11 @@ public class CredsDaoImplementation implements CredsDaoInterface {
     }
 
     @Override
-    public boolean create(Creds creds) {
+    public int create(Creds creds) {
 
       
         String query = "INSERT INTO creds(userid, username, email, password, role, status)" +
-                "VALUES (?,?, ?,?, CAST(? AS rl),CAST(? AS sts))";
+                "VALUES (?,?, ?,?, CAST(? AS rl),CAST(? AS sts)) RETURNING credid";
 
         int n = 0;
 
@@ -60,15 +60,22 @@ public class CredsDaoImplementation implements CredsDaoInterface {
             stmt.setString(6, String.valueOf(creds.getStatus()));
 
 
+            ResultSet rs = stmt.executeQuery();
 
-            n = stmt.executeUpdate();
+            while (rs.next()) {
+                n = rs.getInt("credid");
+            }
 
-            return true;
+            return n;
+
+
+
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+
         }
+        return -1;
     }
 
     private Creds setCreds(Creds creds, ResultSet rs) {
