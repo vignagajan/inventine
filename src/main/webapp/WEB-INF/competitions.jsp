@@ -124,10 +124,11 @@
                             <%--                            deal with that fear.--%>
                         </p>
                         <div class="user">
-                            <img src="${System.getenv("HOST_URL")}/image/<%out.print(creds.get(i).getProfileId());%>" />
+<%--                            <img src="${System.getenv("HOST_URL")}/image/<%out.print(creds.get(i).getProfileId());%>" />--%>
+                               <h5><% out.print(competition.getEndingAt()); %>
                                 <div class="user-info">
-                                    <h5>
-                                        <%out.print(users.get(i).getFirstName());%> <%out.print(users.get(i).getLastName());%></h5>
+                                    <h5> Inven tine   </h5>
+
                                 </div>
 
                         </div>

@@ -35,7 +35,7 @@ public class OrganizationProfileServlet extends HttpServlet {
         String organizationId = uri.substring(uri.lastIndexOf('/') + 1);//"ImageDaoInterface not found!";
 
         if(organizationId.isEmpty()){
-            System.out.println("Competition ID is empty");
+            System.out.println("Organization ID is empty");
         }
 
         //Competition competition = CompetitionDao.getCompetition(competitionId);
