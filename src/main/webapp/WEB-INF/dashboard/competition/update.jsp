@@ -29,6 +29,13 @@
 
 
                 <div class="input-box">
+                    <span class="details">Competition Id</span>
+                    <input type="text" name="competitionid" id="competitionid"  required pattern="[0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(competition.getCompetitionId());%>" disabled>
+                    <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
+                </div>
+
+
+                <div class="input-box">
                     <span class="details">Competition Name</span>
                     <input type="text" name="competitionName" id="competitionName"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(competition.getCompetitionName());%>">
                     <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
@@ -48,7 +55,7 @@
                 <div class="input-box">
                     <span class="details">Ending Date</span>
                     <input type="date"
-                           name="endingAt" id="endingAt" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" value="<%out.print(competition.getEndingAt());%>">
+                           name="endingAt" id="endingAt" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" value="<%out.print(competition.getEndingAt().getTime());%>">
                     <span class="error" aria-live="polite" style="display: none;" >Select the date of Competition expiry</span>
                 </div>
 
