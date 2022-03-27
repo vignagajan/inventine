@@ -2,6 +2,8 @@
 <%@ page import="com.inventine.model.User" %>
 <%@ page import="com.inventine.model.Payment" %>
 <%@ page import="com.inventine.model.Creds" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +14,8 @@
     <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/home.css">
     <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/project-details.css">
     <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/contactus.css">
+<%--    <link rel="stylesheet" href="${System.getenv("HOST_URL")}/static/css/project-cards.css">--%>
+
 
 
 </head>
@@ -113,12 +117,13 @@
                 Rs.
 
                 <form action="${System.getenv("HOST_URL")}/invest" method="post" id="invest">
-                <input name="investmentAmount" min = "1000" value = "1000">
-                <input type="hidden" name="projectId" value=" <% out.print(project.getProjectId());%>">
+                <input id ="investmentAmount" name="investmentAmount" min = "1000" value = "1000">
+                <input type="hidden" id="projectId" name="projectId" value=" <% out.print(project.getProjectId());%>">
                 </form>
-                <button type="submit" class="btn" form="invest">
+                <button type="submit" onclick="window.location.href='${System.getenv("HOST_URL")}/invest?projectId=<% out.print(project.getProjectId());%>'" class="btn">
                     <b>Invest</b>
                 </button>
+
             </div>
 
             <div class="creator-info">
@@ -184,6 +189,99 @@
     </div>
 </div>
 
+<%--<div class="main">--%>
+<%--    <ul class="cards" id="cards">--%>
+<%--        <%--%>
+<%--            List<User> users= (ArrayList<User>)request.getAttribute("users");--%>
+<%--            List<Creds> cred= (ArrayList<Creds>)request.getAttribute("cred");--%>
+<%--            int i = 0;--%>
+<%--            for ( Project projects: (ArrayList<Project>)request.getAttribute("projects")){--%>
+<%--        %>--%>
+<%--        <div class="card">--%>
+
+<%--            <div class="card-header">--%>
+<%--                <a href="${System.getenv("HOST_URL")}/project/<% out.print(projects.getProjectId());%>">--%>
+<%--                    <img src="${System.getenv("HOST_URL")}/image/<% out.print(projects.getImageId());%>">--%>
+<%--                </a>--%>
+<%--            </div>--%>
+
+<%--            <div class="card-body">--%>
+<%--                <span class="tag tag-purple"><% out.print(projects.getCategory());%></span>--%>
+
+<%--                <h4 class="card-title">--%>
+<%--                    <a href="${System.getenv("HOST_URL")}/project/<% out.print(projects.getProjectId());%>">--%>
+<%--                        <% out.print(projects.getProjectName()); %>--%>
+<%--                    </a>--%>
+<%--                </h4>--%>
+<%--                <p>--%>
+<%--                    &lt;%&ndash;                        The future can be scary, but there are ways to&ndash;%&gt;--%>
+<%--                    &lt;%&ndash;                        deal with that fear.&ndash;%&gt;--%>
+<%--                </p>--%>
+<%--                <div class="user">--%>
+<%--                    <img src="${System.getenv("HOST_URL")}/image/<%out.print(cred.get(i).getProfileId());%>" />--%>
+<%--                    <div class="user-info">--%>
+<%--                        <h5>--%>
+<%--                            <%out.print(users.get(i).getFirstName());%> <%out.print(users.get(i).getLastName());%></h5>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--        <%i++;}%>--%>
+
+<%--    </ul>--%>
+<%--</div>--%>
+
+<script>
+    function investValidation(){
+        y = new Array;
+        // let st = window.location.href.toString();
+        // st = st.split("?")[0]}
+        // y.push(document.getElementById("postID"));
+        // y.push(postID);
+        y.push(document.getElementById("investmentAmount"));
+        y.push(document.getElementById("projectId"));
+        // y.push(document.getElementById("description-reply"));
+        // z = Array.prototype.slice.call(document.getElementsByTagName("select"));
+        // y = y.concat(z);
+
+        for (i = 0; i < y.length; i++) {
+
+            if(y[i].value == ""){
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Form fields cannot be empty!',
+                    iconColor: "#0097e6",
+                    confirmButtonColor: "#0097e6",
+                });
+
+                return false;
+            }
+
+            // if(!y[i].checkValidity()){
+            //
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'Form fields should be valid!',
+            //         iconColor: "#0097e6",
+            //         confirmButtonColor: "#0097e6",
+            //     });
+            //
+            //     return false;
+            // }
+
+        }
+
+
+
+        requestHandler(
+            y,
+            "${host_url}invest",
+            'Investment is processing...',
+            '${host_url}invest'
+        )
+    }
+</script>
 <script src="${System.getenv("HOST_URL")}/static/js/project-details.js"></script>
 <%@ include file="/WEB-INF/components/footer.jsp" %>
 

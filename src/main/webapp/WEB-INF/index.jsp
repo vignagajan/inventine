@@ -98,7 +98,7 @@
                     <span class="tag tag-purple"><% out.print(project.getCategory());%></span>
 
                     <h4 class="card-title">
-                        <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>">
+                        <a href="${System.getenv("HOST_URL")}/project/<% out.print(project.getProjectId());%>?id=<% out.print(project.getProjectId());%>">
                             <% out.print(project.getProjectName()); %>
                         </a>
                     </h4>

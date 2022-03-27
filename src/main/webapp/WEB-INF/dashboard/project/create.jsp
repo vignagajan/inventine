@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="input-box">
-                    <span class="details">Date of Birth</span>
+                    <span class="details">Date of Expiry</span>
                     <input type="date"
                            id="dateOfExpiry" name="dateOfExpiry" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
                     <span class="error" aria-live="polite" style="display: none;" >Select the date of funding expiry</span>
@@ -78,13 +78,13 @@
                     <span class="details">Category</span>
                     <select class="category" name="category" id="category" required>
                         <option disabled selected value> -- select a category for the Project -- </option>
-                        <option value="art">Art</option>
-                        <option value="design">Design</option>
-                        <option value="food">Food</option>
-                        <option value="publication">Publication</option>
-                        <option value="software">Software</option>
-                        <option value="technology">Technology</option>
-                        <option value="other">Other</option>
+                        <option value="art">art</option>
+                        <option value="design">design</option>
+                        <option value="food">food</option>
+                        <option value="publication">publication</option>
+                        <option value="software">software</option>
+                        <option value="technology">technology</option>
+                        <option value="other">other</option>
                     </select>
                     <span class="error" aria-live="polite" style="display: none;" >Select a category</span>
                 </div>

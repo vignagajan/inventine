@@ -4,7 +4,6 @@ import com.inventine.conf.DBManager;
 import com.inventine.dao.interface_.OrganizationDaoInterface;
 
 import com.inventine.model.Organization;
-import com.inventine.model.User;
 
 import java.sql.*;
 import java.util.ArrayList;

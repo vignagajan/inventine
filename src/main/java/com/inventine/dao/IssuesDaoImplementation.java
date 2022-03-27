@@ -137,6 +137,48 @@ public class IssuesDaoImplementation implements IssuesDaoInterface {
     }
 
     @Override
+    public Issues getIssueCount(String query) {
+
+
+
+        Issues issues = new Issues();
+
+        try {
+
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                issues = setIssuecount(issues,rs);
+            }
+
+            return issues;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    private Issues setIssuecount(Issues issues, ResultSet rs) {
+
+        try {
+
+
+            issues.setCount(rs.getString("count"));
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return issues;
+    }
+
+    @Override
     public List<Issues> getIssues(String condition) {
 
         String query = "SELECT * FROM issues";

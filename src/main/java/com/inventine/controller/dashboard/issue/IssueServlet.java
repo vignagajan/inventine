@@ -1,13 +1,7 @@
 package com.inventine.controller.dashboard.issue;
 
-import com.inventine.dao.CredsDaoImplementation;
-import com.inventine.dao.IssuesDaoImplementation;
-import com.inventine.dao.ProjectDaoImplementation;
-import com.inventine.dao.UserDaoImplementation;
-import com.inventine.model.Creds;
-import com.inventine.model.Issues;
-import com.inventine.model.Project;
-import com.inventine.model.User;
+import com.inventine.dao.*;
+import com.inventine.model.*;
 import com.inventine.util.DotEnv;
 
 import javax.servlet.*;
@@ -30,6 +24,7 @@ public class IssueServlet extends HttpServlet {
         IssuesDaoImplementation issueDao = new IssuesDaoImplementation();
         UserDaoImplementation userDao = new UserDaoImplementation();
         CredsDaoImplementation credsDao = new CredsDaoImplementation();
+        PaymentDaoImplementation paymentDao = new PaymentDaoImplementation();
 
         String card1_condition= null;
         String card2_condition= null;
@@ -37,6 +32,12 @@ public class IssueServlet extends HttpServlet {
         String card4_condition= null;
         String get_condition = "";
         String totalq= null;
+        String card1_count = "";
+        String card2_count = "";
+        String card3_count = "";
+        String card4_count = "";
+
+
 
         char role = (char)request.getSession().getAttribute("role");
 
@@ -46,21 +47,55 @@ public class IssueServlet extends HttpServlet {
             card3_condition = "select count(DISTINCT issueid) from issues where status = 'R'";
             card4_condition = "select count(DISTINCT issueid) from issues where status = 'S'";
             get_condition = "";
+            Issues issue = issueDao.getIssueCount(card1_condition);
+             card1_count = issue.getCount();
+
+            issue = issueDao.getIssueCount(card2_condition);
+             card2_count = issue.getCount();
+
+            issue = issueDao.getIssueCount(card3_condition);
+             card3_count = issue.getCount();
+
+            issue = issueDao.getIssueCount(card4_condition);
+             card4_count = issue.getCount();
         }
 
         if (role == 'C'){
-            card1_condition = "select count(DISTINCT issueid) from issues where status = 'A' and userid=%s";
-            card2_condition = "select count(DISTINCT issueid) from issues where status = 'B' and userid=%s";
-            card3_condition = "select count(DISTINCT issueid) from issues where status = 'R' and userid=%s";
-            card4_condition = "select count(DISTINCT issueid) from issues where status = 'S' and userid=%s";
+            String userid = (String) session.getAttribute("userId");
+            card1_condition = "select count(DISTINCT issueid) from issues where status = 'A' and userid="+userid;
+            card2_condition = "select count(DISTINCT issueid) from issues where status = 'B' and userid="+userid;
+            card3_condition = "select count(DISTINCT issueid) from issues where status = 'R' and userid="+userid;
+            card4_condition = "select count(DISTINCT issueid) from issues where status = 'S' and userid="+userid;
             get_condition = "";
+            Issues issue = issueDao.getIssueCount(card1_condition);
+             card1_count = issue.getCount();
+            System.out.println("this"+card1_count);
+
+            issue = issueDao.getIssueCount(card2_condition);
+             card2_count = issue.getCount();
+
+            issue = issueDao.getIssueCount(card3_condition);
+             card3_count = issue.getCount();
+
+            issue = issueDao.getIssueCount(card4_condition);
+             card4_count = issue.getCount();
         }
 
         if (role == 'I'){
-            card2_condition = "select count(DISTINCT projectid) from payment";
-            card3_condition = "select count(DISTINCT investorid) from payment";
-            card4_condition = "select sum(amount/(1000)) from payment";
-            totalq = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+            card1_condition = "select count(DISTINCT projectid) from payment";
+            card2_condition = "select count(DISTINCT investorid) from payment";
+            card3_condition = "select sum(amount/(1000)) from payment";
+            card4_condition = "select sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s)";
+            Payment payment = paymentDao.getPaymentCountSum(card1_condition,"count");
+             card1_count = payment.getCountSum();
+            payment = paymentDao.getPaymentCountSum(card2_condition,"count");
+             card2_count = payment.getCountSum();
+            payment = paymentDao.getPaymentCountSum(card2_condition,"sum");
+             card3_count = payment.getCountSum();
+            payment = paymentDao.getPaymentCountSum(card2_condition,"sum");
+             card4_count = payment.getCountSum();
+
+
         }
 
 //        String creators = String.format("select count(investorid) from payment where investorid=%s;",investorId);
@@ -72,28 +107,40 @@ public class IssueServlet extends HttpServlet {
         List<User> users = userDao.getUsers(get_condition);
         List<Creds> creds = credsDao.getManyCreds(get_condition);
 
-        int card1_count = 0;
-        int card2_count = 0;
-        int card3_count = 0;
-        int card4_count = 0;
+//        int card1_count = 0;
+//        int card2_count = 0;
+//        int card3_count = 0;
+//        int card4_count = 0;
 
-        for (Issues issue : issues) {
+//        Issues issue = issueDao.getIssueCount(card1_condition);
+//        String card1_count = issue.getCount();
+//
+//        issue = issueDao.getIssueCount(card2_condition);
+//        String card2_count = issue.getCount();
+//
+//        issue = issueDao.getIssueCount(card3_condition);
+//        String card3_count = issue.getCount();
+//
+//        issue = issueDao.getIssueCount(card4_condition);
+//        String card4_count = issue.getCount();
 
-            if(Character.compare(issue.getStatus(),'A') == 0){
-                card1_count += 1;
-            }
-            if(Character.compare(issue.getStatus(),'B') == 0){
-                card2_count += 1;
-            }
-            if(Character.compare(issue.getStatus(),'R') == 0){
-                card3_count += 1;
-            }
-            if(Character.compare(issue.getStatus(),'S') == 0){
-                card4_count += 1;
-            }
-
-
-        }
+//        for (Issues issue : issues) {
+//
+//            if(Character.compare(issue.getStatus(),'A') == 0){
+//                card1_count += 1;
+//            }
+//            if(Character.compare(issue.getStatus(),'B') == 0){
+//                card2_count += 1;
+//            }
+//            if(Character.compare(issue.getStatus(),'R') == 0){
+//                card3_count += 1;
+//            }
+//            if(Character.compare(issue.getStatus(),'S') == 0){
+//                card4_count += 1;
+//            }
+//
+//
+//        }
 //
 //        card4_count = card1_count+card2_count+card3_count;
 

@@ -14,6 +14,8 @@ public interface PaymentDaoInterface{
 
     public List<Payment> getPayments(String condition);
 
+    public Payment getPaymentCountSum(String query,String countSum);
+
     public boolean update(Payment payment);
 
     public int getCount(String condition) throws SQLException;

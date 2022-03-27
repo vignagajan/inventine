@@ -13,6 +13,9 @@ public interface IssuesDaoInterface {
 
     public Issues getIssue(String issueId);
 
+    public Issues getIssueCount(String query);
+
+
     public List<Issues> getIssues(String condition);
 
     public boolean update(Issues issues);

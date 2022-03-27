@@ -227,72 +227,8 @@
     </table>
   </div>
 
-  <% }else{ %>
-  <div class="main-tables">
-    <table id="example2" class="table" cellspacing="0" width="100%">
-      <thead>
-      <tr>
-        <th>Meeting ID</th>
-        <th>Creator Name</th>
-        <th>Link</th>
-        <th>Launch Date</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
+  <% }%>
 
-      <tfoot>
-      <tr>
-        <th>Meeting ID</th>
-        <th>Creator Name</th>
-        <th>Link</th>
-        <th>Launch Date</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
-      </tfoot>
-
-      <tbody>
-      <%
-        List<Project> projects = (ArrayList<Project>)request.getAttribute("projects");
-        List<Meeting> meetings = (ArrayList<Meeting>)request.getAttribute("meetings");
-        Hashtable<Character, String> role_values = new Hashtable<Character, String>();
-
-        role_values.put('A',"Admin");
-        role_values.put('F',"Finance Admin");
-        role_values.put('S',"Support Team");
-        role_values.put('C',"Creator");
-        role_values.put('I',"Investor");
-
-        Hashtable<Character, String> status_values = new Hashtable<Character, String>();
-
-        status_values.put('A',"Active");
-        status_values.put('B',"Blocked");
-        status_values.put('D',"Deleted");
-
-        Hashtable<Character, String> financialstatus_values = new Hashtable<Character, String>();
-
-        financialstatus_values.put('C',"Complete");
-        financialstatus_values.put('I',"Incomplete");
-
-
-        for (int i=0; i< meetings.size();i++){
-      %>
-            <tr>
-              <td><% out.print(meetings.get(i).getMeetingId());%></td>
-              <td>Sahar</td>
-              <td><% out.print(meetings.get(i).getLink());%></td>
-              <td><% out.print(meetings.get(i).getLaunchedAt());%></td>
-              <td><% out.print(meetings.get(i).getDescription());%></td>
-              <button class="updatebutton" >Accept</button>
-              <button class="deletebutton"  >Reject</button>
-              </td>
-            </tr>
-            <%}%>
-      </tbody>
-    </table>
-  </div>
-  <% } %>
 
 
 

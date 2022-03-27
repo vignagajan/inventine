@@ -191,6 +191,48 @@ public class PaymentDaoImplementation implements PaymentDaoInterface {
 
     }
 
+    private Payment setPaymentcountSum(Payment payment, ResultSet rs,String countSum) {
+
+        try {
+
+            payment.setCountSum(rs.getString(countSum));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return payment;
+    }
+
+    @Override
+    public Payment getPaymentCountSum(String query,String countSum) {
+
+
+
+        Payment payment = new Payment();
+
+        try {
+
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                payment = setPaymentcountSum(payment, rs,countSum);
+            }
+
+            return payment;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+
+    }
+
     @Override
     public boolean update(Payment payment) {
 
