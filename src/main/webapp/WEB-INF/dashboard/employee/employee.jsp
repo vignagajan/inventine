@@ -124,7 +124,7 @@
         status_values.put('B',"Blocked");
         status_values.put('D',"Deleted");
         
-        for (int i=0; i<5;i++){
+        for (int i=0; i<users.size();i++){
       %>
       <tr>
         <th><% out.print(users.get(i).getUserId());%></th>
