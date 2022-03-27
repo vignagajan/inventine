@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 public class Competition {
     private String competitionId;
     private String organizationId;
-   // private String projectId;
     private String supportTeamId;
     private Timestamp createdAt;
     private Timestamp endingAt;
@@ -26,12 +25,9 @@ public class Competition {
     }
 
     public boolean setHeaderId(String headerId) {
-// this.validator.setTxt(headerId);
 
-
-
-            this.headerId = headerId;
-            return true;
+        this.headerId = headerId;
+        return true;
 
      }
     public String getCompetitionName() {
@@ -190,7 +186,7 @@ public class Competition {
 
     public boolean setOrganizationId(String organizationId) {
         this.validator.setTxt(organizationId);
-        this.validator.setMaxLength(6);
+        this.validator.setMaxLength(10);
         if(this.validator.isNumber())
         {
             this.organizationId = organizationId;

@@ -17,6 +17,7 @@ public class Project {
     private String description;
     private String category;
     private Timestamp dateOfExpiry;
+    private String imageId;
     private DataValidator validator = new DataValidator();
 
     public String getProjectId(){ return projectId;}
@@ -157,6 +158,21 @@ public class Project {
         return true;
     }
 
+    public String getImageId(){
+        return imageId;
+    }
+
+    public boolean setImageId(String imageId) {
+
+        this.validator.setTxt(imageId);
+
+        if (this.validator.isNumber()) {
+            this.imageId = imageId;
+            return true;
+        }
+
+        return false;
+    }
 
 
 

@@ -97,6 +97,7 @@
             window.location.href,
             'Login is successfull!',
             '${System.getenv("HOST_URL")}/dashboard',
+
         )
     }
 

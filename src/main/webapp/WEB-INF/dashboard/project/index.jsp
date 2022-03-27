@@ -182,6 +182,11 @@
                     %>
                     <button class="deletebutton" id="idDeleteButton" onclick="idDeleteButton_onclick();">Delete</button>
                     <%}%>
+                    <% if (session.getAttribute("role").toString().charAt(0) == 'A' || session.getAttribute("role").toString().charAt(0) == 'F') {
+
+                    %>
+                    <button class="paybutton" id="idPayButton" onclick="">Pay</button>
+                    <%}%>
                 </td>
             </tr>
             <%}%>

@@ -63,8 +63,8 @@
                         session.getAttribute("role").toString().charAt(0) == 'F'){
         %>
         <li>
-            <a href="${System.getenv("HOST_URL")}/dashboard/competition">
-                <i class="fas fa-trophy"></i>
+            <a href="${System.getenv("HOST_URL")}/dashboard/employee">
+                <i class="fas fa-user-alt"></i>
                 <span class="links_name">Customer</span>
             </a>
         </li>
@@ -102,6 +102,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'C' ||
                 session.getAttribute("role").toString().charAt(0) == 'F' ||
                 session.getAttribute("role").toString().charAt(0) == 'S' ||
+                session.getAttribute("role").toString().charAt(0) == 'O'||
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
@@ -115,6 +116,7 @@
         <% if(session.getAttribute("role").toString().charAt(0) == 'I' ||
                 session.getAttribute("role").toString().charAt(0) == 'C' ||
                 session.getAttribute("role").toString().charAt(0) == 'F' ||
+                session.getAttribute("role").toString().charAt(0) == 'O'||
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
@@ -141,6 +143,7 @@
         <% if(
                 session.getAttribute("role").toString().charAt(0) == 'A'||
                 session.getAttribute("role").toString().charAt(0) == 'S'||
+                        session.getAttribute("role").toString().charAt(0) == 'O'||
                 session.getAttribute("role").toString().charAt(0) == 'F'){
         %>
         <li>
@@ -156,6 +159,7 @@
                         session.getAttribute("role").toString().charAt(0) == 'C' ||
                         session.getAttribute("role").toString().charAt(0) == 'F' ||
                         session.getAttribute("role").toString().charAt(0) == 'S' ||
+                        session.getAttribute("role").toString().charAt(0) == 'O'||
                         session.getAttribute("role").toString().charAt(0) == 'A'){
                 %>
                 <li>
@@ -170,6 +174,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'C' ||
                 session.getAttribute("role").toString().charAt(0) == 'F' ||
                 session.getAttribute("role").toString().charAt(0) == 'S' ||
+                session.getAttribute("role").toString().charAt(0) == 'O'||
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>

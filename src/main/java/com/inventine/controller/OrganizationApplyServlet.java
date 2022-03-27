@@ -1,8 +1,11 @@
-package com.inventine.controller.dashboard.organization;
+package com.inventine.controller;
 
+import com.inventine.dao.CredsDaoImplementation;
 import com.inventine.dao.OrganizationDaoImplementation;
+import com.inventine.model.Creds;
 import com.inventine.model.Organization;
 import com.inventine.util.DotEnv;
+import com.inventine.util.SHA256;
 import org.json.simple.JSONObject;
 
 import javax.servlet.*;
@@ -10,36 +13,27 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "OrganizationUpdateServlet", value = "/dashboard/organization/update/*")
-public class OrganizationUpdateServlet extends HttpServlet {
+@WebServlet(name = "OrganizationApplyServlet", value = "/apply")
+public class OrganizationApplyServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
 
-
-        if (session.getAttribute("role") == null){
-            session.setAttribute("role", 'A' );
-        }
 
         response.setContentType("text/html");
 
-        String uri = URLDecoder.decode( request.getRequestURI(), "UTF-8" ).toLowerCase();
 
-        String organizationId =  uri.substring(uri.lastIndexOf('/') + 1);//"ImageDaoInterface not found!";
+        request.setAttribute("host_url", System.getenv("HOST_URL"));
 
-        OrganizationDaoImplementation organizationDao = new OrganizationDaoImplementation();
-        Organization organization = new Organization();
-        organization = organizationDao.getOrganization(organizationId);
+        String topic = "Organization Apply-page";
+        request.setAttribute("title", topic);
+        // request.setAttribute("title","Organization");
+        request.getRequestDispatcher("/WEB-INF/organizationapply.jsp").forward(request, response);
 
-
-        request.setAttribute("host_url", DotEnv.load().get("HOST_URL"));
-        request.setAttribute("organization",organization);
-
-        request.getRequestDispatcher("/WEB-INF/dashboard/organization/update.jsp").forward(request, response);
 
     }
 
@@ -53,79 +47,59 @@ public class OrganizationUpdateServlet extends HttpServlet {
         boolean ok = true;
 
         // Models and DAOs
-//        Competition competition = new Competition();
-//        CompetitionDaoImplementation competitionDao = new CompetitionDaoImplementation();
-
         Organization organization = new Organization();
         OrganizationDaoImplementation organizationDao = new OrganizationDaoImplementation();
 
+        Creds creds = new Creds();
+        CredsDaoImplementation credsDao = new CredsDaoImplementation();
+
         // Parse request data
 
-        HttpSession session = request.getSession();
-
-        String organizationId = session.getAttribute("userId").toString();
         String supportTeamId = "1";
         String logoId = "1640618179717";
         String headerId = "1640618091700";
-
 
         String name = request.getParameter("name");
         String address = request.getParameter("address");
         String district = request.getParameter("district");
         String contactnumber = request.getParameter("contactnumber");
         char orgtype = request.getParameter("orgtype").charAt(0);
-        String organizationid = request.getParameter("organizationid");
 
+        String username = request.getParameter("username");
+        String email= request.getParameter("email");
+        String password_ = request.getParameter("password");
+        char role ='O';
 
+        char status = 'U';
 
-        //String category = request.getParameter("category");
-        //String rules = request.getParameter("rules");
-        //char cType = request.getParameter("cType").charAt(0);
-        // char pType = 'A';
+        String password = null;
 
-        // Data to be processed
-//        Timestamp endingAt = null;
-//
-//
-//        // Data preprocessing
-//        try {
-//
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = dateFormat.parse(endingAt_);
-//            endingAt = new java.sql.Timestamp(date.getTime());
-//
-//        }catch (Exception e){
-//            ok = false;
-//            messages.clear();
-//            messages.add("Something went wrong at get data!");
-//            e.printStackTrace();
-//        }
-//        Timestamp startingAt = null;
-//        try {
-//
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = dateFormat.parse(startingAt_);
-//            startingAt = new java.sql.Timestamp(date.getTime());
-//
-//        }catch (Exception e){
-//            ok = false;
-//            messages.clear();
-//            messages.add("Something went wrong at get data!");
-//            e.printStackTrace();
-//        }
+        // Data preprocessing
+        try {
 
-        // Logic
-//        if(competitionDao.getCount("WHERE competitionname=vicky") >= 1){
-//            ok=false;
-//            messages.add("competitionname is already found!");
-//        }
+            SHA256 hasher = new SHA256();
+            password = hasher.getHexString(password_);
+
+        }catch (Exception e){
+            ok = false;
+            messages.clear();
+            messages.add("Something went wrong at get data!");
+            e.printStackTrace();
+        }
+
+        String condition = "";
+
+        // Username availability check
+        condition = String.format("WHERE username=%s",username);
+        if(credsDao.getCount(condition) == 1){
+            ok=false;
+            messages.add("Username is already found!");
+        }
 
         // Transactions
         if(ok){
 
-
-
-
+           // ok = organization.setCreatorId(creatorId);
 
             ok = organization.setSupportTeamId(supportTeamId);
             System.out.println(organization.getSupportTeamId());
@@ -143,8 +117,18 @@ public class OrganizationUpdateServlet extends HttpServlet {
             System.out.println(organization.getContactNumber());
             ok = organization.setOrgType(orgtype);
             System.out.println(organization.getOrgType());
-            ok = organization.setOrganizationId(organizationId);
+            ok = creds.setStatus(status);
+            System.out.println(creds.getStatus());
 
+
+            ok = creds.setRole(role);
+            System.out.println(creds.getRole());
+            ok = creds.setUsername(username);
+            System.out.println(creds.getUsername());
+            ok = creds.setEmail(email);
+            System.out.println(creds.getEmail());
+            ok = creds.setPassword(password);
+            System.out.println(creds.getPassword());
 
 
 
@@ -155,9 +139,13 @@ public class OrganizationUpdateServlet extends HttpServlet {
                 System.out.println("There is a issue with setting attributes!");
 
             }
-            ok = organizationDao.update(organization);
+
+            int organizationid = organizationDao.create(organization);
+            creds.setUserId(Integer.toString(organizationid));
+            ok = credsDao.create(creds);
+
             // Pass model to DAO
-            if(!ok){
+            if(organizationid==0 && !ok ){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");
@@ -176,10 +164,5 @@ public class OrganizationUpdateServlet extends HttpServlet {
         out.flush();
 
 
-
-
     }
-
-
-    }
-
+}

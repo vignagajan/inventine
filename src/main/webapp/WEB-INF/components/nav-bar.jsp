@@ -5,6 +5,7 @@
     <li class="item"><a href="${System.getenv("HOST_URL")}">Home</a></li>
     <li class="item"><a href="${System.getenv("HOST_URL")}/competitions">Competitions</a>
     </li>
+    <li class="item"><a href="${System.getenv("HOST_URL")}/apply">Apply for Organization</a></li>
     <li class="item"><a href="${System.getenv("HOST_URL")}/howitworks">How It Works?</a></li>
     <li class="item"><a href="${System.getenv("HOST_URL")}/aboutus">About Us</a></li>
     <li class="item"><a href="${System.getenv("HOST_URL")}/contactus">Contact Us</a>

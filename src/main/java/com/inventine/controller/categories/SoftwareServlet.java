@@ -26,9 +26,9 @@ SoftwareServlet extends HttpServlet {
         UserDaoImplementation userDao = new UserDaoImplementation();
         CredsDaoImplementation credsDao = new CredsDaoImplementation();
 
-        String condition = "select * from project where category='Software';";
+        String condition = "category='software';";
 
-        List<Project> projects = projectDao.getProjects("");
+        List<Project> projects = projectDao.getProjects(condition);
         List<User> users=new ArrayList<>();
         List<Creds> creds=new ArrayList<>();
         for (final Project project: projects){

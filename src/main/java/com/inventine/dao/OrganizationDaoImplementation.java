@@ -38,10 +38,10 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     }
 
     @Override
-    public boolean create(Organization organization) {
+    public int create(Organization organization) {
 
-        String query = "INSERT INTO organization(creatorId,supportTeamId, name, address, district,contactNumber ,headerId,logoId, orgType,status) " +
-                "VALUES ( ?,?, ?,?,?,?,?,?,CAST(? AS org1),CAST(? AS status1))";
+        String query = "INSERT INTO organization(supportTeamId,name,address,district,contactNumber,headerId,logoId, orgType) " +
+                "VALUES ( ?,?,?,?,?,?,?,CAST(? AS org1)) RETURNING organizationid";
 
         int n = 0;
 
@@ -49,30 +49,27 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
-            stmt.setInt(1, Integer.parseInt(organization.getCreatorId()));
-            stmt.setInt(2, Integer.parseInt(organization.getSupportTeamId()));
-            stmt.setString(3, organization.getName());
-            stmt.setString(4, organization.getAddress());
-            stmt.setString(5, organization.getDistrict());
-            stmt.setString(6, organization.getContactNumber());
-            stmt.setString(7,  organization.getHeaderId());
-            stmt.setString(8, organization.getLogoId());
-            stmt.setString(9, String.valueOf(organization.getOrgType()));
-            stmt.setString(10, String.valueOf(organization.getStatus()));
 
+            stmt.setInt(1, Integer.parseInt(organization.getSupportTeamId()));
+            stmt.setString(2, organization.getName());
+            stmt.setString(3, organization.getAddress());
+            stmt.setString(4, organization.getDistrict());
+            stmt.setString(5, organization.getContactNumber());
+            stmt.setString(6,  organization.getHeaderId());
+            stmt.setString(7, organization.getLogoId());
+            stmt.setString(8, String.valueOf(organization.getOrgType()));
 
+            ResultSet rs = stmt.executeQuery();
 
+            while (rs.next()) {
+                n = rs.getInt("organizationid");
+            }
 
-
-
-
-            n = stmt.executeUpdate();
-
-            return true;
+            return n;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 
@@ -81,7 +78,6 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
         try {
 
             organization.setOrganizationId(rs.getString("organizationId"));
-            organization.setCreatorId(rs.getString("creatorId"));
             organization.setSupportTeamId(rs.getString("supportTeamId"));
             organization.setName(rs.getString("name"));
             organization.setAddress(rs.getString("address"));
@@ -91,7 +87,7 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
             organization.setHeaderId(rs.getString("headerId"));
             organization.setLogoId(rs.getString("logoId"));
             organization.setOrgType(rs.getString("orgType").charAt(0));
-            organization.setStatus(rs.getString("status").charAt(0));
+
 
 
 
@@ -170,24 +166,23 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     @Override
     public boolean update(Organization organization) {
 
-        String query = String.format("UPDATE organization SET creatorId=?, supportTeamId=?, name=?,address=?,district=?,contactNumber=?,headerId=?,logoId=?,orgType=CAST(? AS org1),status=CAST(? AS status1)WHERE organizationId =?");
+        String query = String.format("UPDATE organization SET supportTeamId=?,name=?,address=?,district=?,contactNumber=?,headerId=?,logoId=?,orgType=CAST(? AS org1),WHERE organizationId =?");
 
         try{
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
 
-            stmt.setInt(1, Integer.parseInt(organization.getCreatorId()));
-            stmt.setInt(2, Integer.parseInt(organization.getSupportTeamId()));
-            stmt.setString(3, organization.getName());
-            stmt.setString(4, organization.getAddress());
-            stmt.setString(5, organization.getDistrict());
-            stmt.setString(6, organization.getContactNumber());
-            stmt.setString(7, organization.getHeaderId());
-            stmt.setString(8, organization.getLogoId());
-            stmt.setString(9, String.valueOf(organization.getOrgType()));
-            stmt.setString(10, String.valueOf(organization.getStatus()));
-            stmt.setInt(11, Integer.parseInt(organization.getOrganizationId()));
+
+            stmt.setInt(1, Integer.parseInt(organization.getSupportTeamId()));
+            stmt.setString(2, organization.getName());
+            stmt.setString(3, organization.getAddress());
+            stmt.setString(4, organization.getDistrict());
+            stmt.setString(5, organization.getContactNumber());
+            stmt.setString(6, organization.getHeaderId());
+            stmt.setString(7, organization.getLogoId());
+            stmt.setString(8, String.valueOf(organization.getOrgType()));
+            stmt.setInt(9, Integer.parseInt(organization.getOrganizationId()));
 
 
 
@@ -198,9 +193,9 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
 

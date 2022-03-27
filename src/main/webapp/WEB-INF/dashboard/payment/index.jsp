@@ -141,13 +141,14 @@
                     <td><% out.print(payments.get(i).getPaymentId());%></td>
                     <td><% out.print(payments.get(i).getInvestorId());%></td>
                     <td><% out.print(payments.get(i).getProjectId());%></td>
-                    <td>Book Light</td>
+                    <td><% out.print(projects.get(i).getProjectName());%></td>
                     <td><% out.print(payments.get(i).getAmount());%></td>
                     <td><% out.print(payments.get(i).getCreatedAt());%></td>
                     <td><% if (session.getAttribute("role").toString().charAt(0) == 'F' || session.getAttribute("role").toString().charAt(0) == 'A' ) {
 
                     %>
                         <button class="updatebutton" id="idUpdateButton" onclick="window.location.href='${System.getenv("HOST_URL")}/dashboard/payment/update/<% out.print(payments.get(i).getPaymentId());%>'">Update</button>
+                        <button class="refundbutton" id="idRefundButton" onclick="">Refund</button>
                         <%}%></td>
                   </tr>
                  <%}%>
@@ -217,7 +218,7 @@
                 <td><% out.print(payments.get(i).getPaymentId());%></td>
                 <td><% out.print(payments.get(i).getInvestorId());%></td>
                 <td><% out.print(payments.get(i).getProjectId());%></td>
-                <td>Book Light</td>
+                <td><% out.print(projects.get(i).getProjectName());%></td>
                 <td><% out.print(payments.get(i).getAmount());%></td>
                 <td><% out.print(payments.get(i).getCreatedAt());%></td>
 
@@ -287,7 +288,7 @@
                 <td><% out.print(payments.get(i).getPaymentId());%></td>
                 <td><% out.print(payments.get(i).getInvestorId());%></td>
                 <td><% out.print(payments.get(i).getProjectId());%></td>
-                <td>Book Light</td>
+                <td><% out.print(projects.get(i).getProjectName());%></td>
                 <td><% out.print(payments.get(i).getAmount());%></td>
                 <td><% out.print(payments.get(i).getCreatedAt());%></td>
 

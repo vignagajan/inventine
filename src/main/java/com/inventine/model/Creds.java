@@ -87,7 +87,7 @@ public class Creds {
 
     public boolean setRole(char role) {
 
-        if (role == 'A' || role == 'C' || role == 'I'|| role == 'F' || role == 'S' ) {
+        if (role == 'A' || role == 'C' || role == 'I'|| role == 'F' || role == 'S' || role == 'O' ) {
             this.role = role;
             return true;
         }

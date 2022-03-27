@@ -27,6 +27,12 @@
             <div class="details">
 
                 <div class="input-box">
+                    <span class="details">Organization Id</span>
+                    <input type="text" name="organizationid" id="competitionid"  required pattern="[0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(organization.getOrganizationId());%>" disabled>
+                    <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>
+                </div>
+
+                <div class="input-box">
                     <span class="details">Organization Name</span>
                     <input type="text" name="name" id="name"  required pattern="[a-zA-Z0-9\.\,\/\-\*\+]{1,100}" value="<%out.print(organization.getName());%>">
                     <span class="error" aria-live="polite" style="display: none;">A name of length 1-100 and (/*-+.,) special characters are allowed</span>

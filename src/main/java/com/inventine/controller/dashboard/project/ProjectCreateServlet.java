@@ -36,7 +36,6 @@ public class ProjectCreateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
 
         // JSON parameters
         JSONObject json = new JSONObject();
@@ -48,7 +47,7 @@ public class ProjectCreateServlet extends HttpServlet {
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
 
         // Parse request data
-        String creatorId = (String)session.getAttribute("userid");
+        String creatorId = (String)request.getSession().getAttribute("userId");
         String supportTeamId = "1";
         char financialStatus = 'I';
         char status = 'A';
@@ -56,7 +55,8 @@ public class ProjectCreateServlet extends HttpServlet {
         int requestedAmount = Integer.parseInt(request.getParameter("requestedAmount"));
         String projectName = request.getParameter("projectName");
         String category = request.getParameter("category");
-        String description = request.getParameter("ck");
+        String description = request.getParameter("description");
+        String imageId = request.getParameter("imageId");
 
 
         // Data to be processed
@@ -81,6 +81,11 @@ public class ProjectCreateServlet extends HttpServlet {
 //            ok=false;
 //            messages.add("projectname is already found!");
 //        }
+        System.out.println(description);
+        System.out.println(creatorId);
+        System.out.println(status);
+        System.out.println(projectName);
+        System.out.println(requestedAmount);
 
         // Transactions
         if(ok){
@@ -94,6 +99,8 @@ public class ProjectCreateServlet extends HttpServlet {
             ok = project.setCategory(category);
             ok = project.setProjectName(projectName);
             ok = project.setDescription(description);
+            ok = project.setImageId(imageId);
+
 
             if(!ok){
 
@@ -111,11 +118,7 @@ public class ProjectCreateServlet extends HttpServlet {
                 System.out.println("There is a issue with dao!");
 
             }
-            System.out.println(description);
-            System.out.println(creatorId);
-            System.out.println(status);
-            System.out.println(projectName);
-            System.out.println(requestedAmount);
+
 
 
         }
