@@ -9,7 +9,7 @@ public interface UserDaoInterface {
 
     public int getCount(String condition);
 
-    public int create(User user);
+    public boolean create(User user);
 
     public User getUser(String username);
 
