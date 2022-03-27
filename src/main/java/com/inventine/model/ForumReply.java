@@ -8,6 +8,7 @@ public class ForumReply extends Post{
     private String postId;
     private String forumTopicId;
     private Integer amount;
+    private String image;
     private DataValidator validator = new DataValidator();
 
     public String getForumReplyId() {
@@ -55,5 +56,13 @@ public class ForumReply extends Post{
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

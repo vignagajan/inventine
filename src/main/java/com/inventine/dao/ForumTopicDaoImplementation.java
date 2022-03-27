@@ -94,8 +94,7 @@ public class ForumTopicDaoImplementation implements ForumTopicDaoInterface {
             forumTopic.setForumTopicId(rs.getString("forumTopicId"));
             forumTopic.setPostId(rs.getString("postId"));
             forumTopic.setTitle(rs.getString("title"));
-
-
+            forumTopic.setViews(rs.getString("views"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -115,7 +114,9 @@ public class ForumTopicDaoImplementation implements ForumTopicDaoInterface {
             PreparedStatement stmt = conn.prepareStatement(query);
 
             stmt.setInt(1,Integer.parseInt(forumTopicId));
+
             ResultSet rs = stmt.executeQuery();
+            System.out.println(rs);
 
             while (rs.next()) {
                 forumTopic = setForumTopic(forumTopic,rs);
@@ -132,9 +133,14 @@ public class ForumTopicDaoImplementation implements ForumTopicDaoInterface {
     }
 
     @Override
-    public List<ForumTopic> getForumTopics(String condition) {
+    public List<ForumTopic> getForumTopics(String condition,String condition2) {
 
-        String query = "SELECT * FROM forumTopic";
+        if (condition2 == null){
+            condition2=" ";
+        }
+
+        String query = "SELECT forumtopicid,postid,title,views FROM forumTopic "+condition2+" ORDER BY "+condition+" DESC;";
+
 
         List<ForumTopic> ls = new ArrayList();
 
@@ -185,5 +191,54 @@ public class ForumTopicDaoImplementation implements ForumTopicDaoInterface {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean viewcount(ForumTopic forumTopic) {
+
+        String query = String.format("UPDATE forumTopic SET views=? WHERE forumTopicId =?");
+
+        try {
+
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+            stmt.setInt(1, Integer.parseInt(Integer.toString(Integer.parseInt(forumTopic.getViews())+1)));
+            stmt.setInt(2, Integer.parseInt(forumTopic.getForumTopicId()));
+
+
+            stmt.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return false;
+    }
+
+    @Override
+    public String latest_reply(ForumTopic forumTopic) {
+
+        String query = String.format("select postid from forumreply where forumtopicid=? order by postid desc limit 1");
+
+        try {
+
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+            stmt.setInt(1, Integer.parseInt(forumTopic.getForumTopicId()));
+
+
+            stmt.executeUpdate();
+
+            return null;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+
+        return null;
     }
 }

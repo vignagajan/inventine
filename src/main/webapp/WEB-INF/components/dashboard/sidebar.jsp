@@ -178,7 +178,7 @@
                 session.getAttribute("role").toString().charAt(0) == 'A'){
         %>
         <li>
-            <a href="${System.getenv("HOST_URL")}/forum">
+            <a href="${System.getenv("HOST_URL")}/forum?type=0">
                 <i class="far fa-comment-alt"></i>
                 <span class="links_name">Forum</span>
             </a>

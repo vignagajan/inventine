@@ -122,7 +122,7 @@
                     <div class="post-header">
                         <div class="post-header-container-1">
                             <div class="profile-pic">
-                                <img style="width: 120px; height: 120px; vertical-align:super;" src="https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg">
+                                <img style="width: 120px; height: 120px; vertical-align:super;" src="${System.getenv("HOST_URL")}/image/<%out.print(forumTopic.getImage());%>">
                             </div>
                             <div class="post-title">
                                 <% out.print(forumTopic.getTitle());%>
@@ -135,9 +135,10 @@
                                 <% out.print("Author " + forumTopic.getFirstName() + " " + forumTopic.getLastName());%>
                             </div>
                             <div class="latest-reply" >
-                                Latest reply by <label>User</label> on <label>
-                                <%--                                <%out.print(dtf.format(forumTopic.getDateStr().toLocalDateTime()));%>>--%>
-                            </label>
+<%--                                Latest reply by <label>User</label> on <% dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");--%>
+<%--                                out.print(dtf.format(forumTopic.getLatest_reply().toLocalDateTime()));%> <label>--%>
+<%--                                &lt;%&ndash;                                <%out.print(dtf.format(forumTopic.getDateStr().toLocalDateTime()));%>>&ndash;%&gt;--%>
+<%--                            </label>--%>
                             </div>
                             <div class="catogory">
                                 Posted in <label>Catogory</label>
@@ -157,7 +158,7 @@
                                     <i class="fas fa-eye"></i>
                                 </div>
                                 <div class="amount">
-                                    200
+                                    <%out.print(forumTopic.getViews());%>
                                 </div>
                             </div>
                             <div class="comment-amount">
@@ -189,17 +190,17 @@
                         <%--                        Latest reply by <label>User</label> on <label>30/05/2021 05:30:21 PM</label>--%>
                         <%--                    </div>--%>
                         <div class="like-btn" id="like-btn">
-                            <button id="like-btn-1" onclick="postID = <%out.print(forumTopic.getPostId());%>;document.getElementById('like-btn-1').style.display='none';document.getElementById('like-btn-2').style.display='block';">Like</button>
+                            <button id="like-btn-1" onclick=" postID = <%out.print(forumTopic.getPostId());%>;document.getElementById('like-btn-1').style.display='none';document.getElementById('like-btn-2').style.display='block';Like_function();">Like</button>
                             <button id="like-btn-2" style="display:none;" onclick="postID = <%out.print(forumTopic.getPostId());%>;document.getElementById('like-btn-1').style.display='block';document.getElementById('like-btn-2').style.display='none';">Unlike</button>
                         </div>
                         <div class="unlike-btn" style="display: none">
                             <button>Dislike</button>
                         </div>
                         <div class="reply-btn">
-                            <button onclick="document.getElementById('forumTopicID').value=<%out.print(forumTopic.getForumTopicId());%>;document.getElementById('cont-reply').style.display='block';make_blur('content');make_blur('main');make_blur('forum-cont');make_blur('menu')">Reply</button>
+                            <button onclick="forumTopicID=<%out.print(forumTopic.getForumTopicId());%>;document.getElementById('forumTopicID').value=<%out.print(forumTopic.getForumTopicId());%>;document.getElementById('cont-reply').style.display='block';make_blur('content');make_blur('main');make_blur('forum-cont');make_blur('menu')">Reply</button>
                         </div>
                         <div class="view-post">
-                            <button onclick="forumTopicID=<%out.print(forumTopic.getForumTopicId());%>;window.location.href+='/forumreply?id='+forumTopicID">View</button>
+                            <button onclick="window.location.href='<%=System.getenv("HOST_URL")%>/forum/view?id=<%out.print(forumTopic.getForumTopicId());%>&sc=1';">View</button>
                         </div>
                     </div>
 
@@ -212,7 +213,6 @@
         </div>
         <div class="forum-cont-category">
             <div class="container-2">
-
             </div>
         </div>
     </div>
@@ -308,9 +308,9 @@
 
             requestHandler(
                 y,
-                window.location.href,
+                window.location.href+"?type=0",
                 'Forum post is created successfully!',
-                '${host_url}/forum'
+                '${host_url}forum?type=0'
 
 
             )
@@ -319,6 +319,8 @@
 
         function replyValidation(){
             y = new Array;
+            // let st = window.location.href.toString();
+            // st = st.split("?")[0]}
             // y.push(document.getElementById("postID"));
             // y.push(postID);
             y.push(document.getElementById("forumTopicID"));
@@ -358,18 +360,16 @@
 
             requestHandler(
                 y,
-                window.location.href+"/forumreply",
+                "${host_url}forum/forumreply",
                 'Forum reply is created successfully!',
-                '${host_url}/forum'
-
-
+                '${host_url}forum?type=0'
             )
         }
 
         function Like_function(){
             y = new Array;
             // y.push(document.getElementById("postID"));
-            y.push(postID);
+            y.push(document.getElementById("postID"));
             // y.push(document.getElementById("forumTopicID"));
             // z = Array.prototype.slice.call(document.getElementsByTagName("select"));
             // y = y.concat(z);
@@ -406,9 +406,9 @@
 
             requestHandler(
                 y,
-                window.location.href+"/forumreply",
+                window.location.href+"/forum/postLike",
                 'Liked!',
-                '${host_url}/forum'
+                '${host_url}/forum?type=0'
 
 
             )
@@ -457,6 +457,54 @@
                 window.location.href+"/forumreply",
                 'UnLiked!',
                 '${host_url}/forum'
+
+
+            )
+        }
+
+        function Views_function(){
+            y = new Array;
+            // y.push(document.getElementById("postID"));
+            y.push(forumTopicID);
+            // y.push(document.getElementById("forumTopicID"));
+            // z = Array.prototype.slice.call(document.getElementsByTagName("select"));
+            // y = y.concat(z);
+
+            for (i = 0; i < y.length; i++) {
+
+                if(y[i].value == ""){
+
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Form fields cannot be empty!',
+                        iconColor: "#0097e6",
+                        confirmButtonColor: "#0097e6",
+                    });
+
+                    return false;
+                }
+
+                // if(!y[i].checkValidity()){
+                //
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: 'Form fields should be valid!',
+                //         iconColor: "#0097e6",
+                //         confirmButtonColor: "#0097e6",
+                //     });
+                //
+                //     return false;
+                // }
+
+            }
+
+
+
+            requestHandler(
+                y,
+                window.location.href,
+                'Forum Post Loading...',
+                '${host_url}/forum/view?id='+forumTopicID+'&sc=1',
 
 
             )

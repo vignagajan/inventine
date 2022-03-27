@@ -217,7 +217,7 @@ public class PostLikeDaoImplementation implements PostLikeDaoInterface {
     @Override
     public boolean delete(PostLike postLike) {
 
-        String query = String.format("delete from postLike WHERE postlikeId =?");
+        String query = String.format("delete from postLike WHERE userId =? AND postId");
 
         try {
 
@@ -225,6 +225,7 @@ public class PostLikeDaoImplementation implements PostLikeDaoInterface {
 
 
             stmt.setInt(1, Integer.parseInt(postLike.getUserId()));
+            stmt.setInt(2,Integer.parseInt(postLike.getPostId()));
 
 
             stmt.executeUpdate();

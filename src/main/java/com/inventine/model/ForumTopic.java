@@ -2,12 +2,17 @@ package com.inventine.model;
 
 import com.inventine.util.DataValidator;
 
+import java.sql.Timestamp;
+
 public class ForumTopic extends Post{
     private String forumTopicId;
     private String postId;
     private String title;
     private Integer likeAmount;
     private Integer replyAmount;
+    private String views;
+    private Timestamp latest_reply;
+    private String image;
     private DataValidator validator = new DataValidator();
 
     public String getForumTopicId() {
@@ -62,5 +67,29 @@ public class ForumTopic extends Post{
 
     public void setReplyAmount(Integer replyAmount) {
         this.replyAmount = replyAmount;
+    }
+
+    public String getViews() {
+        return views;
+    }
+
+    public void setViews(String views) {
+            this.views = views;
+    }
+
+    public Timestamp getLatest_reply() {
+        return latest_reply;
+    }
+
+    public void setLatest_reply(Timestamp latest_reply) {
+        this.latest_reply = latest_reply;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
