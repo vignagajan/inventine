@@ -66,7 +66,7 @@ public class OrganizationCreateServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
      //   String creatorId = session.getAttribute("userId").toString();
-        String supportTeamId = "1";
+        String supportTeamId = "11";
         String logoId = "1640618179717";
         String headerId = "1640618091700";
 
@@ -78,42 +78,6 @@ public class OrganizationCreateServlet extends HttpServlet {
 
 
 
-        // Data to be processed
-//      String password = null;
-//
-//
-//        // Data preprocessing
-//        try {
-//
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = dateFormat.parse(endingAt_);
-//            endingAt = new java.sql.Timestamp(date.getTime());
-//
-//        }catch (Exception e){
-//            ok = false;
-//            messages.clear();
-//            messages.add("Something went wrong at get data!");
-//            e.printStackTrace();
-//        }
-//        Timestamp startingAt = null;
-//        try {
-//
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            Date date = dateFormat.parse(startingAt_);
-//            startingAt = new java.sql.Timestamp(date.getTime());
-//
-//        }catch (Exception e){
-//            ok = false;
-//            messages.clear();
-//            messages.add("Something went wrong at get data!");
-//            e.printStackTrace();
-//        }
-
-        // Logic
-//        if(competitionDao.getCount("WHERE competitionname=vicky") >= 1){
-//            ok=false;
-//            messages.add("competitionname is already found!");
-//        }
 
         // Transactions
         if(ok){
@@ -148,7 +112,7 @@ public class OrganizationCreateServlet extends HttpServlet {
             }
 
             // Pass model to DAO
-            if(organizationDao.create(organization) == 0){
+            if(organizationDao.create(organization)){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");

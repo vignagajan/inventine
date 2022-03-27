@@ -37,10 +37,10 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
     }
 
     @Override
-    public int create(Organization organization) {
+    public boolean create(Organization organization) {
 
         String query = "INSERT INTO organization(organizationId, supportTeamId,name,address,district,contactNumber,headerId,logoId, orgType) " +
-                "VALUES (?, ?,?,?,?,?,?,?,CAST(? AS org1)) RETURNING organizationid";
+                "VALUES (?, ?,?,?,?,?,?,?,CAST(? AS org1)) ";
 
         int n = 0;
 
@@ -48,28 +48,25 @@ public class OrganizationDaoImplementation implements OrganizationDaoInterface {
 
             PreparedStatement stmt = conn.prepareStatement(query);
 
+            stmt.setInt(1, Integer.parseInt(organization.getOrganizationId()));
+            stmt.setInt(2, Integer.parseInt(organization.getSupportTeamId()));
+            stmt.setString(3, organization.getName());
+            stmt.setString(4, organization.getAddress());
+            stmt.setString(5, organization.getDistrict());
+            stmt.setString(6, organization.getContactNumber());
+            stmt.setString(7,  organization.getHeaderId());
+            stmt.setString(8, organization.getLogoId());
+            stmt.setString(9, String.valueOf(organization.getOrgType()));
 
-            stmt.setInt(1, Integer.parseInt(organization.getSupportTeamId()));
-            stmt.setString(2, organization.getName());
-            stmt.setString(3, organization.getAddress());
-            stmt.setString(4, organization.getDistrict());
-            stmt.setString(5, organization.getContactNumber());
-            stmt.setString(6,  organization.getHeaderId());
-            stmt.setString(7, organization.getLogoId());
-            stmt.setString(8, String.valueOf(organization.getOrgType()));
 
-            ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
-                n = rs.getInt("organizationid");
-            }
-
-            return n;
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            return false;
         }
+        return true;
     }
 
     private Organization setOrganization(Organization organization, ResultSet rs) {

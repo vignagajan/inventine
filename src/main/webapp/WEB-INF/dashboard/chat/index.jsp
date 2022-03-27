@@ -1,4 +1,6 @@
 <%@ page import="com.inventine.model.Chat" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
@@ -21,8 +23,6 @@
 
 
 <main id="main">
-
-<%--    <%   Chat chat = (Chat)request.getAttribute("chats");%>--%>
 
     <div class="main-container">
         <div class="container">
@@ -108,88 +108,20 @@
                             </div>
                         </div>
                         <div class="message-container">
-                            <div class="comment me">
+                            <%
+                                String me = (String)request.getSession().getAttribute("userid");
+                                List<Chat> chats = (ArrayList<Chat>)request.getAttribute("chats");
+                                for(Chat chat: chats) {  %>
+                            <div class="comment <% if (me == (String)chat.getSenderId()){
+                                out.print("me");
+                                }else{
+                                out.print("other");}%>">
                                 <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="">
                                 <div class="bubble">
-                                    <img src="static/img1.jpg" alt="">
+                                    <%out.print(chat.getMessage());%>
                                 </div>
                             </div>
-                            <div class="comment me">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="">
-                                <div class="bubble">
-
-<%--                                     <%out.print(chat.getMessage());%>--%>
-                                    how are you ?
-                                </div>
-                            </div>
-                            <div class="comment other">
-                                <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg" alt="">
-                                <div class="bubble">
-<%--                                    <%out.print(chat.getMessage());%>--%>
-                                    i'm fine.
-                                </div>
-                            </div>
-                            <div class="divider"><span>
-                    Feb 8 12:01
-                  </span></div>
-                            <div class="comment other">
-                                <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg" alt="">
-                                <div class="bubble">
-                                    Did you find a place for monday's metting?
-                                </div>
-                            </div>
-                            <div class="comment me">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="">
-                                <div class="bubble">
-                                    I found a couple venues. The one on meeting street seems nice.
-                                </div>
-                            </div>
-                            <div class="comment me">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="">
-                                <div class="bubble">
-                                    can you give me some guidelines to follow as I look for one?
-                                </div>
-                            </div>
-                            <div class="comment other">
-                                <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg" alt="">
-                                <div class="bubble">
-                                    Here's a link to a good one. It should be avalible.
-                                    <a href="#">venues.com</a>
-                                </div>
-                            </div>
-                            <div class="divider">
-                                <span>Today 8:58 PM</span>
-                            </div>
-                            <div class="comment me">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="">
-                                <div class="bubble">
-                                    Are we still holding the metting on monday?
-                                </div>
-                            </div>
-                            <div class="comment other">
-                                <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg" alt="">
-                                <div class="bubble">
-                                    Yeah, can you bring napkins?
-                                </div>
-                            </div>
-                            <div class="comment other">
-                                <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg" alt="">
-                                <div class="bubble">
-                                    I've got napkins covered 👍
-                                </div>
-                            </div>
-                            <div class="comment me">
-                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" alt="">
-                                <div class="bubble">
-                                    How do you feel about terraforming?
-                                </div>
-                            </div>
-                            <div class="comment other">
-                                <img src="https://img.freepik.com/free-photo/cheerful-curly-business-girl-wearing-glasses_176420-206.jpg?size=626&ext=jpg" alt="">
-                                <div class="bubble">
-                                    I feel like thats's a bit off topic.
-                                </div>
-                            </div>
+                            <% }%>
                         </div>
                         <div class="input-container">
                             <button class="attach">

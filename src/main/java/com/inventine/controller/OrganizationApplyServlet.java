@@ -55,7 +55,7 @@ public class OrganizationApplyServlet extends HttpServlet {
 
         // Parse request data
 
-        String supportTeamId = "1";
+        String supportTeamId = "11";
         String logoId = "1640618179717";
         String headerId = "1640618091700";
 
@@ -90,7 +90,7 @@ public class OrganizationApplyServlet extends HttpServlet {
         String condition = "";
 
         // Username availability check
-        condition = String.format("WHERE username=%s",username);
+        condition = String.format("WHERE name=%s",username);
         if(credsDao.getCount(condition) == 1){
             ok=false;
             messages.add("Username is already found!");
@@ -140,13 +140,15 @@ public class OrganizationApplyServlet extends HttpServlet {
 
             }
             int userid = credsDao.create(creds);
-            organization.setOrganizationId(Integer.toString(userid));
-            int organizationid = organizationDao.create(organization);
+            System.out.println(userid);
+            ok=organization.setOrganizationId(String.valueOf(userid));
+            System.out.println(organization.getOrganizationId());
+            ok=organizationDao.create(organization);
 //            creds.setUserId(Integer.toString(organizationid));
-
+            System.out.println(ok);
 
             // Pass model to DAO
-            if(organizationid==0 && !ok ){
+            if(userid==0 && !ok ){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");
