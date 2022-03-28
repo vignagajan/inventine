@@ -79,10 +79,58 @@ Creds creds = (Creds) request.getAttribute("creds");
     <input type="text" name="city" value="<% out.print(user.getDistrict());%>" disabled>
     </div>
     <br>
-    <button type="submit">Confirm</button>
+    <button onclick="signupValidation()">Confirm</button>
 </form>
 
     </div>
 </div>
+
+<script src="${System.getenv("HOST_URL")}/static/js/dashboard/validate.js"></script>
+
+
+
+<script>
+
+
+    function signupValidation(){
+
+        for (i = 0; i < y.length; i++) {
+
+            if(y[i].value == ""){
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Form fields cannot be empty!',
+                    iconColor: "#0097e6",
+                    confirmButtonColor: "#0097e6",
+                });
+
+                return false;
+            }
+
+            if(!y[i].checkValidity()){
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Form fields should be valid!',
+                    iconColor: "#0097e6",
+                    confirmButtonColor: "#0097e6",
+                });
+
+                return false;
+            }
+
+        }
+        y.push(document.getElementsByTagName("textarea"))
+
+        requestHandler(
+            y,
+            window.location.href,
+            'Project created successfully!',
+            ''
+        )
+    }
+
+</script>
 </body>
 </html>

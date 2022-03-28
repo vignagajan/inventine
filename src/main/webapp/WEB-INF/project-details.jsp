@@ -1,9 +1,6 @@
-<%@ page import="com.inventine.model.Project" %>
-<%@ page import="com.inventine.model.User" %>
-<%@ page import="com.inventine.model.Payment" %>
-<%@ page import="com.inventine.model.Creds" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.inventine.model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +24,7 @@
     Project project = (Project) request.getAttribute("project");
     User user = (User) request.getAttribute("user");
     Creds creds= (Creds) request.getAttribute("creds");
+    RateProject rateProject=(RateProject) request.getAttribute("rateProject");
 
 %>
 
@@ -75,6 +73,7 @@
                     <i class = "fas fa-star-half-alt"></i>
                     <span>4.7(21)</span>
                 </div>
+
             </div>
 
             <h2 class = "project-title"><% out.print(project.getProjectName());%></h2>

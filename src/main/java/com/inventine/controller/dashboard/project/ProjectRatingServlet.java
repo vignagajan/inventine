@@ -1,7 +1,11 @@
-package com.inventine.controller;
+package com.inventine.controller.dashboard.project;
 
-import com.inventine.dao.*;
-import com.inventine.model.*;
+import com.inventine.dao.ProjectDaoImplementation;
+import com.inventine.dao.RateProjectDaoImplementation;
+import com.inventine.dao.UserDaoImplementation;
+import com.inventine.model.Project;
+import com.inventine.model.RateProject;
+import com.inventine.model.User;
 import org.json.simple.JSONObject;
 
 import javax.servlet.*;
@@ -11,52 +15,41 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "InvestServlet", value = "/invest")
-public class InvestServlet extends HttpServlet {
+@WebServlet(name = "ProjectRatingServlet", value = "/dashboard/project/rate/*")
+public class ProjectRatingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("role") == null){
+            session.setAttribute("role", 'A' );
+        }
+
         response.setContentType("text/html");
-        CredsDaoImplementation credsDao = new CredsDaoImplementation();
+
+        String uri = URLDecoder.decode( request.getRequestURI(), "UTF-8" ).toLowerCase();
+
+        String projectId =  uri.substring(uri.lastIndexOf('/') + 1);//"ImageDaoInterface not found!";
+
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
-        UserDaoImplementation userDao = new UserDaoImplementation();
-
-        String userId = (String)request.getSession().getAttribute("userId");
-
-
-        User user = userDao.getUser(userId);
-
-        Creds creds = credsDao.getCreds(userId);
-        String projectId = request.getParameter("projectId");
+        Project project = new Project();
+        project = projectDao.getProject(projectId);
 
 
-        request.setAttribute("project",projectDao.getProject(projectId));
-        request.setAttribute("user",user);
-        request.setAttribute("creds",creds);
-        System.out.println("this servlet");
 
-
-        request.setAttribute("host_url",System.getenv("HOST_URL"));
-        request.setAttribute("title","Invest");
-        request.getRequestDispatcher("/WEB-INF/invest.jsp").forward(request, response);
+        request.setAttribute("project",project);
+        request.setAttribute("host_url", System.getenv("HOST_URL"));
+        request.getRequestDispatcher("/WEB-INF/dashboard/project/rate.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-
-//        String login_redirect = System.getenv("HOST_URL")+"/login";
-//
-//
-//        if (session.getAttribute("role") == null) {
-//           session.setAttribute("login_redirect",login_redirect);
-//            LoginServlet login_servlet = new LoginServlet();
-//            login_servlet.doGet(request,response);
-//        }
-
+// JSON parameters
         JSONObject json = new JSONObject();
         List<String> messages = new ArrayList<>();
         boolean ok = true;
@@ -64,24 +57,26 @@ public class InvestServlet extends HttpServlet {
         // Models and DAOs
 
         Project project = new Project();
-        Payment payment = new Payment();
+        RateProject rateProject = new RateProject();
         UserDaoImplementation userDao = new UserDaoImplementation();
         ProjectDaoImplementation projectDao = new ProjectDaoImplementation();
-        PaymentDaoImplementation paymentDao = new PaymentDaoImplementation();
+        RateProjectDaoImplementation rateProjectDao = new RateProjectDaoImplementation();
 
         // Parse request data
 
         String projectId = request.getParameter("projectId");
+        int rating = Integer.parseInt(request.getParameter("rating"));
         String userId = (String)request.getSession().getAttribute("userId");
-        String financialDetailsId = "1";
-        int amount = Integer.parseInt(request.getParameter("amount"));
 
 
         System.out.println(projectId);
+        System.out.println(rating);
         System.out.println(userId);
-        System.out.println(financialDetailsId);
-        System.out.println(amount);
 
+        // Data to be processed
+        Timestamp dateOfExpiry = null;
+
+        // Data preprocessing
 
 
         // Logic
@@ -94,10 +89,9 @@ public class InvestServlet extends HttpServlet {
         if(ok){
 
 
-            ok = payment.setProjectId(projectId);
-            ok = payment.setInvestorId(userId);
-            ok = payment.setFinancialDetailsId(financialDetailsId);
-            ok = payment.setAmount(amount);
+            ok = rateProject.setProjectRating(rating);
+            ok = rateProject.setInvestorId(userId);
+            ok = rateProject.setProjectId(projectId);
 
 
             if(!ok){
@@ -109,7 +103,7 @@ public class InvestServlet extends HttpServlet {
             }
 
             //           Pass model to DAO
-            if(!paymentDao.create(payment)){
+            if(!rateProjectDao.create(rateProject)){
                 ok=false;
                 messages.clear();
                 messages.add("Something went wrong!");
@@ -131,3 +125,4 @@ public class InvestServlet extends HttpServlet {
         out.flush();
     }
 }
+

@@ -25,22 +25,14 @@
 
             <div class="details">
 
-                <button onclick="">Generate Link</button>
+
 
                 <div class="input-box">
-                    <span class="details">Date of Meeting</span>
-                    <input type="date"
-                           id="dob" name="dob" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
+                    <span class="details">Date and time of Meeting</span>
+                    <input type="datetime-local"
+                           id="datetime" name="datetime" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
                     <span class="error" aria-live="polite" style="display: none;" >Select the date of the meeting</span>
                 </div>
-
-                <div class="input-box">
-                    <span class="details">Time</span>
-                    <input type="time"
-                           name="time" id="time" required pattern="\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])">
-                    <span class="error" aria-live="polite" style="display: none;" >Select the time of the meeting</span>
-                </div>
-
 
                 <div class="input-box">
                     <span class="details">Link</span>

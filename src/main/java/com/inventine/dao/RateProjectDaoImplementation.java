@@ -55,7 +55,7 @@ public class RateProjectDaoImplementation implements RateProjectDaoInterface {
 
             stmt.setInt(1, Integer.parseInt(rateProject.getProjectId()));
             stmt.setInt(2, Integer.parseInt(rateProject.getInvestorId()));
-            stmt.setString(3, String.valueOf(rateProject.getProjectRating()));
+            stmt.setInt(3, rateProject.getProjectRating());
 
 
             n = stmt.executeUpdate();

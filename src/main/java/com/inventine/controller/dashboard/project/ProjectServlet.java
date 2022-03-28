@@ -38,18 +38,18 @@ public class ProjectServlet extends HttpServlet {
         char role = (char)request.getSession().getAttribute("role");
 
         if (role == 'A' || role == 'F' || role == 'S'){
-            card1_condition = "select count(DISTINCT projectid) from project where status = 'A'";
-            card2_condition = "select count(DISTINCT projectid) from project where status = 'B'";
-            card3_condition = "select count(DISTINCT projectid) from project where status = 'D'";
-            card4_condition = "select count(DISTINCT projectid) from project";
+//            card1_condition = "select count(DISTINCT projectid) from project where status = 'A'";
+//            card2_condition = "select count(DISTINCT projectid) from project where status = 'B'";
+//            card3_condition = "select count(DISTINCT projectid) from project where status = 'D'";
+//            card4_condition = "select count(DISTINCT projectid) from project";
             get_condition = "";
         }
 
         if (role == 'C'){
-            card1_condition = "select count(DISTINCT projectid) from project where status='A' and creatorId=%s;";
-            card2_condition = "select count(DISTINCT projectid) from project where status='B' and creatorId=%s;";
-            card3_condition = "select count(DISTINCT projectid) from project where status='D' and creatorId=%s;";
-            card4_condition = "sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s);";
+//            card1_condition = "select count(DISTINCT projectid) from project where status='A' and creatorId=%s;";
+//            card2_condition = "select count(DISTINCT projectid) from project where status='B' and creatorId=%s;";
+//            card3_condition = "select count(DISTINCT projectid) from project where status='D' and creatorId=%s;";
+//            card4_condition = "sum(amount/(1000)) from payment where projectid=(select projectid from project where creatorid=%s);";
             get_condition = String.format("creatorid=%s and status='A'", session.getAttribute("userId"));
 //            get_condition = "select *  from project where creatorid=%s";
         }
@@ -57,10 +57,10 @@ public class ProjectServlet extends HttpServlet {
 
 
         if (role == 'I'){
-            card1_condition = "select count(DISTINCT projectid) from project";
-            card2_condition = "(select count from payment where projectid=(select projectid from project where financialstatus='C') && investorid=%s)";
-            card3_condition = "select count(DISTINCT investorid) from payment";
-            card4_condition = "select sum(amount/(1000)) from payment where investorid=%s";
+//            card1_condition = "select count(DISTINCT projectid) from project";
+//            card2_condition = "(select count from payment where projectid=(select projectid from project where financialstatus='C') && investorid=%s)";
+//            card3_condition = "select count(DISTINCT investorid) from payment";
+//            card4_condition = "select sum(amount/(1000)) from payment where investorid=%s";
             get_condition = String.format("projectid=(select projectid from payment where investorid=%s)", session.getAttribute("userId"));
             //            get_condition = "select * from project where projectid=(select projectid from payment where investorid=%s)";
         }
@@ -82,22 +82,22 @@ public class ProjectServlet extends HttpServlet {
         int card3_count = 0;
         int card4_count = 0;
 
-//        for (Project project : projects) {
-//
-//            if(Character.compare(project.getStatus(),'A') == 0){
-//                card1_count += 1;
-//            }
-//            if(Character.compare(project.getStatus(),'B') == 0){
-//                card2_count += 1;
-//            }
-//            if(Character.compare(project.getStatus(),'D') == 0){
-//                card3_count += 1;
-//            }
-//
-//
-//        }
-//
-//       card4_count = card1_count+card2_count+card3_count;
+        for (Project project : projects) {
+
+            if(Character.compare(project.getStatus(),'A') == 0){
+                card1_count += 1;
+            }
+            if(Character.compare(project.getStatus(),'B') == 0){
+                card2_count += 1;
+            }
+            if(Character.compare(project.getStatus(),'D') == 0){
+                card3_count += 1;
+            }
+
+
+        }
+
+       card4_count = card1_count+card2_count+card3_count;
 
         // Add card labels
         if (role == 'A' || role == 'F' || role == 'S') {
