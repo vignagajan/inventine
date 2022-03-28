@@ -95,6 +95,12 @@ public class ChatDaoImplementation implements ChatDaoInterface {
             chat.setMessage(rs.getString("messages"));
             chat.setCreatedAt(rs.getTimestamp("createdAt"));
 
+            System.out.println(chat.getChatId());
+            System.out.println(chat.getSenderId());
+            System.out.println(chat.getReceiverId());
+            System.out.println(chat.getMessage());
+            System.out.println(chat.getCreatedAt());
+
 
         } catch (SQLException e) {
             e.printStackTrace();
